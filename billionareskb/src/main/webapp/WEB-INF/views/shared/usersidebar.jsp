@@ -14,7 +14,7 @@
 
 			<ul class="list-group list-group-unbordered">
 				<li class="list-group-item"><b>TOTAL POINTS</b> <a
-					class="pull-right">1,322</a></li>
+					class="pull-right">1,324</a></li>
 				<li class="list-group-item"><b>COMPANY ATTACHED</b> <a
 					class="pull-right">Kyambogo University</a></li>
 				<li class="list-group-item"><b>JOB TITLE</b> <a
