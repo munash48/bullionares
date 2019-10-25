@@ -302,11 +302,12 @@ a:focus {
   font-size: 20px;
   line-height: 50px;
   text-align: center;
-  width: 230px;
+  width: 250px;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   padding: 0 15px;
   font-weight: 300;
   overflow: hidden;
+  position:fixed;
 }
 .main-header .logo img {
   padding: 4px;
@@ -2060,10 +2061,14 @@ a:focus {
   display: block;
   min-height: 90px;
   background: #fff;
-  width: 100%;
+  width: 95%;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
   border-radius: 2px;
   margin-bottom: 15px;
+  
+}
+.in-box-left{
+	margin:auto;
 }
 .info-box small {
   font-size: 14px;
@@ -3413,8 +3418,9 @@ table.text-center th {
 .post {
   border-bottom: 1px solid #d2d6de;
   margin-bottom: 15px;
-  padding-bottom: 15px;
+  padding: 2%;
   color: #666;
+  font-size:medium;
 }
 .post:last-of-type {
   border-bottom: 0;
@@ -3423,6 +3429,9 @@ table.text-center th {
 }
 .post .user-block {
   margin-bottom: 15px;
+}
+.postcontent{
+	font-size:14px;
 }
 /*
  * Social Buttons for Bootstrap
