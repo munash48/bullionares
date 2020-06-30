@@ -18,13 +18,31 @@
 				<%@include file="userpoints.jsp"%>
 			</div>
 
-			<div class="row">
-			
+			<div class="rrow">
 				<!-- MAIN POST  -->
+				<c:if test="${ModeLogged==true}">
 				<%@include file="./mainpost.jsp"%>
-				<!-- /.col -->
-
+				</c:if>
+				<c:if test="${modeMessage==true}">
+				<%@include file="./chat.jsp"%>
+				</c:if>
+				<c:if test="${modeProfile==true}">
+				<%@include file="./profile.jsp"%>
+				</c:if>
+				<c:if test="${modeEvents==true}">
+				<%@include file="./events.jsp"%>
+				</c:if>
+				<c:if test="${modeJobs==true}">
+				<%@include file="./jobs.jsp"%>
+				</c:if>
+				<c:if test="${modeChart==true}">
+				<%@include file="./chart.jsp"%>
+				</c:if>
 				<%@include file="./advertbar.jsp"%>
+				
+
+
+				
 
 			</div>
 		</div>

@@ -2,6 +2,7 @@
     pageEncoding="ISO-8859-1"%>
 <%@taglib prefix ="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix ="t" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <c:set var="contextRoot" value ="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
@@ -25,6 +26,7 @@
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="dist/css/skins/_all-skins.css">
+  <link rel="shortcut icon" type="image/jpg" href="/resources/favicon.io"/>
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -52,15 +54,17 @@
 <c:if test="${ModeWelcome==true}">
 <%@include file ="./shared/message.jsp" %>
 </c:if>
-
+<c:if test="${modeErrorAccess==true}">
+<%@include file ="./shared/error.jsp" %>
+</c:if>
 </div>
 <div class="row">
 
-<footer class="footer">
-    <div class="pull-right hidden-xs">
+<footer class="footer text-center">
+    <div class="row  hidden-xs">
       <b>Version</b> 2.4.18
     
-    <strong>Copyright &copy; 2014-2019 <a href="https://adminlte.io">AdminLTE</a>.</strong> All rights
+    <strong>Copyright &copy; 2020 <a href="http://kalimagezi.com/">Kalimagezi ltd</a>.</strong> All rights
     reserved.
 	</div>
   </footer>

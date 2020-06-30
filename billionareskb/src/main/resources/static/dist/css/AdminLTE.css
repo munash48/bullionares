@@ -2059,9 +2059,9 @@ a:focus {
  */
 .info-box {
   display: block;
-  min-height: 90px;
+  min-height: 70px;
   background: #fff;
-  width: 95%;
+  width: 90%;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
   border-radius: 2px;
   margin-bottom: 15px;
@@ -2092,35 +2092,33 @@ a:focus {
   border-bottom-left-radius: 2px;
   display: block;
   float: left;
-  height: 90px;
-  width: 90px;
+  height: 70px;
+  width: 40%;
   text-align: center;
-  font-size: 45px;
-  line-height: 90px;
+  font-size: 30px;
+  line-height: 70px;
   background: rgba(0, 0, 0, 0.2);
 }
 .info-box-icon > img {
-  max-width: 100%;
+  max-width: 80%;
 }
 .info-box-content {
-  padding: 5px 10px;
-  margin-left: 90px;
+  padding: 5px 5px;
+  margin-left: 20px;
 }
 .info-box-number {
   display: block;
-  font-weight: bold;
-  font-size: 18px;
+  font-size: 12px;
 }
 .progress-description,
 .info-box-text {
   display: block;
-  font-size: 14px;
-  white-space: nowrap;
-  overflow: hidden;
+  font-size: 13px;
   text-overflow: ellipsis;
 }
 .info-box-text {
   text-transform: uppercase;
+  white-space: nowrap;
 }
 .info-box-more {
   display: block;
@@ -2665,8 +2663,9 @@ a:focus {
   float: left;
 }
 .products-list .product-img img {
-  width: 50px;
-  height: 50px;
+  width: 70px;
+  height: 70px;
+  padding: 5px;
 }
 .products-list .product-info {
   margin-left: 60px;
@@ -2772,7 +2771,7 @@ table.text-center th {
   transform: translate(0, 0);
   padding: 10px;
   height: 250px;
-  overflow: auto;
+  overflow: visible;
 }
 .direct-chat-msg,
 .direct-chat-text {
@@ -5564,4 +5563,66 @@ hr {
   .table-responsive > .table tr td {
     white-space: normal !important;
   }
+}
+
+/* Container needed to position the button. Adjust the width as needed */
+
+
+/* Make the image responsive */
+.imgcontainer img {
+  width: 70%;
+  height: auto;
+}
+
+/* Style the button and place it in the middle of the container/image */
+ .imgbtn {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  opacity: 0.3;
+  transition: visibility 0s, opacity 0.5s linear;
+   padding: 12px 24px;
+}
+
+
+.imgbtn:hover
+{
+  background-color: black;
+  border: 2px solid #4CAF50;
+    background-color: #555;
+  color: white;
+  font-size: 16px;
+
+  border-radius: 5px;
+  visibility:visible;
+  opacity: 1;
+}
+ .probtn {
+ background-color: white;
+  border-color: white;
+  opacity: 0.3;
+  transition: visibility 0s, opacity 0.5s linear;
+  padding: 0px 0px;
+}
+.probtn:hover {
+  background-color: black;
+   color: white;
+  visibility:visible;
+  opacity: 0.7;
+}
+
+.btn-trans {
+  background-color: white;
+  border-color: white;
+  padding: 0;
+}
+
+.img-prod{
+	border-radius: 5%;
+}
+.intro{
+	font-size: 8px;
+	
 }

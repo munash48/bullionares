@@ -6,64 +6,62 @@
 	<div class="box box-primary">
 		<div class="box-header with-border">
 			<h3 class="box-title">Advertisement</h3>
+			<button type="button" data-toggle="modal"
+						data-target="#addAdvert" class="btn btn-trans probtn">
+						<i class="fa fa-pencil" title="click to add your advert" data-toggle="tooltip"
+						data-placement="right"></i>
+					</button>
+					
+					<button type="button" data-toggle="modal" data-target="#advertReview"
+						class="btn btn-trans probtn">
+						<i class="fa fa-eye" title="click to view all adds" data-toggle="tooltip"
+						data-placement="right"></i>
+					</button>
+					
 
 		</div>
 		<!-- /.box-header -->
 		<div class="box-body">
 			<ul class="products-list product-list-in-box">
+			
+			<c:forEach items="${displayadds}" var="eadvert">	
+				
 				<li class="item">
 					<div class="product-img">
-						<img src="dist/img/default-50x50.gif" alt="Product Image">
+					<c:if test="${eadvert.imageLink!=''}">
+					
+					
+					<a href="/uploads/${eadvert.uid}/aaaaa/${eadvert.imageLink}" target="_blank">
+						<img class="img-prod"
+							src="/uploads/${eadvert.uid}/aaaaa/${eadvert.imageLink}"
+							alt="user image"> </a>
+
+					</c:if>
+					<c:if test="${eadvert.imageLink==''}">
+						<img class="img-square img-bordered-sm"
+							src="dist/img/default-50x50.gif" alt="Product Image">
+
+					</c:if>
+
 					</div>
 					<div class="product-info">
-						<a href="javascript:void(0)" class="product-title">Samsung TV
-							<span class="label label-warning pull-right">$1800</span>
-						</a> <span class="product-description"> Samsung 32" 1080p 60Hz
-							LED Smart HDTV. </span>
+						<a href="javascript:void(0)" class="product-title">${eadvert.title}
+							<span class="label label-warning pull-right">$${eadvert.itemAmount}</span>
+						</a> <span class="product-description">${eadvert.description}</span>
+						<a>${eadvert.website} </a>
+						
 					</div>
 				</li>
-				<!-- /.item -->
-				<li class="item">
-					<div class="product-img">
-						<img src="dist/img/default-50x50.gif" alt="Product Image">
-					</div>
-					<div class="product-info">
-						<a href="javascript:void(0)" class="product-title">Bicycle <span
-							class="label label-info pull-right">$700</span></a> <span
-							class="product-description"> 26" Mongoose Dolomite Men's
-							7-speed, Navy Blue. </span>
-					</div>
-				</li>
-				<!-- /.item -->
-				<li class="item">
-					<div class="product-img">
-						<img src="dist/img/default-50x50.gif" alt="Product Image">
-					</div>
-					<div class="product-info">
-						<a href="javascript:void(0)" class="product-title">Xbox One <span
-							class="label label-danger pull-right">$350</span></a> <span
-							class="product-description"> Xbox One Console Bundle with
-							Halo Master Chief Collection. </span>
-					</div>
-				</li>
-				<!-- /.item -->
-				<li class="item">
-					<div class="product-img">
-						<img src="dist/img/default-50x50.gif" alt="Product Image">
-					</div>
-					<div class="product-info">
-						<a href="javascript:void(0)" class="product-title">PlayStation
-							4 <span class="label label-success pull-right">$399</span>
-						</a> <span class="product-description"> PlayStation 4 500GB
-							Console (PS4) </span>
-					</div>
-				</li>
-				<!-- /.item -->
+				</c:forEach>
+				
+		
 			</ul>
 		</div>
 		<!-- /.box-body -->
 		<div class="box-footer text-center">
-			<a href="javascript:void(0)" class="uppercase">View All Products</a>
+			<a href="javascript:void(0)" class="uppercase"></a>
+
+					
 		</div>
 		<!-- /.box-footer -->
 	</div>
@@ -71,61 +69,42 @@
 
 	<div class="box box-default">
 		<div class="box-header with-border">
-			<h3 class="box-title">Upcoming Events</h3>
+			<h3 class="box-title">Upcoming Category Events</h3>
 
+					<button type="button" data-toggle="modal" data-target="#eventReview"
+						class="btn btn-trans probtn">
+						<i class="fa fa-eye" title="click chose to go" data-toggle="tooltip"
+						data-placement="right"></i>
+					</button>
 		</div>
 		<!-- /.box-header -->
 		<div class="box-body">
 			<div class="row">
-			
+				<c:forEach items="${catEvents}" var="catEvent">
+			   <c:if test="${not empty catEvent.ename}">
 				<div class="info-box bg-green info-box-left">
 					<span class="info-box-icon"><i
 						class="ion ion-ios-heart-outline"></i></span>
 
 					<div class="info-box-content">
-						<span class="info-box-text">Mentions</span> <span
-							class="info-box-number">92,050</span>
+						<span class="info-box-text">${catEvent.ename}</span> 
+						<span class="progress-description"> ${catEvent.description}
+						</span>
+							<span class="info-box-number">${(catEvent.going/noCUsers)*100} % going</span>
 
 						<div class="progress">
-							<div class="progress-bar" style="width: 20%"></div>
+							<div class="progress-bar" style="width: ${(catEvent.going/noCUsers)*100}%"></div>
 						</div>
-						<span class="progress-description"> 20% Increase in 30 Days
-						</span>
+						
 					</div>
+					
 					<!-- /.info-box-content -->
 				</div>
-				<div class="info-box bg-green info-box-left">
-					<span class="info-box-icon"><i
-						class="ion-ios-chatbubble-outline"></i></span>
+				</c:if>
+				
+			</c:forEach>	
 
-					<div class="info-box-content">
-						<span class="info-box-text">Direct Messages</span> <span
-							class="info-box-number">163,921</span>
-
-						<div class="progress">
-							<div class="progress-bar" style="width: 40%"></div>
-						</div>
-						<span class="progress-description"> 40% Increase in 30 Days
-						</span>
-					</div>
-					<!-- /.info-box-content -->
-				</div>
-				<div class="info-box bg-green info-box-left">
-					<span class="info-box-icon"><i
-						class="ion-ios-chatbubble-outline"></i></span>
-
-					<div class="info-box-content">
-						<span class="info-box-text">Direct Messages</span> <span
-							class="info-box-number">163,921</span>
-
-						<div class="progress">
-							<div class="progress-bar" style="width: 40%"></div>
-						</div>
-						<span class="progress-description"> 40% Increase in 30 Days
-						</span>
-					</div>
-					<!-- /.info-box-content -->
-				</div>
+			
 				
 
 				<!-- /.col -->
@@ -139,60 +118,47 @@
 	<!-- /.box -->
 	<div class="box box-default">
 		<div class="box-header with-border">
-			<h3 class="box-title">Jobs and Careers</h3>
+			<h3 class="box-title">Job Advertisement</h3>
+			<button type="button" data-toggle="modal"
+						data-target="#addJob" class="btn btn-trans probtn">
+						<i class="fa fa-pencil" title="click to add job advert" data-toggle="tooltip"
+						data-placement="right"></i>
+					</button>
+					
+					<button type="button" data-toggle="modal" data-target="#jobReview"
+						class="btn btn-trans probtn">
+						<i class="fa fa-eye" title="click to recomend" data-toggle="tooltip"
+						data-placement="right"></i>
+					</button>
 
 		</div>
 		<!-- /.box-header -->
 		<div class="box-body">
+		
+		
 			<div class="row">
+			<c:forEach items="${catJobadds}" var="catJobadd">
+			 <c:if test="${not empty catJobadd.jobTitle}">
+			
 				<div class="info-box bg-yellow info-box-left">
 					<span class="info-box-icon"><i
 						class="ion ion-ios-pricetag-outline"></i></span>
 
 					<div class="info-box-content">
-						<span class="info-box-text">Inventory</span> <span
-							class="info-box-number">5,200</span>
+						<span class="info-box-text">${catJobadd.jobTitle}</span> <span
+							class="info-box-number">${catJobadd.jobCategory}  ${catJobadd.salary} ugx</span>
 
 						<div class="progress">
-							<div class="progress-bar" style="width: 50%"></div>
+							<div class="progress-bar" style="width: ${(catJobadd.recomended/noCUsers)*100}%"></div>
 						</div>
-						<span class="progress-description"> 50% Increase in 30 Days
+						<span class="progress-description"> (${(catJobadd.recomended/noCUsers)*100} % recommended)
 						</span>
 					</div>
 					<!-- /.info-box-content -->
 				</div>
-				<div class="info-box bg-yellow info-box-left">
-					<span class="info-box-icon"><i
-						class="ion ion-ios-pricetag-outline"></i></span>
+				</c:if>
+				</c:forEach>
 
-					<div class="info-box-content">
-						<span class="info-box-text">Inventory</span> <span
-							class="info-box-number">5,200</span>
-
-						<div class="progress">
-							<div class="progress-bar" style="width: 50%"></div>
-						</div>
-						<span class="progress-description"> 50% Increase in 30 Days
-						</span>
-					</div>
-					<!-- /.info-box-content -->
-				</div>
-				<div class="info-box bg-yellow info-box-left">
-					<span class="info-box-icon"><i
-						class="ion-ios-chatbubble-outline"></i></span>
-
-					<div class="info-box-content">
-						<span class="info-box-text">Direct Messages</span> <span
-							class="info-box-number">163,921</span>
-
-						<div class="progress">
-							<div class="progress-bar" style="width: 40%"></div>
-						</div>
-						<span class="progress-description"> 40% Increase in 30 Days
-						</span>
-					</div>
-					<!-- /.info-box-content -->
-				</div>
 
 				<!-- /.col -->
 			</div>
