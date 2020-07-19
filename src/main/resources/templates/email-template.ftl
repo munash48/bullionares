@@ -28,7 +28,9 @@
             <td bgcolor="#eaeaea" style="padding: 40px 30px 40px 30px;">
                 <p>Dear ${name},</p>
                 <p>${message}</b></p>
+                <p>Click <a href="https://kalmanare.herokuapp.com/">here Billionaires </a> to register</p>
                 <p>Thanks</p>
+                
             </td>
         </tr>
         <tr>
