@@ -51,7 +51,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter implemen
 			.requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
 			.antMatchers("/").permitAll()						
 			.and()
-			 .formLogin().loginPage("/login").defaultSuccessUrl("/home",true)
+			 .formLogin().loginPage("/login").defaultSuccessUrl("/default",true)
 			.and().exceptionHandling().accessDeniedPage("/accessdenied")
 			;
 		
