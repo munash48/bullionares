@@ -28,7 +28,8 @@
     <li>You can also advertise with us at a small cost.</li>
     <li>Chat with the members of your category as you earn points.</li>
     <li>View the best and leading categories.</li>
-    <li>Your posts can contain text, Youtube link, or a picture. This can be combined two or all three items.</li> </ol>
+    <li>Your posts can contain text, Youtube link, or a picture. This can be combined two or all three items.</li>
+    <li>View engagements of other categories, however you can’t do share opinions across categories.</li> </ol>
     </p>
   </div>      
 </div>

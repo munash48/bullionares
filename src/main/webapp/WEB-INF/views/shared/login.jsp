@@ -15,7 +15,7 @@
 
 			</div>
 		</c:if>
-			<c:if test="${ModeJustLoggedOut==true}">
+			<c:if test="${ModeJustLoggedOut==true||ModeReseted==true}">
 			<div class="col-xs-12">
 				<div class="alert alert-success alert-dismissible">
 
@@ -86,7 +86,7 @@
 		<!-- /.social-auth-links -->
 
 
-		<a href="#">I forgot my password</a><br> <a href="/register"
+		<a href="/reset">I forgot my password</a><br> <a href="/register"
 			class="text-center">Register a new membership</a>
 
 	</div>

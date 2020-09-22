@@ -24,10 +24,10 @@
 
 					<!-- Messages: style can be found in dropdown.less-->
 					<c:if
-						test="${ModeWelcome==true||ModeLogin==true||ModeRegister==true}">
-						<li><a href="/">Rules</a></li>
-						<li><a href="/register">Register</a></li>
-						<li><a href="/login">Login</a></li>
+						test="${ModeWelcome==true||ModeLogin==true||ModeRegister==true||ModeResetLink==true||ModeResetCode==true||ModeResetLink==true||ModeReset==true}">
+						<li><a href="javascript:void(0);" id="rules">Rules</a></li>
+						<li><a href="javascript:void(0);" id="regForm">Register</a></li>
+						<li><a href="javascript:void(0);" id="loginForm">Login</a></li>
 
 					</c:if>
 
@@ -194,13 +194,19 @@
 
 								<!-- Menu Footer-->
 								<li class="user-footer">
+								
 									<div class="pull-left">
 										<a href="/profile" class="btn btn-default btn-flat">Profile</a>
 									</div>
+									
 									<div class="pull-right">
 										<a href="perform-logout" class="btn btn-default btn-flat">Sign
 											out</a>
 									</div>
+									<div class="pull-right">
+										<a href="/reset?email=${user.email}" class="btn btn-default btn-flat">Reset Password</a>
+									</div>
+									
 								</li>
 							</ul></li>
 						<!-- Control Sidebar Toggle Button -->

@@ -103,6 +103,13 @@ public class UserService {
 		// TODO Auto-generated method stub
 		return userRepository.findAllByCatid(catid); 
 	}
+
+
+
+	public User findByResetcode(String resetcode) {
+		// TODO Auto-generated method stub
+		return userRepository.findAllByResetcode(resetcode); 
+	}
 	
 
 

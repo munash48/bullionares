@@ -19,6 +19,8 @@ public interface UserRepository extends JpaRepository<User, Integer>{
 
 
 	List<User> findAllByCatid(int catid);
+
+	User findAllByResetcode(String resetcode);
 	
 
 

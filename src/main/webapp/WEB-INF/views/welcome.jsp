@@ -11,6 +11,8 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Billionares KB ${title}</title>
+  <link rel="shortcut icon" href="images/billionaire-icon3.png" />
+  
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -43,7 +45,10 @@
 <%@include file="./shared/header.jsp" %>
 
 
-<div class="row">
+<div class="row ">
+<div class="inner-jsp">
+
+</div>
 <!-- REGSITER LOGIN OR DOCUEMNTATION -->
 <c:if test="${ModeRegister==true}">
 <%@include file ="./shared/register.jsp" %>
@@ -56,6 +61,9 @@
 </c:if>
 <c:if test="${modeErrorAccess==true}">
 <%@include file ="./shared/error.jsp" %>
+</c:if>
+<c:if test="${ModeReset==true||ModeResetLink==true||ModeResetCode==true}">
+<%@include file ="./shared/reset.jsp" %>
 </c:if>
 </div>
 <div class="row">
@@ -74,6 +82,7 @@
 
 <!-- jQuery 3 -->
 <script src="bower_components/jquery/dist/jquery.min.js"></script>
+<script src="bower_components/jquery/js/jquery.boot.js"></script>
 <!-- Bootstrap 3.3.7 -->
 <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- FastClick -->

@@ -38,6 +38,7 @@ public class User {
 	private Boolean enabled =true;
 	private String profession;
 	private String aboutme;
+	private String resetcode;
 	private Date joinDate =new Date();
 	
 	
@@ -45,14 +46,13 @@ public class User {
 
 	}
 	
-	
 
-	
+
 
 
 	public User(int id, String firstName, String otherNames, String email, String role, String password, int catid,
 			LocalDate birthDate, String phoneNumber, String imageLink, Boolean enabled, String profession,
-			String aboutme, Date joinDate) {
+			String aboutme, String resetcode, Date joinDate) {
 		super();
 		this.id = id;
 		this.firstName = firstName;
@@ -67,9 +67,9 @@ public class User {
 		this.enabled = enabled;
 		this.profession = profession;
 		this.aboutme = aboutme;
+		this.resetcode = resetcode;
 		this.joinDate = joinDate;
 	}
-
 
 
 
@@ -80,7 +80,7 @@ public class User {
 		return "User [id=" + id + ", firstName=" + firstName + ", otherNames=" + otherNames + ", email=" + email
 				+ ", role=" + role + ", password=" + password + ", catid=" + catid + ", birthDate=" + birthDate
 				+ ", phoneNumber=" + phoneNumber + ", imageLink=" + imageLink + ", enabled=" + enabled + ", profession="
-				+ profession + ", aboutme=" + aboutme + ", joinDate=" + joinDate + "]";
+				+ profession + ", aboutme=" + aboutme + ", resetcode=" + resetcode + ", joinDate=" + joinDate + "]";
 	}
 
 
@@ -172,18 +172,9 @@ public class User {
 	}
 
 
-
-
-
-
-
 	public Date getJoinDate() {
 		return joinDate;
 	}
-
-
-
-
 
 
 	public String getAboutme() {
@@ -191,15 +182,19 @@ public class User {
 	}
 
 
-
-
-
-
 	public void setAboutme(String aboutme) {
 		this.aboutme = aboutme;
 	}
 
+	public String getResetcode() {
+		return resetcode;
+	}
 
+	public void setResetcode(String resetcode) {
+		this.resetcode = resetcode;
+	}
+
+	
 
 	
 }

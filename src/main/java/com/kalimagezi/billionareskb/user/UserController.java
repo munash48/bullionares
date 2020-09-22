@@ -167,7 +167,7 @@ public class UserController {
 		
 		
 
-		return "redirect:/login?error=reg";
+		return "redirect:/reset?email="+mUser.getEmail()+"&pnew=yes";
 
 	}
 	
