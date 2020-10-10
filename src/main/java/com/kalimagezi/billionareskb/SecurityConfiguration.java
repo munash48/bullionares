@@ -28,15 +28,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter implemen
 	
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(userDetailsService).passwordEncoder(getPasswordEncoder());
-		
-
-			
+		auth.userDetailsService(userDetailsService).passwordEncoder(getPasswordEncoder());		
 		
 	}
 	protected void configure(HttpSecurity http) throws Exception {
 		
-		http
+		http.csrf().disable()
 			.authorizeRequests()
 			.antMatchers("/resources/**").permitAll()
 			.antMatchers("/reset/**").permitAll()
@@ -51,8 +48,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter implemen
 			.antMatchers("/chart/**").hasAnyRole("ADMIN","USER")
 			.requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
 			.antMatchers("/").permitAll()						
+			.antMatchers("/shared/**").permitAll()						
 			.and()
-			 .formLogin().loginPage("/login").defaultSuccessUrl("/default",true)
+			 .formLogin().loginPage("/").defaultSuccessUrl("/default",true)
 			.and().exceptionHandling().accessDeniedPage("/accessdenied")
 			;
 		

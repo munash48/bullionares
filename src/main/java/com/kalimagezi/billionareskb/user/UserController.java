@@ -7,11 +7,16 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -81,93 +86,23 @@ public class UserController {
 
 
 
-	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	public String registerUser(@ModelAttribute("user") User mUser) {
+	@PostMapping(value="/register", consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody String registerUser(@RequestBody User mUser) {
 		
 		// add new user
 		try {
-			userService.addUser(mUser); 
+			return userService.addUser(mUser); 
 			//might throw exception
 			
-			User user1 =userService.findByEmail(mUser.getEmail());
-			Address address= new Address();
-			address.setUid(user1.getId());
-			addressService.addAddress(address);
-			
-			Company company= new Company();
-			company.setUid(user1.getId());
-			companyService.addCompany(company);
-			
-			Career career= new Career();
-			career.setUid(user1.getId());
-			careerService.addCareer(career);
-			
-			Education education = new Education();
-			education.setUid(user1.getId());
-			educationService.addEducation(education);
-			
-			SkillTalent skillTalent = new SkillTalent();
-			skillTalent.setUid(user1.getId());
-			skillTalentService.addSkillTalent(skillTalent);
-			
-			
-			
-			Connection connection = new Connection();
-			connection.setUid(user1.getId());
-			connection.setCuid(user1.getCatid());
-			connectionService.addConnection(connection);
-			
-			Notification notification =new Notification();
-			notification.setUid(user1.getId());
-			notification.setChart(1);
-			notificationService.addNotification(notification);
-			
-			
-			Counter counter = new Counter();
-			counter.setUid(user1.getId());
-			counter.setCid(user1.getCatid());
-			counter.setNoVotes(2);
-			counter.setTotal(2);
-			counterService.addCounter(counter);
-			
-			Invite invite = new Invite();
-
-			invite.setEmail(user1.getEmail());
-			invite.setUid(user1.getId());
-			invite.setMessage(user1.getFirstName() +" " +user1.getOtherNames() +" has invited you to join Billonares" );
-			
-			List<Jobadd> catJobadds=jobaddService.getCatJobadd(user1.getCatid());
-			
-			if (catJobadds.isEmpty()) {
-				
-				Jobadd jobadd = new Jobadd();
-				jobadd.setCid(user1.getCatid());
-				jobadd.setUid(user1.getId());
-				jobadd.setRecomended(1);
-				
-				jobaddService.addJobadd(jobadd);
-				
-			}
-				
-				Event event = new Event();
-				event.setUid(user1.getId());
-				event.setCid(user1.getCatid());
-				eventService.addEvent(event);
-				Going going=new Going();
-				going.setEid(event.getId());
-				going.setUid(user1.getId());
-				goingService.addGoing(going);
-				
-		
-			
+					
 		} catch(Exception e) {
 		    //Email Address already exists
-			return "redirect:/register?opt=fail";
+			return "/shared/register?opt=fail";
 		}
 		
 		
 
-		return "redirect:/reset?email="+mUser.getEmail()+"&pnew=yes";
+		//return "redirect:/reset?email="+mUser.getEmail()+"&pnew=yes";
 
 	}
 	
@@ -248,28 +183,116 @@ public class UserController {
 		return "redirect:/home?userupdate=success";
 		
 	}
-
-	@RequestMapping(value = "/register", method = RequestMethod.GET)
-	public ModelAndView register(@RequestParam(name="opt",required=false) String opt) {
-		ModelAndView mv = new ModelAndView();
 	
-		if(opt!=null) {
-			
-			if(opt.equals("fail")) {
-				mv.addObject("failed", "<b>The email your using is already taken</b>");
-				mv.addObject("ModeJustRegistered", true);				
-			}
-						
-		}
+	public void createUseradons(User mUser) {
+
+		User user1 =userService.findByEmail(mUser.getEmail());
+		Address address= new Address();
+		address.setUid(user1.getId());
+		addressService.addAddress(address);
 		
-		mv.addObject("title", "Register");
-		mv.addObject("ModeRegister", true);
-		mv.setViewName("welcome");
+		Company company= new Company();
+		company.setUid(user1.getId());
+		companyService.addCompany(company);
+		
+		Career career= new Career();
+		career.setUid(user1.getId());
+		careerService.addCareer(career);
+		
+		Education education = new Education();
+		education.setUid(user1.getId());
+		educationService.addEducation(education);
+		
+		SkillTalent skillTalent = new SkillTalent();
+		skillTalent.setUid(user1.getId());
+		skillTalentService.addSkillTalent(skillTalent);
+		
+		
+		
+		Connection connection = new Connection();
+		connection.setUid(user1.getId());
+		connection.setCuid(user1.getCatid());
+		connectionService.addConnection(connection);
+		
+		Notification notification =new Notification();
+		notification.setUid(user1.getId());
+		notification.setChart(1);
+		notificationService.addNotification(notification);
+		
+		
+		Counter counter = new Counter();
+		counter.setUid(user1.getId());
+		counter.setCid(user1.getCatid());
+		counter.setNoVotes(2);
+		counter.setTotal(2);
+		counterService.addCounter(counter);
+		
+		Invite invite = new Invite();
+
+		invite.setEmail(user1.getEmail());
+		invite.setUid(user1.getId());
+		invite.setMessage(user1.getFirstName() +" " +user1.getOtherNames() +" has invited you to join Billonares" );
+		
+		List<Jobadd> catJobadds=jobaddService.getCatJobadd(user1.getCatid());
+		
+		if (catJobadds.isEmpty()) {
+			
+			Jobadd jobadd = new Jobadd();
+			jobadd.setCid(user1.getCatid());
+			jobadd.setUid(user1.getId());
+			jobadd.setRecomended(1);
+			
+			jobaddService.addJobadd(jobadd);
+			
+		}
+			
+			Event event = new Event();
+			event.setUid(user1.getId());
+			event.setCid(user1.getCatid());
+			eventService.addEvent(event);
+			Going going=new Going();
+			going.setEid(event.getId());
+			going.setUid(user1.getId());
+			goingService.addGoing(going);
+			
+	}
+
+//	@RequestMapping(value = "/register-d", method = RequestMethod.GET)
+//	public ModelAndView register(@RequestParam(name="opt",required=false) String opt) {
+//		ModelAndView mv = new ModelAndView();
+//	
+//		if(opt!=null) {
+//			
+//			if(opt.equals("fail")) {
+//				mv.addObject("failed", "<b>The email your using is already taken</b>");
+//				mv.addObject("ModeJustRegistered", true);				
+//			}
+//						
+//		}
+//		
+//		mv.addObject("title", "Register");
+//		mv.addObject("ModeRegister", true);
+//		mv.setViewName("welcome");
+//		User nUser = new User();
+//		mv.addObject("user", nUser);
+//
+//		return mv;
+//
+//	}
+//	
+	@RequestMapping(value = "/register", method = RequestMethod.GET)
+	public String register(Model model,String opt ) {
+		if(opt!=null) {
+			model.addAttribute("failed", "<b>The email your using is already taken</b>");
+			model.addAttribute("ModeJustRegistered", true);				
+		}
+		model.addAttribute("title", "Register");
+		model.addAttribute("ModeRegister", true);
 		User nUser = new User();
-		mv.addObject("user", nUser);
+		model.addAttribute("user", nUser);
 
-		return mv;
 
+		return "/shared/register";
 	}
 
 	@RequestMapping(value = "/home2", method = RequestMethod.GET)

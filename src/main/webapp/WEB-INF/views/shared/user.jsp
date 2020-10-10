@@ -18,7 +18,7 @@
 				<%@include file="userpoints.jsp"%>
 			</div>
 
-			<div class="rrow">
+			<div class="row">
 				<!-- MAIN POST  -->
 				<c:if test="${ModeLogged==true}">
 				<%@include file="./mainpost.jsp"%>

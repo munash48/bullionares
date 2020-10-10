@@ -1,15 +1,18 @@
+<%@taglib prefix ="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<script src="bower_components/jquery/js/jquery.update2.js"></script>
 
 <div class="login-box">
 	<!-- /.login-logo -->
 
 	<div class="row">
 
-		<c:if test="${ModeJustRegistered==true}">
+		<c:if test="${success!=null}">
+		
 			<div class="col-xs-12">
 				<div class="alert alert-success alert-dismissible">
 
 					<button type="button" class="close" data-dismiss="alert">&times;</button>
-					${success}
+					${success} Success is null
 
 
 				</div>
@@ -17,7 +20,7 @@
 			</div>
 		</c:if>
 			
-			<c:if test="${ModeReset==true||ModeResetLink==true||ModeResetCode==true}">
+			<c:if test="${logout!=null}">
 			<div class="col-xs-12">
 				<div class="alert alert-warning alert-dismissible">
 
@@ -28,7 +31,7 @@
 
 			</div>
 		</c:if>
-		<c:if test="${logingin==true}">
+		<c:if test="${error!=null}">
 			<div class="col-xs-12">
 				<div class="alert alert-danger alert-dismissible">
 
@@ -42,24 +45,24 @@
 
 
 	</div>
-	<c:if test="${ModeReset==true}">
+	<c:if test="${ModeReset}">
 
 	<div class="login-box-body">
 		<p class="login-box-msg">Get reset link</p>
 
 
-		<form action="/resete" method="post">
+		<form action="/resete" method="post" id="resetEmail">
 			<div class="form-group has-feedback">
 				<input name="email" type="email" class="form-control" placeholder="Enter your Email">
 				<span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-				<sec:csrfInput /> 
+
 			</div>
 
 			<div class="row">
 
 				<!-- /.col -->
 				<div class="col-xs-4">
-					<button type="submit" class="btn btn-primary btn-block btn-flat">Send Link
+					<button type="submit" name="submit" class="btn btn-primary btn-block btn-flat">Send Link
 						</button>
 				</div>
 				<!-- /.col -->
@@ -68,39 +71,9 @@
 
 
 	</div>
-	</c:if>
-	<c:if test="${ModeResetCode==true}">
 	
-	<div class="login-box-body">
-		<p class="login-box-msg">Reset your password</p>
-
-
-		<form action="/reset" method="post">
-			<div class="form-group has-feedback">
-				<input name="password" type="password" class="form-control" placeholder="Enter new password">
-				<span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-				
-			</div>
-			<div class="form-group has-feedback">
-				<input name="confirm" type="password" class="form-control" placeholder="Confirm new password">
-				<span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-				<sec:csrfInput /> 
-			</div>
-			<div class="row">
-
-				<!-- /.col -->
-				<div class="col-xs-4">
-					<button type="submit" class="btn btn-primary btn-block btn-flat"> Save Password
-						</button>
-				</div>
-				<!-- /.col -->
-			</div>
-			<input name="resetcode" type="hidden" class="form-control" value="${resetcode}">
-		</form>
-
-
-	</div>
 	</c:if>
+	
 	<!-- /.login-box-body -->
 
 </div>

@@ -9,7 +9,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 
 
 @Entity
@@ -39,7 +43,8 @@ public class User {
 	private String profession;
 	private String aboutme;
 	private String resetcode;
-	private Date joinDate =new Date();
+	@JsonProperty("timestamp")
+	private Date  joinDate =new Date();
 	
 	
 	public User() {

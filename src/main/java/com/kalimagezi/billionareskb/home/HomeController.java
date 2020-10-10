@@ -130,8 +130,7 @@ public class HomeController {
 			@RequestParam(name = "recomendAdded", required = false) String recomendAdded,
 			@RequestParam(name = "notRecomendFailed", required = false) String notRecomendFailed,
 			@RequestParam(name = "notRecomendAdded", required = false) String notRecomendAdded
-			
-			
+					
 			
 			) {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();

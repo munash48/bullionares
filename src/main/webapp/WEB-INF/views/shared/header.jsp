@@ -27,7 +27,7 @@
 						test="${ModeWelcome==true||ModeLogin==true||ModeRegister==true||ModeResetLink==true||ModeResetCode==true||ModeResetLink==true||ModeReset==true}">
 						<li><a href="javascript:void(0);" id="rules">Rules</a></li>
 						<li><a href="javascript:void(0);" id="regForm">Register</a></li>
-						<li><a href="javascript:void(0);" id="loginForm">Login</a></li>
+						<li><a href="/">Login</a></li>
 
 					</c:if>
 
@@ -196,7 +196,7 @@
 								<li class="user-footer">
 								
 									<div class="pull-left">
-										<a href="/profile" class="btn btn-default btn-flat">Profile</a>
+										<a href="/profile" class="btn btn-default btn-flat" id ="profile">Profile</a>
 									</div>
 									
 									<div class="pull-right">
@@ -204,7 +204,7 @@
 											out</a>
 									</div>
 									<div class="pull-right">
-										<a href="/reset?email=${user.email}" class="btn btn-default btn-flat">Reset Password</a>
+										<a href="/reset?email=${user.email}&within=yes" class="btn btn-default btn-flat">Reset Password</a>
 									</div>
 									
 								</li>

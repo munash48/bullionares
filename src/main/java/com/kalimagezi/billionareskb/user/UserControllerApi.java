@@ -30,7 +30,7 @@ public class UserControllerApi {
 	}
 	@RequestMapping(method=RequestMethod.PUT ,value="/user/{id}")
 	public void updateUser(@RequestBody User user, @PathVariable int id ){
-		 userService.updateUser(id, user);
+		 userService.updateUser( user);
 	}
 	@RequestMapping(method=RequestMethod.DELETE,value="/user/{id}")
 	public void deleteUser(@PathVariable int id ){

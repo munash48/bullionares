@@ -2,7 +2,6 @@ package com.kalimagezi.billionareskb.home;
 
 
 import java.io.IOException;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
@@ -11,16 +10,17 @@ import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.codehaus.jettison.json.JSONException;
+import org.codehaus.jettison.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.kalimagezi.billionareskb.email.Mail;
 import com.kalimagezi.billionareskb.email.MailService;
@@ -37,78 +37,104 @@ public class WelcomeController {
 	MailService mailService;
 	
 	
-		@RequestMapping(value = "/", method = RequestMethod.GET)
-		public ModelAndView welcome() {
-
-			ModelAndView mv = new ModelAndView();
-			mv.addObject("title", "Welcome");
-			mv.addObject("ModeWelcome", true);
-			mv.setViewName("welcome");
-			return mv;
-
+//		@RequestMapping(value = "/", method = RequestMethod.GET)
+//			public String welcome (Model model){
+//				model.addAttribute("title", "Welcome");
+//				model.addAttribute("ModeWelcome", true);				
+//			return "welcome";
+//
+//		}
+		
+		@RequestMapping(value = "/rules", method = RequestMethod.GET)
+		public String register(Model model) {
+			
+			model.addAttribute("title", "Rules");
+			model.addAttribute("ModeRegister", true);
+			return "/shared/message";
 		}
 		
-		@RequestMapping(value = "/login", method = RequestMethod.GET)
-		public ModelAndView login(@RequestParam(name="error",required=false) String error,
-				@RequestParam(name="logout",required=false) String logout,
-				@RequestParam(name="reset",required=false) String reset,
-				@RequestParam(name="session",required=false) String session
+//		@RequestMapping ("/")
+//		public String welcome (Model model){
+//			model.addAttribute("heading", "The AddressBook by Fiona Davis");
+//			model.addAttribute("message", "After a failed apprenticeship, working her way up to head housekeeper of a posh London hotel is more than Sara Smythe ever thought she’d make of herself. But when a chance encounter with Theodore Camden, one of the architects of the grand New York apartment house The Dakota, leads to a job offer, her world is suddenly awash in possibility—no mean feat for a servant in 1884. The opportunity to move to America, where a person can rise above one’s station. The opportunity to be the female manager of The Dakota, which promises to be the greatest apartment house in the world. And the opportunity to see more of Theo, who understands Sara like no one else...and is living in The Dakota with his wife and three young children.");
+//			return "welcome";
+//			
+//		}
+//		
+		@RequestMapping(value = "/", method = RequestMethod.GET)
+		public String login( Model model, String error,
+				 String logout,
+				String reset,
+				String resetcode,
+				 String session,
+				 String withinreset
 				) {
 
-			ModelAndView mv = new ModelAndView();
 			if(error!=null) {
 				
 				if(error.equals("reg")) {
-					mv.addObject("success", "<b>You have successfully registered <br> Now you can login</b>");
-					mv.addObject("ModeJustRegistered", true);
+					model.addAttribute("success", "<b>You have successfully registered <br> Now you can login</b>");
+					model.addAttribute("ModeJustRegistered", true);
 					
 				} else {
 					
-					mv.addObject("error", "<b>bad credentials <br>Check your email and password</b>");
-					mv.addObject("logingin", true);
+					model.addAttribute("error", "<b>bad credentials <br>Check your email and password</b>");
+					model.addAttribute("logingin", true);
 				}
 									
 			}
 			if(logout!=null) {
 
-					mv.addObject("logout", "<b>You have successfully logged out </b>");
-					mv.addObject("ModeJustLoggedOut", true);
+				model.addAttribute("logout", "<b>You have successfully logged out </b>");
+				model.addAttribute("ModeJustLoggedOut", true);
 					
 									
 			}
 			if(reset!=null) {
 				
-				mv.addObject("logout", "<b>Your password has been successfuly reset </b>");
-				mv.addObject("ModeReseted", true);
+				model.addAttribute("logout", "<b>Your password has been successfuly reset </b>");
+				model.addAttribute("ModeReseted", true);
 				
+				
+			}
+			if(resetcode!=null) {
+				
+				
+				model.addAttribute("resetcode",resetcode);
+				model.addAttribute("logout", "<b>Enter and Confirm Your password</b>");
+				model.addAttribute("title", "Reset Password");
+				model.addAttribute("ModeResetCode", true);
+				
+				return "welcome";
 				
 			}
 			if(session!=null) {
 				
-				mv.addObject("logout", "<b>Your session has timed out.. </b>");
-				mv.addObject("ModeSessionEx", true);
-				
-				
+				model.addAttribute("logout", "<b>Your session has timed out.. </b>");
+				model.addAttribute("ModeSessionEx", true);				
 			}
-
+			if(withinreset!=null) {
+				
+				model.addAttribute("logout", "<b>A password reset link has been sent to "+withinreset+" </b>");
+				model.addAttribute("ModeSessionEx", true);				
+			}
 			
-			mv.addObject("title", "Login");
-			mv.addObject("ModeLogin", true);
-			mv.setViewName("welcome");
 			
-			return mv;
+			
+			model.addAttribute("title", "Login");
+			model.addAttribute("ModeLogin", true);
+			//model.addAttribute("welcome");
+			
+			return "welcome";
 
 		}
 		
 		@RequestMapping(value = "/reset", method = RequestMethod.GET)
-		public ModelAndView reset(
-				@RequestParam(name="email",required=false) String email,
-				@RequestParam(name="reset",required=false) String reset,
-				@RequestParam(name="pnew",required=false) String pnew,
-				@RequestParam(name="resetcode",required=false) String resetcode
+		public String reset(  Model model, @RequestParam(name = "resetCode", required = false) String resetCode,
+				String email,  String reset, String pnew, String within
 				) {
 			
-			ModelAndView mv = new ModelAndView();
+			
 
 			if(email!=null) {
 				
@@ -121,26 +147,27 @@ public class WelcomeController {
 			        int val = random.nextInt();
 			       			        
 			        Hex+= Integer.toHexString(val);
+			        
 					}
 					
 					user.setResetcode(Hex);
-					userService.addUser(user);
+					userService.updateUser(user);
 					String url = new String();
-					url="http//localhost:8080/reset?resetcode="+Hex;
+					url="http//localhost:8080/?resetcode="+Hex;
 					 Mail mail = new Mail();
 				        mail.setFrom("no-reply@kalimagezi.com");
 				        mail.setTo(email);
 				        mail.setSubject( " Reset password Link");
 
-				        Map<String, Object> model = new HashMap<>();
-				        model.put("name", email);
-				        model.put("location", "Your location is.....");
-				        model.put("message",  "Please Ignore if you dont intend to reset your password <br> Other wise click <a href='"+url+"'>RESET MY PASSWORD</a>");
-				        model.put("signature", "https://kalimagezi.com");
+				        Map<String, Object> emodel = new HashMap<>();
+				        emodel.put("name", email);
+				        emodel.put("location", "Your location is.....");
+				        emodel.put("message",  "Please Ignore if you dont intend to reset your password <br> Other wise click <a href='"+url+"'>RESET MY PASSWORD</a>");
+				        emodel.put("signature", "https://kalimagezi.com");
 				       
 
 				        try {
-							mailService.sendSimpleMessage(mail, model);
+							mailService.sendSimpleMessage(mail, emodel);
 						} catch (MessagingException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
@@ -153,51 +180,63 @@ public class WelcomeController {
 						}
 				        
 				        if (pnew!=null) {
-				        	mv.addObject("logout", "<b>Log into "+email +"<br> to set your new Password</b>");
+				        	model.addAttribute("logout", "<b>Log into "+email +"<br> to set your new Password</b>");
 				        } else {
-				        	mv.addObject("logout", "<b>PASSWORD RESET LINK SENT TO "+email +"<br> Go to your mail to access reset link</b>");
+				        	model.addAttribute("logout", "<b>PASSWORD RESET LINK SENT TO "+email +"<br> Go to your mail to access reset link</b>");
 				        }
 				        					
 					
 					
 					
 				} else {
-					mv.addObject("logout", "<b>Email not found "+email +"<br><a href=\"/register\"> Register</a> </b>");
+					model.addAttribute("logout", "<b>Email not found "+email +"<br><a href=\"/register\"> Register</a> </b>");
 				}
 									
-				mv.addObject("title", "Reset Password");
-				mv.addObject("ModeResetLink", true);
-				mv.setViewName("welcome");
-				return mv;
+				model.addAttribute("title", "Reset Password");
+				model.addAttribute("ModeResetLink", true);
+				//model.addAttribute("welcome");
 				
-			}else if(resetcode!=null) {
-								
-				mv.addObject("resetcode",resetcode);
-				mv.addObject("logout", "<b>Enter and Confirm Your password</b>");
-				mv.addObject("title", "Reset Password");
-				mv.addObject("ModeResetCode", true);
-				mv.setViewName("welcome");
-				return mv;
+				
+				if(within!=null) {
+					
+					return "redirect:/?withinreset= "+email;
+				}
+				
+				
+				
+				
+				return "shared/reset";
+				
+//			}else if(resetCode!=null) {
+//				System.out.println("reset code is "+resetCode);
+//								
+//				model.addAttribute("resetCode",resetCode);
+//				model.addAttribute("logout", "<b>Enter and Confirm Your password</b>");
+//				model.addAttribute("title", "Reset Password");
+//				model.addAttribute("ModeResetCode", true);
+//
+//				return "shared/reset";
 				
 			}else if (reset!=null){
-				mv.addObject("logout", "<b> Password did not match"+"<br> Go to your mail to access reset link</b>");
-				mv.addObject("title", "Reset Password");
-				mv.addObject("ModeResetLink", true);
-				mv.setViewName("welcome");
-				return mv;
+				model.addAttribute("logout", "<b> Password did not match"+"<br> Go to your mail to access reset link</b>");
+				model.addAttribute("title", "Reset Password");
+				model.addAttribute("ModeResetLink", true);
+				model.addAttribute("welcome");
+				return "shared/reset";
 				
 			}
-				mv.addObject("logout", "<b>Enter your email to get reset link</b>");
-				mv.addObject("ModeReset", true);
-				mv.addObject("title", "Reset Password");
-				mv.setViewName("welcome");
-				return mv;
+			model.addAttribute("logout", "<b>Enter your email to get reset link</b>");
+			model.addAttribute("ModeReset", true);
+			model.addAttribute("title", "Reset Password");
+			model.addAttribute("welcome");
+			return "shared/reset";
 			
 			
 		}
 		
 		@RequestMapping(value="/reset", method = RequestMethod.POST)
-		public String resetPassword ( @RequestParam("resetcode") String resetcode,@RequestParam("password") String password,@RequestParam("confirm") String confirm) {
+		public String resetPassword ( @RequestParam("resetcode") String resetcode, @RequestParam("password") String password,@RequestParam("confirm") String confirm) {
+			
 			if(resetcode!=null) {
 				
 				User user = null;
@@ -214,38 +253,41 @@ public class WelcomeController {
 						user.setPassword(password);
 						
 						user.setResetcode(null);
-						userService.addUser(user);
-						return "redirect:/login?reset=success";
+						userService.updateUser( user);
+						
+						return "redirect:/?reset=success";
 					} else {
-						return "redirect:/reset?reset=failed";
+						return "shared/reset?reset=failed";
 					}
 					
 					
 				}
 			}
-		  return "redirect:/reset";
+		  return "shared/reset";
 			
 
 			
 		}
 			
 		@RequestMapping(value="/resete", method = RequestMethod.POST)
-		public String resetPassword ( @RequestParam("email") String email) {
+		
+		public String resetPassword ( @RequestParam("email") String email) throws JSONException {
+			JSONObject jsonObject = new JSONObject();
 			if(email!=null) {
 				User user = userService.findByEmail(email);
 				
 				if(user!=null) {
-					return "redirect:/reset?email="+email;				
+					jsonObject.put("message", user.getEmail()+ " Was found and code being sentsuccessfully");	
+					
+					return "redirect:/reset?email="+user.getEmail()+"&within=yes";			
 				}
 			}
-			return "redirect:/reset";
-			
-			
+			return "shared/reset";
 			
 		}
 		
 		
-		@RequestMapping(value = "/perform-logout" )
+		@RequestMapping(value = "/perform-logout")
 		public String  logout(HttpServletRequest request, HttpServletResponse response,@RequestParam(name = "session", required = false) String session) {
 			//perform-logout
 			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -255,11 +297,11 @@ public class WelcomeController {
 			}
 			
 			if(session!=null) {
-				return "redirect:/login?session";
+				return "redirect:/?session";
 			}
 				
 			
-			return "redirect:/login?logout";
+			return "redirect:/?logout";
 
 		}
 		

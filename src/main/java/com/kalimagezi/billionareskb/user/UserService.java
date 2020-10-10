@@ -9,9 +9,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.codehaus.jettison.json.JSONException;
+import org.codehaus.jettison.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+
 
 import net.coobird.thumbnailator.Thumbnails;
 
@@ -20,6 +23,8 @@ public class UserService {
 
 	@Autowired
 	private UserRepository userRepository;
+	@Autowired
+	private UserController userController;
 	
 	@Autowired
 	private UserModelRepository userModelRepository;
@@ -37,8 +42,47 @@ public class UserService {
 	
 	
 
-	public void addUser(User user) {
-		userRepository.save(user);
+//	public void addUser(User user) {
+//		
+//		userRepository.save(user);
+//		
+//		
+//	}
+	public String addUser(User user) {
+
+		String message1 = null;
+		JSONObject jsonObject = new JSONObject();
+		
+	
+		
+		try {
+			if (user.getId()== 0) {
+				message1 = "Added";
+			} else {
+				message1 = "Updated";
+			}
+			userRepository.save(user);
+						
+			jsonObject.put("status", "success");
+			jsonObject.put("title", message1 + " Confirmation");
+			jsonObject.put("message", user.getEmail()+" " +message1 + " successfully");
+			
+			userController.createUseradons(user); 
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			try {
+				jsonObject.put("message", user.getEmail()+" Already taken choose another");
+			} catch (JSONException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			e.printStackTrace();
+		}
+		
+		
+
+		return jsonObject.toString();
 	}
 
 	public Optional<User> getUser(int id) {
@@ -46,7 +90,7 @@ public class UserService {
 	    return userRepository.findById(id);
 	}
 
-	public void updateUser(int id, User user) {
+	public void updateUser(User user) {
 		userRepository.save(user);
 
 	}

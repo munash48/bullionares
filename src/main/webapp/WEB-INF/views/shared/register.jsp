@@ -1,10 +1,13 @@
 <%@taglib prefix="sf" uri="http://www.springframework.org/tags/form" %>
+<%@taglib prefix ="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<script src="bower_components/jquery/js/jquery.save.js"></script>
 
 <div class="register-box">
 
 
   <div class="register-box-body">
-  <c:if test="${ModeJustRegistered==true}">
+  
+  <c:if test="${failed!=null}">
 			<div class="col-xs-12">
 				<div class="alert alert-warning alert-dismissible">
 
@@ -17,7 +20,7 @@
 		</c:if>
     <p class="login-box-msg">Register a new Billionare</p>
 
-    <sf:form action="/register" modelAttribute="user" method="POST">
+    <sf:form action="/register" modelAttribute="user" method="POST" id="submitRegForm">
       <div class="form-group has-feedback">
         <sf:input type="text" class="form-control" path="firstName" id ="firstName" placeholder="First Name"/>
         <span class="glyphicon glyphicon-user form-control-feedback"></span>
@@ -76,7 +79,7 @@
     </sf:form>
 
 
-    <a href="/login" class="text-center">I already have a membership</a>
+    <a href="/" class="text-center">I already have a membership</a>
   </div>
   <!-- /.form-box -->
 </div>
