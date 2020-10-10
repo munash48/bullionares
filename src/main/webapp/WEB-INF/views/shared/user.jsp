@@ -40,10 +40,6 @@
 				</c:if>
 				<%@include file="./advertbar.jsp"%>
 				
-
-
-				
-
 			</div>
 		</div>
 		<!-- /.col -->
