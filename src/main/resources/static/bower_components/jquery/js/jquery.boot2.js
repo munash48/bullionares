@@ -1,17 +1,12 @@
  $(function(){
-	 $("#regForm").click(function(){
-		 getPage("/register");
+
+	 $("#profile").click(function(){
+		 alert("inside profile");
+		 getPage("/profile");
 	 });
-	 $("#rules").click(function(){
-		 getPage("/rules");
+	 $("#chart").click(function(){
+		 getPage("/chart");
 	 });
-	 $("#loginForm").click(function(){
-		 getPage("/");
-	 });
-	 $("#restForm").click(function(){
-		 getPage("/reset");
-	 });
-	
 	 
  });
  

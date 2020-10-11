@@ -18,26 +18,32 @@
 				<%@include file="userpoints.jsp"%>
 			</div>
 
-			<div class="row">
+			<div class="row ">
+			
+			<div class="inner-jsp"> 
 				<!-- MAIN POST  -->
-				<c:if test="${ModeLogged==true}">
+				
 				<%@include file="./mainpost.jsp"%>
-				</c:if>
-				<c:if test="${modeMessage==true}">
-				<%@include file="./chat.jsp"%>
-				</c:if>
-				<c:if test="${modeProfile==true}">
-				<%@include file="./profile.jsp"%>
-				</c:if>
-				<c:if test="${modeEvents==true}">
-				<%@include file="./events.jsp"%>
-				</c:if>
-				<c:if test="${modeJobs==true}">
-				<%@include file="./jobs.jsp"%>
-				</c:if>
-				<c:if test="${modeChart==true}">
-				<%@include file="./chart.jsp"%>
-				</c:if>
+
+
+<%-- 				<c:if test="${modeMessage==true}"> --%>
+<%-- 				<%@include file="./chat.jsp"%> --%>
+<%-- 				</c:if> --%>
+<%-- 				<c:if test="${modeProfile==true}"> --%>
+<%-- 				<%@include file="./profile.jsp"%> --%>
+<%-- 				</c:if> --%>
+<%-- 				<c:if test="${modeEvents==true}"> --%>
+<%-- 				<%@include file="./events.jsp"%> --%>
+<%-- 				</c:if> --%>
+<%-- 				<c:if test="${modeJobs==true}"> --%>
+<%-- 				<%@include file="./jobs.jsp"%> --%>
+<%-- 				</c:if> --%>
+<%-- 				<c:if test="${modeChart==true}"> --%>
+<%-- 				<%@include file="./chart.jsp"%> --%>
+<%-- 				</c:if> --%>
+			
+			</div>
+				
 				<%@include file="./advertbar.jsp"%>
 				
 			</div>
@@ -46,4 +52,4 @@
 	</div>
 	<!-- /.row -->
 
-</section>
+</section>	

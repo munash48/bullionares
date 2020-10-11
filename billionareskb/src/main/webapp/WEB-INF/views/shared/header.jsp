@@ -1,7 +1,8 @@
+<%@taglib prefix ="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div class="row">
 
 	<header class="main-header">
-		<a href="/" class="logo"> <!-- mini logo for sidebar mini 50x50 pixels -->
+		<a href="#" class="logo"> <!-- mini logo for sidebar mini 50x50 pixels -->
 			<span class="logo-mini"><b>B</b>KB</span> <!-- logo for regular state and mobile devices -->
 			<span class="logo-lg"><b>Bilionares</b>KB</span>
 		</a>

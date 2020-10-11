@@ -1,3 +1,4 @@
+
 <div class="row">
 
 	<header class="main-header">
@@ -33,13 +34,14 @@
 
 					<c:if
 						test="${ModeLogged==true||modeMessage==true||modeProfile==true||modeEvents==true||modeChart==true||modeJobs==true}">
+						
 						<li><a>Your Category : <b> ${category.catName} </b>
 								Highest points: <b>${topCatCounter.total}</b> Overall Highest<b>
 									${topCounter.total}</a></b></li>
 						<li class="dropdown tasks-menu"><a href="/home"> <i
 								class="fa fa-home"></i> Home
 						</a></li>
-						<li class="dropdown tasks-menu"><a href="/chart"> <i
+						<li class="dropdown tasks-menu"><a href="javascript:void(0);" id ="chart"> <i
 								class="fa fa-bar-chart"></i> <c:if
 									test="${notification.chart>0}">
 									<span class="label label-danger">${notification.chart}</span>
@@ -196,7 +198,7 @@
 								<li class="user-footer">
 								
 									<div class="pull-left">
-										<a href="/profile" class="btn btn-default btn-flat" id ="profile">Profile</a>
+										<a href="javascript:void(0);" class="btn btn-default btn-flat" id ="profile">Profile</a>
 									</div>
 									
 									<div class="pull-right">

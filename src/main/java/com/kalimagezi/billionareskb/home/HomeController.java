@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -419,53 +420,31 @@ public class HomeController {
 		return mv;
 
 	}
+	
+
+	
 	@RequestMapping(value = "/chart", method = RequestMethod.GET)
-	public ModelAndView chart() {
-		
-		ModelAndView mv = new ModelAndView();
+	public String getChart(Model model) {
 		
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		User user = userService.findByEmail(authentication.getName());
-		Category category =categoryService.getCategory(user.getCatid()).orElseThrow(null);
-		
-		
-		Address address = addressService.getUAddress(user.getId()).orElseThrow(null);
-		Company company = companyService.getUCompany(user.getId());
-		Career  career = careerService.getUCareer(user.getId());
-		Education  education = educationService.getUEducation(user.getId());
-		SkillTalent  skillTalent = skillTalentService.getUSkillTalent(user.getId());
-		Event  event = eventService.getUEvent(user.getId());
-		Counter  counter = counterService.getUCounter(user.getId());
 		Notification  notification = notificationService.getNotificationByUid(user.getId());
 		notification.setChart(0);
 		notificationService.addNotification(notification);
-
 		
-		mv.addObject(user);
-	
-		mv.addObject(category);
-		mv.addObject(address);
-		mv.addObject(company);
-		mv.addObject(career);
-		mv.addObject(education);
-		mv.addObject(skillTalent);
-		mv.addObject(event);
-		mv.addObject(counter);
-		mv.addObject(notification);
-		mv.addObject("modeChart", true);
-		mv.setViewName("index2");
-		return mv;
+		model.addAttribute("title", "chart");
+		model.addAttribute("modeChart", true);
 		
+		return "/shared/chart";
 	}
+	
 	@RequestMapping(value = "/message", method = RequestMethod.GET)
-	public ModelAndView message(@RequestParam(name = "wuid", required = false) Integer wuid) {
+	public String message(Model model, Integer wuid) {
 		
 		
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		 User user = userService.findByEmail(authentication.getName());
 		 Category category =categoryService.getCategory(user.getCatid()).orElseThrow(null);
-
-		ModelAndView mv = new ModelAndView();
 		 	 
 	    Address address = addressService.getUAddress(user.getId()).orElseThrow(null);
 	    Company company = companyService.getUCompany(user.getId());
@@ -490,36 +469,31 @@ public class HomeController {
 		int catid = Integer.parseInt(scatid);
 		
 	    List <Message> messages= messageService.getMessageByCatid(catid);
-	    mv.addObject("myMassages",messages);
+	    model.addAttribute("myMassages",messages);
 	    
-	    mv.addObject(user);
-	    mv.addObject("wuid",wuid);
-	    mv.addObject("wFullName", wuser.getFirstName()+ " "+wuser.getOtherNames());
-	    mv.addObject("wImageLink", wuser.getImageLink());
+	    model.addAttribute("user",user);
+	    model.addAttribute("wuid",wuid);
+	    model.addAttribute("wFullName", wuser.getFirstName()+ " "+wuser.getOtherNames());
+	    model.addAttribute("wImageLink", wuser.getImageLink());
 	    	
-		mv.addObject(category);
-		mv.addObject(address);
-		mv.addObject(company);
-		mv.addObject(career);
-		mv.addObject(education);
-		mv.addObject(skillTalent);
-		mv.addObject(event);
-		mv.addObject(counter);
-		mv.addObject(notification);
+	    model.addAttribute("category",category);
+		model.addAttribute("address",address);
+		model.addAttribute("company",company);
+		model.addAttribute("career",career);
+		model.addAttribute("education",education);
+		model.addAttribute("skillTalent",skillTalent);
+		model.addAttribute("event",event);
+		model.addAttribute("counter",counter);
+		model.addAttribute("notification",notification);
 		
-		mv.addObject("greeting", "Welcome to live chat");
-		mv.addObject("modeMessage", true);
-		mv.setViewName("index2");
+		model.addAttribute("title", "Message");
+		model.addAttribute("modeMessage", true);		
 		
-		
-		
-
-		
-		
-		
-		return mv;
+		return "/shared/chat";
 		
 	}
+	
+	
 	@RequestMapping(value = "/events", method = RequestMethod.GET)
 	public ModelAndView events() {
 		User user;
@@ -616,8 +590,11 @@ public class HomeController {
 		return mv;
 		
 	}
+
+	
 	@RequestMapping(value = "/profile", method = RequestMethod.GET)
-	public ModelAndView profile(@RequestParam(name = "wuid", required = false) Integer wuid) {
+	public String getProfile(Model model, Integer wuid) {	
+
 		User user;
 		if (wuid!=null) {
 			user=userService.getUser(wuid).orElseThrow(null);
@@ -627,8 +604,7 @@ public class HomeController {
 			user = userService.findByEmail(authentication.getName());
 		}
 		Category category =categoryService.getCategory(user.getCatid()).orElseThrow(null);
-		
-		ModelAndView mv = new ModelAndView();
+
 		
 		Address address = addressService.getUAddress(user.getId()).orElseThrow(null);
 		Company company = companyService.getUCompany(user.getId());
@@ -640,31 +616,26 @@ public class HomeController {
 		Notification  notification = notificationService.getNotificationByUid(user.getId());
 		
 		
-		mv.addObject(user);
+		model.addAttribute("user",user);
 		
-		mv.addObject(category);
-		mv.addObject(address);
-		mv.addObject(company);
-		mv.addObject(career);
-		mv.addObject(education);
-		mv.addObject(skillTalent);
-		mv.addObject(event);
-		mv.addObject(counter);
-		mv.addObject(notification);
+		model.addAttribute("category",category);
+		model.addAttribute("address",address);
+		model.addAttribute("company",company);
+		model.addAttribute("career",career);
+		model.addAttribute("education",education);
+		model.addAttribute("skillTalent",skillTalent);
+		model.addAttribute("event",event);
+		model.addAttribute("counter",counter);
+		model.addAttribute("notification",notification);
+	
 		
-		mv.addObject("greeting", "Welcome to live chat");
-		mv.addObject("modeProfile", true);
-		mv.setViewName("index2");
-		
-		
-		
-		
-		
-		
-		
-		return mv;
-		
-	}
+	model.addAttribute("title", "profile");
+	model.addAttribute("modeProfile", true);
+	
+	return "/shared/profile";
+}	
+	
+	
 	@RequestMapping(value = "/profile-print", method = RequestMethod.GET)
 	public ModelAndView printprofile(@RequestParam(name = "wuid", required = false) Integer wuid) {
 		
@@ -701,7 +672,6 @@ public class HomeController {
 		mv.addObject(event);
 		mv.addObject(counter);
 		
-		mv.addObject("greeting", "Welcome to live chat");
 		mv.addObject("modeProfile", true);
 		mv.setViewName("print");
 		
