@@ -31,3 +31,8 @@
 		 }
 	 });
  }
+ 
+ function chatForm(id){	
+	 getPage("/message?wuid="+id);
+		
+	}

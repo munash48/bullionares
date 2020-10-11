@@ -45,9 +45,10 @@
 	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
 <body class="hold-transition skin-blue register-page">
+<div class="row inner-header">
 	
 	<%@include file="./shared/header.jsp"%>
-
+</div>
 
 	<div class="row">
 
