@@ -434,6 +434,14 @@ public class HomeController {
 		
 		return "/shared/chart";
 	}
+	@RequestMapping(value = "/editProfile", method = RequestMethod.GET)
+	public String getProfileEdit(Model model) {
+		
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		User user = userService.findByEmail(authentication.getName());
+		model.addAttribute("user",user)		;
+		return "/shared/chart";
+	}
 	
 	@RequestMapping(value = "/message", method = RequestMethod.GET)
 	public String message(Model model, Integer wuid) {
