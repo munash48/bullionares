@@ -34,8 +34,8 @@
 				</div>
 
 				<div class="col-md-4 text-left">
-					<button type="button" data-toggle="modal"
-						data-target="#profileEdit" class="btn probtn">
+					<button type="button" id="profileEdit"
+					class="btn probtn">
 						<i class="fa fa-pencil" title="click to edit"
 							data-toggle="tooltip" data-placement="right"></i>
 					</button>

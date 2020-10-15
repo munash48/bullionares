@@ -432,6 +432,15 @@ public class HomeController {
 		notification.setChart(0);
 		notificationService.addNotification(notification);
 		
+
+		return "/shared/chart";
+	}
+	@RequestMapping(value = "/editProfile", method = RequestMethod.GET)
+	public String getProfileEdit(Model model) {
+		
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		User user = userService.findByEmail(authentication.getName());
+		model.addAttribute("user",user)		;
 		return "/shared/chart";
 	}
 	
