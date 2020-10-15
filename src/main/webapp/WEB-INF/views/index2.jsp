@@ -170,7 +170,7 @@
 
 								<div class="col-xs-4">
 									<button type="submit" name="submit"
-										class="btn btn-primary btn-block btn-flat">Update</button>
+										class="btn btn-primary btn-block btn-flat" id ="profileEditBtn">Update</button>
 								</div>
 							</div>
 
@@ -1295,6 +1295,7 @@
 	<!-- ChartJS -->
 	<script src="bower_components/chart.js/Chart.js"></script>
 	<script src="bower_components/jquery/js/jquery.boot2.js"></script>
+	<script src="bower_components/jquery/js/jquery.save2.js"></script>
 	<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 	<script src="dist/js/pages/dashboard2.js"></script>
 	<!-- AdminLTE for demo purposes -->

@@ -432,9 +432,6 @@ public class HomeController {
 		notification.setChart(0);
 		notificationService.addNotification(notification);
 		
-		model.addAttribute("title", "chart");
-		model.addAttribute("modeChart", true);
-		
 		return "/shared/chart";
 	}
 	

@@ -177,7 +177,7 @@ public class UserController {
 			
 			user1.setBirthDate(date2);
 			
-			userService.addUser(user1);
+			userService.updateUser(user1);
 
 
 		return "redirect:/home?userupdate=success";
