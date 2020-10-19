@@ -84,14 +84,21 @@ public class UserService {
 
 		return jsonObject.toString();
 	}
+	
 
 	public Optional<User> getUser(int id) {
 		
 	    return userRepository.findById(id);
 	}
 
-	public void updateUser(User user) {
+	public String updateUser(User user) throws JSONException {
+		JSONObject jsonObject = new JSONObject();
+		
 		userRepository.save(user);
+		
+		jsonObject.put("message", user.getEmail()+" Updated successfully");
+		
+		return jsonObject.toString();
 
 	}
 

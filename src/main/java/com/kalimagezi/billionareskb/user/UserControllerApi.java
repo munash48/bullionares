@@ -3,6 +3,7 @@ package com.kalimagezi.billionareskb.user;
 import java.util.List;
 import java.util.Optional;
 
+import org.codehaus.jettison.json.JSONException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -29,7 +30,7 @@ public class UserControllerApi {
 		userService.addUser(user);
 	}
 	@RequestMapping(method=RequestMethod.PUT ,value="/user/{id}")
-	public void updateUser(@RequestBody User user, @PathVariable int id ){
+	public void updateUser(@RequestBody User user, @PathVariable int id ) throws JSONException{
 		 userService.updateUser( user);
 	}
 	@RequestMapping(method=RequestMethod.DELETE,value="/user/{id}")

@@ -1,11 +1,12 @@
 $(function() {
 	alert("save 2 is active");
 
-	$("#profileEditBtn").submit(function(e) {
+	$("#profileEditFrm").submit(function(e) {
 		
 		alert("happeing by jquery");
+		
 		e.preventDefault();
-		var frm = $("#profileEditBtn");
+		var frm = $("#profileEditFrm");
 		var data = {};
 		$.each(this, function(i, v) {
 			var input = $(v);
@@ -17,6 +18,25 @@ $(function() {
 		saveRequestedData(frm, data);
 
 
+	});
+	
+	$("#companyEditFrm").submit(function(e) {
+		
+		alert("happeing by jquery");
+		
+		e.preventDefault();
+		var frm = $("#companyEditFrm");
+		var data = {};
+		$.each(this, function(i, v) {
+			var input = $(v);
+			data[input.attr("name")] = input.val();
+			delete data["undefined"];
+			
+		});
+		
+		saveRequestedData(frm, data);
+		
+		
 	});
 	
 });

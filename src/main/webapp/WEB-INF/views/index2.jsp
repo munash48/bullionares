@@ -124,9 +124,9 @@
 
 					</div>
 					<div class="modal-body">
-						<!--modal form-->
-						<form enctype="multipart/form-data" action="/home/updateUser"
-							method="post">
+						modal form
+						<form enctype="multipart/form-data" action="/updateUser"
+							method="post" id ="profileEditFrm">
 							<input type="hidden" name="${_csrf.parameterName}"
 								value="${_csrf.token}" /> <input type="hidden" name="uId"
 								value="${user.id}" />
@@ -170,7 +170,90 @@
 
 								<div class="col-xs-4">
 									<button type="submit" name="submit"
-										class="btn btn-primary btn-block btn-flat" id ="profileEditBtn">Update</button>
+										class="btn btn-primary btn-block btn-flat" >Update</button>
+								</div>
+							</div>
+
+
+						</form>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+<div class="row">
+		<div class="modal fade" id="companyEdit" role="dialog">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">
+							<span>&times;</span>
+						</button>
+						<h4 class="modal-title">Edit Company Dialog Box</h4>
+
+					</div>
+					<div class="modal-body">
+						<!--modal form-->
+						<form action="/home/updateCompany" method="post" id="companyEditFrm">
+							<input type="hidden" name="${_csrf.parameterName}"
+								value="${_csrf.token}" /> <input type="hidden" name="cId"
+								value="${company.id}" />
+
+							<div class="form-group has-feedback">
+								<input type="text" class="form-control" name=name id="name"
+									placeholder="Company Name" value="${company.name}" /> <span
+									class="glyphicon glyphicon-flag form-control-feedback"></span>
+							</div>
+							<div class="form-group has-feedback">
+								<input type="text" class="form-control" name="type" id="type"
+									placeholder="Company Type" value="${company.type}" /> <span
+									class="glyphicon glyphicon-zoom-in form-control-feedback"></span>
+							</div>
+							<div class="form-group has-feedback">
+								<input type="text" class="form-control" name="address"
+									id="address" placeholder="Company Address"
+									value="${company.address}" /> <span
+									class="glyphicon glyphicon-map-marker form-control-feedback"></span>
+							</div>
+							<div class="form-group has-feedback">
+								<input type="text" class="form-control" name="website"
+									id="website" placeholder="Company Website"
+									value="${company.website}" /> <span
+									class="glyphicon glyphicon-cloud form-control-feedback"></span>
+							</div>
+							<div class="form-group has-feedback">
+								<input type="text" class="form-control" name="jobCapacity"
+									id="jobCapacity" placeholder="jobCapacity"
+									value="${company.jobCapacity}" /> <span
+									class="glyphicon glyphicon-user form-control-feedback"></span>
+							</div>
+							<div class="form-group has-feedback">
+								<input type="text" class="form-control" name="description"
+									id="description" placeholder="Description"
+									value="${company.description}" /> <span
+									class="glyphicon glyphicon-list-alt form-control-feedback"></span>
+							</div>
+							<div class="form-group has-feedback">
+								<input type="text" class="form-control" name="workingHours"
+									id="workingHours" placeholder="Working Hours"
+									value="${company.workingHours}" /> <span
+									class="glyphicon glyphicon-time form-control-feedback"></span>
+							</div>
+
+
+							<div class="form-group has-feedback">
+								<input type="date" class="form-control" name="creationDate"
+									id="creationDate" value="${company.creationDate}" /> <span
+									class="glyphicon glyphicon-calendar form-control-feedback"></span>
+							</div>
+
+							<div class="form-group has-feedback float-right">
+
+								<div class="col-xs-4">
+									<button type="submit" name="submit"
+										class="btn btn-primary btn-block btn-flat">Update</button>
 								</div>
 							</div>
 
@@ -254,88 +337,7 @@
 		</div>
 	</div>
 
-	<div class="row">
-		<div class="modal fade" id="companyEdit" role="dialog">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal">
-							<span>&times;</span>
-						</button>
-						<h4 class="modal-title">Edit Company Dialog Box</h4>
-
-					</div>
-					<div class="modal-body">
-						<!--modal form-->
-						<form action="/home/updateCompany" method="post">
-							<input type="hidden" name="${_csrf.parameterName}"
-								value="${_csrf.token}" /> <input type="hidden" name="cId"
-								value="${company.id}" />
-
-							<div class="form-group has-feedback">
-								<input type="text" class="form-control" name=name id="name"
-									placeholder="Company Name" value="${company.name}" /> <span
-									class="glyphicon glyphicon-flag form-control-feedback"></span>
-							</div>
-							<div class="form-group has-feedback">
-								<input type="text" class="form-control" name="type" id="type"
-									placeholder="Company Type" value="${company.type}" /> <span
-									class="glyphicon glyphicon-zoom-in form-control-feedback"></span>
-							</div>
-							<div class="form-group has-feedback">
-								<input type="text" class="form-control" name="address"
-									id="address" placeholder="Company Address"
-									value="${company.address}" /> <span
-									class="glyphicon glyphicon-map-marker form-control-feedback"></span>
-							</div>
-							<div class="form-group has-feedback">
-								<input type="text" class="form-control" name="website"
-									id="website" placeholder="Company Website"
-									value="${company.website}" /> <span
-									class="glyphicon glyphicon-cloud form-control-feedback"></span>
-							</div>
-							<div class="form-group has-feedback">
-								<input type="text" class="form-control" name="jobCapacity"
-									id="jobCapacity" placeholder="jobCapacity"
-									value="${company.jobCapacity}" /> <span
-									class="glyphicon glyphicon-user form-control-feedback"></span>
-							</div>
-							<div class="form-group has-feedback">
-								<input type="text" class="form-control" name="description"
-									id="description" placeholder="Description"
-									value="${company.description}" /> <span
-									class="glyphicon glyphicon-list-alt form-control-feedback"></span>
-							</div>
-							<div class="form-group has-feedback">
-								<input type="text" class="form-control" name="workingHours"
-									id="workingHours" placeholder="Working Hours"
-									value="${company.workingHours}" /> <span
-									class="glyphicon glyphicon-time form-control-feedback"></span>
-							</div>
-
-
-							<div class="form-group has-feedback">
-								<input type="date" class="form-control" name="creationDate"
-									id="creationDate" value="${company.creationDate}" /> <span
-									class="glyphicon glyphicon-calendar form-control-feedback"></span>
-							</div>
-
-							<div class="form-group has-feedback float-right">
-
-								<div class="col-xs-4">
-									<button type="submit" name="submit"
-										class="btn btn-primary btn-block btn-flat">Update</button>
-								</div>
-							</div>
-
-
-						</form>
-
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+	
 
 	<div class="row">
 		<div class="modal fade" id="careerEdit" role="dialog">

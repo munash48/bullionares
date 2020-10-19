@@ -6,6 +6,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Date; 
 import java.util.List;
 
+import org.codehaus.jettison.json.JSONException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -144,15 +145,15 @@ public class UserController {
 		
 	}
 	
-	@RequestMapping(value="/home/updateUser", method = RequestMethod.POST)
-	public String updadeUser ( @RequestParam("uId") int id, 
+	@PostMapping(value="/updateUser", consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody String updadeUser ( @RequestParam("uId") int id, 
 			@RequestParam("firstName") String firstName,
 			@RequestParam("otherNames") String otherNames,
 			@RequestParam("phoneNumber") String phoneNumber,
 			@RequestParam("email") String email,
 			@RequestParam("profession") String profession,
 			@RequestParam("birthDate") String birthDate
-			) {
+			) throws JSONException {
 		
 			User user1 = userService.getUser(id).orElseThrow(null);
 			if(user1.getBirthDate()==null) {
@@ -177,12 +178,14 @@ public class UserController {
 			
 			user1.setBirthDate(date2);
 			
-			userService.updateUser(user1);
+	
 
 
-		return "redirect:/home?userupdate=success";
+		return userService.updateUser(user1);
 		
 	}
+	
+	
 	
 	public void createUseradons(User mUser) {
 

@@ -7,7 +7,7 @@
 	 $("#chart").click(function(){
 		 getPage("/chart");
 	 });
-	 $("#profileEdit").click(function(){
+	 $("#editProfile").click(function(){
 		 getPage("/editProfile");
 	 });
 	 

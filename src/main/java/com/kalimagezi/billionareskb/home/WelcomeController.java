@@ -132,7 +132,7 @@ public class WelcomeController {
 		@RequestMapping(value = "/reset", method = RequestMethod.GET)
 		public String reset(  Model model, @RequestParam(name = "resetCode", required = false) String resetCode,
 				String email,  String reset, String pnew, String within
-				) {
+				) throws JSONException {
 			
 			
 
@@ -235,7 +235,7 @@ public class WelcomeController {
 		}
 		
 		@RequestMapping(value="/reset", method = RequestMethod.POST)
-		public String resetPassword ( @RequestParam("resetcode") String resetcode, @RequestParam("password") String password,@RequestParam("confirm") String confirm) {
+		public String resetPassword ( @RequestParam("resetcode") String resetcode, @RequestParam("password") String password,@RequestParam("confirm") String confirm) throws JSONException {
 			
 			if(resetcode!=null) {
 				
