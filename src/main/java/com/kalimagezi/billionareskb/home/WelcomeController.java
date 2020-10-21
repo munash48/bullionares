@@ -277,7 +277,7 @@ public class WelcomeController {
 				User user = userService.findByEmail(email);
 				
 				if(user!=null) {
-					jsonObject.put("message", user.getEmail()+ " Was found and code being sentsuccessfully");	
+					jsonObject.put("message", user.getEmail()+ " Was found and code sent successfully");	
 					
 					return "redirect:/reset?email="+user.getEmail()+"&within=yes";			
 				}

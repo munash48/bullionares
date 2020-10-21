@@ -145,8 +145,8 @@ public class UserController {
 		
 	}
 	
-	@PostMapping(value="/updateUser", consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody String updadeUser ( @RequestParam("uId") int id, 
+	@RequestMapping(value="/updateUser", method = RequestMethod.POST)
+	public String updadeUser ( @RequestParam("id") String id, 
 			@RequestParam("firstName") String firstName,
 			@RequestParam("otherNames") String otherNames,
 			@RequestParam("phoneNumber") String phoneNumber,
@@ -155,7 +155,7 @@ public class UserController {
 			@RequestParam("birthDate") String birthDate
 			) throws JSONException {
 		
-			User user1 = userService.getUser(id).orElseThrow(null);
+			User user1 = userService.getUser(Integer.parseInt(id)).orElseThrow(null);
 			if(user1.getBirthDate()==null) {
 			Counter counter= counterService.getUCounter(user1.getId());
 			counter.setNoVotes(counter.getNoVotes()+2);
