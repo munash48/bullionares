@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.codehaus.jettison.json.JSONException;
+import org.codehaus.jettison.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,9 +16,17 @@ public class CompanyService {
 	@Autowired
 	private CompanyRepository companyRepository;
 
-	public void addCompany(Company company) {
+	public String addCompany(Company company) {
+		JSONObject jsonObject = new JSONObject();
 
 		companyRepository.save(company);
+		try {
+			jsonObject.put("message", company.getName()+" Updated successfully");
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return jsonObject.toString();
 	}
 
 	public Optional<Company> getCompany(int id) {

@@ -72,6 +72,7 @@
       <sf:hidden path="imageLink"/>
       <sf:hidden path="resetcode"/>
       <sf:hidden path="password"/>
+      <sf:hidden path="aboutme"/>
       <sf:hidden path="role"/>
       <sf:hidden path="enabled"/>
       <sf:hidden path="birthDate"/>

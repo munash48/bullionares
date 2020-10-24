@@ -14,7 +14,7 @@
 <meta
 	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
 	name="viewport">
-	
+
 <!-- Bootstrap 3.3.7 -->
 <link rel="shortcut icon" href="images/billionaire-icon3.png" />
 <link rel="stylesheet"
@@ -125,57 +125,70 @@
 					</div>
 					<div class="modal-body">
 						modal form
-						<form action="/updateUser"
-							method="post" id ="profileEditFrm">
-							<input type="hidden" name="${_csrf.parameterName}"
-								value="${_csrf.token}" /> <input type="hidden" name="id" id="id"
-								value="${user.id}" />
+						<sf:form action="/updateUser" method="post" id="profileEditFrm" modelAttribute="user">
+							<sf:input type="hidden" path="id"
+								id="id" value="${user.id}" />
 
 							<div class="form-group has-feedback">
-								<input type="text" class="form-control" name="firstName"
+								<sf:input type="text" class="form-control" path="firstName"
 									id="firstName" placeholder="First Name"
 									value="${user.firstName}" /> <span
 									class="glyphicon glyphicon-user form-control-feedback"></span>
 							</div>
 							<div class="form-group has-feedback">
-								<input type="text" class="form-control" name="otherNames"
+								<sf:input type="text" class="form-control" path="otherNames"
 									id="otherNames" placeholder="Other Names"
 									value="${user.otherNames}" /> <span
 									class="glyphicon glyphicon-plus form-control-feedback"></span>
 							</div>
 							<div class="form-group has-feedback">
-								<input type="text" class="form-control" name="phoneNumber"
+								<sf:input type="text" class="form-control" path="phoneNumber"
 									id="phoneNumber" placeholder="Phone Number"
 									value="${user.phoneNumber}" /> <span
 									class="glyphicon glyphicon-phone form-control-feedback"></span>
 							</div>
 							<div class="form-group has-feedback">
-								<input type="email" class="form-control" name="email" id="email"
+								<sf:input type="email" class="form-control" path="email" id="email"
 									placeholder="Email" value="${user.email}" /> <span
 									class="glyphicon glyphicon-envelope form-control-feedback"></span>
 							</div>
 							<div class="form-group has-feedback">
-								<input type="text" class="form-control" name="profession"
+								<sf:input type="text" class="form-control" path="profession"
 									id="profession" placeholder="Your Profession"
 									value="${user.profession}" /> <span
 									class="glyphicon glyphicon-star form-control-feedback"></span>
 							</div>
 							<div class="form-group has-feedback">
-								<input type="date" class="form-control" name="birthDate"
+							<label class="control-label"> Date of Birth: </label>
+								<sf:input type="date" class="form-control" path="birthDate"
 									id="birthDate" value="${user.birthDate}" /> <span
 									class="glyphicon glyphicon-calendar form-control-feedback"></span>
 							</div>
+							<div class="form-group has-feedback">
+								<sf:textarea class="form-control" rows="3" value="${user.aboutme}"
+									placeholder="Paragraph about who you are?" path="aboutme" spellcheck="true"></sf:textarea>
+
+								<span
+									class="glyphicon glyphicon-align-justify form-control-feedback"></span>
+							</div>
+							<sf:hidden path="imageLink" value="${user.imageLink}"/>
+							<sf:hidden path="resetcode" value="${user.resetcode}"/>
+							<sf:hidden path="catid" value="${user.catid}"/>
+							<sf:hidden path="password" value="${user.password}"/>
+							<sf:hidden path="role" value="${user.role}" />
+							<sf:hidden path="enabled" value="${user.enabled}"/>
+							<sf:hidden path="joinDate"  value="${user.joinDate}"/>
 
 							<div class="form-group has-feedback float-right">
 
 								<div class="col-xs-4">
-									<button type="submit" name="submit"
-										class="btn btn-primary btn-block btn-flat" >Update</button>
+									<button type="submit"
+										class="btn btn-primary btn-block btn-flat">Update</button>
 								</div>
 							</div>
 
 
-						</form>
+						</sf:form>
 
 					</div>
 				</div>
@@ -183,69 +196,69 @@
 		</div>
 	</div>
 
-<div class="row">
+	<div class="row">
 		<div class="modal fade" id="companyEdit" role="dialog">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal">
+						<button type="button" class="close" data-dismiss="modal" >
 							<span>&times;</span>
 						</button>
-						<h4 class="modal-title">Edit Company Dialog Box</h4>
+						<h4 class="modal-title">Edit Current Company Info Dialog Box</h4>
 
 					</div>
 					<div class="modal-body">
 						<!--modal form-->
-						<form action="/home/updateCompany" method="post" id="companyEditFrm">
-							<input type="hidden" name="${_csrf.parameterName}"
-								value="${_csrf.token}" /> <input type="hidden" name="cId"
+						<sf:form action="/updateCompany" method="post" id="companyEditFrm" modelAttribute="company">
+							 <sf:input type="hidden" path="cId"
 								value="${company.id}" />
 
 							<div class="form-group has-feedback">
-								<input type="text" class="form-control" name=name id="name"
-									placeholder="Company Name" value="${company.name}" /> <span
+								<sf:input type="text" class="form-control" path="name" id="name"
+									placeholder="Company Name" value="${company.name}" /> <span 
 									class="glyphicon glyphicon-flag form-control-feedback"></span>
 							</div>
 							<div class="form-group has-feedback">
-								<input type="text" class="form-control" name="type" id="type"
-									placeholder="Company Type" value="${company.type}" /> <span
+								<sf:input type="text" class="form-control" path="type" id="type"
+								placeholder="Company Type" value="${company.type}" /> <span 
 									class="glyphicon glyphicon-zoom-in form-control-feedback"></span>
 							</div>
 							<div class="form-group has-feedback">
-								<input type="text" class="form-control" name="address"
-									id="address" placeholder="Company Address"
-									value="${company.address}" /> <span
+								<sf:input type="text" class="form-control" path="address"
+									id="address" placeholder="Company Address" 
+									value="${company.address}" /> <span 
 									class="glyphicon glyphicon-map-marker form-control-feedback"></span>
 							</div>
 							<div class="form-group has-feedback">
-								<input type="text" class="form-control" name="website"
-									id="website" placeholder="Company Website"
-									value="${company.website}" /> <span
+								<sf:input type="text" class="form-control" path="website"
+									id="website" placeholder="Company Website" 
+ 									value="${company.website}" /> <span 
 									class="glyphicon glyphicon-cloud form-control-feedback"></span>
 							</div>
 							<div class="form-group has-feedback">
-								<input type="text" class="form-control" name="jobCapacity"
-									id="jobCapacity" placeholder="jobCapacity"
-									value="${company.jobCapacity}" /> <span
+								<sf:input type="text" class="form-control" path="jobCapacity"
+									id="jobCapacity" placeholder="jobCapacity" 
+									value="${company.jobCapacity}" /> <span 
 									class="glyphicon glyphicon-user form-control-feedback"></span>
 							</div>
 							<div class="form-group has-feedback">
-								<input type="text" class="form-control" name="description"
-									id="description" placeholder="Description"
-									value="${company.description}" /> <span
+								<sf:input type="text" class="form-control" path="description"
+									id="description" placeholder="Description" 
+									value="${company.description}" /> <span 
 									class="glyphicon glyphicon-list-alt form-control-feedback"></span>
 							</div>
 							<div class="form-group has-feedback">
-								<input type="text" class="form-control" name="workingHours"
+								<sf:input type="text" class="form-control" path="workingHours"
 									id="workingHours" placeholder="Working Hours"
-									value="${company.workingHours}" /> <span
+									value="${company.workingHours}" /> <span 
 									class="glyphicon glyphicon-time form-control-feedback"></span>
 							</div>
 
 
 							<div class="form-group has-feedback">
-								<input type="date" class="form-control" name="creationDate"
-									id="creationDate" value="${company.creationDate}" /> <span
+							<label class="control-label"> Date of Company Creation: </label>
+								<sf:input type="date" class="form-control" path="creationDate"
+									id="creationDate" value="${company.creationDate}" /> <span 
 									class="glyphicon glyphicon-calendar form-control-feedback"></span>
 							</div>
 
@@ -258,7 +271,7 @@
 							</div>
 
 
-						</form>
+						</sf:form>
 
 					</div>
 				</div>
@@ -337,7 +350,7 @@
 		</div>
 	</div>
 
-	
+
 
 	<div class="row">
 		<div class="modal fade" id="careerEdit" role="dialog">
@@ -607,49 +620,7 @@
 		</div>
 	</div>
 
-	<div class="row">
-		<div class="modal fade" id="aboutmeEdit" role="dialog">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal">
-							<span>&times;</span>
-						</button>
-						<h4 class="modal-title">Update About you info</h4>
-						<p>${user.aboutme}</p>
 
-					</div>
-					<div class="modal-body">
-						<!--modal form-->
-						<form action="/home/updateAboutme" method="post">
-							<input type="hidden" name="${_csrf.parameterName}"
-								value="${_csrf.token}" /> <input type="hidden" name="uImageId"
-								value="${user.id}" /> <input type="hidden" name="email"
-								value="${user.email}" />
-
-							<div class="form-group has-feedback">
-								<textarea class="form-control" rows="3"
-									placeholder="Who are you ??" name="aboutme" spellcheck="true"></textarea>
-
-								<span
-									class="glyphicon glyphicon-align-justify form-control-feedback"></span>
-							</div>
-
-
-							<div class="form-group has-feedback float-right">
-
-								<div class="col-xs-4">
-									<button type="submit" name="submit"
-										class="btn btn-primary btn-block btn-flat">Update</button>
-								</div>
-							</div>
-						</form>
-
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
 
 	<div class="row">
 		<div class="modal fade" id="addAdvert" role="dialog">
@@ -932,91 +903,93 @@
 						<div class="box box-success">
 
 							<c:forEach items="${catEvents}" var="catEvent">
-							<c:if test="${not empty catEvent.ename}">
-								<a><h5>${catEvent.ename}</h5></a>
-								<p>
-								<h5>${catEvent.description}</h5>
-								</p>
-								<h4>
-									<a href="/profile?wuid=${catEvent.uid}"> <span class="label label-success pull-left"> By ${catEvent.byname}</span></a>
-									<span class="label label-success pull-right">${catEvent.eventDate}</span>
-								</h4>
+								<c:if test="${not empty catEvent.ename}">
+									<a><h5>${catEvent.ename}</h5></a>
+									<p>
+									<h5>${catEvent.description}</h5>
+									</p>
+									<h4>
+										<a href="/profile?wuid=${catEvent.uid}"> <span
+											class="label label-success pull-left"> By
+												${catEvent.byname}</span></a> <span
+											class="label label-success pull-right">${catEvent.eventDate}</span>
+									</h4>
 
 
-								<div class="product-img">
-									<c:if test="${catEvent.imageLink!=''}">
-
-
-
-										<a
-											href="/uploads/${catEvent.uid}/events/${catEvent.imageLink}"><img
-											class="img-responsive"
-											src="/uploads/${catEvent.uid}/events/${catEvent.imageLink}"
-											alt="user image"> </a>
-
-									</c:if>
-									<c:if test="${catEvent.imageLink==''}">
-										<img class="img-responsive" src="dist/img/default-50x50.gif"
-											alt="Product Image">
-
-									</c:if>
-
-								</div>
-
-								<ul class="list-inline">
-									<li>
-										<form action="/home/addNotGoing" method="post">
-											<input type="hidden" name="${_csrf.parameterName}"
-												value="${_csrf.token}" /> <input type="hidden" name="uid"
-												value="${user.id}" /> <input type="hidden" name="eid"
-												value="${catEvent.id}" />
+									<div class="product-img">
+										<c:if test="${catEvent.imageLink!=''}">
 
 
 
-											<button type="submit" class="btn btn-trans">
-												<i class="fa fa-times fa-2x margin-r-5"></i> Not Going
-											</button>
+											<a
+												href="/uploads/${catEvent.uid}/events/${catEvent.imageLink}"><img
+												class="img-responsive"
+												src="/uploads/${catEvent.uid}/events/${catEvent.imageLink}"
+												alt="user image"> </a>
 
-										</form>
+										</c:if>
+										<c:if test="${catEvent.imageLink==''}">
+											<img class="img-responsive" src="dist/img/default-50x50.gif"
+												alt="Product Image">
 
+										</c:if>
 
+									</div>
 
-									</li>
-
-									<li>
-										<form class="form-horizontal" action="/home/addGoing"
-											method="post">
-											<input type="hidden" name="${_csrf.parameterName}"
-												value="${_csrf.token}" /> <input type="hidden" name="uid"
-												value="${user.id}" /> <input type="hidden" name="eid"
-												value="${catEvent.id}" />
-
-
-
-											<button type="submit" class="btn btn-trans">
-
-
-												<i class="fa fa-check fa-2x margin-r-5"></i> Going
-
-											</button>
+									<ul class="list-inline">
+										<li>
+											<form action="/home/addNotGoing" method="post">
+												<input type="hidden" name="${_csrf.parameterName}"
+													value="${_csrf.token}" /> <input type="hidden" name="uid"
+													value="${user.id}" /> <input type="hidden" name="eid"
+													value="${catEvent.id}" />
 
 
-										</form>
 
-									</li>
-									<li class="pull-right"><a href="#"
-										class="link-black text-sm"> <i
-											class="fa fa-check fa-2x margin-r-5"></i>Not Going
-											(${catEvent.notGoing})
-									</a></li>
+												<button type="submit" class="btn btn-trans">
+													<i class="fa fa-times fa-2x margin-r-5"></i> Not Going
+												</button>
 
-									<li class="pull-right"><a href="#"
-										class="link-black text-sm"><i
-											class="fa fa-times fa-2x margin-r-5"></i>Going
-											(${catEvent.going})</a></li>
+											</form>
 
 
-								</ul>
+
+										</li>
+
+										<li>
+											<form class="form-horizontal" action="/home/addGoing"
+												method="post">
+												<input type="hidden" name="${_csrf.parameterName}"
+													value="${_csrf.token}" /> <input type="hidden" name="uid"
+													value="${user.id}" /> <input type="hidden" name="eid"
+													value="${catEvent.id}" />
+
+
+
+												<button type="submit" class="btn btn-trans">
+
+
+													<i class="fa fa-check fa-2x margin-r-5"></i> Going
+
+												</button>
+
+
+											</form>
+
+										</li>
+										<li class="pull-right"><a href="#"
+											class="link-black text-sm"> <i
+												class="fa fa-check fa-2x margin-r-5"></i>Not Going
+												(${catEvent.notGoing})
+										</a></li>
+
+										<li class="pull-right"><a href="#"
+											class="link-black text-sm"><i
+												class="fa fa-times fa-2x margin-r-5"></i>Going
+												(${catEvent.going})</a></li>
+
+
+									</ul>
 								</c:if>
 
 
@@ -1083,9 +1056,8 @@
 							</div>
 
 							<div class="form-group has-feedback">
-							<label for="deadline">Deadline</label>
-								<input type="date" class="form-control" name="deadline"
-									id="advertDate" /> <span
+								<label for="deadline">Deadline</label> <input type="date"
+									class="form-control" name="deadline" id="advertDate" /> <span
 									class="glyphicon glyphicon-calendar form-control-feedback"></span>
 							</div>
 							<div class="form-group has-feedback">
@@ -1130,91 +1102,93 @@
 						<div class="box box-success">
 
 							<c:forEach items="${catJobadds}" var="catJobadd">
-							<c:if test="${not empty catJobadd.jobTitle}">
-								<a><h5>(${catJobadd.noPositions}) ${catJobadd.jobTitle} (s)</h5></a>
-								<p>
-								<h5>${catJobadd.description}</h5>
-								</p>
-								<h4>
-									<span class="label label-success pull-left">${catJobadd.salary}</span>
-									<span class="label label-danger pull-right">${catJobadd.deadline}</span>
-								</h4>
+								<c:if test="${not empty catJobadd.jobTitle}">
+									<a><h5>(${catJobadd.noPositions})
+											${catJobadd.jobTitle} (s)</h5></a>
+									<p>
+									<h5>${catJobadd.description}</h5>
+									</p>
+									<h4>
+										<span class="label label-success pull-left">${catJobadd.salary}</span>
+										<span class="label label-danger pull-right">${catJobadd.deadline}</span>
+									</h4>
 
 
-								<div class="product-img">
-									<c:if test="${catJobadd.imageLink!=''}">
-
-
-
-										<a target="_blank"
-											href="/uploads/${catJobadd.uid}/jobadds/${catJobadd.imageLink}"><img
-											class="img-responsive"
-											src="/uploads/${catJobadd.uid}/jobadds/${catJobadd.imageLink}"
-											alt="user image"> </a>
-
-									</c:if>
-									<c:if test="${catJobadd.imageLink==''|| catJobadd.imageLink==null}">
-										<img class="img-responsive" src="dist/img/default-50x50.gif"
-											alt="Product Image">
-
-									</c:if>
-
-								</div>
-
-								<ul class="list-inline">
-									<li>
-										<form action="/home/addNotRecomend" method="post">
-											<input type="hidden" name="${_csrf.parameterName}"
-												value="${_csrf.token}" /> <input type="hidden" name="uid"
-												value="${user.id}" /> <input type="hidden" name="jaid"
-												value="${catJobadd.id}" />
+									<div class="product-img">
+										<c:if test="${catJobadd.imageLink!=''}">
 
 
 
-											<button type="submit" class="btn btn-trans">
-												<i class="fa fa-times fa-2x margin-r-5"></i> Not Recomended
-											</button>
+											<a target="_blank"
+												href="/uploads/${catJobadd.uid}/jobadds/${catJobadd.imageLink}"><img
+												class="img-responsive"
+												src="/uploads/${catJobadd.uid}/jobadds/${catJobadd.imageLink}"
+												alt="user image"> </a>
 
-										</form>
+										</c:if>
+										<c:if
+											test="${catJobadd.imageLink==''|| catJobadd.imageLink==null}">
+											<img class="img-responsive" src="dist/img/default-50x50.gif"
+												alt="Product Image">
 
+										</c:if>
 
+									</div>
 
-									</li>
-
-									<li>
-										<form class="form-horizontal" action="/home/addRecomend"
-											method="post">
-											<input type="hidden" name="${_csrf.parameterName}"
-												value="${_csrf.token}" /> <input type="hidden" name="uid"
-												value="${user.id}" /> <input type="hidden" name="jaid"
-												value="${catJobadd.id}" />
-
-
-
-											<button type="submit" class="btn btn-trans">
-
-
-												<i class="fa fa-check fa-2x margin-r-5"></i> Recomended
-
-											</button>
+									<ul class="list-inline">
+										<li>
+											<form action="/home/addNotRecomend" method="post">
+												<input type="hidden" name="${_csrf.parameterName}"
+													value="${_csrf.token}" /> <input type="hidden" name="uid"
+													value="${user.id}" /> <input type="hidden" name="jaid"
+													value="${catJobadd.id}" />
 
 
-										</form>
 
-									</li>
-									<li class="pull-right"><a href="#"
-										class="link-black text-sm"> <i
-											class="fa fa-check fa-2x margin-r-5"></i>Recomended
-											(${catJobadd.recomended})
-									</a></li>
+												<button type="submit" class="btn btn-trans">
+													<i class="fa fa-times fa-2x margin-r-5"></i> Not Recomended
+												</button>
 
-									<li class="pull-right"><a href="#"
-										class="link-black text-sm"><i
-											class="fa fa-times fa-2x margin-r-5"></i>Not Recomemded
-											(${catJobadd.notRecomended})</a></li>
+											</form>
 
 
-								</ul>
+
+										</li>
+
+										<li>
+											<form class="form-horizontal" action="/home/addRecomend"
+												method="post">
+												<input type="hidden" name="${_csrf.parameterName}"
+													value="${_csrf.token}" /> <input type="hidden" name="uid"
+													value="${user.id}" /> <input type="hidden" name="jaid"
+													value="${catJobadd.id}" />
+
+
+
+												<button type="submit" class="btn btn-trans">
+
+
+													<i class="fa fa-check fa-2x margin-r-5"></i> Recomended
+
+												</button>
+
+
+											</form>
+
+										</li>
+										<li class="pull-right"><a href="#"
+											class="link-black text-sm"> <i
+												class="fa fa-check fa-2x margin-r-5"></i>Recomended
+												(${catJobadd.recomended})
+										</a></li>
+
+										<li class="pull-right"><a href="#"
+											class="link-black text-sm"><i
+												class="fa fa-times fa-2x margin-r-5"></i>Not Recomemded
+												(${catJobadd.notRecomended})</a></li>
+
+
+									</ul>
 								</c:if>
 
 
@@ -1253,8 +1227,8 @@
 								value="${user.email}" />
 
 							<div class="form-group has-feedback">
-								<input type="email" class="form-control" name="iemail" id="iemail"
-									placeholder="Enter Email of Invitie"  /> <span
+								<input type="email" class="form-control" name="iemail"
+									id="iemail" placeholder="Enter Email of Invitie" /> <span
 									class="glyphicon glyphicon-envelope form-control-feedback"></span>
 							</div>
 
@@ -1276,8 +1250,8 @@
 	<!-- ./wrapper -->
 
 	<!-- jQuery 3 -->
-	
-	
+
+
 	<script src="bower_components/jquery/dist/jquery.min.js"></script>
 	<!-- Bootstrap 3.3.7 -->
 	<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>

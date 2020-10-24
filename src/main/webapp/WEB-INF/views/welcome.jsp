@@ -156,7 +156,7 @@
 				<span class="glyphicon glyphicon-envelope form-control-feedback"></span>
 				<sec:csrfInput /> 
 			</div>
-			<input name="resetcode" type="hidden" class="form-control" value="${resetcode}">
+			<input  type="hidden" name="resetcode" class="form-control" value="${resetcode}">
 			<div class="row">
 
 				<!-- /.col -->

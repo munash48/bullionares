@@ -124,12 +124,19 @@ public class User {
 		this.role = role;
 	}
 	public String getPassword() {
+		
 		return password;
 	}
 	public void setPassword(String password) {
+		
+       if(password.length()<30) {
 
 		BCryptPasswordEncoder bCryptPasswordEncoder=new BCryptPasswordEncoder();
 		this.password = bCryptPasswordEncoder.encode(password);
+       } else {
+    	   this.password=password;
+       }
+
 	}
 	public LocalDate getBirthDate() {
 		return birthDate;

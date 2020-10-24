@@ -19,29 +19,41 @@ $(function() {
 		
 		
 	});
+	$("#companyEditFrm").submit(function(e) {
+		e.preventDefault();
+		alert("submit by jquery");
+		var frm = $("#companyEditFrm");
+		var data = {};
+		$.each(this, function(i, v) {
+			var input = $(v);
+			data[input.attr("name")] = input.val();
+			delete data["undefined"];
+			
+		});
+		
+		var nurl="/profile";
+		
+		saveUpdatedData(frm, data,nurl);
+		
+		
+	});
 	
 
 });
 
 function saveUpdatedData(frm, data,nurl){		
 		 $.ajax({
-			 contentType (default: 'application/x-www-form-urlencoded; charset=UTF-8'),
-	//	 contentType: "application/json",
+			// contentType (default: 'application/x-www-form-urlencoded; charset=UTF-8'),
+		 contentType: "application/json; charset=utf-8",
 			 url:frm.attr("action"),
 		     type:frm.attr("method"),
-		     data: {
-		        "id": id,
-		        "firstName":firstName,
-		        "otherNames":otherNames,
-		        "phoneNumber":phoneNumber,
-		        "email":email,
-		        "profession":profession,
-		        "birthDate":birthDate
-		     },
-		     success: function(response){
+		     dataType:'json', 
+				data:JSON.stringify(data),
+		     success: function(data){
 				
-		        alert("sucess");
-		        getHomePage(nurl);
+		    	 alert(data.message);
+		    	 getPage(nurl);
+		    	 $('.modal').modal('hide');
 
 		     },
 		     error:function(response){

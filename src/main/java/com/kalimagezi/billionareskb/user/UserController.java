@@ -117,7 +117,12 @@ public class UserController {
 			Counter counter2= counterService.getUCounter(user.getId());
 			counter2.setNoVotes(counter2.getNoVotes()+2);
 			user.setImageLink(pname);
-			userService.addUser(user);
+			try {
+				userService.updateUser(user);
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			String ppath=uploadDirectory+"/"+id+"/profile/";
 			userService.saveImage(imageFile,ppath,pname);
 			
@@ -129,59 +134,34 @@ public class UserController {
 		return "redirect:/home?imgupload=success";
 		
 	}
-	@RequestMapping(value="/home/updateAboutme", method = RequestMethod.POST)
-	public String updateAboutme ( @RequestParam("email") String email,@RequestParam("aboutme") String aboutme) {
-		
-		User user = userService.findByEmail(email);
-		user.setAboutme(aboutme);
-		
-		Counter counter= counterService.getUCounter(user.getId());
-		counter.setNoVotes(counter.getNoVotes()+2);
-		counter.setTotal(counter.getNoArticles()+counter.getNoConnections()+counter.getNoInvites()+counter.getNoOpinions()-
-	       		counter.getNoReports()+counter.getNoVotes());
-			counterService.addCounter(counter);
-		userService.addUser(user);
-		return "redirect:/home?updateAboutme=success";
-		
-	}
+//	@RequestMapping(value="/home/updateAboutme", method = RequestMethod.POST)
+//	public String updateAboutme ( @RequestParam("email") String email,@RequestParam("aboutme") String aboutme) {
+//		
+//		User user = userService.findByEmail(email);
+//		user.setAboutme(aboutme);
+//		
+//		Counter counter= counterService.getUCounter(user.getId());
+//		counter.setNoVotes(counter.getNoVotes()+2);
+//		counter.setTotal(counter.getNoArticles()+counter.getNoConnections()+counter.getNoInvites()+counter.getNoOpinions()-
+//	       		counter.getNoReports()+counter.getNoVotes());
+//			counterService.addCounter(counter);
+//		userService.addUser(user);
+//		return "redirect:/home?updateAboutme=success";
+//		
+//	}
 	
-	@RequestMapping(value="/updateUser", method = RequestMethod.POST)
-	public String updadeUser ( @RequestParam("id") String id, 
-			@RequestParam("firstName") String firstName,
-			@RequestParam("otherNames") String otherNames,
-			@RequestParam("phoneNumber") String phoneNumber,
-			@RequestParam("email") String email,
-			@RequestParam("profession") String profession,
-			@RequestParam("birthDate") String birthDate
-			) throws JSONException {
+	@PostMapping(value="/updateUser", consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody String updadeUser ( @RequestBody User user1) throws JSONException {
 		
-			User user1 = userService.getUser(Integer.parseInt(id)).orElseThrow(null);
-			if(user1.getBirthDate()==null) {
+			
 			Counter counter= counterService.getUCounter(user1.getId());
 			counter.setNoVotes(counter.getNoVotes()+2);
 			counter.setTotal(counter.getNoArticles()+counter.getNoConnections()+counter.getNoInvites()+counter.getNoOpinions()-
 		       		counter.getNoReports()+counter.getNoVotes());
 				counterService.addCounter(counter);
-			}
-			user1.setFirstName(firstName);
-			user1.setOtherNames(otherNames);
-			user1.setPhoneNumber(phoneNumber);
-			user1.setEmail(email);
-			user1.setProfession(profession);
-			
-			
-				
-			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyy-MM-dd");
-
-			LocalDate date2 = LocalDate.parse(birthDate, dtf);
-
-			
-			user1.setBirthDate(date2);
-			
-	
 
 
-		return userService.updateUser(user1);
+		return  userService.updateUser(user1);
 		
 	}
 	

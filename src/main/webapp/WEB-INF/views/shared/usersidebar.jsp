@@ -159,11 +159,7 @@
 
 			<strong><i class="fa fa-file-text-o margin-r-5"></i> Who I
 				am</strong>
-			<button type="button" data-toggle="modal" data-target="#aboutmeEdit"
-				class="btn probtn">
-				<i class="fa fa-pencil" title="click to edit" data-toggle="tooltip"
-					data-placement="right"></i>
-			</button>
+	
 
 			<p>${user.aboutme}</p>
 		</div>
