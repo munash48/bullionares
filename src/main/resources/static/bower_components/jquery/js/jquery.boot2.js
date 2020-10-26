@@ -4,6 +4,11 @@
 		 alert("inside profile");
 		 getPage("/profile");
 	 });
+	 $("#fullprofile").click(function(){
+		 alert("inside profile");
+		 getPage("/profile");
+	 });
+	 
 	 $("#chart").click(function(){
 		 getPage("/chart");
 	 });

@@ -74,7 +74,7 @@
 			</div>
 			
 			<div class="col-xs-12 col-md-6 pt-2">
-				<a href="/profile?wuid=${user.id}" class="btn btn-primary btn-block"><b>Full
+				<a href="javascript:void(0);" class="btn btn-primary btn-block" id ="fullprofile"><b>Full
 						Profile</b></a>
 			</div>
 		</div>

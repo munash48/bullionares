@@ -212,6 +212,8 @@
 						<sf:form action="/updateCompany" method="post" id="companyEditFrm" modelAttribute="company">
 							 <sf:input type="hidden" path="id"
 								value="${company.id}" />
+							 <sf:input type="hidden" path="uid"
+								value="${company.uid}" />
 
 							<div class="form-group has-feedback">
 								<sf:input type="text" class="form-control" path="name" id="name"
@@ -236,8 +238,9 @@
 									class="glyphicon glyphicon-cloud form-control-feedback"></span>
 							</div>
 							<div class="form-group has-feedback">
+							<label class="control-label">No of Employees </label>
 								<sf:input type="text" class="form-control" path="jobCapacity"
-									id="jobCapacity" placeholder="jobCapacity" 
+									id="jobCapacity" placeholder="No of Employees" 
 									value="${company.jobCapacity}" /> <span 
 									class="glyphicon glyphicon-user form-control-feedback"></span>
 							</div>
@@ -365,38 +368,41 @@
 					</div>
 					<div class="modal-body">
 						<!--modal form-->
-						<form action="/home/updateCareer" method="post">
-							<input type="hidden" name="${_csrf.parameterName}"
-								value="${_csrf.token}" /> <input type="hidden" name="cId"
+						<sf:form action="/updateCareer" method="post" id="careerEditFrm" modelAttribute="career">
+							 
+								<sf:input type="hidden" path="id"
 								value="${career.id}" />
+								<sf:input type="hidden" path="uid"
+								value="${career.uid}" />
 
 							<div class="form-group has-feedback">
-								<input type="text" class="form-control" name="jobTitle"
+								<sf:input type="text" class="form-control" path="jobTitle"
 									id="jobTitle" placeholder="Job Title"
 									value="${career.jobTitle}" /> <span
 									class="glyphicon glyphicon-briefcase form-control-feedback"></span>
 							</div>
 							<div class="form-group has-feedback">
-								<input type="text" class="form-control" name="specialization"
+								<sf:input type="text" class="form-control" path="specialization"
 									id="specialization" placeholder="Your Specialization"
 									value="${career.specialization}" /> <span
 									class="glyphicon glyphicon-star-empty form-control-feedback"></span>
 							</div>
 							<div class="form-group has-feedback">
-								<input type="text" class="form-control" name="website"
+								<sf:input type="text" class="form-control" path="website"
 									id="website" placeholder="Career Website"
 									value="${career.website}" /> <span
 									class="glyphicon glyphicon-cloud form-control-feedback"></span>
 							</div>
 							<div class="form-group has-feedback">
-								<input type="text" class="form-control" name="description"
+								<sf:input type="text" class="form-control" path="description"
 									id="description" placeholder="Description"
 									value="${career.description}" /> <span
 									class="glyphicon glyphicon-list-alt form-control-feedback"></span>
 							</div>
 
 							<div class="form-group has-feedback">
-								<input type="date" class="form-control" name="startDate"
+							<label class="control-label"> Date of Current Appoitement </label>
+								<sf:input type="date" class="form-control" path="startDate"
 									id="startDate" value="${career.startDate}" /> <span
 									class="glyphicon glyphicon-calendar form-control-feedback"></span>
 							</div>
@@ -410,7 +416,7 @@
 							</div>
 
 
-						</form>
+						</sf:form>
 
 					</div>
 				</div>
