@@ -210,7 +210,7 @@
 					<div class="modal-body">
 						<!--modal form-->
 						<sf:form action="/updateCompany" method="post" id="companyEditFrm" modelAttribute="company">
-							 <sf:input type="hidden" path="cId"
+							 <sf:input type="hidden" path="id"
 								value="${company.id}" />
 
 							<div class="form-group has-feedback">
