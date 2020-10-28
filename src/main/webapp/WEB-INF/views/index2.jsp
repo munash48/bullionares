@@ -295,42 +295,43 @@
 					</div>
 					<div class="modal-body">
 						<!--modal form-->
-						<form action="/home/updateAddress" method="post">
-							<input type="hidden" name="${_csrf.parameterName}"
-								value="${_csrf.token}" /> <input type="hidden" name="aId"
+						<sf:form action="/updateAddress" method="post" id="addressEditFrm" modelAttribute="address">
+							 <sf:input type="hidden" path="id"
 								value="${address.id}" />
+							 <sf:input type="hidden" path="uid"
+								value="${address.uid}" />
 
 							<div class="form-group has-feedback">
-								<input type="text" class="form-control" name="country"
+								<sf:input type="text" class="form-control" path="country"
 									id="country" placeholder="Country" value="${address.country}" />
 								<span class="glyphicon glyphicon-flag form-control-feedback"></span>
 							</div>
 							<div class="form-group has-feedback">
-								<input type="text" class="form-control" name="district"
+								<sf:input type="text" class="form-control" path="district"
 									id="district" placeholder="District"
 									value="${address.district}" /> <span
 									class="glyphicon glyphicon-globe form-control-feedback"></span>
 							</div>
 							<div class="form-group has-feedback">
-								<input type="text" class="form-control" name="division"
+								<sf:input type="text" class="form-control" path="division"
 									id="division" placeholder="Division"
 									value="${address.division}" /> <span
 									class="glyphicon glyphicon-map-marker form-control-feedback"></span>
 							</div>
 							<div class="form-group has-feedback">
-								<input type="text" class="form-control" name="village"
+								<sf:input type="text" class="form-control" path="village"
 									id="village" placeholder="Village" value="${address.village}" />
 								<span
 									class="glyphicon glyphicon-map-marker form-control-feedback"></span>
 							</div>
 							<div class="form-group has-feedback">
-								<input type="text" class="form-control" name="street"
+								<sf:input type="text" class="form-control" path="street"
 									id="street" placeholder="Street" value="${address.street}" />
 								<span
 									class="glyphicon glyphicon-dashboard form-control-feedback"></span>
 							</div>
 							<div class="form-group has-feedback">
-								<input type="text" class="form-control" name="boxNumber"
+								<sf:input type="text" class="form-control" path="boxNumber"
 									id="boxNumber" placeholder="Box Number"
 									value="${address.boxNumber}" /> <span
 									class="glyphicon glyphicon-calendar form-control-feedback"></span>
@@ -345,7 +346,7 @@
 							</div>
 
 
-						</form>
+						</sf:form>
 
 					</div>
 				</div>
@@ -439,36 +440,37 @@
 					</div>
 					<div class="modal-body">
 						<!--modal form-->
-						<form action="/home/updateEducation" method="post">
-							<input type="hidden" name="${_csrf.parameterName}"
-								value="${_csrf.token}" /> <input type="hidden" name="eId"
+						<sf:form action="/updateEducation" method="post" id="educationEditFrm" modelAttribute="education">
+							 <sf:input type="hidden" path="id"
 								value="${education.id}" />
+							 <sf:input type="hidden" path="uid"
+								value="${education.uid}" />
 
 							<div class="form-group has-feedback">
-								<input type="text" class="form-control" name="level" id="level"
+								<sf:input type="text" class="form-control" path="level" id="level"
 									placeholder="Level" value="${education.level}" /> <span
 									class="glyphicon glyphicon-book form-control-feedback"></span>
 							</div>
 							<div class="form-group has-feedback">
-								<input type="text" class="form-control" name="award" id="award"
+								<sf:input type="text" class="form-control" path="award" id="award"
 									placeholder="Award e.g BSc" value="${education.award}" /> <span
 									class="glyphicon glyphicon-education form-control-feedback"></span>
 							</div>
 							<div class="form-group has-feedback">
-								<input type="text" class="form-control" name="institution"
+								<sf:input type="text" class="form-control" path="institution"
 									id="institution" placeholder="Institution"
 									value="${education.institution}" /> <span
 									class="glyphicon glyphicon-map-marker form-control-feedback"></span>
 							</div>
 							<div class="form-group has-feedback">
-								<input type="text" class="form-control" name="website"
+								<sf:input type="text" class="form-control" path="website"
 									id="website" placeholder="Career Website"
 									value="${education.website}" /> <span
 									class="glyphicon glyphicon-cloud form-control-feedback"></span>
 							</div>
 
 							<div class="form-group has-feedback">
-								<input type="date" class="form-control" name="completionDate"
+								<sf:input type="date" class="form-control" path="completionDate"
 									id="completionDate" value="${education.completionDate}" /> <span
 									class="glyphicon glyphicon-calendar form-control-feedback"></span>
 							</div>
@@ -482,7 +484,7 @@
 							</div>
 
 
-						</form>
+						</sf:form>
 
 					</div>
 				</div>
@@ -504,10 +506,9 @@
 					</div>
 					<div class="modal-body">
 						<!--modal form-->
-						<form enctype="multipart/form-data" action="/home/updateEvent"
-							method="post">
-							<input type="hidden" name="${_csrf.parameterName}"
-								value="${_csrf.token}" /> <input type="hidden" name="eId"
+						<form enctype="multipart/form-data" action="/updateEvent"
+							method="post" id="submitEventFrm">
+							 <input type="hidden" name="eId"
 								value="${event.id}" /><input type="hidden" name="uImageId"
 								value="${user.id}" />
 
@@ -566,44 +567,45 @@
 					</div>
 					<div class="modal-body">
 						<!--modal form-->
-						<form action="/home/updateSkill" method="post">
-							<input type="hidden" name="${_csrf.parameterName}"
-								value="${_csrf.token}" /> <input type="hidden" name="sId"
+						<sf:form action="/updateSkill" method="post" id="skillEditFrm" modelAttribute="skillTalent">
+							<sf:input type="hidden" path="id"
 								value="${skill.id}" />
+							<sf:input type="hidden" path="uid"
+								value="${skill.uid}" />
 
 							<div class="form-group has-feedback">
-								<input type="text" class="form-control" name="name1" id="name1"
+								<sf:input type="text" class="form-control" path="name1" id="name1"
 									placeholder="First Skill / Telent Name"
 									value="${skillTalent.name1}" /> <span
 									class="glyphicon glyphicon-education form-control-feedback"></span>
 							</div>
 							<div class="form-group has-feedback">
-								<input type="text" class="form-control" name="name2" id="name2"
+								<sf:input type="text" class="form-control" path="name2" id="name2"
 									placeholder="Second Skill / Telent Name"
 									value="${skillTalent.name2}" /> <span
 									class="glyphicon glyphicon-heart-empty form-control-feedback"></span>
 							</div>
 							<div class="form-group has-feedback">
-								<input type="text" class="form-control" name="name3" id="name3"
+								<sf:input type="text" class="form-control" path="name3" id="name3"
 									placeholder="Third Skill / Telent Name"
 									value="${skillTalent.name3}" /> <span
 									class="glyphicon glyphicon glyphicon-heart form-control-feedback"></span>
 							</div>
 							<div class="form-group has-feedback">
-								<input type="text" class="form-control" name="name4" id="name4"
+								<sf:input type="text" class="form-control" path="name4" id="name4"
 									placeholder="Fourth Skill / Telent Name"
 									value="${skillTalent.name4}" /> <span
 									class="glyphicon glyphicon-star form-control-feedback"></span>
 							</div>
 							<div class="form-group has-feedback">
-								<input type="text" class="form-control" name="name5" id="name5"
+								<sf:input type="text" class="form-control" path="name5" id="name5"
 									placeholder="Fifth Skill / Telent Name"
 									value="${skillTalent.name5}" /> <span
 									class="glyphicon glyphicon-star-empty form-control-feedback"></span>
 							</div>
 
 							<div class="form-group has-feedback">
-								<input type="text" class="form-control" name="description"
+								<sf:input type="text" class="form-control" path="description"
 									id="description" placeholder="Description"
 									value="${skillTalent.description}" /> <span
 									class="glyphicon glyphicon-align-justify form-control-feedback"></span>
@@ -618,7 +620,7 @@
 							</div>
 
 
-						</form>
+						</sf:form>
 
 					</div>
 				</div>
@@ -1278,6 +1280,7 @@
 	<script src="bower_components/chart.js/Chart.js"></script>
 	<script src="bower_components/jquery/js/jquery.boot2.js"></script>
 	<script src="bower_components/jquery/js/jquery.save2.js"></script>
+	<script src="bower_components/jquery/js/jquery.update3.js"></script>
 	<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 	<script src="dist/js/pages/dashboard2.js"></script>
 	<!-- AdminLTE for demo purposes -->

@@ -1,5 +1,5 @@
 $(function() {
-
+	alert("inside update 2);
 	
 	$("#resetEmail").submit(function(e) {
 		e.preventDefault();

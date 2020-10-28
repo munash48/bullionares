@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.codehaus.jettison.json.JSONException;
+import org.codehaus.jettison.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,9 +15,18 @@ public class AddressService {
 	@Autowired
 	private AddressRepository addressRepository;
 
-	public void addAddress(Address address) {
+	public String addAddress(Address address) {
+		JSONObject jsonObject = new JSONObject();
 
 		addressRepository.save(address);
+		
+		try {
+			jsonObject.put("message", address.getStreet()+" Updated successfully");
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return jsonObject.toString();
 	}
 
 	public Optional<Address> getAddress(int id) {

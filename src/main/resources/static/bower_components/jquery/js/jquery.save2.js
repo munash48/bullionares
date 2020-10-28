@@ -37,11 +37,67 @@ $(function() {
 		
 		
 	});
+
 	
 	$("#careerEditFrm").submit(function(e) {
 		e.preventDefault();
 		alert("submit by jquery");
 		var frm = $("#careerEditFrm");
+		var data = {};
+		$.each(this, function(i, v) {
+			var input = $(v);
+			data[input.attr("name")] = input.val();
+			delete data["undefined"];
+			
+		});
+		
+		var nurl="/profile";
+		
+		saveUpdatedData(frm, data,nurl);
+		
+		
+	});
+	$("#educationEditFrm").submit(function(e) {
+		e.preventDefault();
+		alert("submit by jquery");
+		var frm = $("#educationEditFrm");
+		var data = {};
+		$.each(this, function(i, v) {
+			var input = $(v);
+			data[input.attr("name")] = input.val();
+			delete data["undefined"];
+			
+		});
+		
+		var nurl="/profile";
+		
+		saveUpdatedData(frm, data,nurl);
+		
+		
+	});
+	
+	$("#addressEditFrm").submit(function(e) {
+		e.preventDefault();
+		alert("submit by jquery");
+		var frm = $("#addressEditFrm");
+		var data = {};
+		$.each(this, function(i, v) {
+			var input = $(v);
+			data[input.attr("name")] = input.val();
+			delete data["undefined"];
+			
+		});
+		
+		var nurl="/profile";
+		
+		saveUpdatedData(frm, data,nurl);
+		
+		
+	});
+	$("#skillEditFrm").submit(function(e) {
+		e.preventDefault();
+		alert("submit by jquery");
+		var frm = $("#skillEditFrm");
 		var data = {};
 		$.each(this, function(i, v) {
 			var input = $(v);

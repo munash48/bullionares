@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.codehaus.jettison.json.JSONException;
+import org.codehaus.jettison.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,9 +16,19 @@ public class EducationService {
 	@Autowired
 	private EducationRepository educationRepository;
 
-	public void addEducation(Education education) {
+	public String addEducation(Education education) {
+		
+		JSONObject jsonObject = new JSONObject();
 
 		educationRepository.save(education);
+		try {
+			jsonObject.put("message", education.getAward() +" Updated successfully");
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return jsonObject.toString();
 	}
 
 	public Optional<Education> getEducation(int id) {

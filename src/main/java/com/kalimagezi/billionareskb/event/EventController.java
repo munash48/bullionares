@@ -34,13 +34,14 @@ public class EventController {
 	@Autowired
 	private NotificationService notificationService;
 	
-	@RequestMapping(value="/home/updateEvent", method = RequestMethod.POST)
-	public String updadeUser ( @RequestParam("eId") Integer id,
+	@RequestMapping(value="/updateEvent", method = RequestMethod.POST)
+	public String updadeUser (
+			@RequestParam("eId") Integer id,
 			@RequestParam("ename") String ename,
 			@RequestParam("description") String description,
 			@RequestParam("imageFile") MultipartFile imageFile,
 			@RequestParam("eventDate") String eventDate,
-			@RequestParam("uImageId") int uid
+			@RequestParam("uImageId") Integer uid
 
 			) {
 		

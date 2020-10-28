@@ -134,21 +134,7 @@ public class UserController {
 		return "redirect:/home?imgupload=success";
 		
 	}
-//	@RequestMapping(value="/home/updateAboutme", method = RequestMethod.POST)
-//	public String updateAboutme ( @RequestParam("email") String email,@RequestParam("aboutme") String aboutme) {
-//		
-//		User user = userService.findByEmail(email);
-//		user.setAboutme(aboutme);
-//		
-//		Counter counter= counterService.getUCounter(user.getId());
-//		counter.setNoVotes(counter.getNoVotes()+2);
-//		counter.setTotal(counter.getNoArticles()+counter.getNoConnections()+counter.getNoInvites()+counter.getNoOpinions()-
-//	       		counter.getNoReports()+counter.getNoVotes());
-//			counterService.addCounter(counter);
-//		userService.addUser(user);
-//		return "redirect:/home?updateAboutme=success";
-//		
-//	}
+
 	
 	@PostMapping(value="/updateUser", consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody String updadeUser ( @RequestBody User user1) throws JSONException {
