@@ -138,59 +138,70 @@ public class WelcomeController {
 
 			if(email!=null) {
 				
-				User user = userService.findByEmail(email);
-				if(user!=null) {
-					Random random = new Random();
-					String Hex = new String();
-					Hex="";
-					for(int x=0;x<6;x++) {
-			        int val = random.nextInt();
-			       			        
-			        Hex+= Integer.toHexString(val);
-			        
+				User user;
+				try {
+					user = userService.findByEmail(email);
+					if(user!=null) {
+						Random random = new Random();
+						String Hex = new String();
+						Hex="";
+						for(int x=0;x<6;x++) {
+				        int val = random.nextInt();
+				       			        
+				        Hex+= Integer.toHexString(val);
+				        
+						}
+						
+						user.setResetcode(Hex);
+						userService.updateUser(user);
+						String url = new String();
+						url="http//localhost:8080/?resetcode="+Hex;
+						 Mail mail = new Mail();
+					        mail.setFrom("no-reply@kalimagezi.com");
+					        mail.setTo(email);
+					        mail.setSubject( " Reset password Link");
+
+					        Map<String, Object> emodel = new HashMap<>();
+					        emodel.put("name", email);
+					        emodel.put("location", "Your location is.....");
+					        emodel.put("message",  "Please Ignore if you dont intend to reset your password <br> Other wise click <a href='"+url+"'>RESET MY PASSWORD</a>");
+					        emodel.put("signature", "https://kalimagezi.com");
+					       
+
+					        try {
+								mailService.sendSimpleMessage(mail, emodel);
+							} catch (MessagingException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							} catch (IOException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							} catch (TemplateException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+					        
+					        if (pnew!=null) {
+					        	model.addAttribute("logout", "<b>Log into "+email +"<br> to set your new Password</b>");
+					        } else {
+					        	model.addAttribute("logout", "<b>PASSWORD RESET LINK SENT TO "+email +"<br> Go to your mail to access reset link</b>");
+					        }
+					        
+					        return "shared/reset";
+										
+					} else {
+						model.addAttribute("logout", "<b>User with email"+email +" not found<br><a href=\"/register\"> Register</a> </b>");
+						return "shared/reset";
 					}
 					
-					user.setResetcode(Hex);
-					userService.updateUser(user);
-					String url = new String();
-					url="http//localhost:8080/?resetcode="+Hex;
-					 Mail mail = new Mail();
-				        mail.setFrom("no-reply@kalimagezi.com");
-				        mail.setTo(email);
-				        mail.setSubject( " Reset password Link");
-
-				        Map<String, Object> emodel = new HashMap<>();
-				        emodel.put("name", email);
-				        emodel.put("location", "Your location is.....");
-				        emodel.put("message",  "Please Ignore if you dont intend to reset your password <br> Other wise click <a href='"+url+"'>RESET MY PASSWORD</a>");
-				        emodel.put("signature", "https://kalimagezi.com");
-				       
-
-				        try {
-							mailService.sendSimpleMessage(mail, emodel);
-						} catch (MessagingException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						} catch (IOException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						} catch (TemplateException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-				        
-				        if (pnew!=null) {
-				        	model.addAttribute("logout", "<b>Log into "+email +"<br> to set your new Password</b>");
-				        } else {
-				        	model.addAttribute("logout", "<b>PASSWORD RESET LINK SENT TO "+email +"<br> Go to your mail to access reset link</b>");
-				        }
-				        					
-					
-					
-					
-				} else {
-					model.addAttribute("logout", "<b>Email not found "+email +"<br><a href=\"/register\"> Register</a> </b>");
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
 				}
+				}
+					
+				
+				
 									
 				model.addAttribute("title", "Reset Password");
 				model.addAttribute("ModeResetLink", true);
@@ -202,10 +213,9 @@ public class WelcomeController {
 					return "redirect:/?withinreset= "+email;
 				}
 				
+	
 				
 				
-				
-				return "shared/reset";
 				
 //			}else if(resetCode!=null) {
 //				System.out.println("reset code is "+resetCode);
@@ -217,7 +227,7 @@ public class WelcomeController {
 //
 //				return "shared/reset";
 				
-			}else if (reset!=null){
+			 if (reset!=null){
 				model.addAttribute("logout", "<b> Password did not match"+"<br> Go to your mail to access reset link</b>");
 				model.addAttribute("title", "Reset Password");
 				model.addAttribute("ModeResetLink", true);
@@ -274,14 +284,36 @@ public class WelcomeController {
 		public String resetPassword ( @RequestParam("email") String email) throws JSONException {
 			JSONObject jsonObject = new JSONObject();
 			if(email!=null) {
-				User user = userService.findByEmail(email);
 				
-				if(user!=null) {
-					jsonObject.put("message", user.getEmail()+ " Was found and code sent successfully");	
+				User user;
+				try {
+					user = userService.findByEmail(email);
 					
-					return "redirect:/reset?email="+user.getEmail()+"&within=yes";			
+					if(user!=null) {
+						jsonObject.put("message", user.getEmail()+ " Was found and code sent successfully");	
+						
+						return "redirect:/reset?email="+user.getEmail()+"&within=yes";			
+					} else {
+						jsonObject.put("message", "user with "+email+ " Was not found");
+						return "redirect:/reset?email="+email;
+								
+					}
+					
+					
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					
+					
+					e.printStackTrace();
+			
+					
 				}
+				
+				
+				
+				
 			}
+			
 			return "shared/reset";
 			
 		}
