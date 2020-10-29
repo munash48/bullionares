@@ -1,5 +1,5 @@
 $(function() {
-
+	alert("inside update");
 	
 	$("#submitPassRest").submit(function(e) {
 		e.preventDefault();
