@@ -482,7 +482,7 @@
 					</div>
 					<div class="modal-body">
 						<!--modal form-->
-						<form enctype="multipart/form-data" action="/home/updateEvent"
+						<form enctype="multipart/form-data" action="/updateEvent"
 							method="post">
 							<input type="hidden" name="${_csrf.parameterName}"
 								value="${_csrf.token}" /> <input type="hidden" name="eId"

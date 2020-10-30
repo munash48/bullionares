@@ -113,10 +113,10 @@ $(function() {
 		
 	});
 	
-	$("#resetEmail").submit(function(e) {
+	$("#submitEventFrm").submit(function(e) {
 		e.preventDefault();
 		alert("we are seding the email");
-		var frm = $("#resetEmail");
+		var frm = $("#submitEventFrm");
 		var data = {};
 		$.each(this, function(i, v) {
 			var input = $(v);
@@ -125,9 +125,9 @@ $(function() {
 			
 		});
 		
-		var nurl="/reset?email="+data.email;
+
 		
-		saveUpdatedResetCode(frm, data,nurl);
+		saveUpdatedWPhoto(frm, data);
 		
 	});
 	
@@ -155,7 +155,7 @@ function saveUpdatedData(frm, data,nurl){
 		 });
 }
 
-function saveUpdatedResetCode(frm, data,nurl){		
+function saveUpdatedWPhoto(frm, data){		
 	 $.ajax({
 		 //contentType (default: 'application/x-www-form-urlencoded; charset=UTF-8'),
 		 //contentType: "application/json",
