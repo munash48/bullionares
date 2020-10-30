@@ -113,23 +113,104 @@ $(function() {
 		
 	});
 	
-	$("#submitEventFrm").submit(function(e) {
-		e.preventDefault();
-		alert("we are seding the email");
-		var frm = $("#submitEventFrm");
-		var data = {};
-		$.each(this, function(i, v) {
-			var input = $(v);
-			data[input.attr("name")] = input.val();
-			delete data["undefined"];
-			
-		});
-		
+	$( '#submitEventFrm' )
+	  .submit( function( e ) {
+		  var frm = $("#submitEventFrm");
+		  alert("Submitting by jquery");
+	    $.ajax( {
+	      url:frm.attr("action"),
+		  type:frm.attr("method"),
+	      data: new FormData( this ),
+	      processData: false,
+	      contentType: false,
+	      success: function(data){
+				
+		    	 alert(data.message);
+		    	 getPage("/profile");
+		    	 $('.modal').modal('hide');
 
+		     },
+	      error:function(response){
+	    	  
+		         alert("Some thing went wrong");
+		         
+	      }
+	    } );
+	    e.preventDefault();
+	    
+	  
+	  } );
+	$( '#imageEditFrm' )
+	.submit( function( e ) {
+		var frm = $("#imageEditFrm");
 		
-		saveUpdatedWPhoto(frm, data);
+		alert("Submitting by jquery");
+		$.ajax( {
+			url:frm.attr("action"),
+			type:frm.attr("method"),
+			data: new FormData( this ),
+			processData: false,
+			contentType: false,
+			success: function(data){
+				
+				alert(data.message);
+				getPage("/profile");
+				$('.modal').modal('hide');
+				
+			},
+			error:function(response){
+				
+				alert("Some thing went wrong");
+				
+			}
+		} );
+		e.preventDefault();
 		
-	});
+		
+	} );
+	$('#advertEditFrm')
+	.submit( function( e ) {
+		var frm = $("#advertEditFrm");
+		
+		alert("Submitting by jquery");
+		$.ajax( {
+			url:frm.attr("action"),
+			type:frm.attr("method"),
+			data: new FormData( this ),
+			processData: false,
+			contentType: false,
+			success: function(data){
+				
+				alert(data.message);
+				getPage("/profile");
+				$('.modal').modal('hide');
+				
+			},
+			error:function(response){
+				
+				alert("Some thing went wrong");
+				
+			}
+		} );
+		e.preventDefault();
+		
+		
+	} );
+	
+//	$("#submitEventFrm").submit(function(e) {
+//		e.preventDefault();
+//		alert("Submitting by jquery");
+//		var frm = $("#submitEventFrm");
+//		
+//		var data: new FormData( this ),
+//	      processData: false,
+//	      contentType: false
+//	    } );
+//
+//		var nurl="/profile";
+//		saveUpdatedWPhoto(frm, data, nurl);
+//		
+//	});
 	
 
 });
@@ -155,27 +236,35 @@ function saveUpdatedData(frm, data,nurl){
 		 });
 }
 
-function saveUpdatedWPhoto(frm, data){		
-	 $.ajax({
-		 //contentType (default: 'application/x-www-form-urlencoded; charset=UTF-8'),
-		 //contentType: "application/json",
-		 contentType: "multipart/form-data",
-		 url:frm.attr("action"),
-	     type:frm.attr("method"),
-	     data: {
-	        "resetcode": resetcode,
-	        "password":password,
-	        "confirm":confirm
-	     },
-	     success: function(response){
-			
-	        alert("sucess");
-	        getPage(nurl);
-
-	     },
-	     error:function(response){
-	         alert("something went wrong");
-	     }
-	 });
-}
+//function saveUpdatedWPhoto(frm, data, nurl){		
+//	 $.ajax({
+//		//contentType: "application/json",
+//	//		contentType: "application/x-www-form-urlencoded",
+//	//	 contentType (default: "application/x-www-form-urlencoded; charset=UTF-8"),
+//		 
+//		 url:frm.attr("action"),
+//	     type:frm.attr("method"),
+//	     cache: false,
+//	     processData: false,
+//	     data: {
+//	        "id": id,
+//	        "uid":uid,
+//	        "ename":ename,
+//	        "description":description,
+//	        "imageFIile":imageFile,
+//	        "eventDate":eventDate
+//	        
+//	     },
+//	     success: function(data){
+//			
+//	        alert(data.message);
+//	        getPage(nurl);
+//	        $('.modal').modal('hide');
+//
+//	     },
+//	     error:function(response){
+//	         alert("something went wrong");
+//	     }
+//	 });
+//}
 

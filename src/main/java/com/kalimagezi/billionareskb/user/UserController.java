@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.codehaus.jettison.json.JSONException;
+import org.codehaus.jettison.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -107,9 +108,9 @@ public class UserController {
 
 	}
 	
-	@RequestMapping(value="/home/uploadImage", method = RequestMethod.POST)
-	public String uploadImge (@RequestParam("imageFile") MultipartFile imageFile, @RequestParam("uImageId") int id, @RequestParam("email") String email) {
-		
+	@RequestMapping(value="/uploadImage", method = RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody String uploadImge (@RequestParam("imageFile") MultipartFile imageFile, @RequestParam("uImageId") int id, @RequestParam("email") String email) {
+		JSONObject jsonObject = new JSONObject();
 		try {
 			long tday = new Date().getTime(); 
 			String pname=tday+".jpg";
@@ -125,13 +126,19 @@ public class UserController {
 			}
 			String ppath=uploadDirectory+"/"+id+"/profile/";
 			userService.saveImage(imageFile,ppath,pname);
+			try {
+				jsonObject.put("message", user.getFirstName()+", Your Image ha been successfully");
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		return "redirect:/home?imgupload=success";
+		return jsonObject.toString();
 		
 	}
 

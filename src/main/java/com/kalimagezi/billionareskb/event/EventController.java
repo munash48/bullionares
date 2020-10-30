@@ -7,12 +7,14 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.kalimagezi.billionareskb.counter.Counter;
@@ -34,14 +36,14 @@ public class EventController {
 	@Autowired
 	private NotificationService notificationService;
 	
-	@RequestMapping(value="/updateEvent", method = RequestMethod.POST)
-	public String updadeUser (
-			@RequestParam("eId") Integer id,
+	@RequestMapping(value="/updateEvent", method = RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody String updadeUser (
+			@RequestParam("id") Integer id,
 			@RequestParam("ename") String ename,
 			@RequestParam("description") String description,
 			@RequestParam("imageFile") MultipartFile imageFile,
 			@RequestParam("eventDate") String eventDate,
-			@RequestParam("uImageId") Integer uid
+			@RequestParam("uid") Integer uid
 
 			) {
 		
@@ -75,7 +77,7 @@ public class EventController {
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyy-MM-dd");
 
 		LocalDate date2 = LocalDate.parse(eventDate, dtf);
-		
+		System.out.println("Setting event date");
 		event.setEventDate(date2);
 		
 		try {
@@ -83,7 +85,9 @@ public class EventController {
 			String pname=tday+".jpg";
 			event.setImageLink(pname);
 			String ppath=uploadDirectory+"/"+uid+"/events/";
+			System.out.println("Starting to upload");
 			userService.saveImage(imageFile,ppath,pname);
+			System.out.println("uploaded");
 			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -92,10 +96,10 @@ public class EventController {
 		}
 		
 		
-	    eventService.addEvent(event);
+	    
 
 
-		return "redirect:/home?eventupdate=success";
+		return eventService.addEvent(event);
 		
 	}
 	

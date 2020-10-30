@@ -82,10 +82,9 @@
 					</div>
 					<div class="modal-body">
 						<!--modal form-->
-						<form enctype="multipart/form-data" action="/home/uploadImage"
-							method="post">
-							<input type="hidden" name="${_csrf.parameterName}"
-								value="${_csrf.token}" /> <input type="hidden" name="uImageId"
+						<form enctype="multipart/form-data" action="/uploadImage"
+							method="post" id="imageEditFrm">
+							<input type="hidden" name="uImageId"
 								value="${user.id}" /> <input type="hidden" name="email"
 								value="${user.email}" />
 
@@ -508,8 +507,8 @@
 						<!--modal form-->
 						<form enctype="multipart/form-data" action="/updateEvent"
 							method="post" id="submitEventFrm">
-							 <input type="hidden" name="eId"
-								value="${event.id}" /><input type="hidden" name="uImageId"
+							 <input type="hidden" name="id"
+								value="${event.id}" /><input type="hidden" name="uid"
 								value="${user.id}" />
 
 							<div class="form-group has-feedback">
@@ -530,7 +529,7 @@
 							</div>
 							<div class="form-group has-feedback">
 								<input type="file" class="form-control" name="imageFile"
-									id="imageLink" placeholder="imageLink"
+									id="imageFile" placeholder="imageFile"
 									value="${event.imageLink}" /> <span
 									class="glyphicon glyphicon-picture form-control-feedback"></span>
 							</div>
@@ -644,8 +643,8 @@
 					</div>
 					<div class="modal-body">
 						<!--modal form-->
-						<form enctype="multipart/form-data" action="/home/addAdvert"
-							method="post">
+						<form enctype="multipart/form-data" action="/addAdvert"
+							method="post" id ="advertEditFrm">
 							<input type="hidden" name="${_csrf.parameterName}"
 								value="${_csrf.token}" /> <input type="hidden" name="uid"
 								value="${user.id}" /> <input type="hidden" name="cid"

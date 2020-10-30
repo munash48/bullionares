@@ -5,11 +5,15 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
+import org.codehaus.jettison.json.JSONException;
+import org.codehaus.jettison.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.kalimagezi.billionareskb.counter.Counter;
@@ -29,8 +33,8 @@ public static String uploadDirectory=System.getProperty("user.dir")+"/src/main/w
 	@Autowired
 	private AdvertService advertService;
 	
-	@RequestMapping(value="/home/addAdvert", method = RequestMethod.POST)
-	public String updadeUser ( @RequestParam("uid") Integer uid, 
+	@RequestMapping(value="/addAdvert", method = RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody String updadeUser ( @RequestParam("uid") Integer uid, 
 			@RequestParam("cid") Integer cid, 
 			@RequestParam("title") String title,
 			@RequestParam("description") String description,
@@ -63,15 +67,20 @@ public static String uploadDirectory=System.getProperty("user.dir")+"/src/main/w
 		advert.setTransactionId(transactionId);
 		advert.setUid(uid);
 		advert.setNoDays(noDays);
-		
+		JSONObject jsonObject = new JSONObject();
 		
 		try {
 			long tday = new Date().getTime(); 
 			String pname=tday+".jpg";
 			advert.setImageLink(pname);
-			String ppath=uploadDirectory+"/"+uid+"/aaaaa/";
+			String ppath=uploadDirectory+"/"+uid+"/adverts/";
 			userService.saveImage(imageFile,ppath,pname);
-			
+			try {
+				jsonObject.put("message", advert.getTitle()+" advert Uploaded successfully");
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -80,7 +89,7 @@ public static String uploadDirectory=System.getProperty("user.dir")+"/src/main/w
 			
 	    advertService.addAdvert(advert);
 
-		return "redirect:/home?advertAdded=success";
+		return jsonObject.toString();
 		
 	}
 	@RequestMapping(value="/admin/enableadd", method = RequestMethod.GET)
