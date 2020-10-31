@@ -73,10 +73,10 @@ public static String uploadDirectory=System.getProperty("user.dir")+"/src/main/w
 			long tday = new Date().getTime(); 
 			String pname=tday+".jpg";
 			advert.setImageLink(pname);
-			String ppath=uploadDirectory+"/"+uid+"/adverts/";
+			String ppath=uploadDirectory+"/"+uid+"/aaaaa/";
 			userService.saveImage(imageFile,ppath,pname);
 			try {
-				jsonObject.put("message", advert.getTitle()+" advert Uploaded successfully");
+				jsonObject.put("message", advert.getTitle()+" advert Uploaded successfully. Waiting aprooval");
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -109,6 +109,25 @@ public static String uploadDirectory=System.getProperty("user.dir")+"/src/main/w
 		advertService.addAdvert(advert);
 		
 		return "redirect:/admin?advertEnabled=success";
+		
+	}
+	@RequestMapping(value="/admin/disableadd", method = RequestMethod.GET)
+	public String disableadd (
+			@RequestParam(name = "aid", required = false) Integer aid
+			
+			
+			) {
+		
+		Advert advert = advertService.getAdvert(aid).orElseThrow(null);
+		
+		advert.setEnabled(false);
+		
+		
+		
+		
+		advertService.addAdvert(advert);
+		
+		return "redirect:/admin?advertDisabled=success";
 		
 	}
 	

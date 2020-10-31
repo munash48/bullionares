@@ -407,15 +407,31 @@ public class HomeController {
 
 
 	@RequestMapping(value = "/admin", method = RequestMethod.GET)
-	public ModelAndView admin() {
+	public ModelAndView admin(@RequestParam(name = "advertDisabled", required = false) String advertDisabled,@RequestParam(name = "advertEnabled", required = false) String advertEnabled) {
 		
 		List <Advert> disAdds = advertService.getAllDisabledAdverts();
+		List <Advert> enabAdds = advertService.getAllEnabledAdverts();
 	
 
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("greeting", "Welcome admin");
 		mv.addObject("ModeLogged", true);
 		mv.addObject("disAdds",disAdds);
+		mv.addObject("enabAdds",enabAdds);
+      if (advertEnabled != null) {
+			
+			
+			mv.addObject("message", "<b>The advert was successfully Enabled</b>");
+			mv.addObject("advertEnabled", true);
+			
+		}
+      if (advertDisabled != null) {
+    	  
+    	  
+    	  mv.addObject("message", "<b>The advert was successfully Disabled</b>");
+    	  mv.addObject("advertDisabled", true);
+    	  
+      }
 		mv.setViewName("index");
 		return mv;
 

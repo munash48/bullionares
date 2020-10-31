@@ -660,6 +660,7 @@
 									class="glyphicon glyphicon-align-justify form-control-feedback"></span>
 							</div>
 							<div class="form-group has-feedback">
+							<label class="control-label">Start running on:</label>
 								<input type="date" class="form-control" name="advertDate"
 									id="advertDate" /> <span
 									class="glyphicon glyphicon-calendar form-control-feedback"></span>
@@ -676,7 +677,7 @@
 							</div>
 							<div class="form-group has-feedback">
 								<input type="text" class="form-control" name="itemAmount"
-									id="itemAmount" placeholder="Cost Item / Service" /> <span
+									id="itemAmount" placeholder="Price of Item / Service" /> <span
 									class="glyphicon glyphicon-align-justify form-control-feedback"></span>
 							</div>
 							<div class="form-group has-feedback">
@@ -702,7 +703,7 @@
 
 								<div class="col-xs-4">
 									<button type="submit" name="submit"
-										class="btn btn-primary btn-block btn-flat">Update</button>
+										class="btn btn-primary btn-block btn-flat">Create</button>
 								</div>
 							</div>
 

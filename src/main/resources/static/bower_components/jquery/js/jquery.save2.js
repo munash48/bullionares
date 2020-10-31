@@ -188,7 +188,7 @@ $(function() {
 			},
 			error:function(response){
 				
-				alert("Some thing went wrong");
+				alert("ALERT! Fill all fields");
 				
 			}
 		} );

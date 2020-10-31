@@ -11,4 +11,6 @@ public interface AdvertRepository extends CrudRepository<Advert, Integer> {
 
 	List<Advert> findAllByEnabledFalse();
 
+	List<Advert> findAllByEnabledTrue();
+
 }

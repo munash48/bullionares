@@ -41,7 +41,7 @@
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
 
-  <header class="main-header">
+  <header class="main-header navbar-static-top">
     <!-- Logo -->
     <a href="index2.html" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
@@ -590,7 +590,21 @@
       <div class="row">
         <!-- Left col -->
         <section class="col-lg-7 connectedSortable">
+        <c:if test="${advertDisabled==true||advertEnabled==true}">
+        <div class="row">
+        <div class="col-xs-12">
+				<div class="alert alert-success alert-dismissible">
+
+					<button type="button" class="close" data-dismiss="alert">&times;</button>
+					${message}
+
+				</div>
+
+			</div>
+			</div>
+			</c:if>
         <%@include file="./shared/adverts.jsp"%>
+
         
         
           <!-- Custom tabs (Charts with tabs)-->
