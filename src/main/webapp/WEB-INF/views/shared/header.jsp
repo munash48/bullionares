@@ -109,7 +109,7 @@
 									<ul class="menu">
 										<c:forEach items="${catEvents}" var="catEvent">
 											<c:if test="${not empty catEvent.ename}">
-												<li><a href="/events"> <i
+												<li><a href="javascript:void(0);" data-toggle="modal" data-target="#eventReview" data-toggle="tooltip"> <i
 														class="fa fa-users text-aqua"></i>
 														${(catEvent.going/noCUsers)*100} % will attend the
 														${catEvent.ename}
@@ -139,7 +139,7 @@
 										<c:forEach items="${catJobadds}" var="catJobadd">
 											<c:if test="${not empty catJobadd.jobTitle}">
 												<li>
-													<!-- Task item --> <a href="/jobs">
+													<!-- Task item --> <a href="javascript:void(0);" data-toggle="modal" data-target="#jobReview" data-toggle="tooltip">
 														<h3>
 															${catJobadd.jobTitle} (s)<span
 																class="label label-success pull-right">${catJobadd.noPositions}</span>
@@ -158,7 +158,7 @@
 
 									</ul>
 								</li>
-								<li class="footer"><a href="/jobs">View all Job listing</a></li>
+								<li class="footer"><a href="javascript:void(0);" data-toggle="modal" data-target="#jobReview" data-toggle="tooltip">View all Job listing</a></li>
 							</ul></li>
 						<!-- User Account: style can be found in dropdown.less -->
 						<li class="dropdown user user-menu"><a href="#"

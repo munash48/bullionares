@@ -6,11 +6,15 @@ import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
 
+import org.codehaus.jettison.json.JSONException;
+import org.codehaus.jettison.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.kalimagezi.billionareskb.jobadd.Jobadd;
@@ -41,8 +45,8 @@ public static String uploadDirectory=System.getProperty("user.dir")+"/src/main/w
 	@Autowired
 	private NotificationService notificationService;
 	
-	@RequestMapping(value="/home/addJobadd", method = RequestMethod.POST)
-	public String updadeUser ( @RequestParam("uid") Integer uid, 
+	@RequestMapping(value="/addJobadd", method = RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody String updadeUser ( @RequestParam("uid") Integer uid, 
 			@RequestParam("catid") Integer cid, 
 			@RequestParam("compid") Integer compId, 
 			@RequestParam("title") String jobTitle,
@@ -86,7 +90,7 @@ public static String uploadDirectory=System.getProperty("user.dir")+"/src/main/w
 		LocalDate date2 = LocalDate.parse(deadline, dtf);
 		jobadd.setDeadline(date2);
 		jobadd.setRecomended(1);
-		
+		JSONObject jsonObject = new JSONObject();
 		
 		try {
 			long tday = new Date().getTime(); 
@@ -94,6 +98,13 @@ public static String uploadDirectory=System.getProperty("user.dir")+"/src/main/w
 			jobadd.setImageLink(pname);
 			String ppath=uploadDirectory+"/"+uid+"/jobadds/";
 			userService.saveImage(imageFile,ppath,pname);
+			
+			try {
+				jsonObject.put("message", jobadd.getJobTitle()+" advert Uploaded successfully. Waiting aprooval");
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -107,7 +118,7 @@ public static String uploadDirectory=System.getProperty("user.dir")+"/src/main/w
 	    recomendService.addRecomend(recomend);
 	    
 
-		return "redirect:/home?jobaddAdded=success";
+		return jsonObject.toString();
 		
 	}
 	

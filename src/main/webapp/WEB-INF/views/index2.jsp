@@ -463,12 +463,13 @@
 							</div>
 							<div class="form-group has-feedback">
 								<sf:input type="text" class="form-control" path="website"
-									id="website" placeholder="Career Website"
+									id="website" placeholder="Institutional Website"
 									value="${education.website}" /> <span
 									class="glyphicon glyphicon-cloud form-control-feedback"></span>
 							</div>
 
 							<div class="form-group has-feedback">
+							<label class="control-label"> Date of Completion: </label>
 								<sf:input type="date" class="form-control" path="completionDate"
 									id="completionDate" value="${education.completionDate}" /> <span
 									class="glyphicon glyphicon-calendar form-control-feedback"></span>
@@ -687,7 +688,7 @@
 							</div>
 							<div class="form-group has-feedback">
 								<input type="text" class="form-control" name="transactionId"
-									id="transactionId" placeholder="Mobile Money Transaction Id" />
+									id="transactionId" placeholder="Mobile Money Transaction Id and/or Phone number" />
 								<span
 									class="glyphicon glyphicon-align-justify form-control-feedback"></span>
 							</div>
@@ -1028,10 +1029,11 @@
 					</div>
 					<div class="modal-body">
 						<!--modal form-->
-						<form enctype="multipart/form-data" action="/home/addJobadd"
-							method="post">
+						<form enctype="multipart/form-data" action="/addJobadd"
+							method="post" id ="jobAddFrm">
 							<input type="hidden" name="${_csrf.parameterName}"
-								value="${_csrf.token}" /> <input type="hidden" name="uid"
+								value="${_csrf.token}" />
+							 <input type="hidden" name="uid"
 								value="${user.id}" /> <input type="hidden" name="catid"
 								value="${user.catid}" /> <input type="hidden" name="compid"
 								value="${company.id}" />
@@ -1064,7 +1066,7 @@
 							</div>
 
 							<div class="form-group has-feedback">
-								<label for="deadline">Deadline</label> <input type="date"
+								<label for="deadline">Deadline Applying</label> <input type="date"
 									class="form-control" name="deadline" id="advertDate" /> <span
 									class="glyphicon glyphicon-calendar form-control-feedback"></span>
 							</div>

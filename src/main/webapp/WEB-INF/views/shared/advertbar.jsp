@@ -46,7 +46,7 @@
 					</div>
 					<div class="product-info">
 						<a href="javascript:void(0)" class="product-title">${eadvert.title}
-							<span class="label label-warning pull-right">$${eadvert.itemAmount}</span>
+							<span class="label label-warning pull-right">UGX ${eadvert.itemAmount}</span>
 						</a> <span class="product-description">${eadvert.description}</span>
 						<a>${eadvert.website} </a>
 						
