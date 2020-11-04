@@ -3,11 +3,15 @@ package com.kalimagezi.billionareskb.article;
 import java.io.IOException;
 import java.util.Date;
 
+import org.codehaus.jettison.json.JSONException;
+import org.codehaus.jettison.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.kalimagezi.billionareskb.counter.Counter;
@@ -34,8 +38,8 @@ public class ArticleController {
 	@Autowired
 	private ReportService reportService;
 	
-	@RequestMapping(value="/home/createArticle", method = RequestMethod.POST)
-	public String updadeUser ( @RequestParam("cid") Integer cid, 
+	@RequestMapping(value="/createArticle", method = RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody String updateUser ( @RequestParam("cid") Integer cid, 
 			@RequestParam("description") String description,
 			@RequestParam(name = "videoLink", required = false) String videoLink,
 			@RequestParam(name = "imageFile", required = false) MultipartFile imageFile,
@@ -43,6 +47,7 @@ public class ArticleController {
 			@RequestParam("uid") int uid
 
 			) {
+		JSONObject jsonObject = new JSONObject();
 		
 		if(!description.isEmpty()) {
 		
@@ -87,6 +92,12 @@ public class ArticleController {
 		
 			
 	    articleService.addArticle(article);
+	    try {
+			jsonObject.put("message", "Article " +article.getId() +" Created  successfully. Waiting aprooval");
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	    
 	    Article article2 = articleService.getArticle(article.getId()).orElseThrow(null);
 	    
@@ -104,10 +115,18 @@ public class ArticleController {
 		
 
 
-		return "redirect:/home?articleCreated=success";
+		return jsonObject.toString();
+		
 		}
 		
-		return "redirect:/home?articleEmpty=success";
+		try {
+			jsonObject.put("message", "Article Is Empty indescription");
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return jsonObject.toString();
 		
 	}
 }

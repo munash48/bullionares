@@ -1,5 +1,6 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<div class="col-md-8">
+	<div class="row">
+
           <div class="box">
             <div class="box-header">
               <h3 class="box-title">Top 10 Performers in Category ${category.catName}</h3>
@@ -67,4 +68,4 @@
             </div>
             <!-- /.box-body -->
           </div>
-          </div>
+</div>

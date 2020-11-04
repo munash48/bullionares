@@ -13,17 +13,20 @@
 		<%@include file="usersidebar.jsp"%>
 		<!-- /.col -->
 		<div class="col-md-9 pt-4">
+		
 			<div class="row">
 
 				<%@include file="userpoints.jsp"%>
 			</div>
 
-			<div class="row ">
+			<div class="row">
+			<div class="col-md-8">
+			<%@include file="./maincreateArticle.jsp"%>
 			
 			<div class="inner-jsp"> 
 				<!-- MAIN POST  -->
 				
-				<%@include file="./mainpost.jsp"%>
+	       <%@include file="./mainpost.jsp"%>
 
 
 <%-- 				<c:if test="${modeMessage==true}"> --%>
@@ -43,10 +46,13 @@
 <%-- 				</c:if> --%>
 			
 			</div>
+			
+			</div>
 				
 				<%@include file="./advertbar.jsp"%>
 				
 			</div>
+			
 		</div>
 		<!-- /.col -->
 	</div>

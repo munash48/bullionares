@@ -1,11 +1,15 @@
 package com.kalimagezi.billionareskb.opinion;
 
 
+import org.codehaus.jettison.json.JSONException;
+import org.codehaus.jettison.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kalimagezi.billionareskb.article.Article;
 import com.kalimagezi.billionareskb.article.ArticleService;
@@ -21,14 +25,16 @@ public class OpinionController {
 	@Autowired
 	private ArticleService articleService;
 	
-	@RequestMapping(value="/home/createOpinion", method = RequestMethod.POST)
-	public String createOpinion ( @RequestParam("artid") Integer aid, 
+	@RequestMapping(value="/createOpinion", method = RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody String createOpinion ( @RequestParam("artid") Integer aid, 
 			@RequestParam("description") String description,
 			@RequestParam("uid") int uid
 
 			) {
+		JSONObject jsonObject = new JSONObject();
 		
-		if (description!="") {
+		
+		if (!description.isEmpty()) {
 		
 		Opinion  opinion = new Opinion();
 
@@ -43,11 +49,24 @@ public class OpinionController {
 		Article article = articleService.getArticle(aid).orElseThrow(null);
 		article.setNoOpinions(article.getNoOpinions()+1);		
 		opinionService.addOpinion(opinion);
-
-
-		return "redirect:/home?opinionCreated=success";
+		try {
+			jsonObject.put("message", "Article " +opinion.getAid() +" Created  successfully. Waiting aprooval");
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		return "redirect:/home?opinionNotCreated=success";
+
+
+		return jsonObject.toString();
+		}
+		try {
+			jsonObject.put("message", "Article cant be empty in description Waiting aprooval");
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return jsonObject.toString();
 		
 		
 	}

@@ -451,6 +451,34 @@ public class HomeController {
 
 		return "/shared/chart";
 	}
+	@RequestMapping(value = "/mainpost", method = RequestMethod.GET)
+	public String getMainpost(Model model) {
+		
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		User user = userService.findByEmail(authentication.getName());
+		Notification  notification = notificationService.getNotificationByUid(user.getId());
+		notification.setChart(0);
+		notificationService.addNotification(notification);
+		
+		
+//		
+		
+		return "/shared/mainpost";
+	}
+	@RequestMapping(value = "/opinions", method = RequestMethod.GET)
+	public String getOpinions(Model model) {
+		
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		User user = userService.findByEmail(authentication.getName());
+//		Notification  notification = notificationService.getNotificationByUid(user.getId());
+//		notification.setChart(0);
+//		notificationService.addNotification(notification);
+//		
+		
+//		
+		
+		return "/shared/opinions";
+	}
 	
 
 	@RequestMapping(value = "/message", method = RequestMethod.GET)

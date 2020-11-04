@@ -1,64 +1,11 @@
-
-<div class="col-md-8">
-	<div class="row">
-		<c:if test="${ModeImgUpload==true}">
-			<div class="col-xs-12">
-				<div class="alert alert-success alert-dismissible">
-
-					<button type="button" class="close" data-dismiss="alert">&times;</button>
-					${imgupload}
-
-				</div>
-
-			</div>
-		</c:if>
-		<c:if test="${ModeJustLogged==true}">
-			<div class="col-xs-12">
-				<div class="alert alert-warning alert-dismissible">
-
-					<button type="button" class="close" data-dismiss="alert">&times;</button>
-					${greeting}
-
-				</div>
-
-			</div>
-		</c:if>
-		<c:if test="${ModeJustFailedVote==true}">
-			<div class="col-xs-12">
-				<div class="alert alert-danger alert-dismissible">
-
-					<button type="button" class="close" data-dismiss="alert">&times;</button>
-					${votefail}
-
-				</div>
-
-			</div>
-		</c:if>
-			<c:if test="${ModeNotUpdated==true}">
+<%@taglib prefix ="c" uri="http://java.sun.com/jsp/jstl/core" %>
 	
-				<div class="col-xs-12">
-				<div class="alert alert-danger alert-dismissible">
-
-					<button type="button" class="close" data-dismiss="alert">&times;</button>
-					
-					<p>-------------------------------------------</p>
-					<h3>Your profile is not complete</h3> 
-					
-					
-					<h3>Complete your profile in order to post</h3>
-					<p>--------------------------------------------</p>
-					
-				
-				</div>
-
-			</div>
-	</c:if>
-		
-	</div>
+<%-- 	//<c:if test="${not empty event.ename && not empty education.level &&not empty career.jobTitle&&not empty company.name&&not empty address.country&&not empty skillTalent.name1}"> --%>
 	
-	<c:if test="${not empty event.ename && not empty education.level &&not empty career.jobTitle&&not empty company.name&&not empty address.country&&not empty skillTalent.name1}">
 
+	
 	<!-- MAP & BOX PANE -->
+	
 	<div class="box box-info">
 		<div class="box-header with-border">
 			<h3 class="box-title">Create Article</h3>
@@ -68,9 +15,8 @@
 		<!-- /.box-header -->
 		<div class="box-body">
 			<form class="form-horizontal pad" enctype="multipart/form-data"
-				action="/home/createArticle" method="post">
-				<input type="hidden" name="${_csrf.parameterName}"
-					value="${_csrf.token}" /> <input type="hidden" name="cid"
+				action="/createArticle" method="post" id="articleFrm">
+				 <input type="hidden" name="cid"
 					value="${category.catid}" /><input type="hidden" name="uid"
 					value="${user.id}" />
 
@@ -121,8 +67,10 @@
 		</div>
 		<!-- /.box-footer -->
 	</div>
-	</c:if>
+<%-- 	</c:if> --%>
 
+
+	
 
 
 	<c:forEach items="${displays}" var="display">
@@ -220,7 +168,7 @@
 				</ul>
 			</div>
 			<!-- /.box-header -->
-			<div class="box-body no-padding">
+			<div class="box-body no-padding inner-opinion">
 				<div class="row">
 					<div class="col-md-12 col-sm-12">
 						<div class="pad">
@@ -258,7 +206,7 @@
 
 
 							<div class="box-footer">
-								<form action="/home/createOpinion" method="post">
+								<form action="/createOpinion" method="post" id="OpinionFrm">
 
 									<input type="hidden" name="${_csrf.parameterName}"
 										value="${_csrf.token}" /> <input type="hidden" name="artid"
@@ -301,4 +249,4 @@
 	<!-- TABLE: LATEST ORDERS -->
 
 	<!-- /.box -->
-</div>
+

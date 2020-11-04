@@ -2,7 +2,7 @@
 <div class="row">
 
 	<header class="main-header">
-		<a href="/" class="logo"> <!-- mini logo for sidebar mini 50x50 pixels -->
+		<a href="/home" class="logo"> <!-- mini logo for sidebar mini 50x50 pixels -->
 			<span class="logo-mini"><b>B</b>KB</span> <!-- logo for regular state and mobile devices -->
 			<span class="logo-lg"><b>Bilionares</b>KB</span>
 		</a>
@@ -38,7 +38,7 @@
 						<li><a>Your Category : <b> ${category.catName} </b>
 								Highest points: <b>${topCatCounter.total}</b> Overall Highest<b>
 									${topCounter.total}</a></b></li>
-						<li class="dropdown tasks-menu"><a href="/home"> <i
+						<li class="dropdown tasks-menu"><a href="javascript:void(0);" id="mainpost"> <i
 								class="fa fa-home"></i> Home
 						</a></li>
 						<li class="dropdown tasks-menu"><a href="javascript:void(0);" id ="chart"> <i

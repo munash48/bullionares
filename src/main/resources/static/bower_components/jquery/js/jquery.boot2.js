@@ -9,6 +9,12 @@
 		 getPage("/profile");
 	 });
 	 
+	 $("#mainpost").click(function(){
+		 getPage("/mainpost");
+	 });
+	 $("#mainpostbtn").click(function(){
+		 getPage("/mainpost");
+	 });
 	 $("#chart").click(function(){
 		 getPage("/chart");
 	 });
@@ -29,13 +35,13 @@
 	 });
  }
  
- function getHomePage(url){
+ function getOpinions(url){
 	 
 	 $.ajax({
 		 type:"GET",
 		 url:url,
 		 success:function(data){
-			 $(".innerHome-jsp").html(data);
+			 $(".inner-opinion").html(data);
 		 }
 	 });
  }
