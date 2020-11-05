@@ -1,5 +1,5 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<div class="col-md-8">
+<div class="row">
 	<!-- Content Header (Page header) -->
 	<div class="pad margin no-print">
 		<div class="callout callout-info" style="margin-bottom: 0 !important;">

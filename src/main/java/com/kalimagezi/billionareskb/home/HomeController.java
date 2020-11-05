@@ -489,13 +489,7 @@ public class HomeController {
 		 User user = userService.findByEmail(authentication.getName());
 		 Category category =categoryService.getCategory(user.getCatid()).orElseThrow(null);
 		 	 
-	    Address address = addressService.getUAddress(user.getId()).orElseThrow(null);
-	    Company company = companyService.getUCompany(user.getId());
-	    Career  career = careerService.getUCareer(user.getId());
-	    Education  education = educationService.getUEducation(user.getId());
-	    SkillTalent  skillTalent = skillTalentService.getUSkillTalent(user.getId());
-	    Event  event = eventService.getUEvent(user.getId());
-	    Counter  counter = counterService.getUCounter(user.getId());
+
 	    User wuser=userService.getUser(wuid).orElseThrow(null);
 	    Notification  notification = notificationService.getNotificationByUid(user.getId());
 		notification.setMessage(0);
@@ -518,15 +512,7 @@ public class HomeController {
 	    model.addAttribute("wuid",wuid);
 	    model.addAttribute("wFullName", wuser.getFirstName()+ " "+wuser.getOtherNames());
 	    model.addAttribute("wImageLink", wuser.getImageLink());
-	    	
-	    model.addAttribute("category",category);
-		model.addAttribute("address",address);
-		model.addAttribute("company",company);
-		model.addAttribute("career",career);
-		model.addAttribute("education",education);
-		model.addAttribute("skillTalent",skillTalent);
-		model.addAttribute("event",event);
-		model.addAttribute("counter",counter);
+	   
 		model.addAttribute("notification",notification);
 		
 		model.addAttribute("title", "Message");

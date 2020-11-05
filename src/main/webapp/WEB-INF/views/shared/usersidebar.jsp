@@ -200,8 +200,8 @@
 
 				</c:if>
 					
-						<a class="users-list-name" href="/message?wuid=${cUser.id}">${cUser.firstName}<br> ${cUser.otherNames}</a> </li>
-				</c:forEach>
+						<a href="javascript:void(0);" onclick="chatForm('${cUser.id}')" >${cUser.firstName}<br> ${cUser.otherNames}</a> </li>
+						</c:forEach>
 			</ul>
 			<!-- /.users-list -->
 		</div>

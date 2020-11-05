@@ -1,4 +1,5 @@
-<div class="col-md-8">
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<div class="row">
 	<div class="box box-warning direct-chat direct-chat-warning">
 		<div class="box-header with-border">
 			<h3 class="box-title">Direct Chat</h3>

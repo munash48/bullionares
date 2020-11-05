@@ -65,7 +65,7 @@
 										<c:forEach items="${dmessages}" var="dmessage">
 
 												<li>
-													<!-- start message --> <a href="/message?wuid=${dmessage.duid}">
+													<!-- start message --> <a href="javascript:void(0);" onclick="chatForm('${dmessage.duid}')">
 														<div class="pull-left">
 
 															<c:if test="${dmessage.dimageLink!=''}">

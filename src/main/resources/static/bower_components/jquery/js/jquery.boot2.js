@@ -50,3 +50,4 @@
 	 getPage("/message?wuid="+id);
 		
 	}
+ 

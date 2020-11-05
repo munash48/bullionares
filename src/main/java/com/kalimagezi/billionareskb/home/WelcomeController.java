@@ -164,7 +164,7 @@ public class WelcomeController {
 					        Map<String, Object> emodel = new HashMap<>();
 					        emodel.put("name", email);
 					        emodel.put("location", "Your location is.....");
-					        emodel.put("message",  "Please Ignore if you dont intend to reset your password <br> Other wise click <a href='"+url+"'>RESET MY PASSWORD</a>");
+					        emodel.put("message",  "Please Ignore if you dont intend to reset your password <br> Other wise click <a href='"+url+"'>RESET MY PASSWORD</a> <br> or load " +url);
 					        emodel.put("signature", "https://kalimagezi.com");
 					       
 

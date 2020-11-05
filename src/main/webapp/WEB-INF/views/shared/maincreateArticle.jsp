@@ -37,7 +37,7 @@
 					class="btn btn-info btn-lg btn-block spinner-glow  spinner-glow-sm"
 					id="mainpostbtn">
 					 <i
-						class="glyphicon glyphicon-bullhorn"></i> Create Post
+						class="glyphicon glyphicon-bullhorn"></i> Create Article
 				
 
 				</button>
