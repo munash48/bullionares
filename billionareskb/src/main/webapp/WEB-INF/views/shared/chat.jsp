@@ -128,9 +128,8 @@
 		</div>
 		<!-- /.box-body -->
 		<div class="box-footer">
-			<form action="/message/sendMessage" method="post">
-				<input type="hidden" name="${_csrf.parameterName}"
-					value="${_csrf.token}" /> <input type="hidden" name="uid"
+			<form action="/sendMessage" method="post" id ="chartFrm">
+				 <input type="hidden" name="uid"
 					value="${user.id}" /> <input type="hidden" name="wuid"
 					value="${wuid}" />
 				<div class="input-group">

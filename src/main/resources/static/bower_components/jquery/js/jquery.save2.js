@@ -225,6 +225,7 @@ $(function() {
 		
 		
 	} );
+	
 	$('#articleFrm')
 	.submit( function( e ) {
 		var frm = $("#articleFrm");
@@ -236,12 +237,9 @@ $(function() {
 			data: new FormData( this ),
 			processData: false,
 			contentType: false,
-			success: function(data){
-				
+			success: function(data){				
 				alert(data.message);
 				getPage("/mainpost");
-				
-				
 			},
 			error:function(response){
 				
@@ -253,6 +251,36 @@ $(function() {
 		
 		
 	} );
+	
+
+//	$('#articleFrm')
+//	.submit( function( e ) {
+//		var frm = $("#articleFrm");
+//		
+//		alert("Submitting by jquery");
+//		$.ajax( {
+//			url:frm.attr("action"),
+//			type:frm.attr("method"),
+//			data: new FormData( this ),
+//			processData: false,
+//			contentType: false,
+//			success: function(data){
+//				
+//				alert(data.message);
+//				getPage("/mainpost");
+//				
+//				
+//			},
+//			error:function(response){
+//				
+//				alert("ALERT! Fill all fields");
+//				
+//			}
+//		} );
+//		e.preventDefault();
+//		
+//		
+//	} );
 	$('#OpinionFrm')
 	.submit( function( e ) {
 		var frm = $("#OpinionFrm");
@@ -268,7 +296,6 @@ $(function() {
 				
 				alert(data.message);
 				getPage("/mainpost");
-				
 				
 			},
 			error:function(response){
@@ -320,6 +347,8 @@ function saveUpdatedData(frm, data,nurl){
 		     }
 		 });
 }
+
+
 
 //function saveUpdatedWPhoto(frm, data, nurl){		
 //	 $.ajax({

@@ -46,17 +46,18 @@ public class MessageService {
 	}
 	public List<Message> getAllMessagesByUid(int uid) {
 		// TODO Auto-generated method stub
-		return messageRepository.findAllByUid(uid);
+		return messageRepository.findTop10ByUidOrderByMdateAsc(uid);
 	}
 
 	public List<Message> getMessageByCatid(int catid) {
 		// TODO Auto-generated method stub
-		return messageRepository.findTop10ByChatid(catid);
+		return messageRepository.findTop10ByChatidOrderByMdateDesc(catid);
 	}
 
 	public List<Message> getMessageWuid(int id) {
 		// TODO Auto-generated method stub
-		return messageRepository.findTop5ByWuid(id);
+		return messageRepository.findTop10ByWuidOrderByMdateDesc(id);
+		
 	}
 
 

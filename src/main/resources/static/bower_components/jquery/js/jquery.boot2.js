@@ -1,4 +1,5 @@
  $(function(){
+	 alert("inside boot 2");
 
 	 $("#profile").click(function(){
 		 alert("inside profile");
@@ -35,19 +36,23 @@
 	 });
  }
  
- function getOpinions(url){
+ function getArticle(url){
 	 
 	 $.ajax({
 		 type:"GET",
 		 url:url,
 		 success:function(data){
-			 $(".inner-opinion").html(data);
+			 $(".article-react").html(data);
 		 }
 	 });
  }
  
  function chatForm(id){	
-	 getPage("/message?wuid="+id);
+	 getPage("/articleReact?id="+id);
 		
 	}
+ function articleForm(id){
+	 getArticle("/articleReact?id="+id);
+			
+		}
  

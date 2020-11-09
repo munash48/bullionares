@@ -23,6 +23,21 @@
 				</button>
 			</div>
 		</div>
+		<div>
+				<div class="box-footer">
+			<form action="/sendMessage" method="post" id ="chatingFrm">
+				 <input type="hidden" name="uid"
+					value="${user.id}" /> <input type="hidden" name="wuid"
+					value="${wuid}" />
+				<div class="input-group">
+					<input type="text" name="message" placeholder="Type Message ..."
+						class="form-control"> <span class="input-group-btn">
+						<button type="submit" class="btn btn-warning btn-flat">Send</button>
+					</span>
+				</div>
+			</form>
+		</div>
+		</div>
 		<!-- /.box-header -->
 		<div class="box-body">
 			<!-- Conversations are loaded here -->
@@ -127,20 +142,8 @@
 			<!-- /.direct-chat-pane -->
 		</div>
 		<!-- /.box-body -->
-		<div class="box-footer">
-			<form action="/message/sendMessage" method="post">
-				<input type="hidden" name="${_csrf.parameterName}"
-					value="${_csrf.token}" /> <input type="hidden" name="uid"
-					value="${user.id}" /> <input type="hidden" name="wuid"
-					value="${wuid}" />
-				<div class="input-group">
-					<input type="text" name="message" placeholder="Type Message ..."
-						class="form-control"> <span class="input-group-btn">
-						<button type="submit" class="btn btn-warning btn-flat">Send</button>
-					</span>
-				</div>
-			</form>
-		</div>
+
 		<!-- /.box-footer-->
 	</div>
 </div>
+<script src="bower_components/jquery/js/jquery.saveChat.js"></script>

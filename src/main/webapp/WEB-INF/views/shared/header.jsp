@@ -1,4 +1,4 @@
-
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div class="row">
 
 	<header class="main-header">
@@ -38,7 +38,7 @@
 						<li><a>Your Category : <b> ${category.catName} </b>
 								Highest points: <b>${topCatCounter.total}</b> Overall Highest<b>
 									${topCounter.total}</a></b></li>
-						<li class="dropdown tasks-menu"><a href="javascript:void(0);" id="mainpost"> <i
+						<li class="dropdown tasks-menu"><a href="/home" id="mainpost"> <i
 								class="fa fa-home"></i> Home
 						</a></li>
 						<li class="dropdown tasks-menu"><a href="javascript:void(0);" id ="chart"> <i

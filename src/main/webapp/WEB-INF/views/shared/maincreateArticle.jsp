@@ -14,7 +14,7 @@
 			<div class="col-md-4">
 				<button type="button"
 					class="btn btn-info btn-lg btn-block spinner-glow  spinner-glow-sm"
-					id="mainpostbtn">
+					id="mainpostbtn1">
 					<span class="glyphicon glyphicon-bullhorn"></span> Create Article
 
 				</button>
@@ -33,14 +33,14 @@
 				</div>
 			</div>
 			<div class="col-md-4">
-				<button type="button"
+				<a type="button"
 					class="btn btn-info btn-lg btn-block spinner-glow  spinner-glow-sm"
-					id="mainpostbtn">
+					href="/home">
 					 <i
 						class="glyphicon glyphicon-bullhorn"></i> Create Article
 				
 
-				</button>
+				</a>
 			</div>
 
 

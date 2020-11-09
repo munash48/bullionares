@@ -1,10 +1,14 @@
 package com.kalimagezi.billionareskb.message;
 
+import org.codehaus.jettison.json.JSONException;
+import org.codehaus.jettison.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kalimagezi.billionareskb.counter.Counter;
 import com.kalimagezi.billionareskb.counter.CounterService;
@@ -23,11 +27,12 @@ public class MessageController {
 	private NotificationService notificationService;
 
 	
-	@RequestMapping(value = "/message/sendMessage", method = RequestMethod.POST)
-	public String createOpinion(@RequestParam("uid") Integer uid, @RequestParam("wuid") Integer wuid,
+	@RequestMapping(value = "/sendMessage", method = RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody String createOpinion(@RequestParam("uid") Integer uid, @RequestParam("wuid") Integer wuid,
 			@RequestParam("message") String message
 
 	) {
+		JSONObject jsonObject = new JSONObject();
 		String scatid="0";
 		if (uid<wuid) {
 		
@@ -57,10 +62,18 @@ public class MessageController {
 		notificationService.addNotification(notification);
 	
 			    messageService.addMessage(message1);
-
+			    
+			    try {
+					jsonObject.put("message", "Messagege with "+message1.getWuid()+" Updated successfully");
+					jsonObject.put("wuid", wuid);
+					
+				} catch (JSONException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				
 
-				return "redirect:/message?wuid="+wuid;
+				return jsonObject.toString();
 				
 				
 		

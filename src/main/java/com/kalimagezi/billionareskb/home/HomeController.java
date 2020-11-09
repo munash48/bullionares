@@ -463,7 +463,7 @@ public class HomeController {
 		
 //		
 		
-		return "/shared/mainpost";
+		return "/shared/mainpost2";
 	}
 	@RequestMapping(value = "/opinions", method = RequestMethod.GET)
 	public String getOpinions(Model model) {
@@ -477,7 +477,7 @@ public class HomeController {
 		
 //		
 		
-		return "/shared/opinions";
+		return "/shared/mainpost2";
 	}
 	
 
@@ -519,6 +519,66 @@ public class HomeController {
 		model.addAttribute("modeMessage", true);		
 		
 		return "/shared/chat";
+		
+	}
+	@RequestMapping(value = "/articleReact", method = RequestMethod.GET)
+	public String articleReact(Model model, Integer id) {
+		
+		
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		User user = userService.findByEmail(authentication.getName());	
+		Notification  notification = notificationService.getNotificationByUid(user.getId());
+		notification.setMessage(0);
+		notificationService.addNotification(notification);
+		Article article = articleService.getArticle(id).orElseThrow(null);		
+		User user2 = userService.getUser(article.getUid()).orElseThrow(null);
+		
+		Display display = new Display();
+		
+		 List <Opinion> opinions =opinionService.getOpinionsByAid(article.getId());
+		 
+			display.setFullName(user2.getFirstName() +" "+ user2.getOtherNames());
+			display.setUserImageLink(user2.getImageLink());
+			display.setArtDescription(article.getDescription());
+			display.setArtImageLink(article.getImageLink());
+			display.setArtCreateDate(article.getCreateDate());
+			display.setNoOpinions(article.getNoOpinions());
+			display.setNoReports(article.getNoReports());
+			display.setNoVotes(article.getNoVotes());
+			display.setUid(user2.getId());
+			display.setCatid(article.getCatId());
+			display.setArtid(article.getId());
+			display.setArtVideoLink(article.getVideoLink());
+			
+			List <DisplayOpinion> dopinions= new ArrayList<DisplayOpinion>();
+			
+			
+			for(Opinion opinion: opinions) {
+				 User user3 = userService.getUser(opinion.getUid()).orElseThrow(null);
+				
+				DisplayOpinion dopinion= new DisplayOpinion();
+				
+				dopinion.setFullName(user3.getFirstName() + " "+ user3.getOtherNames());
+				dopinion.setOpCreateDate(opinion.getCreateDate());
+				dopinion.setOpDescription(opinion.getDescription());
+				dopinion.setOpImageLink(user3.getImageLink());
+				dopinion.setOpUid(opinion.getUid());
+
+				dopinions.add(dopinion);
+				
+			}
+			
+			
+			display.setOpinions(dopinions);
+		
+		
+		model.addAttribute("notification",notification);
+		model.addAttribute("display",display);
+		
+		model.addAttribute("title", "Message");
+		model.addAttribute("articleReact", true);		
+		
+		return "/shared/mainpost3";
 		
 	}
 	

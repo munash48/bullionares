@@ -50,7 +50,7 @@ public class OpinionController {
 		article.setNoOpinions(article.getNoOpinions()+1);		
 		opinionService.addOpinion(opinion);
 		try {
-			jsonObject.put("message", "Article " +opinion.getAid() +" Created  successfully. Waiting aprooval");
+			jsonObject.put("message", "Article " +opinion.getAid() +" Created  successfully.");
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -60,7 +60,7 @@ public class OpinionController {
 		return jsonObject.toString();
 		}
 		try {
-			jsonObject.put("message", "Article cant be empty in description Waiting aprooval");
+			jsonObject.put("message", "Article cant be empty in description");
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -20,13 +20,27 @@
 			</div>
 
 			<div class="row">
-			<div class="col-md-8">
-			<%@include file="./maincreateArticle.jsp"%>
+			
+			
+			
+			<div class="col-md-8" >
+			
+			<div class="article-react">
+			
+			</div>
+			
+		
+			<%@include file="maincreateArticle.jsp"%>
+			
+			
 			
 			<div class="inner-jsp"> 
+			
+			<%@include file="mainpost.jsp"%>
+			
 				<!-- MAIN POST  -->
 				
-	       <%@include file="./mainpost.jsp"%>
+<%-- 	       <%@include file="mainpost.jsp"%> --%>
 
 
 <%-- 				<c:if test="${modeMessage==true}"> --%>
