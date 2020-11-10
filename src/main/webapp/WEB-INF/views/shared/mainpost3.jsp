@@ -139,7 +139,7 @@
 
 
 							<div class="box-footer">
-								<form action="/createOpinion" method="post" id="OpinionFrm">
+								<form action="/createOpinion" method="post" id="OpinionFrm" >
 
 									 <input type="hidden" name="artid"
 										value="${display.artid}" /><input type="hidden" name="uid"

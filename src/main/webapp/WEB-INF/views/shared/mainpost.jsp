@@ -70,9 +70,10 @@
 
 
 
-
+<c:set var="count" value="0" scope="page" />
 
 <c:forEach items="${displays}" var="display">
+
 
 	<div class="box box-success">
 		<div class="post">
@@ -200,7 +201,7 @@
 						</c:forEach>
 
 
-
+				<c:if test="${count<=0}">
 						<div class="box-footer">
 							<form action="/createOpinion" method="post" id="OpinionFrm">
 
@@ -208,27 +209,16 @@
 									type="hidden" name="uid" value="${user.id}" />
 								<div class="input-group">
 									<input type="text" name="description"
-										placeholder="Type Message ..." class="form-control"> <span
+										placeholder="Add your opinion... You can only react to the first Article " class="form-control"> <span
 										class="input-group-btn">
 										<button type="submit" name="submit"
 											class="btn btn-warning btn-flat">Add Opinion</button>
 									</span>
 								</div>
 							</form>
-							<div class="row">
 
-								<a 
-									class="btn btn-info btn-lg btn-block spinner-glow  spinner-glow-sm"
-									href="javascript:void(0);" onclick="articleReactForm'${display.artid}')"> <i class="glyphicon glyphicon-bullhorn"></i>
-									React to this Article
-
-
-								</a>
-
-
-							</div>
 						</div>
-
+</c:if>
 
 					</div>
 				</div>
@@ -241,7 +231,7 @@
 		<!-- /.box-body -->
 	</div>
 
-
+<c:set var="count" value="${count + 1}" scope="page"/>
 </c:forEach>
 
 <script src="bower_components/jquery/js/jquery.saveChat.js"></script>
