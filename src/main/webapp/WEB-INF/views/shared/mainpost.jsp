@@ -244,7 +244,7 @@
 
 </c:forEach>
 
-<script src="bower_components/jquery/js/jquery.saveChat.js"></script>
+
 
 
 <!-- /.box -->
