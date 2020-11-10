@@ -48,7 +48,7 @@
  }
  
  function chatForm(id){	
-	 getPage("/articleReact?id="+id);
+	 getPage("/message?wuid="+id);
 		
 	}
  function articleForm(id){

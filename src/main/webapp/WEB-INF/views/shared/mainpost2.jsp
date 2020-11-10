@@ -141,34 +141,7 @@
 
 
 
-							<div class="box-footer">
-								<form action="/createOpinion" method="post" id="OpinionFrm">
 
-									 <input type="hidden" name="artid"
-										value="${display.artid}" /><input type="hidden" name="uid"
-										value="${user.id}" />
-									<div class="input-group">
-										<input type="text" name="description"
-											placeholder="Type Message ..." class="form-control">
-										<span class="input-group-btn">
-											<button type="submit" name="submit"
-												class="btn btn-warning btn-flat">Add Opinion</button>
-										</span>
-									</div>
-								</form>
-								<div class="row">
-
-								<a type="button"
-									class="btn btn-info btn-lg btn-block spinner-glow  spinner-glow-sm"
-									href="javascript:void(0);" onclick="articleReactForm'${display.artid}')"> <i class="glyphicon glyphicon-bullhorn"></i>
-									React to this Article
-
-
-								</a>
-
-
-							</div>
-							</div>
 
 
 						</div>
