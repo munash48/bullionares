@@ -68,6 +68,7 @@ public class PositiveController {
 				Counter counter2 =counterService.getUCounter(uid);
 				counter2.setNoVotes(counter2.getNoVotes()+1);
 				
+				
 				counterService.addCounter(counter);
 				counterService.addCounter(counter2);
 				
