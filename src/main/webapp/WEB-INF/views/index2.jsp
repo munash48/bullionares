@@ -766,58 +766,45 @@
 
 								<ul class="list-inline">
 									<li>
-										<form action="/home/addNegative" method="post">
-											<input type="hidden" name="${_csrf.parameterName}"
-												value="${_csrf.token}" /> <input type="hidden" name="uid"
-												value="${user.id}" /> <input type="hidden" name="aid"
-												value="${displayadd.id}" />
+									
+									<a href="javascript:void(0);" onclick="countNegative('${user.id}','${displayadd.id}','${displayadd.uid}')">
+						
+						
+											<i class="fa fa-times fa-2x margin-r-5"></i> Negative
+					
 
-
-
-											<button type="submit" class="btn btn-trans">
-												<i class="fa fa-times fa-2x margin-r-5"></i> Negative
-											</button>
-
-										</form>
+									</a>
+										
 
 
 
 									</li>
 
 									<li>
-										<form class="form-horizontal" action="/home/addPositive"
-											method="post">
-											<input type="hidden" name="${_csrf.parameterName}"
-												value="${_csrf.token}" /> <input type="hidden" name="uid"
-												value="${user.id}" /> <input type="hidden" name="aid"
-												value="${displayadd.id}" />
+									
+									
+									<a href="javascript:void(0);" onclick="countPositive('${user.id}','${displayadd.id}','${displayadd.uid}')">
+						
+						
+							<i class="fa fa-times fa-2x margin-r-5"></i> Positive
+					
 
-
-
-											<button type="submit" class="btn btn-trans">
-
-
-												<i class="fa fa-check fa-2x margin-r-5"></i> Positive
-
-											</button>
-
-
-										</form>
+					</a>
+					
 
 									</li>
-									<li class="pull-right"><a href="#"
-										class="link-black text-sm"><i
-											class="fa fa-comments-o fa-2x margin-r-5"></i>Written Reviews
+									
+									<li class="pull-right"><a href="javascript:void(0);"
+										class="link-black text-sm">Written Reviews
 											(${displayadd.noReviews})</a></li>
-									<li class="pull-right"><a href="#"
-										class="link-black text-sm"> <i
-											class="fa fa-check fa-2x margin-r-5"></i>Positives
+									<li class="pull-right"><a href="javascript:void(0);"
+										class="link-black text-sm noVotes${displayadd.id}" > 
+											Positives
 											(${displayadd.noPositives})
 									</a></li>
 
-									<li class="pull-right"><a href="#"
-										class="link-black text-sm"><i
-											class="fa fa-times fa-2x margin-r-5"></i>Negatives
+									<li class="pull-right"><a href="javascript:void(0);"
+										class="link-black text-sm  noCrosses${displayadd.id}">Negatives
 											(${displayadd.noNegatives})</a></li>
 
 
@@ -850,7 +837,7 @@
 												</c:if>
 
 
-
+										<c:if test="${count<=0}">
 												<div class="box-footer">
 													<form action="/home/addReview" method="post">
 
@@ -860,7 +847,7 @@
 															type="hidden" name="uid" value="${user.id}" />
 														<div class="input-group">
 															<input type="text" name="description"
-																placeholder="Type your Advert Review ..."
+																placeholder="Write your Advert Review ... before another advert is added "
 																class="form-control"> <span
 																class="input-group-btn">
 																<button type="submit" name="submit"
@@ -869,6 +856,8 @@
 														</div>
 													</form>
 												</div>
+												
+												</c:if>
 
 
 											</div>
@@ -879,6 +868,7 @@
 									</div>
 									<!-- /.row -->
 								</div>
+								<c:set var="count" value="${count + 1}" scope="page"/>
 
 							</c:forEach>
 

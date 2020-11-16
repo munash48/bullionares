@@ -463,7 +463,7 @@ public class HomeController {
 		
 //		
 		
-		return "/shared/mainpost2";
+		return "/shared/mainpost";
 	}
 	@RequestMapping(value = "/opinions", method = RequestMethod.GET)
 	public String getOpinions(Model model) {

@@ -21,9 +21,11 @@
 
 		</div>
 		<!-- /.box-header -->
+		
 		<div class="box-body">
 			<ul class="products-list product-list-in-box">
 			
+			<c:set var="count" value="0" scope="page" />
 			<c:forEach items="${displayadds}" var="eadvert">	
 				
 				<li class="item">

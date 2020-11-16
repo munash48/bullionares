@@ -2,11 +2,15 @@ package com.kalimagezi.billionareskb.report;
 
 import java.util.List;
 
+import org.codehaus.jettison.json.JSONException;
+import org.codehaus.jettison.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kalimagezi.billionareskb.article.Article;
 import com.kalimagezi.billionareskb.article.ArticleService;
@@ -23,16 +27,18 @@ public class ReportController {
 	private ArticleService articleService;
 	
 
-	@RequestMapping(value = "/home/addReportVote", method = RequestMethod.POST)
-	public String createOpinion(@RequestParam("aid") Integer aid, @RequestParam("uid") Integer uid,
-			@RequestParam("ouid") Integer ouid
+	@RequestMapping(value = "/addCross", method = RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody String createOpinion(@RequestParam("aid") Integer aid, @RequestParam("uid") Integer uid,
+			@RequestParam("duid") Integer duid
 
 	) {
+		
+		JSONObject jsonObject = new JSONObject();
 		
 		List <Report> ureports = reportService.getAllReportsByAid(aid);
 
 		
-		Counter counter = counterService.getUCounter(ouid);
+		Counter counter = counterService.getUCounter(duid);
 		counter.setNoReports(counter.getNoReports()+1);
 		Article article = articleService.getArticle(aid).orElseThrow(null);
 		article.setNoReports(article.getNoReports()+1);
@@ -47,8 +53,15 @@ public class ReportController {
 		for(Report ureport: ureports) {
 			
 			if (ureport.getUid()==report.getUid()) {
+				
+				try {
+					jsonObject.put("message", "You have already crossed for this Article");
+				} catch (JSONException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 											
-				return "redirect:/home?reportFailed=failed";
+				return jsonObject.toString();
 				
 			} 
 			
@@ -58,8 +71,17 @@ public class ReportController {
 				counterService.addCounter(counter);
 				articleService.addArticle(article);
 				
+				try {
+					jsonObject.put("message", "You have crossed Article No" + article.getId());
+					jsonObject.put("newCrosses",  "Crosses ("+article.getNoReports()+")");
+				} catch (JSONException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				
 
-				return "redirect:/home?reportAdded=success";
+				return jsonObject.toString();
 				
 				
 		

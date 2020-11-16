@@ -113,53 +113,39 @@
 			</c:if>
 			<ul class="list-inline">
 				<li>
-					<form action="/home/addReportVote" method="post">
-						<input type="hidden" name="${_csrf.parameterName}"
-							value="${_csrf.token}" /> <input type="hidden" name="uid"
-							value="${user.id}" /> <input type="hidden" name="aid"
-							value="${display.artid}" /> <input type="hidden" name="ouid"
-							value="${display.uid}" />
-
-
-
-						<button type="submit" class="btn btn-trans">
+					<a href="javascript:void(0);" onclick="countCross('${user.id}','${display.artid}','${display.uid}')">
+						
+						
 							<i class="fa fa-times fa-2x margin-r-5"></i> Cross
-						</button>
+					
 
-					</form>
+					</a>
 
 
 
 				</li>
 
 				<li>
-					<form class="form-horizontal" action="/home/addVote" method="post">
-						<input type="hidden" name="uid" value="${user.id}" /> <input
-							type="hidden" name="aid" value="${display.artid}" /> <input
-							type="hidden" name="ouid" value="${display.uid}" />
+					<a href="javascript:void(0);" onclick="countVote('${user.id}','${display.artid}','${display.uid}')">
+						
+						
+							<i class="fa fa-times fa-2x margin-r-5"></i> Vote
+					
 
-
-						<button type="submit" class="btn btn-trans">
-
-
-							<i class="fa fa-check fa-2x margin-r-5"></i> Vote
-
-						</button>
-
+					</a>
 
 					</form>
 
 				</li>
-				<li class="pull-right"><a href="#" class="link-black text-sm">
-						<i class="fa fa-check fa-2x margin-r-5"></i>Article Votes
+				<li class="pull-right "><a href="javascript:void(0);" class="link-black text-sm noVotes${display.artid}">
+						Votes
 						(${display.noVotes})
 				</a></li>
-				<li class="pull-right"><a href="#" class="link-black text-sm"><i
-						class="fa fa-comments-o fa-2x margin-r-5"></i> All Opinions
-						(${display.noOpinions})</a></li>
-				<li class="pull-right"><a href="#" class="link-black text-sm"><i
-						class="fa fa-times fa-2x margin-r-5"></i> All Reports
+				
+				<li class="pull-right"><a href="javascript:void(0);" class="link-black text-sm noReports${display.artid}">Crosses
 						(${display.noReports})</a></li>
+						<li class="pull-right"><a href="javascript:void(0);" class="link-black text-sm noOpinions${display.artid}">Opinions
+						(${display.noOpinions})</a></li>
 
 
 			</ul>
