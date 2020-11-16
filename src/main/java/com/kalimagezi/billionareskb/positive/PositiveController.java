@@ -75,7 +75,7 @@ public class PositiveController {
 				
 				try {
 					jsonObject.put("message", "You have Voted Advert No" + advert.getId());
-					jsonObject.put("newvotes",  "Positives ("+advert.getNoPositives()+")");
+					jsonObject.put("newPositive",  "Positives ("+advert.getNoPositives()+")");
 				} catch (JSONException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

@@ -90,7 +90,7 @@
 		 success: function(data){
 			 
 			 alert(data.message);
-			 $(".noCrosses"+adid).html(data.newCrosses);
+			 $(".noNegative"+adid).html(data.newNegative);
 		 }
 	 
 	 });
@@ -105,7 +105,7 @@
 		 success: function(data){
 			 
 			 alert(data.message);
-			 $(".noVotes"+adid).html(data.newVotes);
+			 $(".noPositive"+adid).html(data.newPositive);
 		 }
 	 
 	 });

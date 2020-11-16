@@ -129,7 +129,7 @@
 					<a href="javascript:void(0);" onclick="countVote('${user.id}','${display.artid}','${display.uid}')">
 						
 						
-							<i class="fa fa-times fa-2x margin-r-5"></i> Vote
+							<i class="fa fa-check fa-2x margin-r-5"></i> Vote
 					
 
 					</a>

@@ -54,7 +54,6 @@ public class NegativeController {
 				
 				try {
 					jsonObject.put("message", "You have already crossed for this advert");
-					jsonObject.put("newCrosses",  "Negatives ("+advert.getNoNegatives()+")");
 				} catch (JSONException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -72,7 +71,7 @@ public class NegativeController {
 				
 				try {
 					jsonObject.put("message", "You have crossed Advert No" + advert.getId());
-					jsonObject.put("newCrosses",  "Negatives ("+advert.getNoNegatives()+")");
+					jsonObject.put("newNegative",  "Negatives ("+advert.getNoNegatives()+")");
 				} catch (JSONException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

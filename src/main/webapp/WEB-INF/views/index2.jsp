@@ -786,7 +786,7 @@
 									<a href="javascript:void(0);" onclick="countPositive('${user.id}','${displayadd.id}','${displayadd.uid}')">
 						
 						
-							<i class="fa fa-times fa-2x margin-r-5"></i> Positive
+							<i class="fa fa-check fa-2x margin-r-5"></i> Positive
 					
 
 					</a>
@@ -798,13 +798,13 @@
 										class="link-black text-sm">Written Reviews
 											(${displayadd.noReviews})</a></li>
 									<li class="pull-right"><a href="javascript:void(0);"
-										class="link-black text-sm noVotes${displayadd.id}" > 
+										class="link-black text-sm noPositive${displayadd.id}" > 
 											Positives
 											(${displayadd.noPositives})
 									</a></li>
 
 									<li class="pull-right"><a href="javascript:void(0);"
-										class="link-black text-sm  noCrosses${displayadd.id}">Negatives
+										class="link-black text-sm  noNegative${displayadd.id}">Negatives
 											(${displayadd.noNegatives})</a></li>
 
 
@@ -839,10 +839,9 @@
 
 										<c:if test="${count<=0}">
 												<div class="box-footer">
-													<form action="/home/addReview" method="post">
+													<form action="/addReview" method="post" id="addReviewFrm">
 
-														<input type="hidden" name="${_csrf.parameterName}"
-															value="${_csrf.token}" /> <input type="hidden"
+														 <input type="hidden"
 															name="aid" value="${displayadd.id}" /><input
 															type="hidden" name="uid" value="${user.id}" />
 														<div class="input-group">

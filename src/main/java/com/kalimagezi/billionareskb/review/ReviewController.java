@@ -3,10 +3,12 @@ package com.kalimagezi.billionareskb.review;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kalimagezi.billionareskb.advert.Advert;
 import com.kalimagezi.billionareskb.advert.AdvertService;
@@ -22,8 +24,8 @@ public class ReviewController {
 	@Autowired
 	private CounterService counterService;
 
-	@RequestMapping(value = "/home/addReview", method = RequestMethod.POST)
-	public String createOpinion(@RequestParam("aid") Integer aid, @RequestParam("description") String description,
+	@RequestMapping(value = "/addReview", method = RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody String createOpinion(@RequestParam("aid") Integer aid, @RequestParam("description") String description,
 			@RequestParam("uid") int uid
 
 	) {
