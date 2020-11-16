@@ -31,6 +31,7 @@ public class SkillTalentController {
 	@PostMapping(value="/updateSkill", consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody String updadeUser ( @RequestBody SkillTalent skillTalent) {
 		
+		
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		  
 		  User user = userModelRepository.findByEmail(authentication.getName());

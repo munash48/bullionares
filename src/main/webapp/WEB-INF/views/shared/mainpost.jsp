@@ -220,7 +220,7 @@
 <c:set var="count" value="${count + 1}" scope="page"/>
 </c:forEach>
 
-<script src="bower_components/jquery/js/jquery.saveChat.js"></script>
+
 
 
 <!-- /.box -->
