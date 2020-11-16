@@ -67,6 +67,7 @@ public class PositiveController {
 				advertService.addAdvert(advert);
 				Counter counter2 =counterService.getUCounter(uid);
 				counter2.setNoVotes(counter2.getNoVotes()+1);
+				
 				counterService.addCounter(counter);
 				counterService.addCounter(counter2);
 				
