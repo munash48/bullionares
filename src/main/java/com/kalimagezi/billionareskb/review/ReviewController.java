@@ -2,6 +2,8 @@ package com.kalimagezi.billionareskb.review;
 
 import java.util.List;
 
+import org.codehaus.jettison.json.JSONException;
+import org.codehaus.jettison.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -29,21 +31,30 @@ public class ReviewController {
 			@RequestParam("uid") int uid
 
 	) {
+		JSONObject jsonObject = new JSONObject();
 
 		List<Review> reviews = reviewService.getAReviews(aid);
 
 		for (Review areview : reviews) {
 
 			if (uid == areview.getUid()) {
+				
+				try {
+					jsonObject.put("message", "You have already crossed this advert");
+				} catch (JSONException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 
-				return "redirect:/home?reviewFailed=failed";
+				return jsonObject.toString();
 
 			}
 		}
+		Review review = new Review();
 
 		if (description != "") {
 
-			Review review = new Review();
+			
 
 			review.setDescription(description);
 			review.setAid(aid);
@@ -56,10 +67,26 @@ public class ReviewController {
 			reviewService.addReview(review);
 
 			advertService.addAdvert(advert);
-			return "redirect:/home?ReviewCreated=success";
+			try {
+				jsonObject.put("message", "You have added a written review ");
+				jsonObject.put("newNegative",  "Negatives ("+advert.getNoNegatives()+")");
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			
+			return jsonObject.toString();
+		}
+		
+		try {
+			jsonObject.put("message", "The review cannot be empty");
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 
-		return "redirect:/home?ReviewNotCreated=success";
+		return jsonObject.toString();
 
 	}
 
