@@ -776,8 +776,6 @@
 									</a>
 										
 
-
-
 									</li>
 
 									<li>
@@ -814,28 +812,37 @@
 										<div class="col-md-12 col-sm-12">
 											<div class="pad">
 
-												<c:if test="${displayadd.uid==user.id}">
+												
+													<c:forEach items="${displayadd.reviews}" var="dreview">
 
-													<c:forEach items="${displayadd.reviews}" var="review">
+							<!-- the comments comme hear -->
+							<div class="direct-chat-msg">
+								<div class="direct-chat-info clearfix">
+									<span class="direct-chat-name pull-left">${dreview.fullName }</span>
+									<span class="direct-chat-timestamp pull-right">
+										${dreview.rCreateDate }</span>
+								</div>
+								<!-- /.direct-chat-info -->
 
-														<!-- the comments comme hear -->
-														<div class="direct-chat-msg">
-															<div class="direct-chat-info clearfix">
-																<span class="direct-chat-name pull-left">${review.uid}</span>
-																<span class="direct-chat-timestamp pull-right">
-																	${review.createDate }</span>
-															</div>
-															<!-- /.direct-chat-info -->
+								<c:if test="${dreview.rImageLink!=''}">
+									<img class="direct-chat-img"
+										src="/uploads/${dreview.rUid}/profile/${dreview.rImageLink}"
+										alt="message user image">
 
+								</c:if>
+								<c:if test="${dreview.rImageLink==''}">
+									<img class="direct-chat-img" src="/dist/img/profile.jpg"
+										alt="message user image">
 
-															<!-- /.direct-chat-img -->
-															<div class="direct-chat-text">${review.description}</div>
-															<!-- /.direct-chat-text -->
-														</div>
+								</c:if>
 
-													</c:forEach>
-												</c:if>
+								<!-- /.direct-chat-img -->
+								<div class="direct-chat-text">${dreview.rDescription}</div>
+								<!-- /.direct-chat-text -->
+							</div>
 
+						</c:forEach>
+													
 
 										<c:if test="${count<=0}">
 												<div class="box-footer">

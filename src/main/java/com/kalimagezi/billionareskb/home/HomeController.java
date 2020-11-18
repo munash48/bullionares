@@ -862,10 +862,26 @@ public class HomeController {
 		
 
 			
-			List <Review> reviews= new ArrayList<Review>();
+			List <DisplayReview> dreviews= new ArrayList<DisplayReview>();
 			
-			reviews= reviewService.getAReviews(advert.getId());
-			displayAdd.setReviews(reviews);
+			List<Review> reviews = reviewService.getAReviews(advert.getId());
+			for(Review review: reviews) {
+				 User user3 = userService.getUser(review.getUid()).orElseThrow(null);
+				
+				DisplayReview dreview= new DisplayReview();
+				
+				dreview.setFullName(user3.getFirstName() + " "+ user3.getOtherNames());
+				dreview.setrCreateDate(review.getCreateDate());
+				dreview.setrDescription(review.getDescription());
+				dreview.setrImageLink(user3.getImageLink());
+				dreview.setrUid(review.getUid());
+
+				dreviews.add(dreview);
+				
+			}
+			
+			
+			displayAdd.setReviews(dreviews);
 			
 	
 			
