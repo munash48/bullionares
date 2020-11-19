@@ -842,7 +842,7 @@
 							</div>
 
 						</c:forEach>
-													
+												
 
 										<c:if test="${count<=0}">
 												<div class="box-footer">
@@ -943,41 +943,21 @@
 
 									<ul class="list-inline">
 										<li>
-											<form action="/home/addNotGoing" method="post">
-												<input type="hidden" name="${_csrf.parameterName}"
-													value="${_csrf.token}" /> <input type="hidden" name="uid"
-													value="${user.id}" /> <input type="hidden" name="eid"
-													value="${catEvent.id}" />
-
-
-
-												<button type="submit" class="btn btn-trans">
-													<i class="fa fa-times fa-2x margin-r-5"></i> Not Going
-												</button>
-
-											</form>
+										
+										<a href="javascript:void(0);" onclick="countNotGoing('${user.id}','${catEvent.id}','${displayadd.uid}')">
+										<i class="fa fa-times fa-2x margin-r-5"></i> Not Going
+										</a>
+										
 
 
 
 										</li>
 
 										<li>
-											<form class="form-horizontal" action="/home/addGoing"
-												method="post">
-												<input type="hidden" name="${_csrf.parameterName}"
-													value="${_csrf.token}" /> <input type="hidden" name="uid"
-													value="${user.id}" /> <input type="hidden" name="eid"
-													value="${catEvent.id}" />
-
-
-
-												<button type="submit" class="btn btn-trans">
-
-
-													<i class="fa fa-check fa-2x margin-r-5"></i> Going
-
-												</button>
-
+										<a href="javascript:void(0);" onclick="countGoing('${user.id}','${catEvent.id}','${displayadd.uid}')">
+										<i class="fa fa-check fa-2x margin-r-5"></i> Going
+										</a>
+										
 
 											</form>
 
