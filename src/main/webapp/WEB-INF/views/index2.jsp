@@ -732,6 +732,7 @@
 					<div class="modal-body">
 
 						<div class="box box-success">
+						<c:set var="count1" value="0" scope="page" />
 
 							<c:forEach items="${displayadds}" var="displayadd">
 								<a><h5>${displayadd.title}</h5></a>
@@ -844,7 +845,7 @@
 						</c:forEach>
 												
 
-										<c:if test="${count<=0}">
+										<c:if test="${count1<=0}">
 												<div class="box-footer">
 													<form action="/addReview" method="post" id="addReviewFrm">
 
@@ -874,7 +875,7 @@
 									</div>
 									<!-- /.row -->
 								</div>
-								<c:set var="count" value="${count + 1}" scope="page"/>
+								<c:set var="count1" value="${count1 + 1}" scope="page"/>
 
 							</c:forEach>
 
@@ -890,6 +891,7 @@
 			</div>
 		</div>
 	</div>
+	
 	<div class="row">
 		<div class="modal fade" id="eventReview" role="dialog">
 			<div class="modal-dialog">
@@ -906,13 +908,14 @@
 					<div class="modal-body">
 
 						<div class="box box-success">
+						<c:set var="count2" value="0" scope="page" />
 
 							<c:forEach items="${catEvents}" var="catEvent">
 								<c:if test="${not empty catEvent.ename}">
 									<a><h5>${catEvent.ename}</h5></a>
 									<p>
 									<h5>${catEvent.description}</h5>
-									</p>
+									
 									<h4>
 										<a href="/profile?wuid=${catEvent.uid}"> <span
 											class="label label-success pull-left"> By
@@ -940,6 +943,8 @@
 										</c:if>
 
 									</div>
+									
+							
 
 									<ul class="list-inline">
 										<li>
@@ -948,34 +953,55 @@
 										<i class="fa fa-times fa-2x margin-r-5"></i> Not Going
 										</a>
 										
-
-
-
 										</li>
 
 										<li>
 										<a href="javascript:void(0);" onclick="countGoing('${user.id}','${catEvent.id}','${displayadd.uid}')">
 										<i class="fa fa-check fa-2x margin-r-5"></i> Going
 										</a>
-										
-
-											</form>
-
 										</li>
-										<li class="pull-right"><a href="#"
-											class="link-black text-sm"> <i
-												class="fa fa-check fa-2x margin-r-5"></i>Not Going
+										<li class="pull-right"><a href="javascript:void(0);"
+											class="link-black text-sm">
+												Not Going
 												(${catEvent.notGoing})
 										</a></li>
 
-										<li class="pull-right"><a href="#"
-											class="link-black text-sm"><i
-												class="fa fa-times fa-2x margin-r-5"></i>Going
+										<li class="pull-right"><a href="javascript:void(0);"
+											class="link-black text-sm">Going
 												(${catEvent.going})</a></li>
 
 
 									</ul>
+									
 								</c:if>
+								</div>
+								
+								<div class="row">
+								
+								<c:if test="${count2<=0}">
+												<div class="box-footer">
+													<form action="/addReview" method="post" id="addReviewFrm">
+
+														 <input type="hidden"
+															name="aid" value="${displayadd.id}" /><input
+															type="hidden" name="uid" value="${user.id}" />
+														<div class="input-group">
+															<input type="text" name="description"
+																placeholder="Write your Advert Review ... before another advert is added "
+																class="form-control"> <span
+																class="input-group-btn">
+																<button type="submit" name="submit"
+																	class="btn btn-warning btn-flat">Event Analysis</button>
+															</span>
+														</div>
+													</form>
+												</div>
+												
+												</c:if>
+												
+									</div>	
+											
+							   <c:set var="count2" value="${count2 + 1}" scope="page"/>
 
 
 							</c:forEach>
@@ -991,7 +1017,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
+
 	<div class="row">
 		<div class="modal fade" id="addJob" role="dialog">
 			<div class="modal-dialog">
@@ -1070,6 +1096,7 @@
 			</div>
 		</div>
 	</div>
+	
 	<div class="row">
 		<div class="modal fade" id="jobReview" role="dialog">
 			<div class="modal-dialog">
@@ -1081,23 +1108,24 @@
 						<h4 class="modal-title">Review Jobs Dialog box</h4>
 
 					</div>
-
-
+					
+					
 					<div class="modal-body">
 
 						<div class="box box-success">
+						<c:set var="count3" value="0" scope="page" />
 
 							<c:forEach items="${catJobadds}" var="catJobadd">
 								<c:if test="${not empty catJobadd.jobTitle}">
-									<a><h5>(${catJobadd.noPositions})
+									<a><h5>(${catJobadd.noPositions}) 
 											${catJobadd.jobTitle} (s)</h5></a>
 									<p>
 									<h5>${catJobadd.description}</h5>
-									</p>
+									
 									<h4>
-										<span class="label label-success pull-left">${catJobadd.salary}</span>
-										<span class="label label-danger pull-right">${catJobadd.deadline}</span>
-									</h4>
+ 										<span class="label label-success pull-left">${catJobadd.salary}</span> 
+ 										<span class="label label-danger pull-right">${catJobadd.deadline}</span> 
+ 									</h4>
 
 
 									<div class="product-img">
@@ -1105,93 +1133,93 @@
 
 
 
-											<a target="_blank"
-												href="/uploads/${catJobadd.uid}/jobadds/${catJobadd.imageLink}"><img
-												class="img-responsive"
-												src="/uploads/${catJobadd.uid}/jobadds/${catJobadd.imageLink}"
-												alt="user image"> </a>
+											<a target="_blank" 
+ 												href="/uploads/${catJobadd.uid}/jobadds/${catJobadd.imageLink}"><img 
+ 												class="img-responsive" 
+ 												src="/uploads/${catJobadd.uid}/jobadds/${catJobadd.imageLink}" 
+ 												alt="user image"> </a> 
 
 										</c:if>
-										<c:if
-											test="${catJobadd.imageLink==''|| catJobadd.imageLink==null}">
-											<img class="img-responsive" src="dist/img/default-50x50.gif"
-												alt="Product Image">
+										
+										<c:if 
+ 											test="${catJobadd.imageLink==''|| catJobadd.imageLink==null}"> 
+ 											<img class="img-responsive" src="dist/img/default-50x50.gif"
+ 												alt="Product Image"> 
 
 										</c:if>
 
 									</div>
+									
+							
 
 									<ul class="list-inline">
 										<li>
-											<form action="/home/addNotRecomend" method="post">
-												<input type="hidden" name="${_csrf.parameterName}"
-													value="${_csrf.token}" /> <input type="hidden" name="uid"
-													value="${user.id}" /> <input type="hidden" name="jaid"
-													value="${catJobadd.id}" />
-
-
-
-												<button type="submit" class="btn btn-trans">
-													<i class="fa fa-times fa-2x margin-r-5"></i> Not Recomended
-												</button>
-
-											</form>
-
-
-
+										
+										<a href="javascript:void(0);" onclick="countNotRecommended('${user.id}','${catJobadd.id}','${displayadd.uid}')">
+										<i class="fa fa-times fa-2x margin-r-5"></i> Not Recommended
+										</a>
+										
 										</li>
 
 										<li>
-											<form class="form-horizontal" action="/home/addRecomend"
-												method="post">
-												<input type="hidden" name="${_csrf.parameterName}"
-													value="${_csrf.token}" /> <input type="hidden" name="uid"
-													value="${user.id}" /> <input type="hidden" name="jaid"
-													value="${catJobadd.id}" />
-
-
-
-												<button type="submit" class="btn btn-trans">
-
-
-													<i class="fa fa-check fa-2x margin-r-5"></i> Recomended
-
-												</button>
-
-
-											</form>
-
+										<a href="javascript:void(0);" onclick="countRecommended('${user.id}','${catJobadd.id}','${displayadd.uid}')">
+										<i class="fa fa-check fa-2x margin-r-5"></i> Recommended
+										</a>
 										</li>
-										<li class="pull-right"><a href="#"
-											class="link-black text-sm"> <i
-												class="fa fa-check fa-2x margin-r-5"></i>Recomended
-												(${catJobadd.recomended})
-										</a></li>
+										
+										<li class="pull-right"><a href="javascript:void(0);" 
+ 											class="link-black text-sm"> Recomended 
+ 												(${catJobadd.recomended}) 
+ 										</a></li> 
 
-										<li class="pull-right"><a href="#"
-											class="link-black text-sm"><i
-												class="fa fa-times fa-2x margin-r-5"></i>Not Recomemded
-												(${catJobadd.notRecomended})</a></li>
+										<li class="pull-right"><a href="javascript:void(0);" 
+ 											class="link-black text-sm">Not Recomemded
+ 												(${catJobadd.notRecomended})</a></li> 
 
 
 									</ul>
+									
 								</c:if>
+								
+								
+								<div class="row">
+								
+								<c:if test="${count3<=0}">
+												<div class="box-footer">
+													<form action="/addReview" method="post" id="addReviewFrm">
+
+														 <input type="hidden"
+															name="aid" value="${displayadd.id}" /><input
+															type="hidden" name="uid" value="${user.id}" />
+														<div class="input-group">
+															<input type="text" name="description"
+																placeholder="Write your Job Review ... before another Job is added "
+																class="form-control"> <span
+																class="input-group-btn">
+																<button type="submit" name="submit"
+																	class="btn btn-warning btn-flat">Add Job Review</button>
+															</span>
+														</div>
+													</form>
+												</div>
+												
+												</c:if>
+												
+									</div>	
+											
+							   <c:set var="count3" value="${count3 + 1}" scope="page"/>
 
 
 							</c:forEach>
+							</div>
 
 
 						</div>
-
-
-						<!--modal form-->
-
-
-					</div>
 				</div>
-			</div>
 		</div>
 	</div>
+	</div>
+
 
 	<div class="row">
 		<div class="modal fade" id="inviteUser" role="dialog">
