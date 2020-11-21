@@ -20,6 +20,8 @@ import com.kalimagezi.billionareskb.addess.Address;
 import com.kalimagezi.billionareskb.addess.AddressService;
 import com.kalimagezi.billionareskb.advert.Advert;
 import com.kalimagezi.billionareskb.advert.AdvertService;
+import com.kalimagezi.billionareskb.analysis.Analysis;
+import com.kalimagezi.billionareskb.analysis.AnalysisService;
 import com.kalimagezi.billionareskb.article.Article;
 import com.kalimagezi.billionareskb.article.ArticleService;
 import com.kalimagezi.billionareskb.career.Career;
@@ -84,15 +86,17 @@ public class HomeController {
 	private MessageService messageService;
 	@Autowired
 	private NotificationService notificationService;
-	
-	 @RequestMapping("/default")
-	    public String defaultAfterLogin(HttpServletRequest request) {
-	        if (request.isUserInRole("ROLE_ADMIN")) {
-	            return "redirect:/admin";
-	        }
-	        return "redirect:/home";
-	    }
-  
+	@Autowired
+	private AnalysisService analysisService;
+
+	@RequestMapping("/default")
+	public String defaultAfterLogin(HttpServletRequest request) {
+		if (request.isUserInRole("ROLE_ADMIN")) {
+			return "redirect:/admin";
+		}
+		return "redirect:/home";
+	}
+
 	@RequestMapping(value = "/home", method = RequestMethod.GET)
 	public ModelAndView home(@RequestParam(name = "imgupload", required = false) String imgupload,
 			@RequestParam(name = "userupdate", required = false) String userupdate,
@@ -131,29 +135,26 @@ public class HomeController {
 			@RequestParam(name = "recomendAdded", required = false) String recomendAdded,
 			@RequestParam(name = "notRecomendFailed", required = false) String notRecomendFailed,
 			@RequestParam(name = "notRecomendAdded", required = false) String notRecomendAdded
-					
-			
-			) {
+
+	) {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		 User user = userService.findByEmail(authentication.getName());
-		 Category category =categoryService.getCategory(user.getCatid()).orElseThrow(null);
+		User user = userService.findByEmail(authentication.getName());
+		Category category = categoryService.getCategory(user.getCatid()).orElseThrow(null);
 
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("greeting", "Welcome back to Billionares");
 		mv.addObject("ModeLogged", true);
-		 	 
-	    Address address = addressService.getUAddress(user.getId()).orElseThrow(null);
-	    Company company = companyService.getUCompany(user.getId());
-	    Career  career = careerService.getUCareer(user.getId());
-	    Education  education = educationService.getUEducation(user.getId());
-	    SkillTalent  skillTalent = skillTalentService.getUSkillTalent(user.getId());
-	    Event  event = eventService.getUEvent(user.getId());
-	    Counter  counter = counterService.getUCounter(user.getId());
-	    Notification  notification = notificationService.getNotificationByUid(user.getId());
-	    
-	    
-	    
- 	    mv.addObject(user);
+
+		Address address = addressService.getUAddress(user.getId()).orElseThrow(null);
+		Company company = companyService.getUCompany(user.getId());
+		Career career = careerService.getUCareer(user.getId());
+		Education education = educationService.getUEducation(user.getId());
+		SkillTalent skillTalent = skillTalentService.getUSkillTalent(user.getId());
+		Event event = eventService.getUEvent(user.getId());
+		Counter counter = counterService.getUCounter(user.getId());
+		Notification notification = notificationService.getNotificationByUid(user.getId());
+
+		mv.addObject(user);
 		mv.addObject(category);
 		mv.addObject(address);
 		mv.addObject(company);
@@ -163,22 +164,25 @@ public class HomeController {
 		mv.addObject(event);
 		mv.addObject(counter);
 		mv.addObject(notification);
-		
-		if(address.getCountry()==null||company.getName()==null||career.getJobTitle()==null||education.getLevel()==null ||
-				skillTalent.getName1()==null||event.getEname()==null) {
-			
+
+		if (address.getCountry() == null || company.getName() == null || career.getJobTitle() == null
+				|| education.getLevel() == null || skillTalent.getName1() == null || event.getEname() == null) {
+
 			mv.addObject("ModeNotUpdated", true);
 		}
 
+		if (imgupload == null && userupdate == null && addressupdate == null && companyupdate == null
+				&& careerupdate == null
 
-		if (imgupload == null && userupdate == null && addressupdate==null && companyupdate == null && careerupdate == null
-				
-				&& educationupdate == null && skillupdate==null && updateAboutme==null && eventupdate==null && opinionCreated==null
-				&& voteAdded==null && voteFailed==null && reportFailed==null&& reportAdded==null &&articleCreated==null &&advertAdded==null&&articleEmpty==null
-				&&opinionNotCreated==null&&ReviewCreated==null&&ReviewNotCreated==null&&positiveFailed==null
-				&&negativeFailed==null&&negativeAdded==null&&positiveAdded==null&&reviewFailed==null&& goingFailed==null&&goingAdded==null
-				&&notGoingFailed==null&&notGoingAdded==null&&jobaddAdded==null&& userinvited==null&&inviteFailed==null&&userExists==null
-				&& recomendAdded==null&&recomendFailed==null&&notRecomendAdded==null&&notRecomendFailed==null) {
+				&& educationupdate == null && skillupdate == null && updateAboutme == null && eventupdate == null
+				&& opinionCreated == null && voteAdded == null && voteFailed == null && reportFailed == null
+				&& reportAdded == null && articleCreated == null && advertAdded == null && articleEmpty == null
+				&& opinionNotCreated == null && ReviewCreated == null && ReviewNotCreated == null
+				&& positiveFailed == null && negativeFailed == null && negativeAdded == null && positiveAdded == null
+				&& reviewFailed == null && goingFailed == null && goingAdded == null && notGoingFailed == null
+				&& notGoingAdded == null && jobaddAdded == null && userinvited == null && inviteFailed == null
+				&& userExists == null && recomendAdded == null && recomendFailed == null && notRecomendAdded == null
+				&& notRecomendFailed == null) {
 			mv.addObject("ModeJustLogged", true);
 		}
 		mv.setViewName("index2");
@@ -213,401 +217,379 @@ public class HomeController {
 
 		}
 		if (educationupdate != null) {
-			
+
 			mv.addObject("imgupload", "<b>Your Education Info has been updated</b>");
 			mv.addObject("ModeImgUpload", true);
-			
+
 		}
 		if (skillupdate != null) {
-			
+
 			mv.addObject("imgupload", "<b>Your Skills and Tallent Info has been updated</b>");
 			mv.addObject("ModeImgUpload", true);
-			
+
 		}
 		if (updateAboutme != null) {
-			
+
 			mv.addObject("imgupload", "<b>Your About me Info has been updated</b>");
 			mv.addObject("ModeImgUpload", true);
-			
+
 		}
 		if (eventupdate != null) {
-			
+
 			mv.addObject("imgupload", "<b>Your Event Info has been updated</b>");
 			mv.addObject("ModeImgUpload", true);
-			
+
 		}
 		if (notGoingAdded != null) {
-			
+
 			mv.addObject("imgupload", "<b>Your are not going to that event</b>");
 			mv.addObject("ModeImgUpload", true);
-			
+
 		}
 		if (recomendAdded != null) {
-			
+
 			mv.addObject("imgupload", "<b>Your are recomending people for the Job Add</b>");
 			mv.addObject("ModeImgUpload", true);
-			
+
 		}
 		if (opinionCreated != null) {
-			
+
 			mv.addObject("imgupload", "<b>Your opinion has been added</b>");
 			mv.addObject("ModeImgUpload", true);
-			
+
 		}
 		if (articleCreated != null) {
-			
+
 			mv.addObject("imgupload", "<b>Your new article has been added</b>");
 			mv.addObject("ModeImgUpload", true);
-			
+
 		}
 		if (userinvited != null) {
-			
+
 			mv.addObject("imgupload", "<b>your invitation to billionres has been sent</b>");
 			mv.addObject("ModeImgUpload", true);
-			
+
 		}
 		if (ReviewCreated != null) {
-			
+
 			mv.addObject("imgupload", "<b>Your Advert Review has been added</b>");
 			mv.addObject("ModeImgUpload", true);
-			
+
 		}
 		if (jobaddAdded != null) {
-			
+
 			mv.addObject("imgupload", "<b>Your Job Advert has been created</b>");
 			mv.addObject("ModeImgUpload", true);
-			
+
 		}
 		if (voteFailed != null) {
 			mv.addObject("votefail", "<b>You already voted on  that article </b>");
 			mv.addObject("ModeJustFailedVote", true);
-			
+
 		}
 		if (userExists != null) {
 			mv.addObject("votefail", "<b>The user you are trying to invite already exists </b>");
 			mv.addObject("ModeJustFailedVote", true);
-			
+
 		}
 		if (goingFailed != null) {
 			mv.addObject("votefail", "<b>You already decided on that event </b>");
 			mv.addObject("ModeJustFailedVote", true);
-			
+
 		}
 		if (notGoingFailed != null) {
 			mv.addObject("votefail", "<b>You already not Going to that event </b>");
 			mv.addObject("ModeJustFailedVote", true);
-			
+
 		}
 		if (recomendFailed != null) {
 			mv.addObject("votefail", "<b>You already sent your recomendation</b>");
 			mv.addObject("ModeJustFailedVote", true);
-			
+
 		}
 		if (notRecomendFailed != null) {
 			mv.addObject("votefail", "<b>You already sent your NOT recomendation</b>");
 			mv.addObject("ModeJustFailedVote", true);
-			
+
 		}
 		if (reviewFailed != null) {
 			mv.addObject("votefail", "<b>You already reviewed the advert!!! </b>");
 			mv.addObject("ModeJustFailedVote", true);
-			
+
 		}
 		if (negativeFailed != null) {
 			mv.addObject("votefail", "<b>You already Reviewed that advert </b>");
 			mv.addObject("ModeJustFailedVote", true);
-			
+
 		}
 		if (positiveFailed != null) {
 			mv.addObject("votefail", "<b>You already reviewed  that advert </b>");
 			mv.addObject("ModeJustFailedVote", true);
-			
+
 		}
 		if (ReviewNotCreated != null) {
 			mv.addObject("votefail", "<b>You Advert Review Cant be Empty!! </b>");
 			mv.addObject("ModeJustFailedVote", true);
-			
+
 		}
 		if (opinionNotCreated != null) {
 			mv.addObject("votefail", "<b>Opinion can not be empty </b>");
 			mv.addObject("ModeJustFailedVote", true);
-			
+
 		}
 		if (reportFailed != null) {
 			mv.addObject("votefail", "<b>You already crossed the same article </b>");
 			mv.addObject("ModeJustFailedVote", true);
-			
+
 		}
 		if (inviteFailed != null) {
 			mv.addObject("votefail", "<b>the invitation failed, check email, could already be invited</b>");
 			mv.addObject("ModeJustFailedVote", true);
-			
+
 		}
 		if (voteAdded != null) {
-	
 
 			mv.addObject("imgupload", "<b>Your Vote has been Counted</b>");
 			mv.addObject("ModeImgUpload", true);
 
 		}
 		if (negativeAdded != null) {
-			
-			
+
 			mv.addObject("imgupload", "<b>Your negative Review has been added</b>");
 			mv.addObject("ModeImgUpload", true);
-			
+
 		}
 		if (goingAdded != null) {
-			
-			
+
 			mv.addObject("imgupload", "<b>Your are going to the event</b>");
 			mv.addObject("ModeImgUpload", true);
-			
+
 		}
 		if (notRecomendAdded != null) {
-			
-			
+
 			mv.addObject("imgupload", "<b>Your are NOT Recomending this advert</b>");
 			mv.addObject("ModeImgUpload", true);
-			
+
 		}
 		if (positiveAdded != null) {
-			
-			
+
 			mv.addObject("imgupload", "<b>Your positive Review has been added</b>");
 			mv.addObject("ModeImgUpload", true);
-			
+
 		}
 		if (reportAdded != null) {
-			
-			
+
 			mv.addObject("imgupload", "<b>Your Cross has been Counted</b>");
 			mv.addObject("ModeImgUpload", true);
-			
+
 		}
 		if (advertAdded != null) {
-			
-			
+
 			mv.addObject("imgupload", "<b>Your paid advert has been created. Awaiting activation</b>");
 			mv.addObject("ModeImgUpload", true);
-			
+
 		}
 		if (articleEmpty != null) {
-			
-			
+
 			mv.addObject("votefail", "<b>Article cant be empty !!</b>");
 			mv.addObject("ModeJustFailedVote", true);
-			
+
 		}
 
 		return mv;
 
 	}
 
-
-
 	@RequestMapping(value = "/admin", method = RequestMethod.GET)
-	public ModelAndView admin(@RequestParam(name = "advertDisabled", required = false) String advertDisabled,@RequestParam(name = "advertEnabled", required = false) String advertEnabled) {
-		
-		List <Advert> disAdds = advertService.getAllDisabledAdverts();
-		List <Advert> enabAdds = advertService.getAllEnabledAdverts();
-	
+	public ModelAndView admin(@RequestParam(name = "advertDisabled", required = false) String advertDisabled,
+			@RequestParam(name = "advertEnabled", required = false) String advertEnabled) {
+
+		List<Advert> disAdds = advertService.getAllDisabledAdverts();
+		List<Advert> enabAdds = advertService.getAllEnabledAdverts();
 
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("greeting", "Welcome admin");
 		mv.addObject("ModeLogged", true);
-		mv.addObject("disAdds",disAdds);
-		mv.addObject("enabAdds",enabAdds);
-      if (advertEnabled != null) {
-			
-			
+		mv.addObject("disAdds", disAdds);
+		mv.addObject("enabAdds", enabAdds);
+		if (advertEnabled != null) {
+
 			mv.addObject("message", "<b>The advert was successfully Enabled</b>");
 			mv.addObject("advertEnabled", true);
-			
+
 		}
-      if (advertDisabled != null) {
-    	  
-    	  
-    	  mv.addObject("message", "<b>The advert was successfully Disabled</b>");
-    	  mv.addObject("advertDisabled", true);
-    	  
-      }
+		if (advertDisabled != null) {
+
+			mv.addObject("message", "<b>The advert was successfully Disabled</b>");
+			mv.addObject("advertDisabled", true);
+
+		}
 		mv.setViewName("index");
 		return mv;
 
 	}
-	
 
-	
 	@RequestMapping(value = "/chart", method = RequestMethod.GET)
 	public String getChart(Model model) {
-		
+
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		User user = userService.findByEmail(authentication.getName());
-		Notification  notification = notificationService.getNotificationByUid(user.getId());
+		Notification notification = notificationService.getNotificationByUid(user.getId());
 		notification.setChart(0);
 		notificationService.addNotification(notification);
-		
 
 		return "/shared/chart";
 	}
+
 	@RequestMapping(value = "/mainpost", method = RequestMethod.GET)
 	public String getMainpost(Model model) {
-		
+
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		User user = userService.findByEmail(authentication.getName());
-		Notification  notification = notificationService.getNotificationByUid(user.getId());
+		Notification notification = notificationService.getNotificationByUid(user.getId());
 		notification.setChart(0);
 		notificationService.addNotification(notification);
-		
-		
+
 //		
-		
+
 		return "/shared/mainpost";
 	}
+
 	@RequestMapping(value = "/opinions", method = RequestMethod.GET)
 	public String getOpinions(Model model) {
-		
+
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		User user = userService.findByEmail(authentication.getName());
 //		Notification  notification = notificationService.getNotificationByUid(user.getId());
 //		notification.setChart(0);
 //		notificationService.addNotification(notification);
 //		
-		
+
 //		
-		
+
 		return "/shared/mainpost2";
 	}
-	
 
 	@RequestMapping(value = "/message", method = RequestMethod.GET)
 	public String message(Model model, Integer wuid) {
-		
-		
-		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		 User user = userService.findByEmail(authentication.getName());
-		 Category category =categoryService.getCategory(user.getCatid()).orElseThrow(null);
-		 	 
 
-	    User wuser=userService.getUser(wuid).orElseThrow(null);
-	    Notification  notification = notificationService.getNotificationByUid(user.getId());
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		User user = userService.findByEmail(authentication.getName());
+		Category category = categoryService.getCategory(user.getCatid()).orElseThrow(null);
+
+		User wuser = userService.getUser(wuid).orElseThrow(null);
+		Notification notification = notificationService.getNotificationByUid(user.getId());
 		notification.setMessage(0);
 		notificationService.addNotification(notification);
-	    
-	    String scatid="0";
-	    Integer uid=user.getId();
-		if (user.getId()<wuid) {
-		
-		scatid =uid.toString()+wuid;
+
+		String scatid = "0";
+		Integer uid = user.getId();
+		if (user.getId() < wuid) {
+
+			scatid = uid.toString() + wuid;
 		} else {
-			scatid=wuid.toString()+uid;	
+			scatid = wuid.toString() + uid;
 		}
 		int catid = Integer.parseInt(scatid);
-		
-	    List <Message> messages= messageService.getMessageByCatid(catid);
-	    model.addAttribute("myMassages",messages);
-	    
-	    model.addAttribute("user",user);
-	    model.addAttribute("wuid",wuid);
-	    model.addAttribute("wFullName", wuser.getFirstName()+ " "+wuser.getOtherNames());
-	    model.addAttribute("wImageLink", wuser.getImageLink());
-	   
-		model.addAttribute("notification",notification);
-		
+
+		List<Message> messages = messageService.getMessageByCatid(catid);
+		model.addAttribute("myMassages", messages);
+
+		model.addAttribute("user", user);
+		model.addAttribute("wuid", wuid);
+		model.addAttribute("wFullName", wuser.getFirstName() + " " + wuser.getOtherNames());
+		model.addAttribute("wImageLink", wuser.getImageLink());
+
+		model.addAttribute("notification", notification);
+
 		model.addAttribute("title", "Message");
-		model.addAttribute("modeMessage", true);		
-		
+		model.addAttribute("modeMessage", true);
+
 		return "/shared/chat";
-		
+
 	}
+
 	@RequestMapping(value = "/articleReact", method = RequestMethod.GET)
 	public String articleReact(Model model, Integer id) {
-		
-		
+
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		User user = userService.findByEmail(authentication.getName());	
-		Notification  notification = notificationService.getNotificationByUid(user.getId());
+		User user = userService.findByEmail(authentication.getName());
+		Notification notification = notificationService.getNotificationByUid(user.getId());
 		notification.setMessage(0);
 		notificationService.addNotification(notification);
-		Article article = articleService.getArticle(id).orElseThrow(null);		
+		Article article = articleService.getArticle(id).orElseThrow(null);
 		User user2 = userService.getUser(article.getUid()).orElseThrow(null);
-		
-		Display display = new Display();
-		
-		 List <Opinion> opinions =opinionService.getOpinionsByAid(article.getId());
-		 
-			display.setFullName(user2.getFirstName() +" "+ user2.getOtherNames());
-			display.setUserImageLink(user2.getImageLink());
-			display.setArtDescription(article.getDescription());
-			display.setArtImageLink(article.getImageLink());
-			display.setArtCreateDate(article.getCreateDate());
-			display.setNoOpinions(article.getNoOpinions());
-			display.setNoReports(article.getNoReports());
-			display.setNoVotes(article.getNoVotes());
-			display.setUid(user2.getId());
-			display.setCatid(article.getCatId());
-			display.setArtid(article.getId());
-			display.setArtVideoLink(article.getVideoLink());
-			
-			List <DisplayOpinion> dopinions= new ArrayList<DisplayOpinion>();
-			
-			
-			for(Opinion opinion: opinions) {
-				 User user3 = userService.getUser(opinion.getUid()).orElseThrow(null);
-				
-				DisplayOpinion dopinion= new DisplayOpinion();
-				
-				dopinion.setFullName(user3.getFirstName() + " "+ user3.getOtherNames());
-				dopinion.setOpCreateDate(opinion.getCreateDate());
-				dopinion.setOpDescription(opinion.getDescription());
-				dopinion.setOpImageLink(user3.getImageLink());
-				dopinion.setOpUid(opinion.getUid());
 
-				dopinions.add(dopinion);
-				
-			}
-			
-			
-			display.setOpinions(dopinions);
-		
-		
-		model.addAttribute("notification",notification);
-		model.addAttribute("display",display);
-		
+		Display display = new Display();
+
+		List<Opinion> opinions = opinionService.getOpinionsByAid(article.getId());
+
+		display.setFullName(user2.getFirstName() + " " + user2.getOtherNames());
+		display.setUserImageLink(user2.getImageLink());
+		display.setArtDescription(article.getDescription());
+		display.setArtImageLink(article.getImageLink());
+		display.setArtCreateDate(article.getCreateDate());
+		display.setNoOpinions(article.getNoOpinions());
+		display.setNoReports(article.getNoReports());
+		display.setNoVotes(article.getNoVotes());
+		display.setUid(user2.getId());
+		display.setCatid(article.getCatId());
+		display.setArtid(article.getId());
+		display.setArtVideoLink(article.getVideoLink());
+
+		List<DisplayOpinion> dopinions = new ArrayList<DisplayOpinion>();
+
+		for (Opinion opinion : opinions) {
+			User user3 = userService.getUser(opinion.getUid()).orElseThrow(null);
+
+			DisplayOpinion dopinion = new DisplayOpinion();
+
+			dopinion.setFullName(user3.getFirstName() + " " + user3.getOtherNames());
+			dopinion.setOpCreateDate(opinion.getCreateDate());
+			dopinion.setOpDescription(opinion.getDescription());
+			dopinion.setOpImageLink(user3.getImageLink());
+			dopinion.setOpUid(opinion.getUid());
+
+			dopinions.add(dopinion);
+
+		}
+
+		display.setOpinions(dopinions);
+
+		model.addAttribute("notification", notification);
+		model.addAttribute("display", display);
+
 		model.addAttribute("title", "Message");
-		model.addAttribute("articleReact", true);		
-		
+		model.addAttribute("articleReact", true);
+
 		return "/shared/mainpost3";
-		
+
 	}
-	
-	
+
 	@RequestMapping(value = "/events", method = RequestMethod.GET)
 	public ModelAndView events() {
 		User user;
 
-			Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-			user = userService.findByEmail(authentication.getName());
-		
-		Category category =categoryService.getCategory(user.getCatid()).orElseThrow(null);
-		
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		user = userService.findByEmail(authentication.getName());
+
+		Category category = categoryService.getCategory(user.getCatid()).orElseThrow(null);
+
 		ModelAndView mv = new ModelAndView();
-		
+
 		Address address = addressService.getUAddress(user.getId()).orElseThrow(null);
 		Company company = companyService.getUCompany(user.getId());
-		Career  career = careerService.getUCareer(user.getId());
-		Education  education = educationService.getUEducation(user.getId());
-		SkillTalent  skillTalent = skillTalentService.getUSkillTalent(user.getId());
-		Event  event = eventService.getUEvent(user.getId());
-		Counter  counter = counterService.getUCounter(user.getId());
-		Notification  notification = notificationService.getNotificationByUid(user.getId());
+		Career career = careerService.getUCareer(user.getId());
+		Education education = educationService.getUEducation(user.getId());
+		SkillTalent skillTalent = skillTalentService.getUSkillTalent(user.getId());
+		Event event = eventService.getUEvent(user.getId());
+		Counter counter = counterService.getUCounter(user.getId());
+		Notification notification = notificationService.getNotificationByUid(user.getId());
 		notification.setEvents(0);
 		notificationService.addNotification(notification);
 
-		
 		mv.addObject(user);
-	
+
 		mv.addObject(category);
 		mv.addObject(address);
 		mv.addObject(company);
@@ -617,45 +599,39 @@ public class HomeController {
 		mv.addObject(event);
 		mv.addObject(counter);
 		mv.addObject(notification);
-		
+
 		mv.addObject("greeting", "Welcome to live chat");
 		mv.addObject("modeEvents", true);
 		mv.setViewName("index2");
-		
-		
-		
-		
-		
-		
-		
+
 		return mv;
-		
+
 	}
+
 	@RequestMapping(value = "/jobs", method = RequestMethod.GET)
 	public ModelAndView jobss() {
 		User user;
-		
+
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		user = userService.findByEmail(authentication.getName());
-		
-		Category category =categoryService.getCategory(user.getCatid()).orElseThrow(null);
-		
+
+		Category category = categoryService.getCategory(user.getCatid()).orElseThrow(null);
+
 		ModelAndView mv = new ModelAndView();
-		
+
 		Address address = addressService.getUAddress(user.getId()).orElseThrow(null);
 		Company company = companyService.getUCompany(user.getId());
-		Career  career = careerService.getUCareer(user.getId());
-		Education  education = educationService.getUEducation(user.getId());
-		SkillTalent  skillTalent = skillTalentService.getUSkillTalent(user.getId());
-		Event  event = eventService.getUEvent(user.getId());
-		Counter  counter = counterService.getUCounter(user.getId());
-		Notification  notification = notificationService.getNotificationByUid(user.getId());
+		Career career = careerService.getUCareer(user.getId());
+		Education education = educationService.getUEducation(user.getId());
+		SkillTalent skillTalent = skillTalentService.getUSkillTalent(user.getId());
+		Event event = eventService.getUEvent(user.getId());
+		Counter counter = counterService.getUCounter(user.getId());
+		Notification notification = notificationService.getNotificationByUid(user.getId());
 		notification.setJobad(0);
 		notificationService.addNotification(notification);
-		
-		
+
 		mv.addObject(user);
-		
+
 		mv.addObject(category);
 		mv.addObject(address);
 		mv.addObject(company);
@@ -665,93 +641,80 @@ public class HomeController {
 		mv.addObject(event);
 		mv.addObject(counter);
 		mv.addObject(notification);
-		
+
 		mv.addObject("greeting", "Welcome to live chat");
 		mv.addObject("modeJobs", true);
 		mv.setViewName("index2");
-		
-		
-		
-		
-		
-		
-		
+
 		return mv;
-		
+
 	}
 
-	
 	@RequestMapping(value = "/profile", method = RequestMethod.GET)
-	public String getProfile(Model model, Integer wuid) {	
+	public String getProfile(Model model, Integer wuid) {
 
 		User user;
-		if (wuid!=null) {
-			user=userService.getUser(wuid).orElseThrow(null);
-			
+		if (wuid != null) {
+			user = userService.getUser(wuid).orElseThrow(null);
+
 		} else {
 			Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 			user = userService.findByEmail(authentication.getName());
 		}
-		Category category =categoryService.getCategory(user.getCatid()).orElseThrow(null);
+		Category category = categoryService.getCategory(user.getCatid()).orElseThrow(null);
 
-		
 		Address address = addressService.getUAddress(user.getId()).orElseThrow(null);
 		Company company = companyService.getUCompany(user.getId());
-		Career  career = careerService.getUCareer(user.getId());
-		Education  education = educationService.getUEducation(user.getId());
-		SkillTalent  skillTalent = skillTalentService.getUSkillTalent(user.getId());
-		Event  event = eventService.getUEvent(user.getId());
-		Counter  counter = counterService.getUCounter(user.getId());
-		Notification  notification = notificationService.getNotificationByUid(user.getId());
-		
-		
-		model.addAttribute("user",user);
-		
-		model.addAttribute("category",category);
-		model.addAttribute("address",address);
-		model.addAttribute("company",company);
-		model.addAttribute("career",career);
-		model.addAttribute("education",education);
-		model.addAttribute("skillTalent",skillTalent);
-		model.addAttribute("event",event);
-		model.addAttribute("counter",counter);
-		model.addAttribute("notification",notification);
-	
-		
-	model.addAttribute("title", "profile");
-	model.addAttribute("modeProfile", true);
-	
-	return "/shared/profile";
-}	
-	
-	
+		Career career = careerService.getUCareer(user.getId());
+		Education education = educationService.getUEducation(user.getId());
+		SkillTalent skillTalent = skillTalentService.getUSkillTalent(user.getId());
+		Event event = eventService.getUEvent(user.getId());
+		Counter counter = counterService.getUCounter(user.getId());
+		Notification notification = notificationService.getNotificationByUid(user.getId());
+
+		model.addAttribute("user", user);
+
+		model.addAttribute("category", category);
+		model.addAttribute("address", address);
+		model.addAttribute("company", company);
+		model.addAttribute("career", career);
+		model.addAttribute("education", education);
+		model.addAttribute("skillTalent", skillTalent);
+		model.addAttribute("event", event);
+		model.addAttribute("counter", counter);
+		model.addAttribute("notification", notification);
+
+		model.addAttribute("title", "profile");
+		model.addAttribute("modeProfile", true);
+
+		return "/shared/profile";
+	}
+
 	@RequestMapping(value = "/profile-print", method = RequestMethod.GET)
 	public ModelAndView printprofile(@RequestParam(name = "wuid", required = false) Integer wuid) {
-		
-		
+
 		User user;
-		if (wuid!=null) {
-			user=userService.getUser(wuid).orElseThrow(null);
-		
+		if (wuid != null) {
+			user = userService.getUser(wuid).orElseThrow(null);
+
 		} else {
 			Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 			user = userService.findByEmail(authentication.getName());
 		}
-		Category category =categoryService.getCategory(user.getCatid()).orElseThrow(null);
-		
+		Category category = categoryService.getCategory(user.getCatid()).orElseThrow(null);
+
 		ModelAndView mv = new ModelAndView();
-		
+
 		Address address = addressService.getUAddress(user.getId()).orElseThrow(null);
 		Company company = companyService.getUCompany(user.getId());
-		Career  career = careerService.getUCareer(user.getId());
-		Education  education = educationService.getUEducation(user.getId());
-		SkillTalent  skillTalent = skillTalentService.getUSkillTalent(user.getId());
-		Event  event = eventService.getUEvent(user.getId());
-		Counter  counter = counterService.getUCounter(user.getId());
-		
-		
+		Career career = careerService.getUCareer(user.getId());
+		Education education = educationService.getUEducation(user.getId());
+		SkillTalent skillTalent = skillTalentService.getUSkillTalent(user.getId());
+		Event event = eventService.getUEvent(user.getId());
+		Counter counter = counterService.getUCounter(user.getId());
+
 		mv.addObject(user);
-		
+
 		mv.addObject(category);
 		mv.addObject(address);
 		mv.addObject(company);
@@ -760,40 +723,30 @@ public class HomeController {
 		mv.addObject(skillTalent);
 		mv.addObject(event);
 		mv.addObject(counter);
-		
+
 		mv.addObject("modeProfile", true);
 		mv.setViewName("print");
-		
-		
-		
-		
-		
-		
-		
+
 		return mv;
-		
+
 	}
-	
-	
 
-
-		@ModelAttribute("displays")
-		public List<Display> getDisplay() {
-		List<Display> displays= new ArrayList<Display>();
+	@ModelAttribute("displays")
+	public List<Display> getDisplay() {
+		List<Display> displays = new ArrayList<Display>();
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		User user = userService.findByEmail(authentication.getName());
-		 Category category =categoryService.getCategory(user.getCatid()).orElseThrow(null);
-		 
-		 List <Article> articles =articleService.getArticlesByCat(category.getCatid());
-		
-		 
-		 for(Article article: articles) {
-			 Display display= new Display();
-			 
-			 User user2 = userService.getUser(article.getUid()).orElseThrow(null);
-			 List <Opinion> opinions =opinionService.getOpinionsByAid(article.getId());
-			 
-			display.setFullName(user2.getFirstName() +" "+ user2.getOtherNames());
+		Category category = categoryService.getCategory(user.getCatid()).orElseThrow(null);
+
+		List<Article> articles = articleService.getArticlesByCat(category.getCatid());
+
+		for (Article article : articles) {
+			Display display = new Display();
+
+			User user2 = userService.getUser(article.getUid()).orElseThrow(null);
+			List<Opinion> opinions = opinionService.getOpinionsByAid(article.getId());
+
+			display.setFullName(user2.getFirstName() + " " + user2.getOtherNames());
 			display.setUserImageLink(user2.getImageLink());
 			display.setArtDescription(article.getDescription());
 			display.setArtImageLink(article.getImageLink());
@@ -805,47 +758,41 @@ public class HomeController {
 			display.setCatid(article.getCatId());
 			display.setArtid(article.getId());
 			display.setArtVideoLink(article.getVideoLink());
-			
-			List <DisplayOpinion> dopinions= new ArrayList<DisplayOpinion>();
-			
-			
-			for(Opinion opinion: opinions) {
-				 User user3 = userService.getUser(opinion.getUid()).orElseThrow(null);
-				
-				DisplayOpinion dopinion= new DisplayOpinion();
-				
-				dopinion.setFullName(user3.getFirstName() + " "+ user3.getOtherNames());
+
+			List<DisplayOpinion> dopinions = new ArrayList<DisplayOpinion>();
+
+			for (Opinion opinion : opinions) {
+				User user3 = userService.getUser(opinion.getUid()).orElseThrow(null);
+
+				DisplayOpinion dopinion = new DisplayOpinion();
+
+				dopinion.setFullName(user3.getFirstName() + " " + user3.getOtherNames());
 				dopinion.setOpCreateDate(opinion.getCreateDate());
 				dopinion.setOpDescription(opinion.getDescription());
 				dopinion.setOpImageLink(user3.getImageLink());
 				dopinion.setOpUid(opinion.getUid());
 
 				dopinions.add(dopinion);
-				
-			}
-			
-			
-			display.setOpinions(dopinions);
-			
-			
-			
-			displays.add(display); 
-		 }
-		 
 
-		
+			}
+
+			display.setOpinions(dopinions);
+
+			displays.add(display);
+		}
+
 		return displays;
 
 	}
+
 	@ModelAttribute("displayadds")
 	public List<DisplayAdd> getDisplayadd() {
-		List<DisplayAdd> displayadds= new ArrayList<DisplayAdd>();
-		
-		List <Advert> adverts =advertService.getAllEnabledAdverts();
-		
-		
-		for(Advert advert: adverts) {
-			DisplayAdd displayAdd= new DisplayAdd();
+		List<DisplayAdd> displayadds = new ArrayList<DisplayAdd>();
+
+		List<Advert> adverts = advertService.getAllEnabledAdverts();
+
+		for (Advert advert : adverts) {
+			DisplayAdd displayAdd = new DisplayAdd();
 			displayAdd.setId(advert.getId());
 			displayAdd.setUid(advert.getUid());
 			displayAdd.setItemAmount(advert.getItemAmount());
@@ -858,147 +805,135 @@ public class HomeController {
 			displayAdd.setNoNegatives(advert.getNoNegatives());
 			displayAdd.setNoDays(advert.getNoDays());
 			displayAdd.setWebsite(advert.getWebsite());
-			
-		
 
-			
-			List <DisplayReview> dreviews= new ArrayList<DisplayReview>();
-			
+			List<DisplayReview> dreviews = new ArrayList<DisplayReview>();
+
 			List<Review> reviews = reviewService.getAReviews(advert.getId());
-			for(Review review: reviews) {
-				 User user3 = userService.getUser(review.getUid()).orElseThrow(null);
-				
-				DisplayReview dreview= new DisplayReview();
-				
-				dreview.setFullName(user3.getFirstName() + " "+ user3.getOtherNames());
+			for (Review review : reviews) {
+				User user3 = userService.getUser(review.getUid()).orElseThrow(null);
+
+				DisplayReview dreview = new DisplayReview();
+
+				dreview.setFullName(user3.getFirstName() + " " + user3.getOtherNames());
 				dreview.setrCreateDate(review.getCreateDate());
 				dreview.setrDescription(review.getDescription());
 				dreview.setrImageLink(user3.getImageLink());
 				dreview.setrUid(review.getUid());
 
 				dreviews.add(dreview);
-				
+
 			}
-			
-			
+
 			displayAdd.setReviews(dreviews);
-			
-	
-			
-			
+
 			displayadds.add(displayAdd);
 		}
-		
-		
-		
+
 		return displayadds;
-		
+
 	}
+
 	@ModelAttribute("topCounter")
 	private Counter getTopCounter() {
-		
-		Counter topCounter =counterService.getTopCounter();
-						
+
+		Counter topCounter = counterService.getTopCounter();
+
 		return topCounter;
-		
+
 	}
+
 	@ModelAttribute("topCatCounter")
 	private Counter getTopCatCounter() {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		User user = userService.findByEmail(authentication.getName());
-		
-		Counter topCatCounter =counterService.getTopCatCounter(user.getCatid());
-		
+
+		Counter topCatCounter = counterService.getTopCatCounter(user.getCatid());
+
 		return topCatCounter;
 	}
+
 	@ModelAttribute("top10CatCounters")
 	private List<DisplayCounter> getTop10CatCounter() {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		User user = userService.findByEmail(authentication.getName());
-		
-		List<Counter> top10CatCounters =counterService.getTop10CatCounter(user.getCatid());
-		List <DisplayCounter> dcounters= new ArrayList<DisplayCounter>();
-		int i=0;
-		int totals=0;
-		int percentage=0;
-		String[] colors = {"progress-bar-success", "progress-bar-info", "progress-bar-warning", "progress-bar-danger","progress-bar-success", 
-				           "progress-bar-info", "progress-bar-warning", "progress-bar-danger","progress-bar-success", "progress-bar-info"};
-		for(Counter counter: top10CatCounters) {
-			totals+=counter.getTotal();
-		}
-		
-		
-		for(Counter counter: top10CatCounters) {
-			i++;
-			DisplayCounter dcounter=new DisplayCounter();
-			dcounter.setSnumber(i);
-			User nuser=userService.getUser(counter.getUid()).orElseThrow(null);
 
-			dcounter.setFullName(nuser.getFirstName() + " "+ nuser.getOtherNames());
-			percentage=(counter.getTotal()*100)/totals;
+		List<Counter> top10CatCounters = counterService.getTop10CatCounter(user.getCatid());
+		List<DisplayCounter> dcounters = new ArrayList<DisplayCounter>();
+		int i = 0;
+		int totals = 0;
+		int percentage = 0;
+		String[] colors = { "progress-bar-success", "progress-bar-info", "progress-bar-warning", "progress-bar-danger",
+				"progress-bar-success", "progress-bar-info", "progress-bar-warning", "progress-bar-danger",
+				"progress-bar-success", "progress-bar-info" };
+		for (Counter counter : top10CatCounters) {
+			totals += counter.getTotal();
+		}
+
+		for (Counter counter : top10CatCounters) {
+			i++;
+			DisplayCounter dcounter = new DisplayCounter();
+			dcounter.setSnumber(i);
+			User nuser = userService.getUser(counter.getUid()).orElseThrow(null);
+
+			dcounter.setFullName(nuser.getFirstName() + " " + nuser.getOtherNames());
+			percentage = (counter.getTotal() * 100) / totals;
 
 			dcounter.setPercentage(percentage);
-			dcounter.setColor(colors[i-1]);
-			
+			dcounter.setColor(colors[i - 1]);
+
 			dcounters.add(dcounter);
-				
+
 		}
-		
-		
-		
+
 		return dcounters;
 	}
+
 	@ModelAttribute("top10Counters")
 	private List<DisplayCounter> getTop10Counter() {
 
-		
-		List<Counter> top10Counters =counterService.getTop10Counter();
-		List <DisplayCounter> dcounters= new ArrayList<DisplayCounter>();
-		int i=0;
-		int totals=0;
-		int percentage=0;
-		String[] colors = {"progress-bar-success", "progress-bar-info", "progress-bar-warning", "progress-bar-danger","progress-bar-success", 
-				"progress-bar-info", "progress-bar-warning", "progress-bar-danger","progress-bar-success", "progress-bar-info"};
-		for(Counter counter: top10Counters) {
-			totals+=counter.getTotal();
+		List<Counter> top10Counters = counterService.getTop10Counter();
+		List<DisplayCounter> dcounters = new ArrayList<DisplayCounter>();
+		int i = 0;
+		int totals = 0;
+		int percentage = 0;
+		String[] colors = { "progress-bar-success", "progress-bar-info", "progress-bar-warning", "progress-bar-danger",
+				"progress-bar-success", "progress-bar-info", "progress-bar-warning", "progress-bar-danger",
+				"progress-bar-success", "progress-bar-info" };
+		for (Counter counter : top10Counters) {
+			totals += counter.getTotal();
 		}
-		
-		
-		for(Counter counter: top10Counters) {
+
+		for (Counter counter : top10Counters) {
 			i++;
-			DisplayCounter dcounter=new DisplayCounter();
+			DisplayCounter dcounter = new DisplayCounter();
 			dcounter.setSnumber(i);
-			User nuser=userService.getUser(counter.getUid()).orElseThrow(null);
-			Category category =categoryService.getCategory(nuser.getCatid()).orElseThrow(null);
-			dcounter.setFullName(nuser.getFirstName() + " "+ nuser.getOtherNames());
-			percentage=(counter.getTotal()*100)/totals;
+			User nuser = userService.getUser(counter.getUid()).orElseThrow(null);
+			Category category = categoryService.getCategory(nuser.getCatid()).orElseThrow(null);
+			dcounter.setFullName(nuser.getFirstName() + " " + nuser.getOtherNames());
+			percentage = (counter.getTotal() * 100) / totals;
 			dcounter.setCategory(category.getCatName());
 			dcounter.setPercentage(percentage);
-			dcounter.setColor(colors[i-1]);
-			
+			dcounter.setColor(colors[i - 1]);
+
 			dcounters.add(dcounter);
-			
+
 		}
-		
-		
-		
+
 		return dcounters;
 	}
-	
-	
-	
-	@ModelAttribute("catEvents")
+
+	@ModelAttribute("dcatEvents")
 	private List<Devent> getCatEvent() {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		User user = userService.findByEmail(authentication.getName());
-		
-		List<Event> events=eventService.getCatEvents(user.getCatid());
-		
-		List<Devent> devents= new ArrayList<Devent>();
-		
-		
-		for (Event event: events) {
-			Devent devent  = new Devent();
+
+		List<Event> events = eventService.getCatEvents(user.getCatid());
+
+		List<Devent> devents = new ArrayList<Devent>();
+
+		for (Event event : events) {
+			Devent devent = new Devent();
+			if(event.getEname()!=null) {
 			devent.setEname(event.getEname());
 			devent.setDescription(event.getDescription());
 			devent.setEventDate(event.getEventDate());
@@ -1007,80 +942,107 @@ public class HomeController {
 			devent.setImageLink(event.getImageLink());
 			devent.setNotGoing(event.getNotGoing());
 			devent.setUid(event.getUid());
-			User euser= userService.getUser(event.getUid()).orElseThrow(null);
-			devent.setByname(euser.getFirstName()+ " "+ euser.getOtherNames());
+			devent.setNoAnalysis(event.getNoAnalyis());
+						
+			User euser = userService.getUser(event.getUid()).orElseThrow(null);
+			devent.setByname(euser.getFirstName() + " " + euser.getOtherNames());
+
+			List<DisplayAnalysis> danalysiss = new ArrayList<DisplayAnalysis>();
+
+			List<Analysis> analysiss = analysisService.getAnalysissByEid(event.getId());
+			
+			for (Analysis analysis : analysiss) {
+				User user3 = userService.getUser(analysis.getUid()).orElseThrow(null);
+
+				DisplayAnalysis danalysis = new DisplayAnalysis();
+
+				danalysis.setFullName(user3.getFirstName() + " " + user3.getOtherNames());
+				danalysis.setaCreateDate(analysis.getCreateDate());
+				danalysis.setaDescription(analysis.getDescription());
+				danalysis.setaImageLink(user3.getImageLink());
+				danalysis.setaUid(analysis.getUid());
+
+				danalysiss.add(danalysis);
+
+			}
+			
+			
+			devent.setDanalysiss(danalysiss);
 			
 			devents.add(devent);
+			
+			
+			}
+			
 		}
 		
-		return devents;
 		
+
+		return devents;
+
 	}
+
 	@ModelAttribute("catJobadds")
 	private List<Jobadd> getCatJobs() {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		User user = userService.findByEmail(authentication.getName());
-		
-		List<Jobadd> catJobadds=jobaddService.getCatJobadd(user.getCatid());
-		
+
+		List<Jobadd> catJobadds = jobaddService.getCatJobadd(user.getCatid());
+
 		return catJobadds;
-		
+
 	}
+
 	@ModelAttribute("dmessages")
 	private List<Dmessage> getTopmessage() {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		User user = userService.findByEmail(authentication.getName());
-		List <Message> topmessages= messageService.getMessageWuid(user.getId());
-		
-		List<Dmessage> dmessages= new ArrayList<Dmessage>();
+		List<Message> topmessages = messageService.getMessageWuid(user.getId());
+
+		List<Dmessage> dmessages = new ArrayList<Dmessage>();
 		Dmessage dmessage = new Dmessage();
-		for(Message message: topmessages) {
-			
+		for (Message message : topmessages) {
+
 			dmessage.setDuid(message.getUid());
 			User muser = userService.getUser(message.getUid()).orElseThrow(null);
-			dmessage.setDfullName(muser.getFirstName()+ " "+muser.getOtherNames());
+			dmessage.setDfullName(muser.getFirstName() + " " + muser.getOtherNames());
 			dmessage.setDimageLink(muser.getImageLink());
 			dmessage.setDmdate(message.getMdate());
 			dmessage.setDmessage(message.getMessage());
-			
+
 			dmessages.add(dmessage);
-			
+
 		}
-		
+
 		return dmessages;
-		
+
 	}
-	
+
 	@ModelAttribute("cUsers")
 	private List<User> getCatUsers() {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		User user = userService.findByEmail(authentication.getName());
-	
-		List<User> cUsers=userService.getAllByCatid(user.getCatid());
-		
-		
+
+		List<User> cUsers = userService.getAllByCatid(user.getCatid());
+
 		return cUsers;
-		
+
 	}
+
 	@ModelAttribute("noCUsers")
 	private int getNoCatUsers() {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		User user = userService.findByEmail(authentication.getName());
-		
-		List<User> cUsers=userService.getAllByCatid(user.getCatid());
-		int noCUsers=0;
-		for(User cuser: cUsers) {
-			
+
+		List<User> cUsers = userService.getAllByCatid(user.getCatid());
+		int noCUsers = 0;
+		for (User cuser : cUsers) {
+
 			noCUsers++;
 		}
-			
-		
+
 		return noCUsers;
-		
+
 	}
-	
-	
-	
-	
 
 }

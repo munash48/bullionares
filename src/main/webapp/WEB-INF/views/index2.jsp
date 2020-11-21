@@ -716,6 +716,7 @@
 			</div>
 		</div>
 	</div>
+	
 	<div class="row">
 		<div class="modal fade" id="advertReview" role="dialog">
 			<div class="modal-dialog">
@@ -808,6 +809,8 @@
 
 
 								</ul>
+								
+								
 								<div class="box-body no-padding">
 									<div class="row">
 										<div class="col-md-12 col-sm-12">
@@ -908,101 +911,160 @@
 					<div class="modal-body">
 
 						<div class="box box-success">
-						<c:set var="count2" value="0" scope="page" />
+						<c:set var="count4" value="0" scope="page" />
 
-							<c:forEach items="${catEvents}" var="catEvent">
-								<c:if test="${not empty catEvent.ename}">
-									<a><h5>${catEvent.ename}</h5></a>
-									<p>
-									<h5>${catEvent.description}</h5>
-									
-									<h4>
-										<a href="/profile?wuid=${catEvent.uid}"> <span
+							<c:forEach items="${dcatEvents}" var="dcatEvent">
+							<c:if test="${not empty dcatEvent.ename}">
+							
+								<a><h5>${dcatEvent.ename}</h5></a>
+								<p>
+								<h5>${dcatEvent.description}</h5>
+								</p>
+								<h4>
+										<a href="/profile?wuid=${dcatEvent.uid}"> <span
 											class="label label-success pull-left"> By
-												${catEvent.byname}</span></a> <span
-											class="label label-success pull-right">${catEvent.eventDate}</span>
+												${dcatEvent.byname}</span></a> <span
+											class="label label-success pull-right">${dcatEvent.eventDate}</span>
 									</h4>
+								
 
 
-									<div class="product-img">
-										<c:if test="${catEvent.imageLink!=''}">
+								<div class="product-img">
+										<c:if test="${dcatEvent.imageLink!=''}">
 
 
 
 											<a
-												href="/uploads/${catEvent.uid}/events/${catEvent.imageLink}"><img
+												href="/uploads/${dcatEvent.uid}/events/${dcatEvent.imageLink}"><img
 												class="img-responsive"
-												src="/uploads/${catEvent.uid}/events/${catEvent.imageLink}"
+												src="/uploads/${dcatEvent.uid}/events/${dcatEvent.imageLink}"
 												alt="user image"> </a>
 
 										</c:if>
-										<c:if test="${catEvent.imageLink==''}">
+										<c:if test="${dcatEvent.imageLink==''}">
 											<img class="img-responsive" src="dist/img/default-50x50.gif"
 												alt="Product Image">
 
 										</c:if>
 
 									</div>
+
+								<ul class="list-inline">
+									<li>
 									
+									<a href="javascript:void(0);" onclick="countNotGoing('${user.id}','${dcatEvent.id}','${dcatEvent.uid}')">
+						
+						
+											<i class="fa fa-times fa-2x margin-r-5"></i> Not going
+					
+
+									</a>
+										
+
+									</li>
+
+									<li>
+									
+									
+									<a href="javascript:void(0);" onclick="countGoing('${user.id}','${dcatEvent.id}','${dcatEvent.uid}')">
+						
+						
+							<i class="fa fa-check fa-2x margin-r-5"></i> Going
+					
+
+					</a>
+					
+
+									</li>
+									
+									<li class="pull-right"><a href="javascript:void(0);"
+										class="link-black text-sm">Written Analysis
+											(${dcatEvent.noAnalysis})</a></li>
+									<li class="pull-right"><a href="javascript:void(0);"
+										class="link-black text-sm noGoing${dcatEvent.id}" > 
+											Going
+											(${dcatEvent.going})
+									</a></li>
+
+									<li class="pull-right"><a href="javascript:void(0);"
+										class="link-black text-sm  noNotGoing${dcatEvent.id}">Not Going
+											(${displayadd.notGoing})</a></li>
+
+
+								</ul>
+								
+								
+								<div class="box-body no-padding">
+									<div class="row">
+										<div class="col-md-12 col-sm-12">
+											<div class="pad">
+
+												
+													<c:forEach items="${dcatEvent.danalysiss}" var="danalysis">
+
+							<!-- the comments comme hear -->
+							<div class="direct-chat-msg">
+								<div class="direct-chat-info clearfix">
+									<span class="direct-chat-name pull-left">${danalysis.fullName }</span>
+									<span class="direct-chat-timestamp pull-right">
+										${danalysis.aCreateDate }</span>
+								</div>
+								<!-- /.direct-chat-info -->
+
+								<c:if test="${danalysis.aImageLink!=''}">
+									<img class="direct-chat-img"
+										src="/uploads/${danalysis.aUid}/profile/${danalysis.aImageLink}"
+										alt="message user image">
+
+								</c:if>
+								<c:if test="${danalysis.aImageLink==''}">
+									<img class="direct-chat-img" src="/dist/img/profile.jpg"
+										alt="message user image">
+
+								</c:if>
+
+								<!-- /.direct-chat-img -->
+								<div class="direct-chat-text">${danalysis.aDescription}</div>
+								<!-- /.direct-chat-text -->
+							</div>
 							
 
-									<ul class="list-inline">
-										<li>
-										
-										<a href="javascript:void(0);" onclick="countNotGoing('${user.id}','${catEvent.id}','${displayadd.uid}')">
-										<i class="fa fa-times fa-2x margin-r-5"></i> Not Going
-										</a>
-										
-										</li>
+						</c:forEach>
+						
+											
 
-										<li>
-										<a href="javascript:void(0);" onclick="countGoing('${user.id}','${catEvent.id}','${displayadd.uid}')">
-										<i class="fa fa-check fa-2x margin-r-5"></i> Going
-										</a>
-										</li>
-										<li class="pull-right"><a href="javascript:void(0);"
-											class="link-black text-sm">
-												Not Going
-												(${catEvent.notGoing})
-										</a></li>
-
-										<li class="pull-right"><a href="javascript:void(0);"
-											class="link-black text-sm">Going
-												(${catEvent.going})</a></li>
-
-
-									</ul>
-									
-								</c:if>
-								</div>
-								
-								<div class="row">
-								
-								<c:if test="${count2<=0}">
+										<c:if test="${count4<=0}">
 												<div class="box-footer">
-													<form action="/addReview" method="post" id="addReviewFrm">
+													<form action="/addAnalysis" method="post" id="addAnalyisFrm">
 
 														 <input type="hidden"
-															name="aid" value="${displayadd.id}" /><input
+															name="eid" value="${dcatEvent.id}" /><input
 															type="hidden" name="uid" value="${user.id}" />
 														<div class="input-group">
 															<input type="text" name="description"
-																placeholder="Write your Advert Review ... before another advert is added "
+																placeholder="Write your Event Review ... before another event is added "
 																class="form-control"> <span
 																class="input-group-btn">
 																<button type="submit" name="submit"
-																	class="btn btn-warning btn-flat">Event Analysis</button>
+																	class="btn btn-warning btn-flat">Add Analysis</button>
 															</span>
 														</div>
 													</form>
 												</div>
 												
 												</c:if>
-												
-									</div>	
-											
-							   <c:set var="count2" value="${count2 + 1}" scope="page"/>
 
+
+											</div>
+										</div>
+
+
+										<!-- /.col -->
+									</div>
+									<!-- /.row -->
+								</div>
+								<c:set var="count4" value="${count4 + 1}" scope="page"/>
+								</c:if>
 
 							</c:forEach>
 
@@ -1017,6 +1079,9 @@
 				</div>
 			</div>
 		</div>
+	</div>
+	
+
 
 	<div class="row">
 		<div class="modal fade" id="addJob" role="dialog">
@@ -1096,7 +1161,7 @@
 			</div>
 		</div>
 	</div>
-	
+
 	<div class="row">
 		<div class="modal fade" id="jobReview" role="dialog">
 			<div class="modal-dialog">
@@ -1113,7 +1178,7 @@
 					<div class="modal-body">
 
 						<div class="box box-success">
-						<c:set var="count3" value="0" scope="page" />
+						<c:set var="count4" value="0" scope="page" />
 
 							<c:forEach items="${catJobadds}" var="catJobadd">
 								<c:if test="${not empty catJobadd.jobTitle}">
@@ -1180,11 +1245,15 @@
 									</ul>
 									
 								</c:if>
+								</div>
+								
+								<p>
 								
 								
-								<div class="row">
 								
-								<c:if test="${count3<=0}">
+								<c:if test="${count4<=0}">
+								<div class="form-group has-feedback">
+								
 												<div class="box-footer">
 													<form action="/addReview" method="post" id="addReviewFrm">
 
@@ -1193,21 +1262,28 @@
 															type="hidden" name="uid" value="${user.id}" />
 														<div class="input-group">
 															<input type="text" name="description"
-																placeholder="Write your Job Review ... before another Job is added "
+																placeholder="Write your Advert Review ... before another advert is added "
 																class="form-control"> <span
 																class="input-group-btn">
 																<button type="submit" name="submit"
-																	class="btn btn-warning btn-flat">Add Job Review</button>
+																	class="btn btn-warning btn-flat">Event Analysis</button>
 															</span>
 														</div>
 													</form>
 												</div>
+												</div>
 												
 												</c:if>
 												
-									</div>	
+										
+								
+								
+								
+								
+												
+									
 											
-							   <c:set var="count3" value="${count3 + 1}" scope="page"/>
+							   <c:set var="count4" value="${count4 + 1}" scope="page"/>
 
 
 							</c:forEach>
@@ -1218,7 +1294,7 @@
 				</div>
 		</div>
 	</div>
-	</div>
+
 
 
 	<div class="row">

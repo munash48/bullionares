@@ -22,21 +22,20 @@ public class Event {
 	@Column(name="event_date")
 	private LocalDate eventDate;
 	private int going;
+	@Column(name="no_analysis")
+	private int noAnalyis;
 	@Column(name="not_going")
 	private int notGoing;
 	private boolean enabled=true;
-	
-	
-	
 	
 	
 	public Event() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
+	
 	public Event(int id, int uid, int cid, String ename, String description, String imageLink, LocalDate eventDate,
-			int going, int notGoing, boolean enabled) {
+			int going, int noAnalyis, int notGoing, boolean enabled) {
 		super();
 		this.id = id;
 		this.uid = uid;
@@ -46,16 +45,18 @@ public class Event {
 		this.imageLink = imageLink;
 		this.eventDate = eventDate;
 		this.going = going;
+		this.noAnalyis = noAnalyis;
 		this.notGoing = notGoing;
 		this.enabled = enabled;
 	}
-
+	
 	@Override
 	public String toString() {
 		return "Event [id=" + id + ", uid=" + uid + ", cid=" + cid + ", ename=" + ename + ", description=" + description
-				+ ", imageLink=" + imageLink + ", eventDate=" + eventDate + ", going=" + going + ", notGoing="
-				+ notGoing + ", enabled=" + enabled + "]";
+				+ ", imageLink=" + imageLink + ", eventDate=" + eventDate + ", going=" + going + ", noAnalyis="
+				+ noAnalyis + ", notGoing=" + notGoing + ", enabled=" + enabled + "]";
 	}
+
 	public int getId() {
 		return id;
 	}
@@ -124,9 +125,14 @@ public class Event {
 	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
 	}
-	
-	
-	
+
+	public int getNoAnalyis() {
+		return noAnalyis;
+	}
+
+	public void setNoAnalyis(int noAnalyis) {
+		this.noAnalyis = noAnalyis;
+	}
 	
 
 }

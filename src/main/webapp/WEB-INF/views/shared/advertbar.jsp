@@ -82,7 +82,7 @@
 		<!-- /.box-header -->
 		<div class="box-body">
 			<div class="row">
-				<c:forEach items="${catEvents}" var="catEvent">
+				<c:forEach items="${dcatEvents}" var="catEvent">
 			   <c:if test="${not empty catEvent.ename}">
 				<div class="info-box bg-green info-box-left">
 					<span class="info-box-icon"><i

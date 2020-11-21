@@ -1,6 +1,7 @@
 package com.kalimagezi.billionareskb.home;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class Devent {
 	
@@ -13,12 +14,18 @@ public class Devent {
 	private LocalDate eventDate;
 	private int going;
 	private int notGoing;
+	private int noAnalysis;
+	
+	private List<DisplayAnalysis> danalysiss;
+	
 	public Devent() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
+
 	public Devent(int id, int uid, String ename, String byname, String description, String imageLink,
-			LocalDate eventDate, int going, int notGoing) {
+			LocalDate eventDate, int going, int notGoing, int noAnalysis, List<DisplayAnalysis> danalysiss) {
 		super();
 		this.id = id;
 		this.uid = uid;
@@ -29,12 +36,16 @@ public class Devent {
 		this.eventDate = eventDate;
 		this.going = going;
 		this.notGoing = notGoing;
+		this.noAnalysis = noAnalysis;
+		this.danalysiss = danalysiss;
 	}
+
+
 	@Override
 	public String toString() {
 		return "Devent [id=" + id + ", uid=" + uid + ", ename=" + ename + ", byname=" + byname + ", description="
 				+ description + ", imageLink=" + imageLink + ", eventDate=" + eventDate + ", going=" + going
-				+ ", notGoing=" + notGoing + "]";
+				+ ", notGoing=" + notGoing + ", noAnalysis=" + noAnalysis + ", danalysiss=" + danalysiss + "]";
 	}
 	public int getId() {
 		return id;
@@ -90,6 +101,26 @@ public class Devent {
 	public void setNotGoing(int notGoing) {
 		this.notGoing = notGoing;
 	}
+
+	public List<DisplayAnalysis> getDanalysiss() {
+		return danalysiss;
+	}
+
+	public void setDanalysiss(List<DisplayAnalysis> danalysiss) {
+		this.danalysiss = danalysiss;
+	}
+
+
+	public int getNoAnalysis() {
+		return noAnalysis;
+	}
+
+
+	public void setNoAnalysis(int noAnalysis) {
+		this.noAnalysis = noAnalysis;
+	}
+	
+	
 	
 	
 
