@@ -295,6 +295,7 @@ $(function() {
 			success: function(data){
 				
 				alert(data.message);
+				$(".noOpinions"+data.id).html(data.newOpinion);
 				getPage("/mainpost");
 				
 			},
@@ -322,7 +323,41 @@ $(function() {
 			success: function(data){
 				
 				alert(data.message);
-				getPage("/mainpost");
+				$(".noReview"+data.id).html(data.newReview);
+				$(".realtimeReview").show();
+				$(".thisreview").html(data.review);
+				document.getElementById("addReviewFrm").reset();
+				
+			},
+			error:function(response){
+				
+				alert("ALERT! Fill all fields");
+				
+			}
+		} );
+		e.preventDefault();
+		
+		
+	} );
+	$('#addAnalyisFrm')
+	.submit( function( e ) {
+		var frm = $("#addAnalyisFrm");
+		
+		alert("Submitting by jquery");
+		$.ajax( {
+			url:frm.attr("action"),
+			type:frm.attr("method"),
+			data: new FormData( this ),
+			processData: false,
+			contentType: false,
+			success: function(data){
+				
+				alert(data.message);
+				$(".noAnalysis"+data.id).html(data.newAnaysis);
+				$(".realtimeAnalysis").show();
+				$(".thisanalysis").html(data.analysis);
+				document.getElementById("addAnalyisFrm").reset();
+			
 				
 			},
 			error:function(response){

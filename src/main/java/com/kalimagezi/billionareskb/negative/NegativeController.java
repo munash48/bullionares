@@ -45,7 +45,7 @@ public class NegativeController {
 		negative.setAid(adid);
 		negative.setUid(uid);
 		Counter counter =counterService.getUCounter(aduid);
-		counter.setNoVotes(counter.getNoVotes()-1);
+		counter.setNoVotes(counter.getNoReports()+1);
 		
 		
 		for(Negative unegative: unegatives) {

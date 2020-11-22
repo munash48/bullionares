@@ -40,7 +40,7 @@ public class ReviewController {
 			if (uid == areview.getUid()) {
 				
 				try {
-					jsonObject.put("message", "You have already crossed this advert");
+					jsonObject.put("message", "You already reviewed this advert");
 				} catch (JSONException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -69,7 +69,9 @@ public class ReviewController {
 			advertService.addAdvert(advert);
 			try {
 				jsonObject.put("message", "You have added a written review ");
-				jsonObject.put("newNegative",  "Negatives ("+advert.getNoNegatives()+")");
+				jsonObject.put("newReview",  "Reviews ("+advert.getNoReviews()+")");
+				jsonObject.put("id", advert.getId());
+				jsonObject.put("review", review.getDescription());
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

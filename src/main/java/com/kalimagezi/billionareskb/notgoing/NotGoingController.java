@@ -2,11 +2,15 @@ package com.kalimagezi.billionareskb.notgoing;
 
 import java.util.List;
 
+import org.codehaus.jettison.json.JSONException;
+import org.codehaus.jettison.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kalimagezi.billionareskb.counter.Counter;
 import com.kalimagezi.billionareskb.counter.CounterService;
@@ -23,10 +27,11 @@ public class NotGoingController {
 	@Autowired
 	private CounterService counterService;
 
-	@RequestMapping(value = "/home/addNotGoing", method = RequestMethod.POST)
-	public String createOpinion(@RequestParam("eid") Integer eid, @RequestParam("uid") int uid
+	@RequestMapping(value = "/addNotGoing", method = RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody String createOpinion(@RequestParam("eid") Integer eid, @RequestParam("uid") int uid, @RequestParam("euid") int euid
 
 	) {
+		JSONObject jsonObject = new JSONObject();
 
 		List<NotGoing> unotgoings = notGoingService.getAllNotGoingsByEid(eid);
 
@@ -37,23 +42,38 @@ public class NotGoingController {
 		notGoing.setEid(eid);
 		notGoing.setUid(uid);
 
-		Counter counter = counterService.getUCounter(event.getUid());
-		counter.setNoReports(counter.getNoReports()+1);
+		Counter counter2 = counterService.getUCounter(euid);
+		counter2.setNoReports(counter2.getNoReports()+1);
 
 		for (NotGoing unotgoing : unotgoings) {
 
 			if (notGoing.getUid() == unotgoing.getUid()) {
+				
+				try {
+					jsonObject.put("message", "You already made a Not-Going decision ");
+				} catch (JSONException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 
-				return "redirect:/home?notGoingFailed=failed";
+				return jsonObject.toString();
 
 			}
 		}
 
 		notGoingService.addNotGoing(notGoing);
-
 		eventService.addEvent(event);
+		counterService.addCounter(counter2);
+		
+		try {
+			jsonObject.put("message", "Your Not-Going decision is counted.");
+			jsonObject.put("newNotGoing",  "Not Going ("+event.getNotGoing()+")");
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
-		return "redirect:/home?notGoingAdded=success";
+		return jsonObject.toString();
 
 	}
 

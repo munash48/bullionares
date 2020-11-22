@@ -795,7 +795,7 @@
 									</li>
 									
 									<li class="pull-right"><a href="javascript:void(0);"
-										class="link-black text-sm">Written Reviews
+										class="link-black text-sm noReview${displayadd.id}">Reviews
 											(${displayadd.noReviews})</a></li>
 									<li class="pull-right"><a href="javascript:void(0);"
 										class="link-black text-sm noPositive${displayadd.id}" > 
@@ -815,6 +815,20 @@
 									<div class="row">
 										<div class="col-md-12 col-sm-12">
 											<div class="pad">
+											<div class="direct-chat-msg realtimeReview" style="display:none" >
+											
+											<div class="direct-chat-info clearfix">
+									<span class="direct-chat-name pull-left">${user.firstName} ${user.otherNames}</span>
+									<span class="direct-chat-timestamp pull-right">
+										Right Now</span>
+								</div>
+								
+								<img class="direct-chat-img"
+										src="/uploads/${user.id}/profile/${user.imageLink}"
+										alt="message user image">
+											
+											<div class="direct-chat-text thisreview"></div>
+											</div>
 
 												
 													<c:forEach items="${displayadd.reviews}" var="dreview">
@@ -977,9 +991,7 @@
 
 									</li>
 									
-									<li class="pull-right"><a href="javascript:void(0);"
-										class="link-black text-sm">Written Analysis
-											(${dcatEvent.noAnalysis})</a></li>
+									
 									<li class="pull-right"><a href="javascript:void(0);"
 										class="link-black text-sm noGoing${dcatEvent.id}" > 
 											Going
@@ -988,7 +1000,11 @@
 
 									<li class="pull-right"><a href="javascript:void(0);"
 										class="link-black text-sm  noNotGoing${dcatEvent.id}">Not Going
-											(${displayadd.notGoing})</a></li>
+											(${dcatEvent.notGoing})</a></li>
+											
+									<li class="pull-right"><a href="javascript:void(0);"
+										class="link-black text-sm noAnalysis${dcatEvent.id}">Analysis
+											(${dcatEvent.noAnalysis})</a></li>
 
 
 								</ul>

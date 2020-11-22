@@ -51,6 +51,9 @@ public class OpinionController {
 		opinionService.addOpinion(opinion);
 		try {
 			jsonObject.put("message", "Opinion  " +opinion.getAid() +" Created  successfully.");
+			jsonObject.put("newOpinion",  "Analysis ("+article.getNoOpinions()+")");
+			jsonObject.put("id", article.getId());
+			
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

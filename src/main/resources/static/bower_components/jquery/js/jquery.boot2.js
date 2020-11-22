@@ -111,6 +111,36 @@
 	 });
 	 
  }
+ function countGoing(uid,eid,euid){	
+	 
+	 
+	 $.ajax({
+		 type: "GET",
+		 url: "/addGoing?uid="+uid+"&eid="+eid+"&euid="+euid,
+		 success: function(data){
+			 
+			 alert(data.message);
+			 $(".noGoing"+eid).html(data.newGoing);
+		 }
+	 
+	 });
+	 
+ }
+ function countNotGoing(uid,eid,euid){	
+	 
+	 
+	 $.ajax({
+		 type: "GET",
+		 url: "/addNotGoing?uid="+uid+"&eid="+eid+"&euid="+euid,
+		 success: function(data){
+			 
+			 alert(data.message);
+			 $(".noNotGoing"+eid).html(data.newNotGoing);
+		 }
+	 
+	 });
+	 
+ }
  
  
  

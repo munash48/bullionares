@@ -16,6 +16,8 @@ import com.kalimagezi.billionareskb.counter.Counter;
 import com.kalimagezi.billionareskb.counter.CounterService;
 import com.kalimagezi.billionareskb.event.Event;
 import com.kalimagezi.billionareskb.event.EventService;
+import com.kalimagezi.billionareskb.user.User;
+import com.kalimagezi.billionareskb.user.UserService;
 import com.kalimagezi.billionareskb.analysis.Analysis;
 import com.kalimagezi.billionareskb.analysis.AnalysisService;
 
@@ -28,9 +30,11 @@ public class AnalysisController {
 	private EventService eventService;
 	@Autowired
 	private CounterService counterService;
+	@Autowired
+	private UserService userService;
 
 	@RequestMapping(value = "/addAnalysis", method = RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody String createOpinion(@RequestParam("eid") Integer eid, @RequestParam("description") String description,
+	public @ResponseBody String createAnalysis(@RequestParam("eid") Integer eid, @RequestParam("description") String description,
 			@RequestParam("uid") int uid
 
 	) {
@@ -53,26 +57,31 @@ public class AnalysisController {
 
 			}
 		}
+		
 		Analysis analysis = new Analysis();
 
 		if (description != "") {
+		
 
 			
 
 			analysis.setDescription(description);
 			analysis.setEid(eid);
-			analysis.setUid(uid);
+			analysis.setUid(uid);			
 			Counter counter = counterService.getUCounter(uid);
-			counter.setNoVotes(counter.getNoVotes() + 1);
+			counter.setNoOpinions(counter.getNoOpinions()+1);
 
 			Event event = eventService.getEvent(eid).orElseThrow(null);
 			event.setNoAnalyis(event.getNoAnalyis()+1);
+			Counter eCounter=counterService.getUCounter(event.getUid());
+			eCounter.setNoOpinions(counter.getNoOpinions()+1);
 			analysisService.addAnalysis(analysis);
 
 			eventService.addEvent(event);
 			try {
 				jsonObject.put("message", "You have added a written analysis ");
-				jsonObject.put("newNegative",  "Negatives ("+event.getNoAnalyis()+")");
+				jsonObject.put("newAnaysis",  "Analysis ("+event.getNoAnalyis()+")");
+				jsonObject.put("id", event.getId());
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
