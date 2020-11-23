@@ -17,10 +17,12 @@ public class Jobadd {
 	private int id;
 	private int cid;
 	private int uid;
-	@Column(name="comp_id")	
-	private int compId;
 	@Column(name="job_title")
 	private String jobTitle;
+	@Column(name="comp_name")
+	private String compName;
+	@Column(name="comp_web")
+	private String compWeb;
 	@Column(name="job_category")
 	private String jobCategory;
 	private String salary;
@@ -36,6 +38,8 @@ public class Jobadd {
 	private int recomended;
 	@Column(name="not_recomended")
 	private int notRecomended;
+	@Column(name="no_recomends")
+	private int noRecomends;
 	private boolean enabled=true;
 	
 	
@@ -49,15 +53,17 @@ public class Jobadd {
 
 
 
-	public Jobadd(int id, int cid, int uid, int compId, String jobTitle, String jobCategory, String salary,
-			String description, String imageLink, int noPositions, Date addDate, LocalDate deadline, int recomended,
-			int notRecomended, boolean enabled) {
+
+	public Jobadd(int id, int cid, int uid, String jobTitle, String compName, String compWeb, String jobCategory,
+			String salary, String description, String imageLink, int noPositions, Date addDate, LocalDate deadline,
+			int recomended, int notRecomended, int noRecomends, boolean enabled) {
 		super();
 		this.id = id;
 		this.cid = cid;
 		this.uid = uid;
-		this.compId = compId;
 		this.jobTitle = jobTitle;
+		this.compName = compName;
+		this.compWeb = compWeb;
 		this.jobCategory = jobCategory;
 		this.salary = salary;
 		this.description = description;
@@ -67,18 +73,20 @@ public class Jobadd {
 		this.deadline = deadline;
 		this.recomended = recomended;
 		this.notRecomended = notRecomended;
+		this.noRecomends = noRecomends;
 		this.enabled = enabled;
 	}
 
 
 
+
 	@Override
 	public String toString() {
-		return "Jobadd [id=" + id + ", cid=" + cid + ", uid=" + uid + ", compId=" + compId + ", jobTitle=" + jobTitle
-				+ ", jobCategory=" + jobCategory + ", salary=" + salary + ", description=" + description
-				+ ", imageLink=" + imageLink + ", noPositions=" + noPositions + ", addDate=" + addDate + ", deadline="
-				+ deadline + ", recomended=" + recomended + ", notRecomended=" + notRecomended + ", enabled=" + enabled
-				+ "]";
+		return "Jobadd [id=" + id + ", cid=" + cid + ", uid=" + uid + ", jobTitle=" + jobTitle + ", compName="
+				+ compName + ", compWeb=" + compWeb + ", jobCategory=" + jobCategory + ", salary=" + salary
+				+ ", description=" + description + ", imageLink=" + imageLink + ", noPositions=" + noPositions
+				+ ", addDate=" + addDate + ", deadline=" + deadline + ", recomended=" + recomended + ", notRecomended="
+				+ notRecomended + ", noRecomends=" + noRecomends + ", enabled=" + enabled + "]";
 	}
 	public int getRecomended() {
 		return recomended;
@@ -130,13 +138,9 @@ public class Jobadd {
 		this.noPositions = noPositions;
 	}
 
-
-
 	public void setNotRecomended(int notRecomended) {
 		this.notRecomended = notRecomended;
 	}
-
-
 
 	public int getId() {
 		return id;
@@ -144,13 +148,25 @@ public class Jobadd {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public int getCompId() {
-		return compId;
-	}
-	public void setCompId(int compId) {
-		this.compId = compId;
-	}
 	
+	public String getCompName() {
+		return compName;
+	}
+
+	public void setCompName(String compName) {
+		this.compName = compName;
+	}
+
+	public String getCompWeb() {
+		return compWeb;
+	}
+
+
+	public void setCompWeb(String compWeb) {
+		this.compWeb = compWeb;
+	}
+
+
 	public int getCid() {
 		return cid;
 	}
@@ -203,5 +219,20 @@ public class Jobadd {
 	public void setImageLink(String imageLink) {
 		this.imageLink = imageLink;
 	}
+
+
+
+
+	public int getNoRecomends() {
+		return noRecomends;
+	}
+
+
+
+
+	public void setNoRecomends(int noRecomends) {
+		this.noRecomends = noRecomends;
+	}
+	
 	
 }

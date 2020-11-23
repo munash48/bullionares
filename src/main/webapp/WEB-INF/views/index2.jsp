@@ -1014,6 +1014,19 @@
 									<div class="row">
 										<div class="col-md-12 col-sm-12">
 											<div class="pad">
+											
+											<div class="direct-chat-msg realtimeAnalysis"  style="display:none">
+								<div class="direct-chat-info clearfix">
+									<span class="direct-chat-name pull-left">${user.firstName} ${user.otherNames}</span>
+									<span class="direct-chat-timestamp pull-right">
+										Right Now</span>
+								</div>
+								<img class="direct-chat-img"
+										src="/uploads/${user.id}/profile/${user.imageLink}"
+										alt="message user image">
+								
+								<div class="direct-chat-text thisanalysis"></div>
+								</div>
 
 												
 													<c:forEach items="${dcatEvent.danalysiss}" var="danalysis">
@@ -1131,6 +1144,16 @@
 									class="glyphicon glyphicon-align-justify form-control-feedback"></span>
 							</div>
 							<div class="form-group has-feedback">
+								<input type="text" class="form-control" name="compName"
+									id="compName" placeholder="Company Name" /> <span
+									class="glyphicon glyphicon-align-justify form-control-feedback"></span>
+							</div>
+							<div class="form-group has-feedback">
+								<input type="text" class="form-control" name="compWeb"
+									id="compWeb" placeholder="Company Website" /> <span
+									class="glyphicon glyphicon-align-justify form-control-feedback"></span>
+							</div>
+							<div class="form-group has-feedback">
 								<input type="text" class="form-control" name="description"
 									id="description" placeholder="Description" /> <span
 									class="glyphicon glyphicon-align-justify form-control-feedback"></span>
@@ -1177,9 +1200,211 @@
 			</div>
 		</div>
 	</div>
+	
+	
+		<div class="row">
+		<div class="modal fade" id="jobReview" role="dialog">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">
+							<span>&times;</span>
+						</button>
+						<h4 class="modal-title">Review Events Dialog box</h4>
+
+					</div>
+
+
+					<div class="modal-body">
+
+						<div class="box box-success">
+						<c:set var="count4" value="0" scope="page" />
+
+							<c:forEach items="${dcatEvents}" var="dcatEvent">
+							<c:if test="${not empty dcatEvent.ename}">
+							
+								<a><h5>${dcatEvent.ename}</h5></a>
+								<p>
+								<h5>${dcatEvent.description}</h5>
+								</p>
+								<h4>
+										<a href="/profile?wuid=${dcatEvent.uid}"> <span
+											class="label label-success pull-left"> By
+												${dcatEvent.byname}</span></a> <span
+											class="label label-success pull-right">${dcatEvent.eventDate}</span>
+									</h4>
+								
+
+
+								<div class="product-img">
+										<c:if test="${dcatEvent.imageLink!=''}">
+
+
+
+											<a
+												href="/uploads/${dcatEvent.uid}/events/${dcatEvent.imageLink}"><img
+												class="img-responsive"
+												src="/uploads/${dcatEvent.uid}/events/${dcatEvent.imageLink}"
+												alt="user image"> </a>
+
+										</c:if>
+										<c:if test="${dcatEvent.imageLink==''}">
+											<img class="img-responsive" src="dist/img/default-50x50.gif"
+												alt="Product Image">
+
+										</c:if>
+
+									</div>
+
+								<ul class="list-inline">
+									<li>
+									
+									<a href="javascript:void(0);" onclick="countNotGoing('${user.id}','${dcatEvent.id}','${dcatEvent.uid}')">
+						
+						
+											<i class="fa fa-times fa-2x margin-r-5"></i> Not going
+					
+
+									</a>
+										
+
+									</li>
+
+									<li>
+									
+									
+									<a href="javascript:void(0);" onclick="countGoing('${user.id}','${dcatEvent.id}','${dcatEvent.uid}')">
+						
+						
+							<i class="fa fa-check fa-2x margin-r-5"></i> Going
+					
+
+					</a>
+					
+
+									</li>
+									
+									
+									<li class="pull-right"><a href="javascript:void(0);"
+										class="link-black text-sm noGoing${dcatEvent.id}" > 
+											Going
+											(${dcatEvent.going})
+									</a></li>
+
+									<li class="pull-right"><a href="javascript:void(0);"
+										class="link-black text-sm  noNotGoing${dcatEvent.id}">Not Going
+											(${dcatEvent.notGoing})</a></li>
+											
+									<li class="pull-right"><a href="javascript:void(0);"
+										class="link-black text-sm noAnalysis${dcatEvent.id}">Analysis
+											(${dcatEvent.noAnalysis})</a></li>
+
+
+								</ul>
+								
+								
+								<div class="box-body no-padding">
+									<div class="row">
+										<div class="col-md-12 col-sm-12">
+											<div class="pad">
+											
+											<div class="direct-chat-msg realtimeAnalysis"  style="display:none">
+								<div class="direct-chat-info clearfix">
+									<span class="direct-chat-name pull-left">${user.firstName} ${user.otherNames}</span>
+									<span class="direct-chat-timestamp pull-right">
+										Right Now</span>
+								</div>
+								<img class="direct-chat-img"
+										src="/uploads/${user.id}/profile/${user.imageLink}"
+										alt="message user image">
+								
+								<div class="direct-chat-text thisanalysis"></div>
+								</div>
+
+												
+													<c:forEach items="${dcatEvent.danalysiss}" var="danalysis">
+
+							<!-- the comments comme hear -->
+							<div class="direct-chat-msg">
+								<div class="direct-chat-info clearfix">
+									<span class="direct-chat-name pull-left">${danalysis.fullName }</span>
+									<span class="direct-chat-timestamp pull-right">
+										${danalysis.aCreateDate }</span>
+								</div>
+								<!-- /.direct-chat-info -->
+
+								<c:if test="${danalysis.aImageLink!=''}">
+									<img class="direct-chat-img"
+										src="/uploads/${danalysis.aUid}/profile/${danalysis.aImageLink}"
+										alt="message user image">
+
+								</c:if>
+								<c:if test="${danalysis.aImageLink==''}">
+									<img class="direct-chat-img" src="/dist/img/profile.jpg"
+										alt="message user image">
+
+								</c:if>
+
+								<!-- /.direct-chat-img -->
+								<div class="direct-chat-text">${danalysis.aDescription}</div>
+								<!-- /.direct-chat-text -->
+							</div>
+							
+
+						</c:forEach>
+						
+											
+
+										<c:if test="${count4<=0}">
+												<div class="box-footer">
+													<form action="/addAnalysis" method="post" id="addAnalyisFrm">
+
+														 <input type="hidden"
+															name="jaid" value="${dcatEvent.id}" /><input
+															type="hidden" name="uid" value="${user.id}" />
+														<div class="input-group">
+															<input type="text" name="description"
+																placeholder="Write your Event Review ... before another event is added "
+																class="form-control"> <span
+																class="input-group-btn">
+																<button type="submit" name="submit"
+																	class="btn btn-warning btn-flat">Add Analysis</button>
+															</span>
+														</div>
+													</form>
+												</div>
+												
+												</c:if>
+
+
+											</div>
+										</div>
+
+
+										<!-- /.col -->
+									</div>
+									<!-- /.row -->
+								</div>
+								<c:set var="count4" value="${count4 + 1}" scope="page"/>
+								</c:if>
+
+							</c:forEach>
+
+
+						</div>
+
+
+						<!--modal form-->
+
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 
 	<div class="row">
-		<div class="modal fade" id="jobReview" role="dialog">
+		<div class="modal fade" id="jobReview2" role="dialog">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
@@ -1194,6 +1419,7 @@
 					<div class="modal-body">
 
 						<div class="box box-success">
+						
 						<c:set var="count4" value="0" scope="page" />
 
 							<c:forEach items="${catJobadds}" var="catJobadd">
@@ -1249,12 +1475,15 @@
 										</li>
 										
 										<li class="pull-right"><a href="javascript:void(0);" 
- 											class="link-black text-sm"> Recomended 
+ 											class="link-black text-sm"> Recommended 
  												(${catJobadd.recomended}) 
  										</a></li> 
 
 										<li class="pull-right"><a href="javascript:void(0);" 
- 											class="link-black text-sm">Not Recomemded
+ 											class="link-black text-sm">Not Recommended
+ 												(${catJobadd.notRecomended})</a></li> 
+										<li class="pull-right"><a href="javascript:void(0);" 
+ 											class="link-black text-sm">Recommendations
  												(${catJobadd.notRecomended})</a></li> 
 
 
@@ -1282,7 +1511,7 @@
 																class="form-control"> <span
 																class="input-group-btn">
 																<button type="submit" name="submit"
-																	class="btn btn-warning btn-flat">Event Analysis</button>
+																	class="btn btn-warning btn-flat">Job Analysis</button>
 															</span>
 														</div>
 													</form>
@@ -1291,13 +1520,7 @@
 												
 												</c:if>
 												
-										
-								
-								
-								
-								
-												
-									
+															
 											
 							   <c:set var="count4" value="${count4 + 1}" scope="page"/>
 

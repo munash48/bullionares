@@ -47,7 +47,7 @@ public class AnalysisController {
 			if (uid == aanalysis.getUid()) {
 				
 				try {
-					jsonObject.put("message", "You have already crossed this advert");
+					jsonObject.put("message", "You already analysed this Event");
 				} catch (JSONException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -82,6 +82,7 @@ public class AnalysisController {
 				jsonObject.put("message", "You have added a written analysis ");
 				jsonObject.put("newAnaysis",  "Analysis ("+event.getNoAnalyis()+")");
 				jsonObject.put("id", event.getId());
+				jsonObject.put("analysis", event.getDescription());
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

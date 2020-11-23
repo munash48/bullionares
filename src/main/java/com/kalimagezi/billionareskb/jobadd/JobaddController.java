@@ -48,8 +48,9 @@ public static String uploadDirectory=System.getProperty("user.dir")+"/src/main/w
 	@RequestMapping(value="/addJobadd", method = RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody String updadeUser ( @RequestParam("uid") Integer uid, 
 			@RequestParam("catid") Integer cid, 
-			@RequestParam("compid") Integer compId, 
 			@RequestParam("title") String jobTitle,
+			@RequestParam("compName") String compName,
+			@RequestParam("compWeb") String compWeb,
 			@RequestParam("jobCategory") String jobCategory,
 			@RequestParam("description") String description,
 			@RequestParam("noPositions") Integer noPositions,
@@ -80,8 +81,9 @@ public static String uploadDirectory=System.getProperty("user.dir")+"/src/main/w
 	    
 		jobadd.setCid(cid);
 		jobadd.setUid(uid);
-		jobadd.setCompId(compId);
 		jobadd.setJobTitle(jobTitle);
+		jobadd.setJobTitle(compName);
+		jobadd.setJobTitle(compWeb);
 		jobadd.setJobCategory(jobCategory);
 		jobadd.setSalary(salary);
 		jobadd.setDescription(description);
