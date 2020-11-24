@@ -1,5 +1,6 @@
 package com.kalimagezi.billionareskb.home;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -20,6 +21,7 @@ public class DisplayJobAdd {
 	private String salary;
 	private int noPositions;
 	private Date addDate;
+	private LocalDate deadline;
 	private int noRecom;
 	private int noNotRecom;
 	private int noRecomendations;
@@ -32,9 +34,13 @@ public class DisplayJobAdd {
 	}
 
 
+
+
+
+
 	public DisplayJobAdd(int jaid, int jauid, String compName, String adByName, String compWeb, String jobTitle,
 			String description, String imageLink, String jobCategory, String salary, int noPositions, Date addDate,
-			int noRecom, int noNotRecom, int noRecomendations, List<DisplayWrittenReco> dwRecos) {
+			LocalDate deadline, int noRecom, int noNotRecom, int noRecomendations, List<DisplayWrittenReco> dwRecos) {
 		super();
 		this.jaid = jaid;
 		this.jauid = jauid;
@@ -48,6 +54,7 @@ public class DisplayJobAdd {
 		this.salary = salary;
 		this.noPositions = noPositions;
 		this.addDate = addDate;
+		this.deadline = deadline;
 		this.noRecom = noRecom;
 		this.noNotRecom = noNotRecom;
 		this.noRecomendations = noRecomendations;
@@ -55,13 +62,17 @@ public class DisplayJobAdd {
 	}
 
 
+
+
+
+
 	@Override
 	public String toString() {
 		return "DisplayJobAdd [jaid=" + jaid + ", jauid=" + jauid + ", compName=" + compName + ", adByName=" + adByName
 				+ ", compWeb=" + compWeb + ", jobTitle=" + jobTitle + ", description=" + description + ", imageLink="
 				+ imageLink + ", jobCategory=" + jobCategory + ", salary=" + salary + ", noPositions=" + noPositions
-				+ ", addDate=" + addDate + ", noRecom=" + noRecom + ", noNotRecom=" + noNotRecom + ", noRecomendations="
-				+ noRecomendations + ", dwRecos=" + dwRecos + "]";
+				+ ", addDate=" + addDate + ", deadline=" + deadline + ", noRecom=" + noRecom + ", noNotRecom="
+				+ noNotRecom + ", noRecomendations=" + noRecomendations + ", dwRecos=" + dwRecos + "]";
 	}
 
 
@@ -223,6 +234,22 @@ public class DisplayJobAdd {
 	public void setDwRecos(List<DisplayWrittenReco> dwRecos) {
 		this.dwRecos = dwRecos;
 	}
+
+
+
+
+	public LocalDate getDeadline() {
+		return deadline;
+	}
+
+
+
+
+	public void setDeadline(LocalDate localDate) {
+		this.deadline = localDate;
+	}
+	
+	
 
 	
 

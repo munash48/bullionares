@@ -139,7 +139,7 @@
 		
 		
 			<div class="row">
-			<c:forEach items="${catJobadds}" var="catJobadd">
+			<c:forEach items="${dcatJobadds}" var="catJobadd">
 			 <c:if test="${not empty catJobadd.jobTitle}">
 			
 				<div class="info-box bg-yellow info-box-left">
@@ -151,9 +151,9 @@
 							class="info-box-number">${catJobadd.jobCategory}  ${catJobadd.salary} ugx</span>
 
 						<div class="progress">
-							<div class="progress-bar" style="width: ${(catJobadd.recomended/noCUsers)*100}%"></div>
+							<div class="progress-bar" style="width: ${(catJobadd.noRecom/noCUsers)*100}%"></div>
 						</div>
-						<span class="progress-description"> (${(catJobadd.recomended/noCUsers)*100} % recommended)
+						<span class="progress-description"> (${(catJobadd.noRecom/noCUsers)*100} % recommended)
 						</span>
 					</div>
 					<!-- /.info-box-content -->

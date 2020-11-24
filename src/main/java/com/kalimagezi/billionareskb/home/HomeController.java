@@ -44,6 +44,8 @@ import com.kalimagezi.billionareskb.notification.Notification;
 import com.kalimagezi.billionareskb.notification.NotificationService;
 import com.kalimagezi.billionareskb.opinion.Opinion;
 import com.kalimagezi.billionareskb.opinion.OpinionService;
+import com.kalimagezi.billionareskb.recomendations.Recommendations;
+import com.kalimagezi.billionareskb.recomendations.RecommendationsService;
 import com.kalimagezi.billionareskb.review.Review;
 import com.kalimagezi.billionareskb.review.ReviewService;
 import com.kalimagezi.billionareskb.skillTalent.SkillTalent;
@@ -88,6 +90,8 @@ public class HomeController {
 	private NotificationService notificationService;
 	@Autowired
 	private AnalysisService analysisService;
+	@Autowired
+	private RecommendationsService recommendationsServices;
 
 	@RequestMapping("/default")
 	public String defaultAfterLogin(HttpServletRequest request) {
@@ -982,14 +986,66 @@ public class HomeController {
 
 	}
 
-	@ModelAttribute("catJobadds")
-	private List<Jobadd> getCatJobs() {
+	@ModelAttribute("dcatJobadds")
+	private List<DisplayJobAdd> getDCatJobs() {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		User user = userService.findByEmail(authentication.getName());
 
 		List<Jobadd> catJobadds = jobaddService.getCatJobadd(user.getCatid());
+		
+		List<DisplayJobAdd> dcatJobadds = new ArrayList<DisplayJobAdd>();
+		List<DisplayWrittenReco> dRecommends = new ArrayList<DisplayWrittenReco>();
 
-		return catJobadds;
+		for (Jobadd catjobadd : catJobadds) {
+			DisplayJobAdd dcatJobadd = new DisplayJobAdd();
+			if(catjobadd.getJobTitle()!=null) {
+				dcatJobadd.setJaid(catjobadd.getId());
+				dcatJobadd.setJauid(catjobadd.getUid());
+				dcatJobadd.setCompName(catjobadd.getCompName());
+				dcatJobadd.setAdByName(user.getFirstName()+ " "+user.getOtherNames());
+				dcatJobadd.setCompWeb(catjobadd.getCompWeb());
+				dcatJobadd.setJobTitle(catjobadd.getJobTitle());
+				dcatJobadd.setDescription(catjobadd.getDescription());
+				dcatJobadd.setImageLink(catjobadd.getImageLink());
+				dcatJobadd.setJobCategory(catjobadd.getJobCategory());
+				dcatJobadd.setSalary(catjobadd.getSalary());
+				dcatJobadd.setNoPositions(catjobadd.getNoPositions());
+				dcatJobadd.setAddDate(catjobadd.getAddDate());
+				dcatJobadd.setDeadline(catjobadd.getDeadline());
+				dcatJobadd.setNoRecomendations(catjobadd.getNoRecomends());
+				dcatJobadd.setNoRecom(catjobadd.getRecomended());
+				dcatJobadd.setNoNotRecom(catjobadd.getNotRecomended());
+				
+
+			List<Recommendations> recommends = recommendationsServices.getRecommendationssByJaid(catjobadd.getId());
+			
+			for (Recommendations recommend : recommends) {
+				User user3 = userService.getUser(recommend.getUid()).orElseThrow(null);
+
+				DisplayWrittenReco drecomend = new DisplayWrittenReco();
+
+				drecomend.setFullName(user3.getFirstName() + " " + user3.getOtherNames());
+				drecomend.setrCreateDate(recommend.getCreateDate());
+				drecomend.setrDescription(recommend.getDescription());
+				drecomend.setrImageLink(user3.getImageLink());
+				drecomend.setrUid(recommend.getUid());
+
+				dRecommends.add(drecomend);
+
+			}
+			
+			
+			dcatJobadd.setDwRecos(dRecommends);
+			
+			dcatJobadds.add(dcatJobadd);
+			
+			
+			}
+			
+		}
+		
+
+		return dcatJobadds;
 
 	}
 

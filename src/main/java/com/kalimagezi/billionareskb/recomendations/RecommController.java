@@ -11,8 +11,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.kalimagezi.billionareskb.article.Article;
-import com.kalimagezi.billionareskb.article.ArticleService;
 import com.kalimagezi.billionareskb.counter.Counter;
 import com.kalimagezi.billionareskb.counter.CounterService;
 import com.kalimagezi.billionareskb.jobadd.Jobadd;
@@ -50,13 +48,12 @@ public class RecommController {
 			counterService.addCounter(counter);
 			
 		Jobadd jobadd =	jobaddService.getJobadd(jaid).orElseThrow(null);
-		jobadd.setN
-		article.setNoRecommendationss(article.getNoRecommendationss()+1);		
+		jobadd.setNoRecomends(jobadd.getNoRecomends()+1);		
 		recommendationsService.addRecommendations(recommendations);
 		try {
-			jsonObject.put("message", "Recommendations  " +recommendations.getAid() +" Created  successfully.");
-			jsonObject.put("newRecommendations",  "Analysis ("+article.getNoRecommendationss()+")");
-			jsonObject.put("id", article.getId());
+			jsonObject.put("message", "Recommendations  " +recommendations.getId() +" Created  successfully.");
+			jsonObject.put("newRecommendations",  "Analysis ("+jobadd.getNoRecomends()+")");
+			jsonObject.put("id", jobadd.getId());
 			
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block

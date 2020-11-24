@@ -1127,12 +1127,10 @@
 						<!--modal form-->
 						<form enctype="multipart/form-data" action="/addJobadd"
 							method="post" id ="jobAddFrm">
-							<input type="hidden" name="${_csrf.parameterName}"
-								value="${_csrf.token}" />
+
 							 <input type="hidden" name="uid"
 								value="${user.id}" /> <input type="hidden" name="catid"
-								value="${user.catid}" /> <input type="hidden" name="compid"
-								value="${company.id}" />
+								value="${user.catid}" /> 
 							<div class="form-group has-feedback">
 								<input type="text" class="form-control" name="title" id="title"
 									placeholder="Job Title" /> <span
@@ -1210,7 +1208,7 @@
 						<button type="button" class="close" data-dismiss="modal">
 							<span>&times;</span>
 						</button>
-						<h4 class="modal-title">Review Events Dialog box</h4>
+						<h4 class="modal-title">Review Jobs Adverts Dialog box</h4>
 
 					</div>
 
@@ -1220,35 +1218,39 @@
 						<div class="box box-success">
 						<c:set var="count4" value="0" scope="page" />
 
-							<c:forEach items="${dcatEvents}" var="dcatEvent">
-							<c:if test="${not empty dcatEvent.ename}">
+							<c:forEach items="${dcatJobadds}" var="dcatjob">
+							<c:if test="${not empty dcatjob.adByName}">
 							
-								<a><h5>${dcatEvent.ename}</h5></a>
+								<a><h5>${dcatjob.compName} wants (${dcatjob.noPositions}) ${dcatjob.jobTitle}(s)</h5></a>
 								<p>
-								<h5>${dcatEvent.description}</h5>
+								<h5>${dcatjob.description}</h5>
+								
+								<h5> Website:<a href="https://${dcatjob.compWeb}" target="_blank">${dcatjob.compWeb} </a></h5>
 								</p>
+								
 								<h4>
-										<a href="/profile?wuid=${dcatEvent.uid}"> <span
-											class="label label-success pull-left"> By
-												${dcatEvent.byname}</span></a> <span
-											class="label label-success pull-right">${dcatEvent.eventDate}</span>
+										<a href="/profile?wuid=${dcatjob.jauid}"> <span
+											class="label label-warning">Added By
+												${dcatjob.adByName} on ${dcatjob.addDate}</span></a>
 									</h4>
+									
+									<h4>
+ 										<span class="label label-success pull-left">Salary ${dcatjob.salary}</span> 
+ 										<span class="label label-danger pull-right">Deadline ${dcatjob.deadline}</span> 
+ 									</h4>
 								
 
 
 								<div class="product-img">
-										<c:if test="${dcatEvent.imageLink!=''}">
-
-
-
+										<c:if test="${dcatjob.imageLink!=''}">
 											<a
-												href="/uploads/${dcatEvent.uid}/events/${dcatEvent.imageLink}"><img
+												href="/uploads/${dcatjob.jauid}/jobadds/${dcatjob.imageLink}"><img
 												class="img-responsive"
-												src="/uploads/${dcatEvent.uid}/events/${dcatEvent.imageLink}"
+												src="/uploads/${dcatjob.jauid}/jobadds/${dcatjob.imageLink}"
 												alt="user image"> </a>
 
 										</c:if>
-										<c:if test="${dcatEvent.imageLink==''}">
+										<c:if test="${dcatjob.imageLink==''}">
 											<img class="img-responsive" src="dist/img/default-50x50.gif"
 												alt="Product Image">
 
@@ -1259,10 +1261,10 @@
 								<ul class="list-inline">
 									<li>
 									
-									<a href="javascript:void(0);" onclick="countNotGoing('${user.id}','${dcatEvent.id}','${dcatEvent.uid}')">
+									<a href="javascript:void(0);" onclick="countNotRecommed('${user.id}','${dcatjob.jaid}','${dcatjob.jauid}')">
 						
 						
-											<i class="fa fa-times fa-2x margin-r-5"></i> Not going
+											<i class="fa fa-times fa-2x margin-r-5"></i> Unrecommend
 					
 
 									</a>
@@ -1273,10 +1275,10 @@
 									<li>
 									
 									
-									<a href="javascript:void(0);" onclick="countGoing('${user.id}','${dcatEvent.id}','${dcatEvent.uid}')">
+									<a href="javascript:void(0);" onclick="countRecommed('${user.id}','${dcatjob.jaid}','${dcatjob.jauid}')">
 						
 						
-							<i class="fa fa-check fa-2x margin-r-5"></i> Going
+							<i class="fa fa-check fa-2x margin-r-5"></i> Recommend
 					
 
 					</a>
@@ -1286,18 +1288,18 @@
 									
 									
 									<li class="pull-right"><a href="javascript:void(0);"
-										class="link-black text-sm noGoing${dcatEvent.id}" > 
-											Going
-											(${dcatEvent.going})
+										class="link-black text-sm noRecommend${dcatjob.jaid}" > 
+											Recommended
+											(${dcatjob.noRecom})
 									</a></li>
 
 									<li class="pull-right"><a href="javascript:void(0);"
-										class="link-black text-sm  noNotGoing${dcatEvent.id}">Not Going
-											(${dcatEvent.notGoing})</a></li>
+										class="link-black text-sm  noNotRecommend${dcatjob.jaid}">Not Recommended
+											(${dcatjob.noNotRecom})</a></li>
 											
 									<li class="pull-right"><a href="javascript:void(0);"
-										class="link-black text-sm noAnalysis${dcatEvent.id}">Analysis
-											(${dcatEvent.noAnalysis})</a></li>
+										class="link-black text-sm noRecommendations${dcatjob.jaid}">Recommendations
+											(${dcatjob.noRecomendations})</a></li>
 
 
 								</ul>
@@ -1308,7 +1310,7 @@
 										<div class="col-md-12 col-sm-12">
 											<div class="pad">
 											
-											<div class="direct-chat-msg realtimeAnalysis"  style="display:none">
+											<div class="direct-chat-msg realtimeRecomm"  style="display:none">
 								<div class="direct-chat-info clearfix">
 									<span class="direct-chat-name pull-left">${user.firstName} ${user.otherNames}</span>
 									<span class="direct-chat-timestamp pull-right">
@@ -1318,35 +1320,35 @@
 										src="/uploads/${user.id}/profile/${user.imageLink}"
 										alt="message user image">
 								
-								<div class="direct-chat-text thisanalysis"></div>
+								<div class="direct-chat-text thisRecomm"></div>
 								</div>
 
 												
-													<c:forEach items="${dcatEvent.danalysiss}" var="danalysis">
+													<c:forEach items="${dcatjob.dwRecos}" var="drecommeds">
 
 							<!-- the comments comme hear -->
 							<div class="direct-chat-msg">
 								<div class="direct-chat-info clearfix">
-									<span class="direct-chat-name pull-left">${danalysis.fullName }</span>
+									<span class="direct-chat-name pull-left">${drecommeds.fullName }</span>
 									<span class="direct-chat-timestamp pull-right">
-										${danalysis.aCreateDate }</span>
+										${drecommeds.rCreateDate }</span>
 								</div>
 								<!-- /.direct-chat-info -->
 
-								<c:if test="${danalysis.aImageLink!=''}">
+								<c:if test="${drecommeds.rImageLink!=''}">
 									<img class="direct-chat-img"
-										src="/uploads/${danalysis.aUid}/profile/${danalysis.aImageLink}"
+										src="/uploads/${drecommeds.rUid}/profile/${drecommeds.rImageLink}"
 										alt="message user image">
 
 								</c:if>
-								<c:if test="${danalysis.aImageLink==''}">
+								<c:if test="${drecommeds.rImageLink==''}">
 									<img class="direct-chat-img" src="/dist/img/profile.jpg"
 										alt="message user image">
 
 								</c:if>
 
 								<!-- /.direct-chat-img -->
-								<div class="direct-chat-text">${danalysis.aDescription}</div>
+								<div class="direct-chat-text">${drecommeds.rDescription}</div>
 								<!-- /.direct-chat-text -->
 							</div>
 							
@@ -1360,15 +1362,15 @@
 													<form action="/addAnalysis" method="post" id="addAnalyisFrm">
 
 														 <input type="hidden"
-															name="jaid" value="${dcatEvent.id}" /><input
+															name="jaid" value="${dcatjob.jaid}" /><input
 															type="hidden" name="uid" value="${user.id}" />
 														<div class="input-group">
 															<input type="text" name="description"
-																placeholder="Write your Event Review ... before another event is added "
+																placeholder="Write your Recommendations ... before another event is added "
 																class="form-control"> <span
 																class="input-group-btn">
 																<button type="submit" name="submit"
-																	class="btn btn-warning btn-flat">Add Analysis</button>
+																	class="btn btn-warning btn-flat">Add Recommendations</button>
 															</span>
 														</div>
 													</form>
@@ -1402,138 +1404,7 @@
 			</div>
 		</div>
 	</div>
-
-	<div class="row">
-		<div class="modal fade" id="jobReview2" role="dialog">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal">
-							<span>&times;</span>
-						</button>
-						<h4 class="modal-title">Review Jobs Dialog box</h4>
-
-					</div>
-					
-					
-					<div class="modal-body">
-
-						<div class="box box-success">
-						
-						<c:set var="count4" value="0" scope="page" />
-
-							<c:forEach items="${catJobadds}" var="catJobadd">
-								<c:if test="${not empty catJobadd.jobTitle}">
-									<a><h5>(${catJobadd.noPositions}) 
-											${catJobadd.jobTitle} (s)</h5></a>
-									<p>
-									<h5>${catJobadd.description}</h5>
-									
-									<h4>
- 										<span class="label label-success pull-left">${catJobadd.salary}</span> 
- 										<span class="label label-danger pull-right">${catJobadd.deadline}</span> 
- 									</h4>
-
-
-									<div class="product-img">
-										<c:if test="${catJobadd.imageLink!=''}">
-
-
-
-											<a target="_blank" 
- 												href="/uploads/${catJobadd.uid}/jobadds/${catJobadd.imageLink}"><img 
- 												class="img-responsive" 
- 												src="/uploads/${catJobadd.uid}/jobadds/${catJobadd.imageLink}" 
- 												alt="user image"> </a> 
-
-										</c:if>
-										
-										<c:if 
- 											test="${catJobadd.imageLink==''|| catJobadd.imageLink==null}"> 
- 											<img class="img-responsive" src="dist/img/default-50x50.gif"
- 												alt="Product Image"> 
-
-										</c:if>
-
-									</div>
-									
-							
-
-									<ul class="list-inline">
-										<li>
-										
-										<a href="javascript:void(0);" onclick="countNotRecommended('${user.id}','${catJobadd.id}','${displayadd.uid}')">
-										<i class="fa fa-times fa-2x margin-r-5"></i> Not Recommended
-										</a>
-										
-										</li>
-
-										<li>
-										<a href="javascript:void(0);" onclick="countRecommended('${user.id}','${catJobadd.id}','${displayadd.uid}')">
-										<i class="fa fa-check fa-2x margin-r-5"></i> Recommended
-										</a>
-										</li>
-										
-										<li class="pull-right"><a href="javascript:void(0);" 
- 											class="link-black text-sm"> Recommended 
- 												(${catJobadd.recomended}) 
- 										</a></li> 
-
-										<li class="pull-right"><a href="javascript:void(0);" 
- 											class="link-black text-sm">Not Recommended
- 												(${catJobadd.notRecomended})</a></li> 
-										<li class="pull-right"><a href="javascript:void(0);" 
- 											class="link-black text-sm">Recommendations
- 												(${catJobadd.notRecomended})</a></li> 
-
-
-									</ul>
-									
-								</c:if>
-								</div>
-								
-								<p>
-								
-								
-								
-								<c:if test="${count4<=0}">
-								<div class="form-group has-feedback">
-								
-												<div class="box-footer">
-													<form action="/addReview" method="post" id="addReviewFrm">
-
-														 <input type="hidden"
-															name="aid" value="${displayadd.id}" /><input
-															type="hidden" name="uid" value="${user.id}" />
-														<div class="input-group">
-															<input type="text" name="description"
-																placeholder="Write your Advert Review ... before another advert is added "
-																class="form-control"> <span
-																class="input-group-btn">
-																<button type="submit" name="submit"
-																	class="btn btn-warning btn-flat">Job Analysis</button>
-															</span>
-														</div>
-													</form>
-												</div>
-												</div>
-												
-												</c:if>
-												
-															
-											
-							   <c:set var="count4" value="${count4 + 1}" scope="page"/>
-
-
-							</c:forEach>
-							</div>
-
-
-						</div>
-				</div>
-		</div>
-	</div>
-
+	
 
 
 	<div class="row">

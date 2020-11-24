@@ -43,9 +43,9 @@ public class RecommendationsService {
 
 	}
 
-	public ArrayList<Recommendations> getRecommendationssByAid(int id) {
+	public ArrayList<Recommendations> getRecommendationssByJaid(int id) {
 		// TODO Auto-generated method stub
-		return recommendationRepository.findTop10ByAidOrderByCreateDateDesc(id);
+		return recommendationRepository.findTop10ByJaidOrderByCreateDateDesc(id);
 	}
 
 

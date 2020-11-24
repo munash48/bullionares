@@ -83,7 +83,7 @@ public static String uploadDirectory=System.getProperty("user.dir")+"/src/main/w
 		jobadd.setUid(uid);
 		jobadd.setJobTitle(jobTitle);
 		jobadd.setJobTitle(compName);
-		jobadd.setJobTitle(compWeb);
+		jobadd.setCompWeb(compWeb);
 		jobadd.setJobCategory(jobCategory);
 		jobadd.setSalary(salary);
 		jobadd.setDescription(description);
