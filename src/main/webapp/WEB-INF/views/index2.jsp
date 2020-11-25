@@ -1264,7 +1264,7 @@
 									<a href="javascript:void(0);" onclick="countNotRecommed('${user.id}','${dcatjob.jaid}','${dcatjob.jauid}')">
 						
 						
-											<i class="fa fa-times fa-2x margin-r-5"></i> Unrecommend
+											<i class="fa fa-times fa-2x margin-r-5"></i> Un-Recommend 
 					
 
 									</a>
@@ -1294,7 +1294,7 @@
 									</a></li>
 
 									<li class="pull-right"><a href="javascript:void(0);"
-										class="link-black text-sm  noNotRecommend${dcatjob.jaid}">Not Recommended
+										class="link-black text-sm  noNotRecomend${dcatjob.jaid}">Not Recommended
 											(${dcatjob.noNotRecom})</a></li>
 											
 									<li class="pull-right"><a href="javascript:void(0);"

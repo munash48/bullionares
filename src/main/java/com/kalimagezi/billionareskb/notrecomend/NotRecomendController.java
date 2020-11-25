@@ -2,7 +2,10 @@ package com.kalimagezi.billionareskb.notrecomend;
 
 import java.util.List;
 
+import org.codehaus.jettison.json.JSONException;
+import org.codehaus.jettison.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -23,10 +26,12 @@ public class NotRecomendController {
 	@Autowired
 	private CounterService counterService;
 
-	@RequestMapping(value = "/home/addNotRecomend", method = RequestMethod.POST)
-	public String createOpinion(@RequestParam("jaid") Integer jaid, @RequestParam("uid") int uid
+	@RequestMapping(value = "/addNotRecomend", method = RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
+	public String createOpinion(@RequestParam("jaid") Integer jaid, @RequestParam("uid") int uid, @RequestParam("jauid") int jauid
 
 	) {
+		
+		JSONObject jsonObject = new JSONObject();
 
 		List<NotRecomend> notRecomendations = notNotRecomendService.getAllNotRecomendsByJaid(jaid);
 
@@ -38,14 +43,21 @@ public class NotRecomendController {
 		notRecomend.setJaid(jaid);
 		notRecomend.setUid(uid);
 
-		Counter counter = counterService.getUCounter(uid);
-		counter.setNoVotes(counter.getNoVotes()+1);
+		Counter counter2 = counterService.getUCounter(jauid);
+		counter2.setNoVotes(counter2.getNoReports()+1);
 
 		for (NotRecomend anotRecomend : notRecomendations) {
 
 			if (notRecomend.getUid() == anotRecomend.getUid()) {
+				
+				try {
+					jsonObject.put("message", "You have already crossed this Job ADD");
+				} catch (JSONException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 
-				return "redirect:/home?notRecomendFailed=failed";
+				return jsonObject.toString();
 
 			}
 		}
@@ -53,8 +65,19 @@ public class NotRecomendController {
 
 		notNotRecomendService.addNotRecomend(notRecomend);
 		jobaddService.addJobadd(jobadd);
+		counterService.addCounter(counter2);
+		
+		
+		try {
+			
+			jsonObject.put("message", "You have added a negative review " + jobadd.getId());
+			jsonObject.put("newNotRecomend",  "Not Recomend ("+jobadd.getNotRecomended()+")");
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
-		return "redirect:/home?notRecomendAdded=success";
+		return jsonObject.toString();
 
 	}
 }

@@ -43,6 +43,8 @@ public class PositiveController {
 
 		positive.setAid(adid);
 		positive.setUid(uid);
+		Counter counter2 =counterService.getUCounter(uid);
+		counter2.setNoVotes(counter2.getNoVotes()+1);
 		Counter counter =counterService.getUCounter(aduid);
 		counter.setNoVotes(counter.getNoVotes()+1);
 		
@@ -64,11 +66,7 @@ public class PositiveController {
 				
 				positiveService.addPositive(positive);
 
-				advertService.addAdvert(advert);
-				Counter counter2 =counterService.getUCounter(uid);
-				counter2.setNoVotes(counter2.getNoVotes()+1);
-				
-				
+				advertService.addAdvert(advert);				
 				counterService.addCounter(counter);
 				counterService.addCounter(counter2);
 				

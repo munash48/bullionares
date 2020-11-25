@@ -2,7 +2,10 @@ package com.kalimagezi.billionareskb.recomend;
 
 import java.util.List;
 
+import org.codehaus.jettison.json.JSONException;
+import org.codehaus.jettison.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -22,10 +25,11 @@ public class RecomendController {
 	@Autowired
 	private CounterService counterService;
 
-	@RequestMapping(value = "/home/addRecomend", method = RequestMethod.POST)
-	public String createOpinion(@RequestParam("jaid") Integer jaid, @RequestParam("uid") int uid
+	@RequestMapping(value = "/addRecomend", method = RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
+	public String createOpinion(@RequestParam("jaid") Integer jaid, @RequestParam("uid") int uid, @RequestParam("jauid") int jauid
 
 	) {
+		JSONObject jsonObject = new JSONObject();
 
 		List<Recomend> recomendations = recomendService.getAllRecomendsByJaid(jaid);
 
@@ -39,12 +43,21 @@ public class RecomendController {
 
 		Counter counter = counterService.getUCounter(uid);
 		counter.setNoVotes(counter.getNoVotes()+1);
+		Counter counter2 = counterService.getUCounter(jauid);
+		counter2.setNoVotes(counter2.getNoVotes()+1);
 
 		for (Recomend arecomend : recomendations) {
 
 			if (recomend.getUid() == arecomend.getUid()) {
+				
+				try {
+					jsonObject.put("message", "You have already made recomendation");
+				} catch (JSONException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 
-				return "redirect:/home?recomendFailed=failed";
+				return jsonObject.toString();
 
 			}
 		}
@@ -52,8 +65,21 @@ public class RecomendController {
 
 		recomendService.addRecomend(recomend);
 		jobaddService.addJobadd(jobadd);
+		
+		counterService.addCounter(counter2);
+		counterService.addCounter(counter);
+		
+		
+		try {
+			jsonObject.put("message", "You have made a recommdation" + jobadd.getId());
+			jsonObject.put("newRecommend",  "Positives ("+jobadd.getRecomended()+")");
+			
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
-		return "redirect:/home?recomendAdded=success";
+		return jsonObject.toString();
 
 	}
 }

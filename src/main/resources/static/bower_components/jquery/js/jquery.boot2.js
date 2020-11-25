@@ -141,6 +141,36 @@
 	 });
 	 
  }
+ function countRecommed(uid,jaid,jauid){	
+	 
+	 
+	 $.ajax({
+		 type: "GET",
+		 url: "/addRecomend?uid="+uid+"&jaid="+jaid+"&jauid="+jauid,
+		 success: function(data){
+			 
+			 alert(data.message);
+			 $(".noRecommend"+jaid).html(data.newRecommend);
+		 }
+	 
+	 });
+	 
+ }
+ function countNotRecommed(uid,jaid,jauid){	
+	 
+	 
+	 $.ajax({
+		 type: "GET",
+		 url: "/addNotRecomend?uid="+uid+"&jaid="+jaid+"&jauid="+jauid,
+		 success: function(data){
+			 
+			 alert(data.message);
+			 $(".noNotRecomend"+jaid).html(data.newNotRecomend);
+		 }
+	 
+	 });
+	 
+ }
  
  
  
