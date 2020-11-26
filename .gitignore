@@ -56,4 +56,5 @@ build/
 hs_err_pid*
 /billionareskb/target/
 /billionareskb/src/main/webapp/uploads/
+/src/main/webapp/uploads/
 >>>>>>> branch 'master' of https://github.com/munash48/bullionares.git
