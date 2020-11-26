@@ -36,7 +36,7 @@
 						test="${ModeLogged==true||modeMessage==true||modeProfile==true||modeEvents==true||modeChart==true||modeJobs==true}">
 						
 						<li><a>Your Category : <b> ${category.catName} </b>
-								Highest points: <b>${topCatCounter.total}</b> Overall Highest<b>
+								Highest points: <b >${topCatCounter.total}</b> Overall Highest<b>
 									${topCounter.total}</a></b></li>
 						<li class="dropdown tasks-menu"><a href="/home" id="mainpost"> <i
 								class="fa fa-home"></i> Home

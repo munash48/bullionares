@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kalimagezi.billionareskb.counter.Counter;
 import com.kalimagezi.billionareskb.counter.CounterService;
@@ -26,7 +27,7 @@ public class RecomendController {
 	private CounterService counterService;
 
 	@RequestMapping(value = "/addRecomend", method = RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
-	public String createOpinion(@RequestParam("jaid") Integer jaid, @RequestParam("uid") int uid, @RequestParam("jauid") int jauid
+	public @ResponseBody String createOpinion(@RequestParam("jaid") Integer jaid, @RequestParam("uid") int uid, @RequestParam("jauid") int jauid
 
 	) {
 		JSONObject jsonObject = new JSONObject();
@@ -41,10 +42,10 @@ public class RecomendController {
 		recomend.setJaid(jaid);
 		recomend.setUid(uid);
 
-		Counter counter = counterService.getUCounter(uid);
+		Counter counter = counterService.getUCounter(jauid);
 		counter.setNoVotes(counter.getNoVotes()+1);
-		Counter counter2 = counterService.getUCounter(jauid);
-		counter2.setNoVotes(counter2.getNoVotes()+1);
+		counter.setTotal(counter.getNoArticles()+counter.getNoConnections()+counter.getNoInvites()+counter.getNoOpinions()-
+	       		 counter.getNoReports()+counter.getNoVotes());
 
 		for (Recomend arecomend : recomendations) {
 
@@ -66,8 +67,8 @@ public class RecomendController {
 		recomendService.addRecomend(recomend);
 		jobaddService.addJobadd(jobadd);
 		
-		counterService.addCounter(counter2);
 		counterService.addCounter(counter);
+
 		
 		
 		try {

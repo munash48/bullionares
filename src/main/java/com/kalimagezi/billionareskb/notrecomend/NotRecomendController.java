@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kalimagezi.billionareskb.counter.Counter;
 import com.kalimagezi.billionareskb.counter.CounterService;
@@ -27,7 +28,7 @@ public class NotRecomendController {
 	private CounterService counterService;
 
 	@RequestMapping(value = "/addNotRecomend", method = RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
-	public String createOpinion(@RequestParam("jaid") Integer jaid, @RequestParam("uid") int uid, @RequestParam("jauid") int jauid
+	public @ResponseBody String createOpinion(@RequestParam("jaid") Integer jaid, @RequestParam("uid") int uid, @RequestParam("jauid") int jauid
 
 	) {
 		
@@ -43,15 +44,17 @@ public class NotRecomendController {
 		notRecomend.setJaid(jaid);
 		notRecomend.setUid(uid);
 
-		Counter counter2 = counterService.getUCounter(jauid);
-		counter2.setNoVotes(counter2.getNoReports()+1);
+		Counter counter = counterService.getUCounter(jauid);
+		counter.setNoVotes(counter.getNoReports()+1);
+		counter.setTotal(counter.getNoArticles()+counter.getNoConnections()+counter.getNoInvites()+counter.getNoOpinions()-
+	       		 counter.getNoReports()+counter.getNoVotes());
 
 		for (NotRecomend anotRecomend : notRecomendations) {
 
 			if (notRecomend.getUid() == anotRecomend.getUid()) {
 				
 				try {
-					jsonObject.put("message", "You have already crossed this Job ADD");
+					jsonObject.put("message", "You have already Un-Recommended this Job ADD");
 				} catch (JSONException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -65,7 +68,7 @@ public class NotRecomendController {
 
 		notNotRecomendService.addNotRecomend(notRecomend);
 		jobaddService.addJobadd(jobadd);
-		counterService.addCounter(counter2);
+		counterService.addCounter(counter);
 		
 		
 		try {

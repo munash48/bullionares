@@ -38,12 +38,8 @@ public class VoteController {
 		JSONObject jsonObject = new JSONObject();
 		
 		List <Vote> uvotes = voteService.getAllVotesByAid(aid);
-		Counter counter = counterService.getUCounter(duid);
-		counter.setNoVotes(counter.getNoVotes()+1);
-		counter.setTotal(counter.getNoArticles()+counter.getNoConnections()+counter.getNoInvites()+counter.getNoOpinions()-
-	       		 counter.getNoReports()+counter.getNoVotes());
-		Article article = articleService.getArticle(aid).orElseThrow(null);
-		article.setNoVotes(article.getNoVotes()+1);
+		
+	
 		Vote vote = new Vote();
 
 		vote.setAid(aid);
@@ -64,6 +60,14 @@ public class VoteController {
 				
 			}
 		}
+		
+		Counter counter = counterService.getUCounter(duid);
+		counter.setNoVotes(counter.getNoVotes()+1);
+		counter.setTotal(counter.getNoArticles()+counter.getNoConnections()+counter.getNoInvites()+counter.getNoOpinions()-
+	       		 counter.getNoReports()+counter.getNoVotes());
+		
+		Article article = articleService.getArticle(aid).orElseThrow(null);
+		article.setNoVotes(article.getNoVotes()+1);
 				
 				voteService.addVote(vote);
 				counterService.addCounter(counter);

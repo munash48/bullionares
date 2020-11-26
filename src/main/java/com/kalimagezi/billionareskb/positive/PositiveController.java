@@ -43,11 +43,11 @@ public class PositiveController {
 
 		positive.setAid(adid);
 		positive.setUid(uid);
-		Counter counter2 =counterService.getUCounter(uid);
-		counter2.setNoVotes(counter2.getNoVotes()+1);
+
 		Counter counter =counterService.getUCounter(aduid);
 		counter.setNoVotes(counter.getNoVotes()+1);
-		
+		counter.setTotal(counter.getNoArticles()+counter.getNoConnections()+counter.getNoInvites()+counter.getNoOpinions()-
+	       		 counter.getNoReports()+counter.getNoVotes());
 		
 		for(Positive upositive: upositives) {
 			
@@ -67,13 +67,14 @@ public class PositiveController {
 				positiveService.addPositive(positive);
 
 				advertService.addAdvert(advert);				
+	
 				counterService.addCounter(counter);
-				counterService.addCounter(counter2);
 				
 				
 				try {
 					jsonObject.put("message", "You have added a positive review" + advert.getId());
 					jsonObject.put("newPositive",  "Positives ("+advert.getNoPositives()+")");
+
 				} catch (JSONException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

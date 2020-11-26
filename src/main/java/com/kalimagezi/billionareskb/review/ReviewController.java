@@ -28,7 +28,8 @@ public class ReviewController {
 
 	@RequestMapping(value = "/addReview", method = RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody String createOpinion(@RequestParam("aid") Integer aid, @RequestParam("description") String description,
-			@RequestParam("uid") int uid
+			@RequestParam("uid") int uid,
+			@RequestParam("auid") int auid
 
 	) {
 		JSONObject jsonObject = new JSONObject();
@@ -61,10 +62,16 @@ public class ReviewController {
 			review.setUid(uid);
 			Counter counter = counterService.getUCounter(uid);
 			counter.setNoVotes(counter.getNoVotes() + 1);
+			counter.setTotal(counter.getNoArticles()+counter.getNoConnections()+counter.getNoInvites()+counter.getNoOpinions()-
+		       		 counter.getNoReports()+counter.getNoVotes());
+			Counter counter2 = counterService.getUCounter(auid);
+			counter2.setNoVotes(counter2.getNoVotes() + 1);
 
 			Advert advert = advertService.getAdvert(aid).orElseThrow(null);
 			advert.setNoReviews(advert.getNoReviews() + 1);
 			reviewService.addReview(review);
+			counterService.addCounter(counter2);
+			counterService.addCounter(counter);
 
 			advertService.addAdvert(advert);
 			try {
@@ -72,6 +79,8 @@ public class ReviewController {
 				jsonObject.put("newReview",  "Reviews ("+advert.getNoReviews()+")");
 				jsonObject.put("id", advert.getId());
 				jsonObject.put("review", review.getDescription());
+				jsonObject.put("Tpoints", counter.getTotal());
+				jsonObject.put("OpPoints", counter.getNoOpinions());
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

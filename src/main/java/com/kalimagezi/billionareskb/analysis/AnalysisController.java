@@ -35,7 +35,8 @@ public class AnalysisController {
 
 	@RequestMapping(value = "/addAnalysis", method = RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody String createAnalysis(@RequestParam("eid") Integer eid, @RequestParam("description") String description,
-			@RequestParam("uid") int uid
+			@RequestParam("uid") int uid,
+			@RequestParam("euid") int euid
 
 	) {
 		JSONObject jsonObject = new JSONObject();
@@ -70,19 +71,27 @@ public class AnalysisController {
 			analysis.setUid(uid);			
 			Counter counter = counterService.getUCounter(uid);
 			counter.setNoOpinions(counter.getNoOpinions()+1);
+			counter.setTotal(counter.getNoArticles()+counter.getNoConnections()+counter.getNoInvites()+counter.getNoOpinions()-
+		       		 counter.getNoReports()+counter.getNoVotes());
 
 			Event event = eventService.getEvent(eid).orElseThrow(null);
 			event.setNoAnalyis(event.getNoAnalyis()+1);
+			
 			Counter eCounter=counterService.getUCounter(event.getUid());
 			eCounter.setNoOpinions(counter.getNoOpinions()+1);
+			
 			analysisService.addAnalysis(analysis);
-
+			counterService.addCounter(eCounter);
+			counterService.addCounter(counter);
 			eventService.addEvent(event);
 			try {
 				jsonObject.put("message", "You have added a written analysis ");
 				jsonObject.put("newAnaysis",  "Analysis ("+event.getNoAnalyis()+")");
 				jsonObject.put("id", event.getId());
 				jsonObject.put("analysis", event.getDescription());
+				jsonObject.put("Tpoints", counter.getTotal());
+				jsonObject.put("OpPoints", counter.getNoOpinions());
+				
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

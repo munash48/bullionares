@@ -296,7 +296,9 @@ $(function() {
 				
 				alert(data.message);
 				$(".noOpinions"+data.id).html(data.newOpinion);
-				getPage("/mainpost");
+				$(".realtimeOpinion").show();
+				$(".thisopinion").html(data.opinion);
+				document.getElementById("OpinionFrm").reset();
 				
 			},
 			error:function(response){
@@ -356,8 +358,42 @@ $(function() {
 				$(".noAnalysis"+data.id).html(data.newAnaysis);
 				$(".realtimeAnalysis").show();
 				$(".thisanalysis").html(data.analysis);
+				$(".Tpoints").html(data.Tpoints);
+				$(".OpPoints").html(data.OpPoints);
+				
 				document.getElementById("addAnalyisFrm").reset();
 			
+				
+			},
+			error:function(response){
+				
+				alert("ALERT! Fill all fields");
+				
+			}
+		} );
+		e.preventDefault();
+		
+		
+	} );
+	$('#addRecommendFrm')
+	.submit( function( e ) {
+		var frm = $("#addRecommendFrm");
+		
+		alert("Submitting by jquery");
+		$.ajax( {
+			url:frm.attr("action"),
+			type:frm.attr("method"),
+			data: new FormData( this ),
+			processData: false,
+			contentType: false,
+			success: function(data){
+				
+				alert(data.message);
+				$(".noRecommendations"+data.id).html(data.newRecommendations);
+				$(".realtimeRecomm").show();
+				$(".thisRecomm").html(data.recommendation);
+				document.getElementById("addRecommendFrm").reset();
+				
 				
 			},
 			error:function(response){

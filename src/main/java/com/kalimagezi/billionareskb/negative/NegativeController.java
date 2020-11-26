@@ -46,6 +46,8 @@ public class NegativeController {
 		negative.setUid(uid);
 		Counter counter =counterService.getUCounter(aduid);
 		counter.setNoVotes(counter.getNoReports()+1);
+		counter.setTotal(counter.getNoArticles()+counter.getNoConnections()+counter.getNoInvites()+counter.getNoOpinions()-
+	       		 counter.getNoReports()+counter.getNoVotes());
 		
 		
 		for(Negative unegative: unegatives) {

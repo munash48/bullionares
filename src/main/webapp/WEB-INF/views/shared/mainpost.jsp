@@ -155,6 +155,20 @@
 			<div class="row">
 				<div class="col-md-12 col-sm-12">
 					<div class="pad">
+					<div class="direct-chat-msg realtimeOpinion" style="display:none" >
+											
+											<div class="direct-chat-info clearfix">
+									<span class="direct-chat-name pull-left">${user.firstName} ${user.otherNames}</span>
+									<span class="direct-chat-timestamp pull-right">
+										Right Now</span>
+								</div>
+								
+								<img class="direct-chat-img"
+										src="/uploads/${user.id}/profile/${user.imageLink}"
+										alt="message user image">
+											
+											<div class="direct-chat-text thisopinion"></div>
+											</div>
 
 						<c:forEach items="${display.opinions}" var="dopinion">
 
@@ -191,7 +205,9 @@
 						<div class="box-footer">
 							<form action="/createOpinion" method="post" id="OpinionFrm">
 
-								<input type="hidden" name="artid" value="${display.artid}" /><input
+								<input type="hidden" name="artid" value="${display.artid}" />
+								<input type="hidden" name="artuid" value="${display.uid}" />
+								<input
 									type="hidden" name="uid" value="${user.id}" />
 								<div class="input-group">
 									<input type="text" name="description"

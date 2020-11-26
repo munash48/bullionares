@@ -42,8 +42,10 @@ public class NotGoingController {
 		notGoing.setEid(eid);
 		notGoing.setUid(uid);
 
-		Counter counter2 = counterService.getUCounter(euid);
-		counter2.setNoReports(counter2.getNoReports()+1);
+		Counter counter = counterService.getUCounter(euid);
+		counter.setNoReports(counter.getNoReports()+1);
+		counter.setTotal(counter.getNoArticles()+counter.getNoConnections()+counter.getNoInvites()+counter.getNoOpinions()-
+	       		 counter.getNoReports()+counter.getNoVotes());
 
 		for (NotGoing unotgoing : unotgoings) {
 
@@ -63,7 +65,7 @@ public class NotGoingController {
 
 		notGoingService.addNotGoing(notGoing);
 		eventService.addEvent(event);
-		counterService.addCounter(counter2);
+		counterService.addCounter(counter);
 		
 		try {
 			jsonObject.put("message", "Your Not-Going decision is counted.");

@@ -1,6 +1,8 @@
 package com.kalimagezi.billionareskb.opinion;
 
 
+import java.util.List;
+
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +17,7 @@ import com.kalimagezi.billionareskb.article.Article;
 import com.kalimagezi.billionareskb.article.ArticleService;
 import com.kalimagezi.billionareskb.counter.Counter;
 import com.kalimagezi.billionareskb.counter.CounterService;
+import com.kalimagezi.billionareskb.recomendations.Recommendations;
 @Controller
 public class OpinionController {
 
@@ -28,10 +31,29 @@ public class OpinionController {
 	@RequestMapping(value="/createOpinion", method = RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody String createOpinion ( @RequestParam("artid") Integer aid, 
 			@RequestParam("description") String description,
-			@RequestParam("uid") int uid
+			@RequestParam("uid") int uid,
+			@RequestParam("artuid") int artuid
 
 			) {
 		JSONObject jsonObject = new JSONObject();
+		
+		List<Opinion> opinions = opinionService.getOpinionsByAid(aid);
+
+		for (Opinion opinion : opinions) {
+
+			if (uid == opinion.getUid()) {
+				
+				try {
+					jsonObject.put("message", "You already made an opinion");
+				} catch (JSONException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+				return jsonObject.toString();
+
+			}
+		}
 		
 		
 		if (!description.isEmpty()) {
@@ -41,18 +63,25 @@ public class OpinionController {
 		opinion.setDescription(description);
 		opinion.setAid(aid);
 		opinion.setUid(uid);
+		Counter counter2= counterService.getUCounter(artuid);
+		counter2.setNoOpinions(counter2.getNoOpinions()+1);
 		Counter counter= counterService.getUCounter(uid);
 		counter.setNoOpinions(counter.getNoOpinions()+1);
 		counter.setTotal(counter.getNoArticles()+counter.getNoConnections()+counter.getNoInvites()+counter.getNoOpinions()-
 	       		 counter.getNoReports()+counter.getNoVotes());
+		
 			counterService.addCounter(counter);
+			counterService.addCounter(counter2);
 		Article article = articleService.getArticle(aid).orElseThrow(null);
 		article.setNoOpinions(article.getNoOpinions()+1);		
 		opinionService.addOpinion(opinion);
 		try {
 			jsonObject.put("message", "Opinion  " +opinion.getAid() +" Created  successfully.");
-			jsonObject.put("newOpinion",  "Analysis ("+article.getNoOpinions()+")");
+			jsonObject.put("newOpinion",  "Opinions ("+article.getNoOpinions()+")");
 			jsonObject.put("id", article.getId());
+			jsonObject.put("opinion", opinion.getDescription());
+			jsonObject.put("Tpoints", counter.getTotal());
+			jsonObject.put("OpPoints", counter.getNoOpinions());
 			
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block

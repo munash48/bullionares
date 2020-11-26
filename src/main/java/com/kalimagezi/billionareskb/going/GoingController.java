@@ -44,10 +44,11 @@ public class GoingController {
 		going.setEid(eid);
 		going.setUid(uid);
 		
-		Counter counter=counterService.getUCounter(uid);
+
+		Counter counter=counterService.getUCounter(euid);
 		counter.setNoVotes(counter.getNoVotes()+1);
-		Counter counter2=counterService.getUCounter(euid);
-		counter2.setNoVotes(counter2.getNoVotes()+1);
+		counter.setTotal(counter.getNoArticles()+counter.getNoConnections()+counter.getNoInvites()+counter.getNoOpinions()-
+	       		 counter.getNoReports()+counter.getNoVotes());
 		
 		for(Going ugoing: ugoings) {
 			
@@ -64,8 +65,8 @@ public class GoingController {
 				
 			}
 		}
+
 		        counterService.addCounter(counter);
-		        counterService.addCounter(counter2);
 		        
 				goingService.addGoing(going);
 
@@ -74,6 +75,7 @@ public class GoingController {
 				try {
 					jsonObject.put("message", "Your Going decision is counted.");
 					jsonObject.put("newGoing",  "Going ("+event.getGoing()+")");
+					
 				} catch (JSONException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

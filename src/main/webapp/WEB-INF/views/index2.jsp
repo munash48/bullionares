@@ -834,7 +834,7 @@
 													<c:forEach items="${displayadd.reviews}" var="dreview">
 
 							<!-- the comments comme hear -->
-							<div class="direct-chat-msg">
+							<div class="direct-chat-msg pad">
 								<div class="direct-chat-info clearfix">
 									<span class="direct-chat-name pull-left">${dreview.fullName }</span>
 									<span class="direct-chat-timestamp pull-right">
@@ -867,7 +867,11 @@
 													<form action="/addReview" method="post" id="addReviewFrm">
 
 														 <input type="hidden"
-															name="aid" value="${displayadd.id}" /><input
+															name="auid" value="${displayadd.uid}" />
+														 <input type="hidden"
+															name="aid" value="${displayadd.id}" />
+															
+															<input
 															type="hidden" name="uid" value="${user.id}" />
 														<div class="input-group">
 															<input type="text" name="description"
@@ -1067,7 +1071,10 @@
 													<form action="/addAnalysis" method="post" id="addAnalyisFrm">
 
 														 <input type="hidden"
-															name="eid" value="${dcatEvent.id}" /><input
+															name="euid" value="${dcatEvent.uid}" />
+														 <input type="hidden"
+															name="eid" value="${dcatEvent.id}" />
+															<input
 															type="hidden" name="uid" value="${user.id}" />
 														<div class="input-group">
 															<input type="text" name="description"
@@ -1257,6 +1264,7 @@
 										</c:if>
 
 									</div>
+									<div class="pt-2">
 
 								<ul class="list-inline">
 									<li>
@@ -1289,20 +1297,21 @@
 									
 									<li class="pull-right"><a href="javascript:void(0);"
 										class="link-black text-sm noRecommend${dcatjob.jaid}" > 
-											Recommended
+											Recommends
 											(${dcatjob.noRecom})
 									</a></li>
 
 									<li class="pull-right"><a href="javascript:void(0);"
-										class="link-black text-sm  noNotRecomend${dcatjob.jaid}">Not Recommended
+										class="link-black text-sm  noNotRecomend${dcatjob.jaid}">Un-Recommends
 											(${dcatjob.noNotRecom})</a></li>
 											
 									<li class="pull-right"><a href="javascript:void(0);"
-										class="link-black text-sm noRecommendations${dcatjob.jaid}">Recommendations
+										class="link-black text-sm noRecommendations${dcatjob.jaid}">Written
 											(${dcatjob.noRecomendations})</a></li>
 
 
 								</ul>
+								</div>
 								
 								
 								<div class="box-body no-padding">
@@ -1359,10 +1368,12 @@
 
 										<c:if test="${count4<=0}">
 												<div class="box-footer">
-													<form action="/addAnalysis" method="post" id="addAnalyisFrm">
+													<form action="/addRecommend" method="post" id="addRecommendFrm">
 
 														 <input type="hidden"
-															name="jaid" value="${dcatjob.jaid}" /><input
+															name="jaid" value="${dcatjob.jaid}" />
+														 <input type="hidden"
+															name="jauid" value="${dcatjob.jauid}" /><input
 															type="hidden" name="uid" value="${user.id}" />
 														<div class="input-group">
 															<input type="text" name="description"

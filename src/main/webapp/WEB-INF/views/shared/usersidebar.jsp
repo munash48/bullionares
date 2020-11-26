@@ -1,6 +1,6 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<div class="col-md-3 pt-4">
+<div class="col-md-3 pt-4 pl-4">
 
 	<!-- Profile Image -->
 	<div class="box box-warning">
@@ -47,7 +47,7 @@
 
 			<ul class="list-group list-group-unbordered">
 				<li class="list-group-item"><b>TOTAL POINTS</b> <a
-					class="pull-right"> ${counter.total}</a></li>
+					class="pull-right Tpoints"> ${counter.total}</a></li>
 
 				<li class="list-group-item"><b>COMPANY</b>
 

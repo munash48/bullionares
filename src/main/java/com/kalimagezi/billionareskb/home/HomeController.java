@@ -156,6 +156,9 @@ public class HomeController {
 		SkillTalent skillTalent = skillTalentService.getUSkillTalent(user.getId());
 		Event event = eventService.getUEvent(user.getId());
 		Counter counter = counterService.getUCounter(user.getId());
+		counter.setTotal(counter.getNoArticles()+counter.getNoConnections()+counter.getNoInvites()+counter.getNoOpinions()-
+	       		 counter.getNoReports()+counter.getNoVotes());
+		counterService.addCounter(counter);
 		Notification notification = notificationService.getNotificationByUid(user.getId());
 
 		mv.addObject(user);

@@ -20,7 +20,7 @@
 
             <div class="info-box-content">
               <span class="info-box-text text-center"> OPINIONS</span>
-              <span class="info-box-number text-center">${counter.noOpinions}</span>
+              <span class="info-box-number text-center OpPoints">${counter.noOpinions}</span>
             </div>
             <!-- /.info-box-content -->
           </div>
