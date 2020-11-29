@@ -101,10 +101,7 @@ public class UserController {
 		    //Email Address already exists
 			return "/shared/register?opt=fail";
 		}
-		
-		
-
-		//return "redirect:/reset?email="+mUser.getEmail()+"&pnew=yes";
+	
 
 	}
 	
@@ -116,7 +113,14 @@ public class UserController {
 			String pname=tday+".jpg";
 			User user = userService.findByEmail(email);
 			Counter counter2= counterService.getUCounter(user.getId());
+			if (user.getImageLink()=="") {
+			
 			counter2.setNoVotes(counter2.getNoVotes()+2);
+			counter2.setTotal(counter2.getNoArticles()+counter2.getNoConnections()+counter2.getNoInvites()+counter2.getNoOpinions()-
+		       		 counter2.getNoReports()+counter2.getNoVotes());
+						
+			}
+			
 			user.setImageLink(pname);
 			try {
 				userService.updateUser(user);
@@ -127,7 +131,16 @@ public class UserController {
 			String ppath=uploadDirectory+"/"+id+"/profile/";
 			userService.saveImage(imageFile,ppath,pname);
 			try {
-				jsonObject.put("message", user.getFirstName()+", Your Image ha been successfully");
+				String image="<img class='profile-user-img img-responsive img-rounded' src='/uploads/"+user.getId()+"/profile/"+user.getImageLink()+"' alt='User profile picture.' data-toggle='tooltip'data-placement='top' title='click edit to update'>";
+				String pimage="<img class='user-image' src='/uploads/"+user.getId()+"/profile/"+user.getImageLink()+"' alt='User Image'>";
+				jsonObject.put("message", user.getFirstName()+", Your Image has been uploaded successfully");
+				jsonObject.put("noVotes", counter2.getNoVotes());
+				jsonObject.put("noTVotes", counter2.getTotal());
+				jsonObject.put("img", image);
+				jsonObject.put("pimg", pimage);
+				
+				
+				
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -146,12 +159,16 @@ public class UserController {
 	@PostMapping(value="/updateUser", consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody String updadeUser ( @RequestBody User user1) throws JSONException {
 		
-			
+		     User user= userService.getUser(user1.getId()).orElseThrow(null);
+		     
+		     if (user.getAboutme()==null && user.getBirthDate()==null) {
+		
 			Counter counter= counterService.getUCounter(user1.getId());
 			counter.setNoVotes(counter.getNoVotes()+2);
 			counter.setTotal(counter.getNoArticles()+counter.getNoConnections()+counter.getNoInvites()+counter.getNoOpinions()-
 		       		counter.getNoReports()+counter.getNoVotes());
 				counterService.addCounter(counter);
+		     }
 
 
 		return  userService.updateUser(user1);

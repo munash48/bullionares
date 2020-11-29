@@ -13,9 +13,10 @@ import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.kalimagezi.billionareskb.counter.Counter;
+import com.kalimagezi.billionareskb.counter.CounterService;
 
 import net.coobird.thumbnailator.Thumbnails;
 
@@ -26,6 +27,9 @@ public class UserService {
 	private UserRepository userRepository;
 	@Autowired
 	private UserController userController;
+	@Autowired
+	private CounterService counterService ;
+
 	
 	@Autowired
 	private UserModelRepository userModelRepository;
@@ -61,6 +65,7 @@ public class UserService {
 				message1 = "Added";
 			} else {
 				message1 = "Updated";
+
 			}
 			userRepository.save(user);
 						
@@ -96,8 +101,13 @@ public class UserService {
 		JSONObject jsonObject = new JSONObject();
 		
 		userRepository.save(user);
+		Counter counter =counterService.getUCounter(user.getId());
 		
 		jsonObject.put("message", user.getEmail()+" Updated successfully");
+		jsonObject.put("noVotes", counter.getNoVotes());
+		jsonObject.put("noTVotes", counter.getTotal());
+		jsonObject.put("about", user.getAboutme());
+		
 		
 		return jsonObject.toString();
 

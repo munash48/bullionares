@@ -148,7 +148,7 @@
 							</div>
 							<div class="form-group has-feedback">
 								<sf:input type="email" class="form-control" path="email" id="email"
-									placeholder="Email" value="${user.email}" /> <span
+									placeholder="Email" value="${user.email}" readonly="true"/> <span
 									class="glyphicon glyphicon-envelope form-control-feedback"></span>
 							</div>
 							<div class="form-group has-feedback">
@@ -165,7 +165,7 @@
 							</div>
 							<div class="form-group has-feedback">
 								<sf:textarea class="form-control" rows="3" value="${user.aboutme}"
-									placeholder="Paragraph about who you are?" path="aboutme" spellcheck="true"></sf:textarea>
+									placeholder="Paragraph about who you are? (Max=150)" path="aboutme" spellcheck="true" maxlength = "150"></sf:textarea>
 
 								<span
 									class="glyphicon glyphicon-align-justify form-control-feedback"></span>
@@ -221,25 +221,25 @@
 							</div>
 							<div class="form-group has-feedback">
 								<sf:input type="text" class="form-control" path="type" id="type"
-								placeholder="Company Type" value="${company.type}" /> <span 
+								placeholder="Company Type eg ICT/Education" value="${company.type}" /> <span 
 									class="glyphicon glyphicon-zoom-in form-control-feedback"></span>
 							</div>
 							<div class="form-group has-feedback">
 								<sf:input type="text" class="form-control" path="address"
-									id="address" placeholder="Company Address" 
+									id="address" placeholder="Company Address e.g Mutungo P.O.Box 4578" 
 									value="${company.address}" /> <span 
 									class="glyphicon glyphicon-map-marker form-control-feedback"></span>
 							</div>
 							<div class="form-group has-feedback">
 								<sf:input type="text" class="form-control" path="website"
-									id="website" placeholder="Company Website" 
+									id="website" placeholder="Company Website eg. www.kalimagezi.com" 
  									value="${company.website}" /> <span 
 									class="glyphicon glyphicon-cloud form-control-feedback"></span>
 							</div>
 							<div class="form-group has-feedback">
 							<label class="control-label">No of Employees </label>
 								<sf:input type="text" class="form-control" path="jobCapacity"
-									id="jobCapacity" placeholder="No of Employees" 
+									id="jobCapacity" placeholder="No of Employees / Capacity" 
 									value="${company.jobCapacity}" /> <span 
 									class="glyphicon glyphicon-user form-control-feedback"></span>
 							</div>
@@ -251,7 +251,7 @@
 							</div>
 							<div class="form-group has-feedback">
 								<sf:input type="text" class="form-control" path="workingHours"
-									id="workingHours" placeholder="Working Hours"
+									id="workingHours" placeholder="Working Hours eg Monday to Friday 8:00Am to 5:00 PM" maxlength="100"
 									value="${company.workingHours}" /> <span 
 									class="glyphicon glyphicon-time form-control-feedback"></span>
 							</div>
@@ -377,31 +377,31 @@
 
 							<div class="form-group has-feedback">
 								<sf:input type="text" class="form-control" path="jobTitle"
-									id="jobTitle" placeholder="Job Title"
+									id="jobTitle" placeholder="Job Title" maxlength="30"
 									value="${career.jobTitle}" /> <span
 									class="glyphicon glyphicon-briefcase form-control-feedback"></span>
 							</div>
 							<div class="form-group has-feedback">
 								<sf:input type="text" class="form-control" path="specialization"
-									id="specialization" placeholder="Your Specialization"
+									id="specialization" placeholder="Your Specialization" maxlength="30"
 									value="${career.specialization}" /> <span
 									class="glyphicon glyphicon-star-empty form-control-feedback"></span>
 							</div>
 							<div class="form-group has-feedback">
 								<sf:input type="text" class="form-control" path="website"
-									id="website" placeholder="Career Website"
+									id="website" placeholder="Career Website eg. www.w3schools.com" maxlength="30"
 									value="${career.website}" /> <span
 									class="glyphicon glyphicon-cloud form-control-feedback"></span>
 							</div>
 							<div class="form-group has-feedback">
 								<sf:input type="text" class="form-control" path="description"
-									id="description" placeholder="Description"
+									id="description" placeholder="Description" maxlength="150"
 									value="${career.description}" /> <span
 									class="glyphicon glyphicon-list-alt form-control-feedback"></span>
 							</div>
 
 							<div class="form-group has-feedback">
-							<label class="control-label"> Date of Current Appoitement </label>
+							<label class="control-label"> Date of Current Appointment </label>
 								<sf:input type="date" class="form-control" path="startDate"
 									id="startDate" value="${career.startDate}" /> <span
 									class="glyphicon glyphicon-calendar form-control-feedback"></span>
@@ -446,24 +446,24 @@
 								value="${education.uid}" />
 
 							<div class="form-group has-feedback">
-								<sf:input type="text" class="form-control" path="level" id="level"
-									placeholder="Level" value="${education.level}" /> <span
+								<sf:input type="text" class="form-control" path="level" id="level" maxlength="20"
+									placeholder="Level eg. Degree" value="${education.level}" /> <span
 									class="glyphicon glyphicon-book form-control-feedback"></span>
 							</div>
 							<div class="form-group has-feedback">
-								<sf:input type="text" class="form-control" path="award" id="award"
-									placeholder="Award e.g BSc" value="${education.award}" /> <span
+								<sf:input type="text" class="form-control" path="award" id="award" maxlength="40"
+									placeholder="Award e.g BSc.Envirometal Management" value="${education.award}" /> <span
 									class="glyphicon glyphicon-education form-control-feedback"></span>
 							</div>
 							<div class="form-group has-feedback">
 								<sf:input type="text" class="form-control" path="institution"
-									id="institution" placeholder="Institution"
+									id="institution" placeholder="Institution eg Makerere University" maxlength="50"
 									value="${education.institution}" /> <span
 									class="glyphicon glyphicon-map-marker form-control-feedback"></span>
 							</div>
 							<div class="form-group has-feedback">
 								<sf:input type="text" class="form-control" path="website"
-									id="website" placeholder="Institutional Website"
+									id="website" placeholder="Institutional Website eg www.kyu.ac.ug" maxlength="30"
 									value="${education.website}" /> <span
 									class="glyphicon glyphicon-cloud form-control-feedback"></span>
 							</div>

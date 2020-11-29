@@ -1,7 +1,5 @@
 package com.kalimagezi.billionareskb.career;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -10,9 +8,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kalimagezi.billionareskb.counter.Counter;
@@ -38,7 +33,9 @@ public class CareerController {
 		  
 		  User user = userService.findByEmail(authentication.getName());
 		  Counter counter= counterService.getUCounter(user.getId());
-		  if(career.getJobTitle()==null) {
+		  Career career2 =careerService.getCareer(career.getId()).orElseThrow(null);
+		  
+		  if(career2.getJobTitle()==null) {
 			counter.setNoVotes(counter.getNoVotes()+2);
 			counter.setTotal(counter.getNoArticles()+counter.getNoConnections()+counter.getNoInvites()+counter.getNoOpinions()+
 		       		 counter.getNoReports()+counter.getNoVotes());

@@ -31,7 +31,10 @@ public class CompanyController {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		  
 		  User user = userService.findByEmail(authentication.getName());
-		  if(company.getName()==null) {
+		  Company company1=companyService.getCompany(company.getId()).orElseThrow(null);
+		  
+		  
+		  if(company1.getName()==null) {
 		  Counter counter= counterService.getUCounter(user.getId());
 			counter.setNoVotes(counter.getNoVotes()+2);
 			counter.setTotal(counter.getNoArticles()+counter.getNoConnections()+counter.getNoInvites()+counter.getNoOpinions()-

@@ -14,7 +14,7 @@
          <p class="intro">
     <ol><li>Creating a new account for free.</li>
     <li>Choose a category that relates to your interests.</li>
-    <li>Complete your profile by clicking on the edit buttons. You can only post if your profile is complete. This will earn you points. In the process of completing your profile, be sure to add an event. </li>
+    <li>Complete your profile by clicking on the edit buttons. You can only post if your profile is complete. This will earn you points on first update. In the process of completing your profile, be sure to add an event. </li>
     <li>Create articles that relate to the development of the you and the members in your category to seek votes.</li>
     <li>Vote the articles are developmental and are in line with your category.</li>
     <li>Write your opinion on the articles in your categories.</li>

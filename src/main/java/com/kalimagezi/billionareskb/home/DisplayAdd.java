@@ -2,8 +2,6 @@ package com.kalimagezi.billionareskb.home;
 
 import java.util.List;
 
-import com.kalimagezi.billionareskb.review.Review;
-
 public class DisplayAdd {
 	private int id;
 	private int uid;

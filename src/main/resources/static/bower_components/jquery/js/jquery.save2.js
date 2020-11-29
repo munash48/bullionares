@@ -15,6 +15,7 @@ $(function() {
 		
 		var nurl="/profile";
 		
+		
 		saveUpdatedData(frm, data,nurl);
 		
 		
@@ -155,7 +156,16 @@ $(function() {
 				
 				alert(data.message);
 				getPage("/profile");
+				$(".Tpoints").html(data.noTVotes);
+				$(".VoPoints").html(data.noVotes);
+				$(".oldImage").hide();
+				$(".newImage").show();
+				$(".newImage").html(data.img);
+				$(".newpImage").show();
+				$(".newpImage").html(data.pimg);
+				
 				$('.modal').modal('hide');
+				
 				
 			},
 			error:function(response){
@@ -239,7 +249,7 @@ $(function() {
 			contentType: false,
 			success: function(data){				
 				alert(data.message);
-				getPage("/mainpost");
+				
 			},
 			error:function(response){
 				
@@ -436,7 +446,15 @@ function saveUpdatedData(frm, data,nurl){
 		     success: function(data){
 				
 		    	 alert(data.message);
+		    	 
 		    	 getPage(nurl);
+		    	 $(".Tpoints").html(data.noTVotes);
+		 		$(".VoPoints").html(data.noVotes);
+		 		$(".newAbout").html(data.about);
+		 		$(".newComp").html(data.newComp);
+		 		$(".newJob").html(data.newJob);
+		 		$(".newCar").html(data.newCar);
+		 		$(".newEduc").html(data.newEduc);
 		    	 $('.modal').modal('hide');
 
 		     },

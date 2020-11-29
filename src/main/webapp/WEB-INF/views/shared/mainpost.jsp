@@ -5,7 +5,7 @@
 
 
 <!-- MAP & BOX PANE -->
-
+<c:if test="${ModeNotUpdated!=true}">
 <div class="box box-info">
 	<div class="box-header with-border">
 		<h3 class="box-title">Create Article</h3>
@@ -67,7 +67,7 @@
 	<!-- /.box-footer -->
 </div>
 <%-- 	</c:if> --%>
-
+</c:if>
 
 
 <c:set var="count" value="0" scope="page" />

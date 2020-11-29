@@ -5,7 +5,11 @@
 	<!-- Profile Image -->
 	<div class="box box-warning">
 		<div class="box-body box-profile">
-			<div class="imgcontainer">
+			<div class="imgcontainer newImage" style="display:none">
+			
+			
+			</div>
+			<div class="imgcontainer oldImage">
 
 
 				<c:if test="${user.imageLink!=''}">
@@ -55,14 +59,14 @@
 						data-target="#companyEdit" class="btn probtn">
 						<i class="fa fa-pencil" title="click to edit"
 							data-toggle="tooltip" data-placement="right"></i>
-					</button> <a class="pull-right">${company.name}</a></li>
+					</button> <a class="pull-right newComp">${company.name}</a></li>
 				<li class="list-group-item"><b>JOB TITLE</b>
 
 					<button type="button" data-toggle="modal" data-target="#careerEdit"
 						class="btn probtn">
 						<i class="fa fa-pencil" title="click to edit"
 							data-toggle="tooltip" data-placement="right"></i>
-					</button> <a class="pull-right">${career.jobTitle},
+					</button> <a class="pull-right newJob">${career.jobTitle},<br>
 						${career.specialization}</a></li>
 			</ul>
 			<div class="col-xs-12 col-md-6 margin-b-5">
@@ -92,7 +96,7 @@
 			<strong><i class="fa fa-briefcase margin-r-5"
 				aria-hidden="true"></i>Work & Career</strong>
 
-			<p class="text-muted">${career.description}</p>
+			<p class="text-muted newCar">${career.description}</p>
 			<hr>
 
 			<strong><i class="fa fa-book margin-r-5"></i> Education</strong>
@@ -102,7 +106,7 @@
 					data-placement="right"></i>
 			</button>
 
-			<p class="text-muted">${education.award}</p>
+			<p class="text-muted newEduc">${education.award}</p>
 
 			<hr>
 
@@ -161,7 +165,7 @@
 				am</strong>
 	
 
-			<p>${user.aboutme}</p>
+			<p class="newAbout">${user.aboutme}</p>
 		</div>
 		<!-- /.box-body -->
 	</div>

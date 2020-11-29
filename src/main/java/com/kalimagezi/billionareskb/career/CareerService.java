@@ -9,6 +9,9 @@ import org.codehaus.jettison.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kalimagezi.billionareskb.counter.Counter;
+import com.kalimagezi.billionareskb.counter.CounterService;
+
 
 @Service
 public class CareerService {
@@ -16,14 +19,21 @@ public class CareerService {
 	
 	@Autowired
 	private CareerRepository careerRepository;
+	@Autowired
+	private CounterService counterService;
 
 	public String addCareer(Career career) {
 		JSONObject jsonObject = new JSONObject();
 
 		careerRepository.save(career);
-		
+		Counter counter =counterService.getUCounter(career.getUid());
 		try {
 			jsonObject.put("message", career.getJobTitle()+" Updated successfully");
+			jsonObject.put("noVotes", counter.getNoVotes());
+			jsonObject.put("noTVotes", counter.getTotal());
+			jsonObject.put("newJob", career.getJobTitle()+", <br>"+career.getSpecialization() );
+			jsonObject.put("newCar", career.getDescription() );
+			
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

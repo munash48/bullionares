@@ -4,9 +4,6 @@ import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.Column;
-
-import com.kalimagezi.billionareskb.review.Review;
 
 public class DisplayJobAdd {
 	private int jaid;

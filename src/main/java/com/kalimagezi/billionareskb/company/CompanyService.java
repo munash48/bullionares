@@ -9,19 +9,29 @@ import org.codehaus.jettison.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kalimagezi.billionareskb.counter.Counter;
+import com.kalimagezi.billionareskb.counter.CounterService;
+
 
 @Service
 public class CompanyService {
 	
 	@Autowired
 	private CompanyRepository companyRepository;
+	@Autowired
+	private CounterService counterService;
 
 	public String addCompany(Company company) {
 		JSONObject jsonObject = new JSONObject();
 
 		companyRepository.save(company);
+		
+		Counter counter =counterService.getUCounter(company.getUid());
 		try {
 			jsonObject.put("message", company.getName()+" Updated successfully");
+			jsonObject.put("noVotes", counter.getNoVotes());
+			jsonObject.put("noTVotes", counter.getTotal());
+			jsonObject.put("newComp", company.getName());
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

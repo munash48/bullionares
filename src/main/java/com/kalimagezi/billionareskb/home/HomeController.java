@@ -217,60 +217,9 @@ public class HomeController {
 			mv.addObject("ModeImgUpload", true);
 
 		}
-		if (careerupdate != null) {
 
-			mv.addObject("imgupload", "<b>Your Career Info has been updated</b>");
-			mv.addObject("ModeImgUpload", true);
 
-		}
-		if (educationupdate != null) {
 
-			mv.addObject("imgupload", "<b>Your Education Info has been updated</b>");
-			mv.addObject("ModeImgUpload", true);
-
-		}
-		if (skillupdate != null) {
-
-			mv.addObject("imgupload", "<b>Your Skills and Tallent Info has been updated</b>");
-			mv.addObject("ModeImgUpload", true);
-
-		}
-		if (updateAboutme != null) {
-
-			mv.addObject("imgupload", "<b>Your About me Info has been updated</b>");
-			mv.addObject("ModeImgUpload", true);
-
-		}
-		if (eventupdate != null) {
-
-			mv.addObject("imgupload", "<b>Your Event Info has been updated</b>");
-			mv.addObject("ModeImgUpload", true);
-
-		}
-		if (notGoingAdded != null) {
-
-			mv.addObject("imgupload", "<b>Your are not going to that event</b>");
-			mv.addObject("ModeImgUpload", true);
-
-		}
-		if (recomendAdded != null) {
-
-			mv.addObject("imgupload", "<b>Your are recomending people for the Job Add</b>");
-			mv.addObject("ModeImgUpload", true);
-
-		}
-		if (opinionCreated != null) {
-
-			mv.addObject("imgupload", "<b>Your opinion has been added</b>");
-			mv.addObject("ModeImgUpload", true);
-
-		}
-		if (articleCreated != null) {
-
-			mv.addObject("imgupload", "<b>Your new article has been added</b>");
-			mv.addObject("ModeImgUpload", true);
-
-		}
 		if (userinvited != null) {
 
 			mv.addObject("imgupload", "<b>your invitation to billionres has been sent</b>");
@@ -858,6 +807,15 @@ public class HomeController {
 
 		return topCatCounter;
 	}
+	@ModelAttribute("userCat")
+	private Category getUserCat() {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		User user = userService.findByEmail(authentication.getName());
+		Category category=categoryService.getCategory(user.getCatid()).orElseThrow(null);
+	
+		
+		return category;
+	}
 
 	@ModelAttribute("top10CatCounters")
 	private List<DisplayCounter> getTop10CatCounter() {
@@ -911,6 +869,7 @@ public class HomeController {
 		}
 
 		for (Counter counter : top10Counters) {
+			if(counter.getCid()!=1) {
 			i++;
 			DisplayCounter dcounter = new DisplayCounter();
 			dcounter.setSnumber(i);
@@ -923,6 +882,7 @@ public class HomeController {
 			dcounter.setColor(colors[i - 1]);
 
 			dcounters.add(dcounter);
+			}
 
 		}
 

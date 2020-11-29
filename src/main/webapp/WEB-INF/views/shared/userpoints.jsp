@@ -35,7 +35,7 @@
             <span class="info-box-icon bg-green"><i class="ion ion-ios-checkmark-outline"></i></span>
             <div class="info-box-content">
               <span class="info-box-text text-center"> VOTES</span>
-              <span class="info-box-number text-center">${counter.noVotes}</span>
+              <span class="info-box-number text-center VoPoints">${counter.noVotes}</span>
             </div>
             <!-- /.info-box-content -->
           </div>

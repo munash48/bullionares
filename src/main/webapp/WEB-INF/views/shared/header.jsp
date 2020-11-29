@@ -161,8 +161,16 @@
 								<li class="footer"><a href="javascript:void(0);" data-toggle="modal" data-target="#jobReview" data-toggle="tooltip">View all Job listing</a></li>
 							</ul></li>
 						<!-- User Account: style can be found in dropdown.less -->
-						<li class="dropdown user user-menu"><a href="#"
-							class="dropdown-toggle" data-toggle="dropdown"> <c:if
+						<li class="dropdown user user-menu">
+						
+						<a href="#"
+							class="dropdown-toggle" data-toggle="dropdown"> 
+							<span class="newpImage" style="display:none">
+							
+							</span>
+							<span class="oldImage" >
+							
+						     <c:if
 									test="${user.imageLink!=''}">
 									<img class="user-image"
 										src="/uploads/${user.id}/profile/${user.imageLink}"
@@ -172,12 +180,19 @@
 									<img class="user-image" src="/dist/img/profile.jpg"
 										alt="User Image">
 
-								</c:if> <span class="hidden-xs">${user.firstName}
+								</c:if> 
+								</span>
+								
+								<span class="hidden-xs">${user.firstName}
 									${user.otherNames} </span>
 						</a>
 							<ul class="dropdown-menu">
 								<!-- User image -->
-								<li class="user-header"><c:if test="${user.imageLink!=''}">
+								<li class="user-header">
+								
+								
+								<c:if test="${user.imageLink!=''}">
+								
 										<img class="img-circle"
 											src="/uploads/${user.id}/profile/${user.imageLink}"
 											alt="User Image">
@@ -187,6 +202,7 @@
 											alt="User Image">
 
 									</c:if>
+								
 
 									<p>
 										${user.firstName} ${user.otherNames} - ${user.profession} <small>Member

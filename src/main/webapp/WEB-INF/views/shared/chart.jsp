@@ -3,7 +3,7 @@
 
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Top 10 Performers in Category ${category.catName}</h3>
+              <h3 class="box-title">Top 10 Performers in Category ${userCat.catName}</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body no-padding">

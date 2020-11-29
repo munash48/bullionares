@@ -1,7 +1,5 @@
 package com.kalimagezi.billionareskb.education;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -10,9 +8,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kalimagezi.billionareskb.counter.Counter;
@@ -37,7 +33,8 @@ public class EducationController {
 		  
 		  User user = userModelRepository.findByEmail(authentication.getName());
 		  Counter counter= counterService.getUCounter(user.getId());
-		  if(education.getLevel()==null) {
+		  Education education2=educationService.getEducation(education.getId()).orElseThrow(null);
+		  if(education2.getAward()==null) {
 			counter.setNoVotes(counter.getNoVotes()+2);
 			counter.setTotal(counter.getNoArticles()+counter.getNoConnections()+counter.getNoInvites()+counter.getNoOpinions()-
 		       		 counter.getNoReports()+counter.getNoVotes());

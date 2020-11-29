@@ -1,4 +1,5 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <div class="row">
 	<c:if test="${ModeImgUpload==true}">
 		<div class="col-md-12">

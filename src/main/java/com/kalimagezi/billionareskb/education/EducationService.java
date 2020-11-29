@@ -9,20 +9,29 @@ import org.codehaus.jettison.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kalimagezi.billionareskb.counter.Counter;
+import com.kalimagezi.billionareskb.counter.CounterService;
+
 
 @Service
 public class EducationService {
 
 	@Autowired
 	private EducationRepository educationRepository;
+	@Autowired
+	private CounterService counterService;
 
 	public String addEducation(Education education) {
 		
 		JSONObject jsonObject = new JSONObject();
 
 		educationRepository.save(education);
+		Counter counter =counterService.getUCounter(education.getUid());
 		try {
 			jsonObject.put("message", education.getAward() +" Updated successfully");
+			jsonObject.put("noVotes", counter.getNoVotes());
+			jsonObject.put("noTVotes", counter.getTotal());
+			jsonObject.put("newEduc", education.getAward());
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
