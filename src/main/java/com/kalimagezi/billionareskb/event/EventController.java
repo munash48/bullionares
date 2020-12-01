@@ -52,6 +52,7 @@ public class EventController {
 		User user = userService.findByEmail(authentication.getName());
 		Counter counter= counterService.getUCounter(user.getId());
 		Event  event = eventService.getUEvent(user.getId());
+		
 		if(event.getEname()==null) {
 		counter.setNoVotes(counter.getNoVotes()+2);
 		counter.setTotal(counter.getNoArticles()+counter.getNoConnections()+counter.getNoInvites()+counter.getNoOpinions()-

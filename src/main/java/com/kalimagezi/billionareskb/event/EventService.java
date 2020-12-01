@@ -9,6 +9,9 @@ import org.codehaus.jettison.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kalimagezi.billionareskb.counter.Counter;
+import com.kalimagezi.billionareskb.counter.CounterService;
+
 
 @Service
 public class EventService {
@@ -16,6 +19,8 @@ public class EventService {
 	
 	@Autowired
 	private EventRepository eventRepository;
+	@Autowired
+	private CounterService counterService;
 
 	public String addEvent(Event event) {
 		
@@ -23,9 +28,15 @@ public class EventService {
 		
 		System.out.println("Saving event");
 		eventRepository.save(event);
+		Counter counter =counterService.getUCounter(event.getUid());
 		
 		try {
 			jsonObject.put("message", event.getEname()+" Updated successfully");
+			jsonObject.put("noVotes", counter.getNoVotes());
+			jsonObject.put("noTVotes", counter.getTotal());
+			String newEvents="Don't miss my <i>"+event.getEname() +",</i>"+ event.getDescription()+". Scheduled for "+event.getEventDate();
+			
+			jsonObject.put("newEvent", newEvents);
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

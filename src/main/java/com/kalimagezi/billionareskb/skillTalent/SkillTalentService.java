@@ -9,6 +9,9 @@ import org.codehaus.jettison.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kalimagezi.billionareskb.counter.Counter;
+import com.kalimagezi.billionareskb.counter.CounterService;
+
 
 
 @Service
@@ -17,13 +20,21 @@ public class SkillTalentService {
 	
 	@Autowired
 	private SkillTalentRepository skillTalentRepository;
+	@Autowired
+	private CounterService counterService;
 
 	public String addSkillTalent(SkillTalent skillTalent) {
 		JSONObject jsonObject = new JSONObject();
 
 		skillTalentRepository.save(skillTalent);
+		Counter counter =counterService.getUCounter(skillTalent.getUid());
 		try {
 			jsonObject.put("message", skillTalent.getName1()+" Updated successfully");
+			jsonObject.put("noVotes", counter.getNoVotes());
+			jsonObject.put("noTVotes", counter.getTotal());
+			
+			String newSkills="<span class=\"label label-danger\">"+skillTalent.getName1()+"</span> <span class=\"label label-success\">"+skillTalent.getName2()+"</span> <span class=\"label label-info\">"+skillTalent.getName3()+"</span> <span class=\"label label-warning\">"+skillTalent.getName4()+"</span> <span class=\"label label-primary\">"+skillTalent.getName5()+"</span>";
+			jsonObject.put("newSkill", newSkills);
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

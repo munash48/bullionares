@@ -32,7 +32,8 @@ public class AddressController {
 		  
 		  User user = userService.findByEmail(authentication.getName());
 		  Counter counter= counterService.getUCounter(user.getId());
-		  if(address.getCountry()==null) {
+		  Address address1=addressService.getUAddress(user.getId()).orElseThrow(null);
+		  if(address1.getCountry()==null) {
          counter.setNoVotes(counter.getNoVotes()+2);
  		counter.setTotal(counter.getNoArticles()+counter.getNoConnections()+counter.getNoInvites()+counter.getNoOpinions()-
 	       		counter.getNoReports()+counter.getNoVotes());

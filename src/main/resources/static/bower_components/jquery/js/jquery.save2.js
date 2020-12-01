@@ -452,6 +452,9 @@ function saveUpdatedData(frm, data,nurl){
 		 		$(".VoPoints").html(data.noVotes);
 		 		$(".newAbout").html(data.about);
 		 		$(".newComp").html(data.newComp);
+		 		$(".newAddress").html(data.newAddress);
+		 		$(".newSkill").html(data.newSkill);
+		 		$(".newEvent").html(data.newEvent);
 		 		$(".newJob").html(data.newJob);
 		 		$(".newCar").html(data.newCar);
 		 		$(".newEduc").html(data.newEduc);

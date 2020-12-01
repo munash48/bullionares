@@ -9,19 +9,30 @@ import org.codehaus.jettison.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kalimagezi.billionareskb.counter.Counter;
+import com.kalimagezi.billionareskb.counter.CounterService;
+
 
 @Service
 public class AddressService {
 	@Autowired
 	private AddressRepository addressRepository;
+	@Autowired
+	private CounterService counterService;
+	
 
 	public String addAddress(Address address) {
 		JSONObject jsonObject = new JSONObject();
+		
+		Counter counter =counterService.getUCounter(address.getUid());
 
 		addressRepository.save(address);
 		
 		try {
 			jsonObject.put("message", address.getStreet()+" Updated successfully");
+			jsonObject.put("noVotes", counter.getNoVotes());
+			jsonObject.put("noTVotes", counter.getTotal());
+			jsonObject.put("newAddress", address.getCountry()+", "+address.getDistrict()+", " +address.getDivision());
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

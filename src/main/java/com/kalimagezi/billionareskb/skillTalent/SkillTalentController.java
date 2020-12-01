@@ -7,9 +7,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kalimagezi.billionareskb.counter.Counter;
@@ -36,7 +34,8 @@ public class SkillTalentController {
 		  
 		  User user = userModelRepository.findByEmail(authentication.getName());
 		  Counter counter= counterService.getUCounter(user.getId());
-		  if(skillTalent==null) {
+		  SkillTalent skillTanlent1= skillTalentService.getUSkillTalent(user.getId());
+		  if(skillTanlent1.getName1()==null) {
 			  
 			counter.setNoVotes(counter.getNoVotes()+2);
 			counter.setTotal(counter.getNoArticles()+counter.getNoConnections()+counter.getNoInvites()+counter.getNoOpinions()-

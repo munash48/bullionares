@@ -116,7 +116,7 @@
 				<i class="fa fa-pencil" title="click to edit" data-toggle="tooltip"
 					data-placement="right"></i>
 			</button>
-			<p class="text-muted">${address.country},${address.district},
+			<p class="text-muted newAddress">${address.country}, ${address.district}, 
 				${address.division}</p>
 
 			<hr>
@@ -129,7 +129,7 @@
 					data-placement="right"></i>
 			</button>
 
-			<p>
+			<p class="newSkill">
 				<span class="label label-danger">${skillTalent.name1} </span> <span
 					class="label label-success">${skillTalent.name2}</span> <span
 					class="label label-info">${skillTalent.name3} </span> <span
@@ -137,13 +137,13 @@
 					class="label label-primary">${skillTalent.name5}</span>
 			</p>
 			<hr>
-			<strong><i class="fa fa-map-marker margin-r-5"></i>My events</strong>
+			<strong><i class="fa fa-map-marker margin-r-5"></i>My Event</strong>
 			<button type="button" data-toggle="modal" data-target="#eventEdit"
 				class="btn probtn">
 				<i class="fa fa-pencil" title="click to edit" data-toggle="tooltip"
 					data-placement="right"></i>
 			</button>
-			<p class="text-muted">
+			<p class="text-muted newEvent">
 				Don't miss my <i>${event.ename},</i> ${event.description} .
 				Scheduled for ${event.eventDate}
 			</p>
