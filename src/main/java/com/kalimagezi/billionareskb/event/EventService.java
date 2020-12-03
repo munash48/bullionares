@@ -35,8 +35,10 @@ public class EventService {
 			jsonObject.put("noVotes", counter.getNoVotes());
 			jsonObject.put("noTVotes", counter.getTotal());
 			String newEvents="Don't miss my <i>"+event.getEname() +",</i>"+ event.getDescription()+". Scheduled for "+event.getEventDate();
+			String EventImage="<img class='img-responsive pad' src='/uploads/"+event.getUid()+"/events/"+event.getImageLink()+"' alt='Event Photo'>";
 			
 			jsonObject.put("newEvent", newEvents);
+			jsonObject.put("newEventImg", EventImage);
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

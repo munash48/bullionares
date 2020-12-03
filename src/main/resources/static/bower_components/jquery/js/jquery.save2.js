@@ -127,7 +127,10 @@ $(function() {
 	      success: function(data){
 				
 		    	 alert(data.message);
-		    	 getPage("/profile");
+		    	 $(".noVotes").html(data.noVotes);
+		    	 $(".noTVotes").html(data.noTVotes);
+		    	 $(".newEvent").html(data.newEvent);
+		    	 $(".newEventImg").html(data.newEventImg);
 		    	 $('.modal').modal('hide');
 
 		     },
