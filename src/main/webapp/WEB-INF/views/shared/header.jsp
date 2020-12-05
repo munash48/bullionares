@@ -44,7 +44,7 @@
 						<li class="dropdown tasks-menu"><a href="javascript:void(0);" id ="chart"> <i
 								class="fa fa-bar-chart"></i> <c:if
 									test="${notification.chart>0}">
-									<span class="label label-danger">${notification.chart}</span>
+									<span class="label label-danger chartNotice">${notification.chart}</span>
 								</c:if>
 						</a></li>
 
@@ -53,7 +53,7 @@
 							class="dropdown-toggle" data-toggle="dropdown"> <i
 								class="fa fa-envelope-o"></i> <c:if
 									test="${notification.message>0}">
-									<span class="label label-danger">${notification.message}</span>
+									<span class="label label-danger chatNotice">${notification.message}</span>
 								</c:if>
 						</a>
 							<ul class="dropdown-menu">

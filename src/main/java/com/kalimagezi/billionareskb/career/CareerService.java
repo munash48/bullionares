@@ -22,7 +22,28 @@ public class CareerService {
 	@Autowired
 	private CounterService counterService;
 
-	public String addCareer(Career career) {
+	public void addCareer(Career career) {
+		
+
+		careerRepository.save(career);
+		
+	}
+
+	public Optional<Career> getCareer(int id) {
+
+		return careerRepository.findById(id);
+
+	}
+
+	public List<Career> getAllCareers() {
+
+		List<Career> careers = new ArrayList<>();
+		careerRepository.findAll().forEach(careers::add);
+		return careers;
+
+	}
+
+	public String updateCareer(Career career) {
 		JSONObject jsonObject = new JSONObject();
 
 		careerRepository.save(career);
@@ -40,25 +61,6 @@ public class CareerService {
 		}
 		
 		return jsonObject.toString();
-	}
-
-	public Optional<Career> getCareer(int id) {
-
-		return careerRepository.findById(id);
-
-	}
-
-	public List<Career> getAllCareers() {
-
-		List<Career> careers = new ArrayList<>();
-		careerRepository.findAll().forEach(careers::add);
-		return careers;
-
-	}
-
-	public void updateCareer(Career career) {
-
-		careerRepository.save(career);
 	}
 
 	public void deleteCareer(int id) {

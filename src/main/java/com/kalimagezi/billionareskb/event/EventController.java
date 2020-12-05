@@ -86,14 +86,14 @@ public class EventController {
 			String pname=tday+".jpg";
 			event.setImageLink(pname);
 			String ppath=uploadDirectory+"/"+uid+"/events/";
-			System.out.println("Starting to upload");
+			
 			userService.saveImage(imageFile,ppath,pname);
-			System.out.println("uploaded");
+			
 			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			System.out.println("Error uploading image");
+			
 		}
 		
 		

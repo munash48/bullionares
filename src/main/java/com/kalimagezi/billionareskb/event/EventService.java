@@ -26,7 +26,7 @@ public class EventService {
 		
 		JSONObject jsonObject = new JSONObject();
 		
-		System.out.println("Saving event");
+		
 		eventRepository.save(event);
 		Counter counter =counterService.getUCounter(event.getUid());
 		

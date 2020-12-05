@@ -16,6 +16,7 @@ public class Category {
 	@Column(name="cat_name")
 	private String catName;
 	private String description;
+	private int noMembers;
 	private boolean enabled=true;
 	
 	
@@ -25,19 +26,24 @@ public class Category {
 	}
 
 
-	public Category(int catid, String catName, String description, boolean enabled) {
+
+
+	public Category(int catid, String catName, String description, int noMembers, boolean enabled) {
 		super();
 		this.catid = catid;
 		this.catName = catName;
 		this.description = description;
+		this.noMembers = noMembers;
 		this.enabled = enabled;
 	}
 
 
+
+
 	@Override
 	public String toString() {
-		return "Category [catid=" + catid + ", catName=" + catName + ", description=" + description + ", enabled="
-				+ enabled + "]";
+		return "Category [catid=" + catid + ", catName=" + catName + ", description=" + description + ", noMembers="
+				+ noMembers + ", enabled=" + enabled + "]";
 	}
 
 
@@ -78,6 +84,20 @@ public class Category {
 
 	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
+	}
+
+
+
+
+	public int getNoMembers() {
+		return noMembers;
+	}
+
+
+
+
+	public void setNoMembers(int noMembers) {
+		this.noMembers = noMembers;
 	}
 	
 	

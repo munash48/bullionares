@@ -41,7 +41,7 @@ public class AddressController {
 		  }
 	
 
-		return addressService.addAddress(address);
+		return addressService.updateAddress(address);
 		
 	}
 

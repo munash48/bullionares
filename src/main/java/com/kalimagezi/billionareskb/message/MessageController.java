@@ -42,11 +42,11 @@ public class MessageController {
 		}
 		int catid = Integer.parseInt(scatid);
 		
-		Counter counter = counterService.getUCounter(uid);
+		Counter counter = counterService.getUCounter(wuid);
 		counter.setNoVotes(counter.getNoVotes()+1);
 		
 		counter.setTotal(counter.getNoArticles()+counter.getNoConnections()+counter.getNoInvites()+counter.getNoOpinions()-
-	       		 counter.getNoReports()+counter.getNoVotes());
+	    counter.getNoReports()+counter.getNoVotes());
 		
 		Message message1 = new Message();
 
@@ -66,6 +66,7 @@ public class MessageController {
 			    try {
 					jsonObject.put("message", "Messagege with "+message1.getWuid()+" Updated successfully");
 					jsonObject.put("wuid", wuid);
+					
 					
 				} catch (JSONException e) {
 					// TODO Auto-generated catch block

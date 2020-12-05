@@ -272,6 +272,7 @@ public class WelcomeController {
 					
 					
 				}
+				
 			}
 		  return "shared/reset";
 			
@@ -292,10 +293,10 @@ public class WelcomeController {
 					if(user!=null) {
 						jsonObject.put("message", user.getEmail()+ " Was found and code sent successfully");	
 						
-						return "redirect:/reset?email="+user.getEmail()+"&within=yes";			
+						return "shared/reset?email="+user.getEmail()+"&within=yes";			
 					} else {
 						jsonObject.put("message", "user with "+email+ " Was not found");
-						return "redirect:/reset?email="+email;
+						return "shared/reset?email="+email;
 								
 					}
 					

@@ -46,7 +46,7 @@ public class SkillTalentController {
 		
 
 
-		return skillTalentService.addSkillTalent(skillTalent);
+		return skillTalentService.updateSkillTalent(skillTalent);
 		
 	}
 }

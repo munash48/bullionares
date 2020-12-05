@@ -18,6 +18,7 @@
 	 });
 	 $("#chart").click(function(){
 		 getPage("/chart");
+		 $(".chartNotice").hide();
 	 });
 	 $("#editProfile").click(function(){
 		 getPage("/editProfile");
@@ -49,6 +50,7 @@
  
  function chatForm(id){	
 	 getPage("/message?wuid="+id);
+	 $(".chatNotice").hide();
 		
 	}
  function countVote(uid,aid,duid){	

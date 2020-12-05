@@ -15,6 +15,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.kalimagezi.billionareskb.category.Category;
+import com.kalimagezi.billionareskb.category.CategoryService;
 import com.kalimagezi.billionareskb.counter.Counter;
 import com.kalimagezi.billionareskb.counter.CounterService;
 
@@ -29,6 +31,8 @@ public class UserService {
 	private UserController userController;
 	@Autowired
 	private CounterService counterService ;
+	@Autowired
+	private CategoryService categoryService ;
 
 	
 	@Autowired
@@ -55,25 +59,19 @@ public class UserService {
 //	}
 	public String addUser(User user) {
 
-		String message1 = null;
-		JSONObject jsonObject = new JSONObject();
-		
-	
-		
+		JSONObject jsonObject = new JSONObject();	
 		try {
-			if (user.getId()== 0) {
-				message1 = "Added";
-			} else {
-				message1 = "Updated";
-
-			}
-			userRepository.save(user);
+			
+			userRepository.save(user);	
+			Category category =categoryService.getCategory(user.getCatid()).orElseThrow(null);
+			category.setNoMembers(category.getNoMembers()+1);
+			categoryService.addCategory(category);
 						
 			jsonObject.put("status", "success");
-			jsonObject.put("title", message1 + " Confirmation");
-			jsonObject.put("message", user.getEmail()+" " +message1 + " successfully");
+			jsonObject.put("message", user.getEmail()+" Created successfully sending password link");
 			
 			userController.createUseradons(user); 
+			
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

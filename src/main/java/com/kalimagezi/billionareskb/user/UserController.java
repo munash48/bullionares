@@ -113,13 +113,14 @@ public class UserController {
 			String pname=tday+".jpg";
 			User user = userService.findByEmail(email);
 			Counter counter2= counterService.getUCounter(user.getId());
-			if (user.getImageLink()=="") {
+			if (user.getImageLink().isEmpty()) {
 			
 			counter2.setNoVotes(counter2.getNoVotes()+2);
 			counter2.setTotal(counter2.getNoArticles()+counter2.getNoConnections()+counter2.getNoInvites()+counter2.getNoOpinions()-
 		       		 counter2.getNoReports()+counter2.getNoVotes());
 						
 			}
+
 			
 			user.setImageLink(pname);
 			try {
@@ -200,8 +201,6 @@ public class UserController {
 		skillTalent.setUid(user1.getId());
 		skillTalentService.addSkillTalent(skillTalent);
 		
-		
-		
 		Connection connection = new Connection();
 		connection.setUid(user1.getId());
 		connection.setCuid(user1.getCatid());
@@ -221,7 +220,6 @@ public class UserController {
 		counterService.addCounter(counter);
 		
 		Invite invite = new Invite();
-
 		invite.setEmail(user1.getEmail());
 		invite.setUid(user1.getId());
 		invite.setMessage(user1.getFirstName() +" " +user1.getOtherNames() +" has invited you to join Billonares" );

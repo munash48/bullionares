@@ -21,23 +21,12 @@ public class AddressService {
 	private CounterService counterService;
 	
 
-	public String addAddress(Address address) {
-		JSONObject jsonObject = new JSONObject();
+	public void addAddress(Address address) {
 		
-		Counter counter =counterService.getUCounter(address.getUid());
 
 		addressRepository.save(address);
 		
-		try {
-			jsonObject.put("message", address.getStreet()+" Updated successfully");
-			jsonObject.put("noVotes", counter.getNoVotes());
-			jsonObject.put("noTVotes", counter.getTotal());
-			jsonObject.put("newAddress", address.getCountry()+", "+address.getDistrict()+", " +address.getDivision());
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return jsonObject.toString();
+	
 	}
 
 	public Optional<Address> getAddress(int id) {
@@ -59,9 +48,24 @@ public class AddressService {
 
 	}
 
-	public void updateAddress(Address address) {
+	public String updateAddress(Address address) {
+        JSONObject jsonObject = new JSONObject();
+		
+		Counter counter =counterService.getUCounter(address.getUid());
 
 		addressRepository.save(address);
+		
+		try {
+			jsonObject.put("message", address.getStreet()+" Updated successfully");
+			jsonObject.put("noVotes", counter.getNoVotes());
+			jsonObject.put("noTVotes", counter.getTotal());
+			jsonObject.put("newAddress", address.getCountry()+", "+address.getDistrict()+", " +address.getDivision());
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return jsonObject.toString();
 	}
 
 	public void deleteAddress(int id) {

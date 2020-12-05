@@ -23,23 +23,11 @@ public class SkillTalentService {
 	@Autowired
 	private CounterService counterService;
 
-	public String addSkillTalent(SkillTalent skillTalent) {
-		JSONObject jsonObject = new JSONObject();
+	public void addSkillTalent(SkillTalent skillTalent) {
+		
 
 		skillTalentRepository.save(skillTalent);
-		Counter counter =counterService.getUCounter(skillTalent.getUid());
-		try {
-			jsonObject.put("message", skillTalent.getName1()+" Updated successfully");
-			jsonObject.put("noVotes", counter.getNoVotes());
-			jsonObject.put("noTVotes", counter.getTotal());
-			
-			String newSkills="<span class=\"label label-danger\">"+skillTalent.getName1()+"</span> <span class=\"label label-success\">"+skillTalent.getName2()+"</span> <span class=\"label label-info\">"+skillTalent.getName3()+"</span> <span class=\"label label-warning\">"+skillTalent.getName4()+"</span> <span class=\"label label-primary\">"+skillTalent.getName5()+"</span>";
-			jsonObject.put("newSkill", newSkills);
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return jsonObject.toString();
+		
 	}
 
 	public Optional<SkillTalent> getSkillTalent(int id) {
@@ -56,9 +44,23 @@ public class SkillTalentService {
 
 	}
 
-	public void updateSkillTalent(SkillTalent skillTalent) {
+	public String updateSkillTalent(SkillTalent skillTalent) {
+		JSONObject jsonObject = new JSONObject();
 
 		skillTalentRepository.save(skillTalent);
+		Counter counter =counterService.getUCounter(skillTalent.getUid());
+		try {
+			jsonObject.put("message", skillTalent.getName1()+" Updated successfully");
+			jsonObject.put("noVotes", counter.getNoVotes());
+			jsonObject.put("noTVotes", counter.getTotal());
+			
+			String newSkills="<span class=\"label label-danger\">"+skillTalent.getName1()+"</span> <span class=\"label label-success\">"+skillTalent.getName2()+"</span> <span class=\"label label-info\">"+skillTalent.getName3()+"</span> <span class=\"label label-warning\">"+skillTalent.getName4()+"</span> <span class=\"label label-primary\">"+skillTalent.getName5()+"</span>";
+			jsonObject.put("newSkill", newSkills);
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return jsonObject.toString();
 	}
 
 	public void deleteSkillTalent(int id) {

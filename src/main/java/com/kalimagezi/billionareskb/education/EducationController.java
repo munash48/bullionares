@@ -42,7 +42,7 @@ public class EducationController {
 		  }
 
 
-		return educationService.addEducation(education);
+		return educationService.updateEducation(education);
 		
 	}
 

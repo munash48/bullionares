@@ -21,23 +21,12 @@ public class EducationService {
 	@Autowired
 	private CounterService counterService;
 
-	public String addEducation(Education education) {
+	public void addEducation(Education education) {
 		
-		JSONObject jsonObject = new JSONObject();
+		
 
 		educationRepository.save(education);
-		Counter counter =counterService.getUCounter(education.getUid());
-		try {
-			jsonObject.put("message", education.getAward() +" Updated successfully");
-			jsonObject.put("noVotes", counter.getNoVotes());
-			jsonObject.put("noTVotes", counter.getTotal());
-			jsonObject.put("newEduc", education.getAward());
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		
-		return jsonObject.toString();
 	}
 
 	public Optional<Education> getEducation(int id) {
@@ -54,9 +43,22 @@ public class EducationService {
 
 	}
 
-	public void updateEducation(Education education) {
+	public String updateEducation(Education education) {
+		JSONObject jsonObject = new JSONObject();
 
 		educationRepository.save(education);
+		Counter counter =counterService.getUCounter(education.getUid());
+		try {
+			jsonObject.put("message", education.getAward() +" Updated successfully");
+			jsonObject.put("noVotes", counter.getNoVotes());
+			jsonObject.put("noTVotes", counter.getTotal());
+			jsonObject.put("newEduc", education.getAward());
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return jsonObject.toString();
 	}
 
 	public void deleteEducation(int id) {

@@ -43,7 +43,7 @@ public class CompanyController {
 				
 		  }
 			
-		return  companyService.addCompany(company);
+		return  companyService.updateCompany(company);
 		
 	}
 
