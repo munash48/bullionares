@@ -13,8 +13,6 @@
 
 					<button type="button" class="close" data-dismiss="alert">&times;</button>
 					${success} Success is null
-
-
 				</div>
 
 			</div>
