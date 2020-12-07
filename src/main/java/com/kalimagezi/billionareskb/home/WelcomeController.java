@@ -133,8 +133,6 @@ public class WelcomeController {
 		public String reset(  Model model, @RequestParam(name = "resetCode", required = false) String resetCode,
 				String email,  String reset, String pnew, String within
 				) throws JSONException {
-			
-			
 
 			if(email!=null) {
 				
@@ -245,7 +243,8 @@ public class WelcomeController {
 		}
 		
 		@RequestMapping(value="/reset", method = RequestMethod.POST)
-		public String resetPassword ( @RequestParam("resetcode") String resetcode, @RequestParam("password") String password,@RequestParam("confirm") String confirm) throws JSONException {
+		public String resetPassword ( @RequestParam("resetcode") String resetcode, @RequestParam("password") 
+		String password,@RequestParam("confirm") String confirm) throws JSONException {
 			
 			if(resetcode!=null) {
 				
@@ -283,8 +282,7 @@ public class WelcomeController {
 		}
 			
 		@RequestMapping(value="/resete", method = RequestMethod.POST)
-		
-		public String resetPassword ( @RequestParam("email") String email) throws JSONException {
+		public void resetPassword (Model model, @RequestParam("email") String email) throws JSONException {
 			JSONObject jsonObject = new JSONObject();
 			if(email!=null) {
 				
@@ -295,29 +293,21 @@ public class WelcomeController {
 					if(user!=null) {
 						jsonObject.put("message", user.getEmail()+ " Was found and code sent successfully");	
 						
-						return "shared/reset?email="+user.getEmail()+"&within=yes";			
+//						return "shared/reset?email="+user.getEmail()+"&within=yes";			
 					} else {
 						jsonObject.put("message", "user with "+email+ " Was not found");
-						return "shared/reset?email="+email;
+	//					return "shared/reset?email="+email;
 								
-					}
-					
-					
+					}					
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					
 					
-					e.printStackTrace();
-			
-					
-				}
-				
-				
-				
-				
+					e.printStackTrace();					
+				}				
 			}
 			
-			return "shared/reset";
+	//		return "shared/reset";
 			
 		}
 		
