@@ -1483,6 +1483,7 @@
 	<script src="bower_components/chart.js/Chart.js"></script>
 	<script src="bower_components/jquery/js/jquery.boot2.js"></script>
 	<script src="bower_components/jquery/js/jquery.save2.js"></script>
+	
 
 	<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 	<script src="dist/js/pages/dashboard2.js"></script>
