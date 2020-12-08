@@ -1,5 +1,9 @@
 $(function() {
- alert("inside save");
+ toastr.success("Location", "inside save", {
+		    closeButton: true,
+			progressBar: true,
+			positionClass:"toast-top-center"
+	 });
 	$("#submitRegForm").submit(function(e) {
 		e.preventDefault();
 		var frm = $("#submitRegForm");
@@ -46,6 +50,9 @@ function saveRequestedData(frm, data,nurl){
 		success: function (data) {
 			
 			alert(data.message);
+			toastr.success("Location", data.message, {
+		   		 closeButton: true
+		   	 });
 			getPage(nurl);
 			
 			}

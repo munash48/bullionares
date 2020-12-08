@@ -1,5 +1,11 @@
  $(function(){
-	 alert("inside boot 2");
+	 alert("inside boot2");
+	 toastr.success("Location", "inside boot 2 toaster", {
+			closeButton: true,
+			progressBar: true,
+			positionClass:"toast-top-center"
+	  	 });
+		 
 
 	 $("#profile").click(function(){
 		 alert("inside profile");
@@ -62,6 +68,9 @@
 	    	success: function(data){
 	    	
 	    	alert(data.message);
+	    	toastr.success("Location", data.message, {
+	   		 closeButton: true
+	   	 });
 	    	$(".noVotes"+aid).html(data.newvotes);
 	    }
 		
@@ -77,6 +86,9 @@
 		 success: function(data){
 			 
 			 alert(data.message);
+			 toastr.success("Location", data.message, {
+		   		 closeButton: true
+		   	 });
 			 $(".noReports"+aid).html(data.newCrosses);
 		 }
 	 
@@ -92,6 +104,9 @@
 		 success: function(data){
 			 
 			 alert(data.message);
+			 toastr.success("Location", data.message, {
+		   		 closeButton: true
+		   	 });
 			 $(".noNegative"+adid).html(data.newNegative);
 		 }
 	 
@@ -107,6 +122,9 @@
 		 success: function(data){
 			 
 			 alert(data.message);
+			 toastr.success("Location", data.message, {
+		   		 closeButton: true
+		   	 });
 			 $(".noPositive"+adid).html(data.newPositive);
 		 }
 	 
@@ -122,6 +140,9 @@
 		 success: function(data){
 			 
 			 alert(data.message);
+			 toastr.success("Location", data.message, {
+		   		 closeButton: true
+		   	 });
 			 $(".noGoing"+eid).html(data.newGoing);
 		 }
 	 
@@ -137,6 +158,9 @@
 		 success: function(data){
 			 
 			 alert(data.message);
+			 toastr.success("Location", data.message, {
+		   		 closeButton: true
+		   	 });
 			 $(".noNotGoing"+eid).html(data.newNotGoing);
 		 }
 	 
@@ -152,6 +176,9 @@
 		 success: function(data){
 			 
 			 alert(data.message);
+			 toastr.success("Location", data.message, {
+		   		 closeButton: true
+		   	 });
 			 $(".noRecommend"+jaid).html(data.newRecommend);
 		 }
 	 
@@ -167,6 +194,9 @@
 		 success: function(data){
 			 
 			 alert(data.message);
+			 toastr.success("Location", data.message, {
+		   		 closeButton: true
+		   	 });
 			 $(".noNotRecomend"+jaid).html(data.newNotRecomend);
 		 }
 	 

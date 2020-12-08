@@ -1,5 +1,9 @@
 $(function() {
-	alert("inside save 2");
+	toastr.success("Location", "inside save toaster", {
+		closeButton: true,
+		progressBar: true,
+		positionClass:"toast-top-center"
+  	 });
 	
 	$("#profileEditFrm").submit(function(e) {
 		e.preventDefault();

@@ -696,7 +696,7 @@ public class HomeController {
 
 		List<Article> articles = articleService.getArticlesByCat(category.getCatid());
 
-		for (Article article : articles) {
+		for (Article article : articles) { 
 			Display display = new Display();
 
 			User user2 = userService.getUser(article.getUid()).orElseThrow(null);
