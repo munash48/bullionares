@@ -1,13 +1,8 @@
 $(function() {
-	toastr.success("Location", "inside save toaster", {
-		closeButton: true,
-		progressBar: true,
-		positionClass:"toast-top-center"
-  	 });
-	
+
 	$("#profileEditFrm").submit(function(e) {
 		e.preventDefault();
-		alert("submit by jquery");
+		
 		var frm = $("#profileEditFrm");
 		var data = {};
 		$.each(this, function(i, v) {
@@ -26,7 +21,7 @@ $(function() {
 	});
 	$("#companyEditFrm").submit(function(e) {
 		e.preventDefault();
-		alert("submit by jquery");
+		
 		var frm = $("#companyEditFrm");
 		var data = {};
 		$.each(this, function(i, v) {
@@ -46,7 +41,7 @@ $(function() {
 	
 	$("#careerEditFrm").submit(function(e) {
 		e.preventDefault();
-		alert("submit by jquery");
+		
 		var frm = $("#careerEditFrm");
 		var data = {};
 		$.each(this, function(i, v) {
@@ -64,7 +59,7 @@ $(function() {
 	});
 	$("#educationEditFrm").submit(function(e) {
 		e.preventDefault();
-		alert("submit by jquery");
+		
 		var frm = $("#educationEditFrm");
 		var data = {};
 		$.each(this, function(i, v) {
@@ -83,7 +78,7 @@ $(function() {
 	
 	$("#addressEditFrm").submit(function(e) {
 		e.preventDefault();
-		alert("submit by jquery");
+		
 		var frm = $("#addressEditFrm");
 		var data = {};
 		$.each(this, function(i, v) {
@@ -101,7 +96,7 @@ $(function() {
 	});
 	$("#skillEditFrm").submit(function(e) {
 		e.preventDefault();
-		alert("submit by jquery");
+		
 		var frm = $("#skillEditFrm");
 		var data = {};
 		$.each(this, function(i, v) {
@@ -121,7 +116,7 @@ $(function() {
 	$( '#submitEventFrm' )
 	  .submit( function( e ) {
 		  var frm = $("#submitEventFrm");
-		  alert("Submitting by jquery");
+		  
 	    $.ajax( {
 	      url:frm.attr("action"),
 		  type:frm.attr("method"),
@@ -129,15 +124,35 @@ $(function() {
 	      processData: false,
 	      contentType: false,
 	      success: function(data){
-				
-		    	 alert(data.message);
+	    	  if(data.status=="success"){
+	    	  toastr.success(data.message,"Updated", {
+		    		closeButton: true,
+					progressBar: true,
+					positionClass:"toast-top-center"
+		   	 });
+	    		 
+	    		getPage("/profile");
 		    	 $(".noVotes").html(data.noVotes);
 		    	 $(".noTVotes").html(data.noTVotes);
 		    	 $(".newEvent").html(data.newEvent);
+		    	 if(data.newEventImg!=null){
 		    	 $(".newEventImg").html(data.newEventImg);
+		    	 }
 		    	 $('.modal').modal('hide');
+	    	  }else{
+		    	 toastr.warning(data.message,"Failed", {
+		    		 closeButton: true,
+		    		 progressBar: true,
+		    		 positionClass:"toast-top-center"
+		    	 });
+		    	 
+	    	  }
 
 		     },
+		     
+		     
+		     
+		     
 	      error:function(response){
 	    	  
 		         alert("Some thing went wrong");
@@ -152,7 +167,6 @@ $(function() {
 	.submit( function( e ) {
 		var frm = $("#imageEditFrm");
 		
-		alert("Submitting by jquery");
 		$.ajax( {
 			url:frm.attr("action"),
 			type:frm.attr("method"),
@@ -160,8 +174,12 @@ $(function() {
 			processData: false,
 			contentType: false,
 			success: function(data){
-				
-				alert(data.message);
+				if(data.status=="success"){
+				toastr.success(data.message,"Image Uploaded", {
+		    		closeButton: true,
+					progressBar: true,
+					positionClass:"toast-top-center"
+		   	 });
 				getPage("/profile");
 				$(".Tpoints").html(data.noTVotes);
 				$(".VoPoints").html(data.noVotes);
@@ -172,6 +190,13 @@ $(function() {
 				$(".newpImage").html(data.pimg);
 				
 				$('.modal').modal('hide');
+				}else{
+				toastr.warning(data.message,"Image Upload Failed", {
+					closeButton: true,
+					progressBar: true,
+					positionClass:"toast-top-center"
+				});
+				}
 				
 				
 			},
@@ -189,7 +214,7 @@ $(function() {
 	.submit( function( e ) {
 		var frm = $("#advertEditFrm");
 		
-		alert("Submitting by jquery");
+		
 		$.ajax( {
 			url:frm.attr("action"),
 			type:frm.attr("method"),
@@ -197,10 +222,21 @@ $(function() {
 			processData: false,
 			contentType: false,
 			success: function(data){
-				
-				alert(data.message);
+				if(data.status=="success"){
+				toastr.success(data.message,"Advert Added", {
+		    		closeButton: true,
+					progressBar: true,
+					positionClass:"toast-top-center"
+		   	 });
 				getPage("/profile");
 				$('.modal').modal('hide');
+				}else{
+				toastr.warning(data.message,"Advert Add Failed", {
+					closeButton: true,
+					progressBar: true,
+					positionClass:"toast-top-center"
+				});
+				}
 				
 			},
 			error:function(response){
@@ -218,7 +254,7 @@ $(function() {
 	.submit( function( e ) {
 		var frm = $("#jobAddFrm");
 		
-		alert("Submitting by jquery");
+		
 		$.ajax( {
 			url:frm.attr("action"),
 			type:frm.attr("method"),
@@ -226,10 +262,21 @@ $(function() {
 			processData: false,
 			contentType: false,
 			success: function(data){
-				
-				alert(data.message);
+				if(data.status=="success"){
+				toastr.success(data.message,"Job Updated", {
+		    		closeButton: true,
+					progressBar: true,
+					positionClass:"toast-top-center"
+		   	 });
 				getPage("/profile");
 				$('.modal').modal('hide');
+				}else{
+				toastr.warning(data.message,"Job Update Failed", {
+					closeButton: true,
+					progressBar: true,
+					positionClass:"toast-top-center"
+				});
+				}
 				
 			},
 			error:function(response){
@@ -247,16 +294,27 @@ $(function() {
 	.submit( function( e ) {
 		var frm = $("#articleFrm");
 		
-		alert("Submitting by jquery");
+		
 		$.ajax( {
 			url:frm.attr("action"),
 			type:frm.attr("method"),
 			data: new FormData( this ),
 			processData: false,
 			contentType: false,
-			success: function(data){				
-				alert(data.message);
-				
+			success: function(data){
+				if(data.status=="success"){
+				toastr.success(data.message,"Article Added", {
+		    		closeButton: true,
+					progressBar: true,
+					positionClass:"toast-top-center"
+		   	 });
+				}else{
+				toastr.warning(data.message,"Article Failed", {
+					closeButton: true,
+					progressBar: true,
+					positionClass:"toast-top-center"
+				});
+				}
 			},
 			error:function(response){
 				
@@ -302,7 +360,7 @@ $(function() {
 	.submit( function( e ) {
 		var frm = $("#OpinionFrm");
 		
-		alert("Submitting by jquery");
+		
 		$.ajax( {
 			url:frm.attr("action"),
 			type:frm.attr("method"),
@@ -310,12 +368,23 @@ $(function() {
 			processData: false,
 			contentType: false,
 			success: function(data){
-				
-				alert(data.message);
+				if(data.status=="success"){
+				toastr.success(data.message,"Opinion Added", {
+		    		closeButton: true,
+					progressBar: true,
+					positionClass:"toast-top-center"
+		   	 });
 				$(".noOpinions"+data.id).html(data.newOpinion);
 				$(".realtimeOpinion").show();
 				$(".thisopinion").html(data.opinion);
 				document.getElementById("OpinionFrm").reset();
+				}else{
+				toastr.warning(data.message,"Opinion Failed", {
+					closeButton: true,
+					progressBar: true,
+					positionClass:"toast-top-center"
+				});
+				}
 				
 			},
 			error:function(response){
@@ -332,7 +401,7 @@ $(function() {
 	.submit( function( e ) {
 		var frm = $("#addReviewFrm");
 		
-		alert("Submitting by jquery");
+
 		$.ajax( {
 			url:frm.attr("action"),
 			type:frm.attr("method"),
@@ -340,12 +409,23 @@ $(function() {
 			processData: false,
 			contentType: false,
 			success: function(data){
-				
-				alert(data.message);
+				if(data.status=="success"){
+				toastr.success(data.message,"Review Added", {
+		    		closeButton: true,
+					progressBar: true,
+					positionClass:"toast-top-center"
+		   	 });
 				$(".noReview"+data.id).html(data.newReview);
 				$(".realtimeReview").show();
 				$(".thisreview").html(data.review);
 				document.getElementById("addReviewFrm").reset();
+				}else{
+				toastr.warning(data.message,"Review Failed", {
+					closeButton: true,
+					progressBar: true,
+					positionClass:"toast-top-center"
+				});
+				}
 				
 			},
 			error:function(response){
@@ -362,7 +442,7 @@ $(function() {
 	.submit( function( e ) {
 		var frm = $("#addAnalyisFrm");
 		
-		alert("Submitting by jquery");
+		
 		$.ajax( {
 			url:frm.attr("action"),
 			type:frm.attr("method"),
@@ -370,8 +450,12 @@ $(function() {
 			processData: false,
 			contentType: false,
 			success: function(data){
-				
-				alert(data.message);
+				if(data.status=="success"){
+				toastr.success(data.message,"Analysis Added", {
+		    		closeButton: true,
+					progressBar: true,
+					positionClass:"toast-top-center"
+		   	 });
 				$(".noAnalysis"+data.id).html(data.newAnaysis);
 				$(".realtimeAnalysis").show();
 				$(".thisanalysis").html(data.analysis);
@@ -379,6 +463,13 @@ $(function() {
 				$(".OpPoints").html(data.OpPoints);
 				
 				document.getElementById("addAnalyisFrm").reset();
+				}else{
+				toastr.warning(data.message,"Analysis Failed", {
+					closeButton: true,
+					progressBar: true,
+					positionClass:"toast-top-center"
+				});
+				}
 			
 				
 			},
@@ -396,7 +487,7 @@ $(function() {
 	.submit( function( e ) {
 		var frm = $("#addRecommendFrm");
 		
-		alert("Submitting by jquery");
+		
 		$.ajax( {
 			url:frm.attr("action"),
 			type:frm.attr("method"),
@@ -404,12 +495,23 @@ $(function() {
 			processData: false,
 			contentType: false,
 			success: function(data){
-				
-				alert(data.message);
+				if(data.status=="success"){
+				toastr.success(data.message,"Recommendation Added", {
+		    		closeButton: true,
+					progressBar: true,
+					positionClass:"toast-top-center"
+		   	 });
 				$(".noRecommendations"+data.id).html(data.newRecommendations);
 				$(".realtimeRecomm").show();
 				$(".thisRecomm").html(data.recommendation);
 				document.getElementById("addRecommendFrm").reset();
+				}else{
+				toastr.warning(data.message,"Recommendation Failed", {
+					closeButton: true,
+					progressBar: true,
+					positionClass:"toast-top-center"
+				});
+				}
 				
 				
 			},
@@ -451,8 +553,12 @@ function saveUpdatedData(frm, data,nurl){
 		     dataType:'json', 
 				data:JSON.stringify(data),
 		     success: function(data){
-				
-		    	 alert(data.message);
+		    	 if(data.status=="success"){
+		    	 toastr.success(data.message,"Update Made", {
+			    		closeButton: true,
+						progressBar: true,
+						positionClass:"toast-top-center"
+			   	 });
 		    	 
 		    	 getPage(nurl);
 		    	 $(".Tpoints").html(data.noTVotes);
@@ -466,6 +572,13 @@ function saveUpdatedData(frm, data,nurl){
 		 		$(".newCar").html(data.newCar);
 		 		$(".newEduc").html(data.newEduc);
 		    	 $('.modal').modal('hide');
+		    	 }else{
+		    	 toastr.warning(data.message,"Update Failed", {
+		    		 closeButton: true,
+		    		 progressBar: true,
+		    		 positionClass:"toast-top-center"
+		    	 });
+		    	 }
 
 		     },
 		     error:function(response){

@@ -1036,6 +1036,47 @@ public class HomeController {
 		return dmessages;
 
 	}
+//	@ModelAttribute("dtopmessages")
+//	private List<Dmessage> getTopNewmessage() {
+//		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+//		User user = userService.findByEmail(authentication.getName());
+//		List<Message> Ntopmessages = messageService.getMessageWuid(user.getId());
+//		
+//		List<Dmessage> dmessages = new ArrayList<Dmessage>();
+//		Dmessage dmessage = new Dmessage();
+//		for (Message message : Ntopmessages) {
+//			
+//			if (!dmessages.isEmpty()) {
+//			for (Dmessage dnmessage: dmessages) {
+//				if (dnmessage.getDuid()!=message.getUid()) {
+//					dmessage.setDuid(message.getUid());
+//					User muser = userService.getUser(message.getUid()).orElseThrow(null);
+//					dmessage.setDfullName(muser.getFirstName() + " " + muser.getOtherNames());
+//					dmessage.setDimageLink(muser.getImageLink());
+//					dmessage.setDmdate(message.getMdate());
+//					dmessage.setDmessage(message.getMessage());
+//					
+//					dmessages.add(dmessage);
+//				}
+//			}
+//			} else {
+//				
+//				
+//				
+//			dmessage.setDuid(message.getUid());
+//			User muser = userService.getUser(message.getUid()).orElseThrow(null);
+//			dmessage.setDfullName(muser.getFirstName() + " " + muser.getOtherNames());
+//			dmessage.setDimageLink(muser.getImageLink());
+//			dmessage.setDmdate(message.getMdate());
+//			dmessage.setDmessage(message.getMessage());
+//			
+//			dmessages.add(dmessage);
+//			}
+//		}
+//		
+//		return dmessages;
+//		
+//	}
 
 	@ModelAttribute("cUsers")
 	private List<User> getCatUsers() {

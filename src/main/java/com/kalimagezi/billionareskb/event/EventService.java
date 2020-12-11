@@ -32,6 +32,7 @@ public class EventService {
 		
 		try {
 			jsonObject.put("message", event.getEname()+" Updated successfully");
+			jsonObject.put("status", "success");
 			jsonObject.put("noVotes", counter.getNoVotes());
 			jsonObject.put("noTVotes", counter.getTotal());
 			String newEvents="Don't miss my <i>"+event.getEname() +",</i>"+ event.getDescription()+". Scheduled for "+event.getEventDate();

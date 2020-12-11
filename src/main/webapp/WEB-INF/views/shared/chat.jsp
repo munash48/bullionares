@@ -100,8 +100,7 @@
 						</div>
 						<!-- /.direct-chat-msg -->
 					</c:if>
-
-				</c:forEach>
+dmessagesdmessages
 
 
 

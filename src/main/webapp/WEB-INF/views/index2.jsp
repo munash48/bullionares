@@ -526,6 +526,7 @@
 									class="glyphicon glyphicon-align-justify form-control-feedback"></span>
 							</div>
 							<div class="form-group has-feedback">
+							<label class="control-label">Event Date </label>
 								<input type="date" class="form-control" name="eventDate"
 									id="eventDate" value="${event.eventDate}" /> <span
 									class="glyphicon glyphicon-calendar form-control-feedback"></span>
@@ -950,7 +951,7 @@
 
 
 								<div class="product-img">
-										<c:if test="${dcatEvent.imageLink!=''}">
+										<c:if test="${dcatEvent.imageLink!='' && dcatEvent.imageLink!=null}">
 
 
 
@@ -961,8 +962,8 @@
 												alt="user image"> </a>
 
 										</c:if>
-										<c:if test="${dcatEvent.imageLink==''}">
-											<img class="img-responsive" src="dist/img/default-50x50.gif"
+										<c:if test="${dcatEvent.imageLink==''|| dcatEvent.imageLink==null}">
+											<img class="img-responsive" src="/dist/img/photo2.jpg"
 												alt="Product Image">
 
 										</c:if>

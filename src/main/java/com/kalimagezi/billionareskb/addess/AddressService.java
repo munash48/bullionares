@@ -57,6 +57,7 @@ public class AddressService {
 		
 		try {
 			jsonObject.put("message", address.getStreet()+" Updated successfully");
+			jsonObject.put("status", "success");
 			jsonObject.put("noVotes", counter.getNoVotes());
 			jsonObject.put("noTVotes", counter.getTotal());
 			jsonObject.put("newAddress", address.getCountry()+", "+address.getDistrict()+", " +address.getDivision());

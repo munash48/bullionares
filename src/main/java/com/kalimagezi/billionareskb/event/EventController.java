@@ -78,15 +78,16 @@ public class EventController {
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyy-MM-dd");
 
 		LocalDate date2 = LocalDate.parse(eventDate, dtf);
-		System.out.println("Setting event date");
-		event.setEventDate(date2);
 		
+		event.setEventDate(date2); 
+		
+		if (!imageFile.isEmpty()) {
 		try {
 			long tday = new Date().getTime(); 
 			String pname=tday+".jpg";
 			event.setImageLink(pname);
 			String ppath=uploadDirectory+"/"+uid+"/events/";
-			
+			System.out.println("Saving image");
 			userService.saveImage(imageFile,ppath,pname);
 			
 			
@@ -96,7 +97,7 @@ public class EventController {
 			
 		}
 		
-		
+		}
 	    
 
 

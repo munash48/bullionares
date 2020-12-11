@@ -53,6 +53,7 @@ public class RecomendController {
 				
 				try {
 					jsonObject.put("message", "You have already made recomendation");
+					jsonObject.put("status", "failed");
 				} catch (JSONException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -73,6 +74,7 @@ public class RecomendController {
 		
 		try {
 			jsonObject.put("message", "You have made a recommdation" + jobadd.getId());
+			jsonObject.put("status", "success");
 			jsonObject.put("newRecommend",  "Positives ("+jobadd.getRecomended()+")");
 			
 		} catch (JSONException e) {

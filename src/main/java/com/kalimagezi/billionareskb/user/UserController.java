@@ -135,6 +135,7 @@ public class UserController {
 				String image="<img class='profile-user-img img-responsive img-rounded' src='/uploads/"+user.getId()+"/profile/"+user.getImageLink()+"' alt='User profile picture.' data-toggle='tooltip'data-placement='top' title='click edit to update'>";
 				String pimage="<img class='user-image' src='/uploads/"+user.getId()+"/profile/"+user.getImageLink()+"' alt='User Image'>";
 				jsonObject.put("message", user.getFirstName()+", Your Image has been uploaded successfully");
+				jsonObject.put("status", "success");
 				jsonObject.put("noVotes", counter2.getNoVotes());
 				jsonObject.put("noTVotes", counter2.getTotal());
 				jsonObject.put("img", image);

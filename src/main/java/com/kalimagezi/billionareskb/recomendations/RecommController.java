@@ -45,6 +45,7 @@ public class RecommController {
 				
 				try {
 					jsonObject.put("message", "You already recommended this Job ADD");
+					jsonObject.put("status", "failed");
 				} catch (JSONException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -77,6 +78,7 @@ public class RecommController {
 		recommendationsService.addRecommendations(recommendations);
 		try {
 			jsonObject.put("message", "Recommendation  " +recommendations.getId() +" Created  successfully.");
+			jsonObject.put("status", "success");
 			jsonObject.put("newRecommendations",  "Written ("+jobadd.getNoRecomends()+")");
 			jsonObject.put("id", jobadd.getId());
 			jsonObject.put("recommendation", recommendations.getDescription());

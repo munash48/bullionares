@@ -49,6 +49,7 @@ public class AnalysisController {
 				
 				try {
 					jsonObject.put("message", "You already analysed this Event");
+					jsonObject.put("status", "failed");
 				} catch (JSONException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -86,6 +87,7 @@ public class AnalysisController {
 			eventService.addEvent(event);
 			try {
 				jsonObject.put("message", "You have added a written analysis ");
+				jsonObject.put("status", "success");
 				jsonObject.put("newAnaysis",  "Analysis ("+event.getNoAnalyis()+")");
 				jsonObject.put("id", event.getId());
 				jsonObject.put("analysis", event.getDescription());
@@ -103,6 +105,7 @@ public class AnalysisController {
 		
 		try {
 			jsonObject.put("message", "The analysis cannot be empty");
+			jsonObject.put("status", "failed");
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

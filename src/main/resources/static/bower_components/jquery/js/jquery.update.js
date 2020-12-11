@@ -50,9 +50,20 @@ function saveUpdatedData(frm, data,nurl){
 		        "confirm":confirm
 		     },
 		     success: function(response){
-				
-		        alert("sucess");
+		    	 if(data.status=="success"){
+		    	 toastr.success(data.message,"Success", {
+			    		closeButton: true,
+						progressBar: true,
+						positionClass:"toast-top-center"
+			   	 });
 		        getPage(nurl);
+		    	 }else{
+		        toastr.warning(data.message,"Success", {
+		        	closeButton: true,
+		        	progressBar: true,
+		        	positionClass:"toast-top-center"
+		        });
+		    	 }
 
 		     },
 		     error:function(response){

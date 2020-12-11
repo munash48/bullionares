@@ -54,6 +54,7 @@ public class PositiveController {
 			if (positive.getUid()==upositive.getUid()) {
 				try {
 					jsonObject.put("message", "You have already added a positive review");
+					jsonObject.put("status", "failed");
 				} catch (JSONException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -73,6 +74,7 @@ public class PositiveController {
 				
 				try {
 					jsonObject.put("message", "You have added a positive review" + advert.getId());
+					jsonObject.put("status", "success");
 					jsonObject.put("newPositive",  "Positives ("+advert.getNoPositives()+")");
 
 				} catch (JSONException e) {

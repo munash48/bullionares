@@ -50,6 +50,7 @@ public class CompanyService {
 		Counter counter =counterService.getUCounter(company.getUid());
 		try {
 			jsonObject.put("message", company.getName()+" Updated successfully");
+			jsonObject.put("status", "success");
 			jsonObject.put("noVotes", counter.getNoVotes());
 			jsonObject.put("noTVotes", counter.getTotal());
 			jsonObject.put("newComp", company.getName());

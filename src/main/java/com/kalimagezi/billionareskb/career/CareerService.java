@@ -50,6 +50,7 @@ public class CareerService {
 		Counter counter =counterService.getUCounter(career.getUid());
 		try {
 			jsonObject.put("message", career.getJobTitle()+" Updated successfully");
+			jsonObject.put("status", "success");
 			jsonObject.put("noVotes", counter.getNoVotes());
 			jsonObject.put("noTVotes", counter.getTotal());
 			jsonObject.put("newJob", career.getJobTitle()+", <br>"+career.getSpecialization() );

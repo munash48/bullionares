@@ -56,6 +56,7 @@ public class ReportController {
 				
 				try {
 					jsonObject.put("message", "You have already crossed for this Article");
+					jsonObject.put("status", "failed");
 				} catch (JSONException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -73,6 +74,7 @@ public class ReportController {
 				
 				try {
 					jsonObject.put("message", "You have crossed Article No" + article.getId());
+					jsonObject.put("status", "success");
 					jsonObject.put("newCrosses",  "Crosses ("+article.getNoReports()+")");
 				} catch (JSONException e) {
 					// TODO Auto-generated catch block

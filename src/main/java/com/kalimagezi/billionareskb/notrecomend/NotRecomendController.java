@@ -55,6 +55,7 @@ public class NotRecomendController {
 				
 				try {
 					jsonObject.put("message", "You have already Un-Recommended this Job ADD");
+					jsonObject.put("status", "failed");
 				} catch (JSONException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -74,6 +75,7 @@ public class NotRecomendController {
 		try {
 			
 			jsonObject.put("message", "You have added a negative review " + jobadd.getId());
+			jsonObject.put("status", "success");
 			jsonObject.put("newNotRecomend",  "Not Recomend ("+jobadd.getNotRecomended()+")");
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block

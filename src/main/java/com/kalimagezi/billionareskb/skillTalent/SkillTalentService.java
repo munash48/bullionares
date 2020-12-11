@@ -51,6 +51,7 @@ public class SkillTalentService {
 		Counter counter =counterService.getUCounter(skillTalent.getUid());
 		try {
 			jsonObject.put("message", skillTalent.getName1()+" Updated successfully");
+			jsonObject.put("status", "success");
 			jsonObject.put("noVotes", counter.getNoVotes());
 			jsonObject.put("noTVotes", counter.getTotal());
 			

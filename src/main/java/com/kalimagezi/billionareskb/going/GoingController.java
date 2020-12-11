@@ -56,6 +56,7 @@ public class GoingController {
 				
 				try {
 					jsonObject.put("message", "You already made a Going decision ");
+					jsonObject.put("status", "failed");
 				} catch (JSONException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -74,6 +75,7 @@ public class GoingController {
 				
 				try {
 					jsonObject.put("message", "Your Going decision is counted.");
+					jsonObject.put("status", "success");
 					jsonObject.put("newGoing",  "Going ("+event.getGoing()+")");
 					
 				} catch (JSONException e) {

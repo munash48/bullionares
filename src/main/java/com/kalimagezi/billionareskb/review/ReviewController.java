@@ -42,6 +42,7 @@ public class ReviewController {
 				
 				try {
 					jsonObject.put("message", "You already reviewed this advert");
+					jsonObject.put("status", "failed");
 				} catch (JSONException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -76,6 +77,7 @@ public class ReviewController {
 			advertService.addAdvert(advert);
 			try {
 				jsonObject.put("message", "You have added a written review ");
+				jsonObject.put("status", "success");
 				jsonObject.put("newReview",  "Reviews ("+advert.getNoReviews()+")");
 				jsonObject.put("id", advert.getId());
 				jsonObject.put("review", review.getDescription());

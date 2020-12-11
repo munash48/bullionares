@@ -56,6 +56,7 @@ public class NegativeController {
 				
 				try {
 					jsonObject.put("message", "You have already crossed this advert");
+					jsonObject.put("status", "failed");
 				} catch (JSONException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -73,6 +74,7 @@ public class NegativeController {
 				
 				try {
 					jsonObject.put("message", "You have added a negative review " + advert.getId());
+					jsonObject.put("status", "success");
 					jsonObject.put("newNegative",  "Negatives ("+advert.getNoNegatives()+")");
 				} catch (JSONException e) {
 					// TODO Auto-generated catch block

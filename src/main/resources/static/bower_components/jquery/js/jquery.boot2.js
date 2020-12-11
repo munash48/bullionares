@@ -1,18 +1,13 @@
  $(function(){
-	 alert("inside boot2");
-	 toastr.success("Location", "inside boot 2 toaster", {
-			closeButton: true,
-			progressBar: true,
-			positionClass:"toast-top-center"
-	  	 });
+
 		 
 
 	 $("#profile").click(function(){
-		 alert("inside profile");
+		 
 		 getPage("/profile");
 	 });
 	 $("#fullprofile").click(function(){
-		 alert("inside profile");
+		
 		 getPage("/profile");
 	 });
 	 
@@ -66,12 +61,23 @@
 			type: "GET",
 			url: "/addVote?uid="+uid+"&aid="+aid+"&duid="+duid,
 	    	success: function(data){
+	    	if(data.status=="success"){
+	    		toastr.success(data.message,"Counted", {
+		    		closeButton: true,
+					progressBar: true,
+					positionClass:"toast-top-center"
+		   	 });
+		    	$(".noVotes"+aid).html(data.newvotes);
+	    		
+	    	} else{
+	    		toastr.warning(data.message,"Failed", {
+		    		closeButton: true,
+					progressBar: true,
+					positionClass:"toast-top-center"
+		   	 });
+		    	$(".noVotes"+aid).html(data.newvotes);
+	    	}
 	    	
-	    	alert(data.message);
-	    	toastr.success("Location", data.message, {
-	   		 closeButton: true
-	   	 });
-	    	$(".noVotes"+aid).html(data.newvotes);
 	    }
 		
 		});
@@ -85,11 +91,22 @@
 		 url: "/addCross?uid="+uid+"&aid="+aid+"&duid="+duid,
 		 success: function(data){
 			 
-			 alert(data.message);
-			 toastr.success("Location", data.message, {
-		   		 closeButton: true
+			 if(data.status=="success"){
+	
+			 toastr.success(data.message,"Crossed", {
+				 closeButton: true,
+					progressBar: true,
+					positionClass:"toast-top-center"
 		   	 });
 			 $(".noReports"+aid).html(data.newCrosses);
+			 }else{
+				 toastr.warning(data.message,"Failed", {
+					 closeButton: true,
+						progressBar: true,
+						positionClass:"toast-top-center"
+			   	 });
+				 
+			 }
 		 }
 	 
 	 });
@@ -103,11 +120,20 @@
 		 url: "/addNegative?uid="+uid+"&adid="+adid+"&aduid="+aduid,
 		 success: function(data){
 			 
-			 alert(data.message);
-			 toastr.success("Location", data.message, {
-		   		 closeButton: true
+			 if(data.status=="success"){
+			 toastr.success(data.message,"Added",  {
+				 closeButton: true,
+					progressBar: true,
+					positionClass:"toast-top-center"
 		   	 });
 			 $(".noNegative"+adid).html(data.newNegative);
+			 }else{
+			 toastr.warning(data.message,"Failed",  {
+				 closeButton: true,
+				 progressBar: true,
+				 positionClass:"toast-top-center"
+			 });
+			 }
 		 }
 	 
 	 });
@@ -120,12 +146,20 @@
 		 type: "GET",
 		 url: "/addPositive?uid="+uid+"&adid="+adid+"&aduid="+aduid,
 		 success: function(data){
-			 
-			 alert(data.message);
-			 toastr.success("Location", data.message, {
-		   		 closeButton: true
+			 if(data.status=="success"){
+				toastr.success(data.message,"Added", {
+		    		closeButton: true,
+					progressBar: true,
+					positionClass:"toast-top-center"
 		   	 });
 			 $(".noPositive"+adid).html(data.newPositive);
+			 }else{
+			 toastr.warning(data.message,"Failed", {
+				 closeButton: true,
+				 progressBar: true,
+				 positionClass:"toast-top-center"
+			 });
+			 }
 		 }
 	 
 	 });
@@ -138,12 +172,20 @@
 		 type: "GET",
 		 url: "/addGoing?uid="+uid+"&eid="+eid+"&euid="+euid,
 		 success: function(data){
-			 
-			 alert(data.message);
-			 toastr.success("Location", data.message, {
-		   		 closeButton: true
+			 if(data.status=="success"){
+				toastr.success(data.message,"Going Counted", {
+		    		closeButton: true,
+					progressBar: true,
+					positionClass:"toast-top-center"
 		   	 });
 			 $(".noGoing"+eid).html(data.newGoing);
+			 }else{
+			 toastr.warning(data.message,"Failed", {
+				 closeButton: true,
+				 progressBar: true,
+				 positionClass:"toast-top-center"
+			 });
+			 }
 		 }
 	 
 	 });
@@ -156,12 +198,20 @@
 		 type: "GET",
 		 url: "/addNotGoing?uid="+uid+"&eid="+eid+"&euid="+euid,
 		 success: function(data){
-			 
-			 alert(data.message);
-			 toastr.success("Location", data.message, {
-		   		 closeButton: true
+			 if(data.status=="success"){
+				toastr.success(data.message,"Not-Going Counted", {
+		    		closeButton: true,
+					progressBar: true,
+					positionClass:"toast-top-center"
 		   	 });
 			 $(".noNotGoing"+eid).html(data.newNotGoing);
+			 }else{
+			 toastr.warning(data.message,"Failed", {
+				 closeButton: true,
+				 progressBar: true,
+				 positionClass:"toast-top-center"
+			 });
+			 }
 		 }
 	 
 	 });
@@ -174,12 +224,20 @@
 		 type: "GET",
 		 url: "/addRecomend?uid="+uid+"&jaid="+jaid+"&jauid="+jauid,
 		 success: function(data){
-			 
-			 alert(data.message);
-			 toastr.success("Location", data.message, {
-		   		 closeButton: true
+			 if(data.status=="success"){
+				toastr.success(data.message,"Recommended", {
+		    		closeButton: true,
+					progressBar: true,
+					positionClass:"toast-top-center"
 		   	 });
 			 $(".noRecommend"+jaid).html(data.newRecommend);
+			 }else{
+			 toastr.warning(data.message,"Failed", {
+				 closeButton: true,
+				 progressBar: true,
+				 positionClass:"toast-top-center"
+			 });
+			 }
 		 }
 	 
 	 });
@@ -192,12 +250,20 @@
 		 type: "GET",
 		 url: "/addNotRecomend?uid="+uid+"&jaid="+jaid+"&jauid="+jauid,
 		 success: function(data){
-			 
-			 alert(data.message);
-			 toastr.success("Location", data.message, {
-		   		 closeButton: true
+			 if(data.status=="success"){
+				toastr.success(data.message,"Not Recommended", {
+		    		closeButton: true,
+					progressBar: true,
+					positionClass:"toast-top-center"
 		   	 });
 			 $(".noNotRecomend"+jaid).html(data.newNotRecomend);
+			 }else{
+			 toastr.warning(data.message,"Failed", {
+				 closeButton: true,
+				 progressBar: true,
+				 positionClass:"toast-top-center"
+			 });
+			 }
 		 }
 	 
 	 });

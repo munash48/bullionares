@@ -1,9 +1,5 @@
 $(function() {
- toastr.success("Location", "inside save", {
-		    closeButton: true,
-			progressBar: true,
-			positionClass:"toast-top-center"
-	 });
+
 	$("#submitRegForm").submit(function(e) {
 		e.preventDefault();
 		var frm = $("#submitRegForm");
@@ -49,11 +45,21 @@ function saveRequestedData(frm, data,nurl){
 		
 		success: function (data) {
 			
-			alert(data.message);
-			toastr.success("Location", data.message, {
-		   		 closeButton: true
-		   	 });
+			if(data.status=="success"){
+			toastr.success(data.message,"Registered", {
+	    		closeButton: true,
+				progressBar: true,
+				positionClass:"toast-top-center"
+	   	 });
 			getPage(nurl);
+			
+			}else{
+				toastr.warning(data.message,"Registration Failed", {
+					closeButton: true,
+					progressBar: true,
+					positionClass:"toast-top-center"
+				});
+			}
 			
 			}
 		});

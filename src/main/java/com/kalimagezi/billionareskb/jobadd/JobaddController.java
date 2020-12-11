@@ -102,7 +102,8 @@ public static String uploadDirectory=System.getProperty("user.dir")+"/src/main/w
 			userService.saveImage(imageFile,ppath,pname);
 			
 			try {
-				jsonObject.put("message", jobadd.getJobTitle()+" advert Uploaded successfully. Waiting aprooval");
+				jsonObject.put("message", jobadd.getJobTitle()+" advert Uploaded successfully.");
+				jsonObject.put("status", "success");
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
