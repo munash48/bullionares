@@ -59,7 +59,9 @@
 
 <div class="login-box">
 	<!-- /.login-logo -->
+
 	<c:if test="${ModeLogin}">
+	
 
 	<div class="row">
 
@@ -135,7 +137,7 @@
 		<!-- /.social-auth-links -->
 
 
-		<a href="javascript:void(0);" id="restForm">I forgot my password</a><br> <a href="/register"
+		<a href="javascript:void(0);" id="restForm">I forgot my password</a><br> <a href="javascript:void(0);" id="regForm2"
 			class="text-center">Register a new membership</a>
 
 	</div>

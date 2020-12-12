@@ -2,6 +2,12 @@
 	 $("#regForm").click(function(){
 		 getPage("/register");
 	 });
+	 $("#regForm1").click(function(){
+		 getPage("/register");
+	 });
+	 $("#regForm2").click(function(){
+		 getPage("/register");
+	 });
 	 $("#rules").click(function(){
 		 getPage("/rules");
 	 });

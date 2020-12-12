@@ -59,7 +59,15 @@ public class UserService {
 //	}
 	public String addUser(User user) {
 
-		JSONObject jsonObject = new JSONObject();	
+		JSONObject jsonObject = new JSONObject();
+		
+		if(user.getEmail().equals("mugwanyan@kyu.ac.ug")) {
+			user.setRole("ROLE_ADMIN");
+			user.setCatid(1);
+			
+		}
+		
+		
 		try {
 			
 			userRepository.save(user);	

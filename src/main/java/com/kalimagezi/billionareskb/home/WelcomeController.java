@@ -85,10 +85,24 @@ public class WelcomeController {
 
 		}
 		if (reset != null) {
+		if (reset.equals("success")) {
 
 			model.addAttribute("logout", "<b>Your password has been successfuly reset </b>");
 			model.addAttribute("ModeReseted", true);
 
+		}
+		if (reset.equals("failed")) {
+			
+			model.addAttribute("error", "<b>the reset code must have expired try again");
+			model.addAttribute("ModeReseted", true);
+			
+		}
+		if (reset.equals("mismatch")) {
+			
+			model.addAttribute("error", "<b>The passwords did not match reset again");
+			model.addAttribute("ModeReseted", true);
+			
+		}
 		}
 		if (resetcode != null) {
 
@@ -180,7 +194,7 @@ public class WelcomeController {
 
 				} else {
 					model.addAttribute("logout",
-							"<b>User with email" + email + " not found<br><a href=\"/register\"> Register</a> </b>");
+							"<b>User with email" + email + " not found<br><a href=\"javascript:void(0);\" id=\"regForm1\"> Register</a> </b>");
 					return "shared/reset";
 				}
 
@@ -250,13 +264,13 @@ public class WelcomeController {
 
 					return "redirect:/?reset=success";
 				} else {
-					return "shared/reset?reset=failed";
+					return "redirect:/?reset=mismatch";
 				}
 
 			}
 
 		}
-		return "shared/reset";
+		return "redirect:/?reset=failed";
 
 	}
 

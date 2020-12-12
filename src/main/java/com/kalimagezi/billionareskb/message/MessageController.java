@@ -66,6 +66,7 @@ public class MessageController {
 			    try {
 					jsonObject.put("message", "Messagege with "+message1.getWuid()+" Updated successfully");
 					jsonObject.put("wuid", wuid);
+					jsonObject.put("status", "success");
 					
 					
 				} catch (JSONException e) {

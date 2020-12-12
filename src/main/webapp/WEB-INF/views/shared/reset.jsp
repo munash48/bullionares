@@ -1,5 +1,6 @@
 <%@taglib prefix ="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <script src="bower_components/jquery/js/jquery.save.js"></script>
+<script src="bower_components/jquery/js/jquery.boot.js"></script>
 
 <div class="login-box">
 	<!-- /.login-logo -->
