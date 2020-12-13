@@ -176,7 +176,7 @@
 			<h3 class="box-title">Other Category Members</h3>
 
 			<div class="box-tools pull-right">
-				<span class="label label-danger">${category.noMembers} Member(s)</span>
+				<span class="label label-danger">${category.noMembers} Member(s) you and</span>
 				<button type="button" class="btn btn-box-tool"
 					data-widget="collapse">
 					<i class="fa fa-minus"></i>
@@ -191,6 +191,7 @@
 			<ul class="users-list clearfix">
 			
 				<c:forEach items="${cUsers}" var="cUser">
+				<c:if test="${cUser.id!=user.id}">
 
 					<li>
 					<c:if test="${cUser.imageLink!=''}">
@@ -207,7 +208,8 @@
 				</c:if>
 					
 						<a href="javascript:void(0);" onclick="chatForm('${cUser.id}')" >${cUser.firstName}<br> ${cUser.otherNames}</a> </li>
-						</c:forEach>
+						</c:if>
+				</c:forEach>
 			</ul>
 			<!-- /.users-list -->
 		</div>

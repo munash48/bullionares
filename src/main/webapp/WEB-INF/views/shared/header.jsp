@@ -1,4 +1,5 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <div class="row">
 
 	<header class="main-header">
@@ -62,7 +63,7 @@
 								<li>
 									<!-- inner menu: contains the actual data -->
 									<ul class="menu">
-										<c:forEach items="${dmessages}" var="dmessage">
+										<c:forEach items="${dtopmessages}" var="dmessage">
 
 												<li>
 													<!-- start message --> <a href="javascript:void(0);" onclick="chatForm('${dmessage.duid}')">
@@ -107,20 +108,21 @@
 								<li>
 									<!-- inner menu: contains the actual data -->
 									<ul class="menu">
-										<c:forEach items="${catEvents}" var="catEvent">
+										<c:forEach items="${dcatEvents}" var="catEvent">
 											<c:if test="${not empty catEvent.ename}">
-												<li><a href="javascript:void(0);" data-toggle="modal" data-target="#eventReview" data-toggle="tooltip"> <i
-														class="fa fa-users text-aqua"></i>
-														${(catEvent.going/noCUsers)*100} % will attend the
-														${catEvent.ename}
-												</a></li>
+												<li><a href="javascript:void(0);" data-toggle="modal" data-target="#eventReview" data-toggle="tooltip">${catEvent.ename} <span class="pull-right"> <i
+														class="fa fa-users text-aqua "></i>
+														<fmt:formatNumber 
+														value="${(catEvent.going/noCUsers)*100}" maxFractionDigits="1"/>% Attendance
+														
+												</span></a></li>
 											</c:if>
 										</c:forEach>
 
 
 									</ul>
 								</li>
-								<li class="footer"><a href="#">View all</a></li>
+								<li class="footer"><a href="javascript:void(0);" data-toggle="modal" data-target="#eventReview" data-toggle="tooltip">View all</a></li>
 							</ul></li>
 						<!-- Tasks: style can be found in dropdown.less -->
 
@@ -136,20 +138,28 @@
 								<li>
 									<!-- inner menu: contains the actual data -->
 									<ul class="menu">
-										<c:forEach items="${catJobadds}" var="catJobadd">
+										<c:forEach items="${dcatJobadds}" var="catJobadd">
 											<c:if test="${not empty catJobadd.jobTitle}">
 												<li>
 													<!-- Task item --> <a href="javascript:void(0);" data-toggle="modal" data-target="#jobReview" data-toggle="tooltip">
 														<h3>
 															${catJobadd.jobTitle} (s)<span
-																class="label label-success pull-right">${catJobadd.noPositions}</span>
+																class="label label-success pull-right">${catJobadd.noPositions} Position(s)</span> 
 														</h3>
 														<div class="progress xs">
-															<div class="progress-bar progress-bar-aqua"
-																style="width: 100%" role="progressbar"
+															<div class="progress-bar progress-bar-success"
+																style="width: ${(catJobadd.noRecom/noCUsers)*100}%" role="progressbar"
 																aria-valuenow="100" aria-valuemin="0"
-																aria-valuemax="100"></div>
+																aria-valuemax="100">
+																
+																</div>
 														</div>
+														Recommendation 
+														<span class="pull-right">
+																<fmt:formatNumber 
+														value="${(catJobadd.noRecom/noCUsers)*100}" maxFractionDigits="1"/>%
+																
+																</span>
 												</a>
 												</li>
 											</c:if>

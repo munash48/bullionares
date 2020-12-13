@@ -51,7 +51,7 @@
 
             <div class="info-box-content">
               <span class="info-box-text text-center">ADDS</span>
-              <span class="info-box-number text-center">${counter.noConnections}</span>
+              <span class="info-box-number text-center noAdds">${counter.noConnections}</span>
             </div>
             <!-- /.info-box-content -->
           </div>
@@ -63,7 +63,7 @@
 
             <div class="info-box-content">
               <span class="info-box-text text-center">INVITES</span>
-              <span class="info-box-number text-center">${counter.noInvites}</span>
+              <span class="info-box-number text-center noInvites">${counter.noInvites}</span>
             </div>
             <!-- /.info-box-content -->
           </div>
@@ -76,7 +76,7 @@
 
             <div class="info-box-content">
               <span class="info-box-text text-center">REPORTS</span>
-              <span class="info-box-number text-center">${counter.noReports}</span>
+              <span class="info-box-number text-center noReports">${counter.noReports}</span>
             </div>
             <!-- /.info-box-content -->
           </div>

@@ -54,6 +54,11 @@
 	 $(".chatNotice").hide();
 		
 	}
+ function getProfile(id){	
+	 getPage("/profile?wuid="+id);
+	 
+ }
+ 
  function countVote(uid,aid,duid){	
 	 
 	 
@@ -68,6 +73,8 @@
 					positionClass:"toast-top-center"
 		   	 });
 		    	$(".noVotes"+aid).html(data.newvotes);
+		    	$(".VoPoints").html(data.noVotes);
+		    	$(".Tpoints").html(data.noTVotes);
 	    		
 	    	} else{
 	    		toastr.warning(data.message,"Failed", {
@@ -99,6 +106,8 @@
 					positionClass:"toast-top-center"
 		   	 });
 			 $(".noReports"+aid).html(data.newCrosses);
+			 $(".noReports").html(data.noReports);
+			 $(".Tpoints").html(data.noTVotes);
 			 }else{
 				 toastr.warning(data.message,"Failed", {
 					 closeButton: true,
@@ -127,6 +136,8 @@
 					positionClass:"toast-top-center"
 		   	 });
 			 $(".noNegative"+adid).html(data.newNegative);
+			 $(".noReports").html(data.noReports);
+			 $(".Tpoints").html(data.noTVotes);
 			 }else{
 			 toastr.warning(data.message,"Failed",  {
 				 closeButton: true,
@@ -153,6 +164,9 @@
 					positionClass:"toast-top-center"
 		   	 });
 			 $(".noPositive"+adid).html(data.newPositive);
+			 $(".VoPoints").html(data.noVotes);
+			 $(".Tpoints").html(data.noTVotes);
+			 
 			 }else{
 			 toastr.warning(data.message,"Failed", {
 				 closeButton: true,
@@ -179,6 +193,8 @@
 					positionClass:"toast-top-center"
 		   	 });
 			 $(".noGoing"+eid).html(data.newGoing);
+			 $(".VoPoints").html(data.noVotes);
+			 $(".Tpoints").html(data.noTVotes);
 			 }else{
 			 toastr.warning(data.message,"Failed", {
 				 closeButton: true,
@@ -205,6 +221,8 @@
 					positionClass:"toast-top-center"
 		   	 });
 			 $(".noNotGoing"+eid).html(data.newNotGoing);
+			 $(".noReports").html(data.noReports);
+			 $(".Tpoints").html(data.noTVotes);
 			 }else{
 			 toastr.warning(data.message,"Failed", {
 				 closeButton: true,
@@ -231,6 +249,8 @@
 					positionClass:"toast-top-center"
 		   	 });
 			 $(".noRecommend"+jaid).html(data.newRecommend);
+			 $(".VoPoints").html(data.noVotes);
+			 $(".Tpoints").html(data.noTVotes);
 			 }else{
 			 toastr.warning(data.message,"Failed", {
 				 closeButton: true,
@@ -257,6 +277,8 @@
 					positionClass:"toast-top-center"
 		   	 });
 			 $(".noNotRecomend"+jaid).html(data.newNotRecomend);
+			 $(".noReports").html(data.noReports);			 
+			 $(".Tpoints").html(data.noTVotes);
 			 }else{
 			 toastr.warning(data.message,"Failed", {
 				 closeButton: true,

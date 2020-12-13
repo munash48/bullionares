@@ -25,6 +25,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kalimagezi.billionareskb.email.Mail;
 import com.kalimagezi.billionareskb.email.MailService;
+import com.kalimagezi.billionareskb.notification.Notification;
+import com.kalimagezi.billionareskb.notification.NotificationService;
 import com.kalimagezi.billionareskb.user.User;
 import com.kalimagezi.billionareskb.user.UserService;
 
@@ -36,6 +38,8 @@ public class WelcomeController {
 	UserService userService;
 	@Autowired
 	MailService mailService;
+	@Autowired
+	NotificationService notificationService;
 
 //		@RequestMapping(value = "/", method = RequestMethod.GET)
 //			public String welcome (Model model){
@@ -313,6 +317,12 @@ public class WelcomeController {
 		// perform-logout
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		if (auth != null) {
+			Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+			User user = userService.findByEmail(authentication.getName());
+			Notification notification = notificationService.getNotificationByUid(user.getId());
+			notification.setJobad(0);
+			notification.setEvents(0);
+			notificationService.addNotification(notification);
 			new SecurityContextLogoutHandler().logout(request, response, auth);
 
 		}

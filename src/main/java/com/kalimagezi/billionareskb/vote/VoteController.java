@@ -79,6 +79,8 @@ public class VoteController {
 					jsonObject.put("message", "You have Voted Article No" + article.getId());
 					jsonObject.put("status", "failed");
 					jsonObject.put("newvotes",  "Votes ("+article.getNoVotes()+")");
+					jsonObject.put("noVotes", counter.getNoVotes());
+					jsonObject.put("noTVotes", counter.getTotal());
 				} catch (JSONException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

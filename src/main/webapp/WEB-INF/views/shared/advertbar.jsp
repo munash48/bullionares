@@ -1,4 +1,4 @@
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <div class="col-md-4">
 	<!-- Info Boxes Style 2 -->
 	<!-- /.info-box -->
@@ -92,7 +92,11 @@
 						<span class="info-box-text">${catEvent.ename}</span> 
 						<span class="progress-description"> ${catEvent.description}
 						</span>
-							<span class="info-box-number">${(catEvent.going/noCUsers)*100} % going</span>
+							<span class="info-box-number">
+							<fmt:formatNumber 
+														value="${(catEvent.going/noCUsers)*100}" maxFractionDigits="1"/>
+							
+							 % going</span>
 
 						<div class="progress">
 							<div class="progress-bar" style="width: ${(catEvent.going/noCUsers)*100}%"></div>
@@ -153,7 +157,10 @@
 						<div class="progress">
 							<div class="progress-bar" style="width: ${(catJobadd.noRecom/noCUsers)*100}%"></div>
 						</div>
-						<span class="progress-description"> (${(catJobadd.noRecom/noCUsers)*100} % recommended)
+						<span class="progress-description"> (
+						<fmt:formatNumber 
+														value="${(catJobadd.noRecom/noCUsers)*100}" maxFractionDigits="1"/>
+						 % recommended)
 						</span>
 					</div>
 					<!-- /.info-box-content -->

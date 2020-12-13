@@ -53,6 +53,7 @@ public class EducationService {
 			jsonObject.put("noVotes", counter.getNoVotes());
 			jsonObject.put("noTVotes", counter.getTotal());
 			jsonObject.put("newEduc", education.getAward());
+			jsonObject.put("status", "success");
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

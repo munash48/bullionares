@@ -1,7 +1,10 @@
 package com.kalimagezi.billionareskb.home;
 
 import java.util.ArrayList;
+
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
+
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -1036,47 +1039,48 @@ public class HomeController {
 		return dmessages;
 
 	}
-//	@ModelAttribute("dtopmessages")
-//	private List<Dmessage> getTopNewmessage() {
-//		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-//		User user = userService.findByEmail(authentication.getName());
-//		List<Message> Ntopmessages = messageService.getMessageWuid(user.getId());
-//		
-//		List<Dmessage> dmessages = new ArrayList<Dmessage>();
-//		Dmessage dmessage = new Dmessage();
-//		for (Message message : Ntopmessages) {
-//			
-//			if (!dmessages.isEmpty()) {
-//			for (Dmessage dnmessage: dmessages) {
-//				if (dnmessage.getDuid()!=message.getUid()) {
-//					dmessage.setDuid(message.getUid());
-//					User muser = userService.getUser(message.getUid()).orElseThrow(null);
-//					dmessage.setDfullName(muser.getFirstName() + " " + muser.getOtherNames());
-//					dmessage.setDimageLink(muser.getImageLink());
-//					dmessage.setDmdate(message.getMdate());
-//					dmessage.setDmessage(message.getMessage());
-//					
-//					dmessages.add(dmessage);
-//				}
-//			}
-//			} else {
-//				
-//				
-//				
-//			dmessage.setDuid(message.getUid());
-//			User muser = userService.getUser(message.getUid()).orElseThrow(null);
-//			dmessage.setDfullName(muser.getFirstName() + " " + muser.getOtherNames());
-//			dmessage.setDimageLink(muser.getImageLink());
-//			dmessage.setDmdate(message.getMdate());
-//			dmessage.setDmessage(message.getMessage());
-//			
-//			dmessages.add(dmessage);
-//			}
-//		}
-//		
-//		return dmessages;
-//		
-//	}
+	@ModelAttribute("dtopmessages")
+	private List<Dmessage> getTopNewmessage() {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		User user = userService.findByEmail(authentication.getName());
+		List<Message> Ntopmessages = messageService.getMessageWuid(user.getId());	
+		List<Dmessage> dtmessages = (List<Dmessage>) new CopyOnWriteArrayList<Dmessage>();
+
+		
+		
+		for (Message message : Ntopmessages) {
+			Dmessage dtmessage = new Dmessage();
+			if (dtmessages.isEmpty()) {
+				dtmessage.setDuid(message.getUid());
+				User muser = userService.getUser(message.getUid()).orElseThrow(null);
+				dtmessage.setDfullName(muser.getFirstName() + " " + muser.getOtherNames());
+				dtmessage.setDimageLink(muser.getImageLink());
+				dtmessage.setDmdate(message.getMdate());
+				dtmessage.setDmessage(message.getMessage());
+				
+				dtmessages.add(dtmessage);
+			
+			} else {
+							
+			for (Dmessage dnmessage: dtmessages) {
+				if (dnmessage.getDuid()!=message.getUid()) {
+					dtmessage.setDuid(message.getUid());
+					User muser = userService.getUser(message.getUid()).orElseThrow(null);
+					dtmessage.setDfullName(muser.getFirstName() + " " + muser.getOtherNames());
+					dtmessage.setDimageLink(muser.getImageLink());
+					dtmessage.setDmdate(message.getMdate());
+					dtmessage.setDmessage(message.getMessage());					
+					dtmessages.add(dtmessage);
+					
+				}
+			}
+			}
+		}
+		
+	
+		return dtmessages;
+		
+	}
 
 	@ModelAttribute("cUsers")
 	private List<User> getCatUsers() {

@@ -77,6 +77,8 @@ public class NotRecomendController {
 			jsonObject.put("message", "You have added a negative review " + jobadd.getId());
 			jsonObject.put("status", "success");
 			jsonObject.put("newNotRecomend",  "Not Recomend ("+jobadd.getNotRecomended()+")");
+			jsonObject.put("noReports", counter.getNoReports());
+			jsonObject.put("noTVotes", counter.getTotal());
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

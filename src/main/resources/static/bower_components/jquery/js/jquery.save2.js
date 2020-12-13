@@ -132,8 +132,8 @@ $(function() {
 		   	 });
 	    		 
 	    		getPage("/profile");
-		    	 $(".noVotes").html(data.noVotes);
-		    	 $(".noTVotes").html(data.noTVotes);
+		    	 $(".VoPoints").html(data.noVotes);
+		    	 $(".Tpoints").html(data.noTVotes);
 		    	 $(".newEvent").html(data.newEvent);
 		    	 if(data.newEventImg!=null){
 		    	 $(".newEventImg").html(data.newEventImg);
@@ -328,34 +328,7 @@ $(function() {
 	} );
 	
 
-//	$('#articleFrm')
-//	.submit( function( e ) {
-//		var frm = $("#articleFrm");
-//		
-//		alert("Submitting by jquery");
-//		$.ajax( {
-//			url:frm.attr("action"),
-//			type:frm.attr("method"),
-//			data: new FormData( this ),
-//			processData: false,
-//			contentType: false,
-//			success: function(data){
-//				
-//				alert(data.message);
-//				getPage("/mainpost");
-//				
-//				
-//			},
-//			error:function(response){
-//				
-//				alert("ALERT! Fill all fields");
-//				
-//			}
-//		} );
-//		e.preventDefault();
-//		
-//		
-//	} );
+
 	$('#OpinionFrm')
 	.submit( function( e ) {
 		var frm = $("#OpinionFrm");
@@ -511,6 +484,49 @@ $(function() {
 					progressBar: true,
 					positionClass:"toast-top-center"
 				});
+				}
+				
+				
+			},
+			error:function(response){
+				
+				alert("ALERT! Fill all fields");
+				
+			}
+		} );
+		e.preventDefault();
+		
+		
+	} );
+	$('#inviteFrm')
+	.submit( function( e ) {
+		var frm = $("#inviteFrm");
+		
+		
+		$.ajax( {
+			url:frm.attr("action"),
+			type:frm.attr("method"),
+			data: new FormData( this ),
+			processData: false,
+			contentType: false,
+			success: function(data){
+				if(data.status=="success"){
+					toastr.success(data.message,"Invitation Made", {
+						closeButton: true,
+						progressBar: true,
+						positionClass:"toast-top-center"
+					});
+					$(".noInvites").html(data.noInvite);
+					$(".Tpoints").html(data.noTVotes);					
+					document.getElementById("inviteFrm").reset();
+					$('.modal').modal('hide');
+					
+				}else{
+					toastr.warning(data.message,"Invitation Failed", {
+						closeButton: true,
+						progressBar: true,
+						positionClass:"toast-top-center"
+					});
 				}
 				
 				

@@ -7,13 +7,17 @@ import java.util.Map;
 
 import javax.mail.MessagingException;
 
+import org.codehaus.jettison.json.JSONException;
+import org.codehaus.jettison.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kalimagezi.billionareskb.counter.Counter;
 import com.kalimagezi.billionareskb.counter.CounterService;
@@ -38,12 +42,12 @@ public class InviteController {
     private MailService mailService;
 
 	
-	@RequestMapping(value="/home/inviteUser", method = RequestMethod.POST)
-	public String updadeUser ( @RequestParam("uid") Integer uid, 
+	@RequestMapping(value="/inviteUser", method = RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody String updadeUser ( @RequestParam("uid") Integer uid, 
 			@RequestParam("uemail") String uemail,
 			@RequestParam("iemail") String iemail
 			) {
-		
+		JSONObject jsonObject = new JSONObject();
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		  
 		  User user = userService.findByEmail(authentication.getName());
@@ -61,8 +65,15 @@ public class InviteController {
 			for(Invite myinvite: invites) {
 				
 				if (myinvite.getEmail().equals(invite.getEmail())) {
+					
+					try {
+						jsonObject.put("message", invite.getEmail()+" was already invited");
+					} catch (JSONException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 												
-					return "redirect:/home?inviteFailed=failed";
+					return jsonObject.toString();
 					
 				} 
 				
@@ -96,14 +107,14 @@ public class InviteController {
 			counter.setTotal(counter.getNoArticles()+counter.getNoConnections()+counter.getNoInvites()+counter.getNoOpinions()+
 		    counter.getNoReports()+counter.getNoVotes());
 			
-			inviteService.addInvite(invite);
+			
 			counterService.addCounter(counter);
 			
 			
 
 
 
-		return "redirect:/home?userinvited=success";
+		return inviteService.addInvite(invite);
 		
 	}
 

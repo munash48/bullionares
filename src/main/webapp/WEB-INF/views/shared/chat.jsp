@@ -4,12 +4,12 @@
 		<div class="box-header with-border">
 			<h3 class="box-title">Direct Chat</h3>
 			<h3 class="box-title">
-				( <a href="/profile?wuid=${wuid}">${wFullName}</a> )
+				( <a href="javascript:void(0);" onclick="getProfile('${wuid}')">${wFullName}</a> )
 			</h3>
 
 			<div class="box-tools pull-right">
 				<span data-toggle="tooltip" title="3 New Messages"
-					class="badge bg-yellow">3</span>
+					class="badge bg-yellow">${notification.message}</span>
 				<button type="button" class="btn btn-box-tool"
 					data-widget="collapse">
 					<i class="fa fa-minus"></i>
@@ -112,8 +112,8 @@
 			<!-- Contacts are loaded here -->
 			<div class="direct-chat-contacts">
 				<ul class="contacts-list">
-					<c:forEach items="${dmessages}" var="dmessage">
-						<li><a href="/message?wuid=${dmessage.duid}"> <c:if test="${dmessage.dimageLink!=''}">
+					<c:forEach items="${dtopmessages}" var="dmessage">
+						<li><a href="javascript:void(0);" onclick="chatForm('${dmessage.duid}')"> <c:if test="${dmessage.dimageLink!=''}">
 									<img class="direct-chat-img"
 										src="/uploads/${dmessage.duid}/profile/${dmessage.dimageLink}"
 										alt="message user image">

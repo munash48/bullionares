@@ -3,6 +3,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="sf" uri="http://www.springframework.org/tags/form"%>
 
+
 <c:set var="contextRoot" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
@@ -1231,7 +1232,7 @@
 							<c:forEach items="${dcatJobadds}" var="dcatjob">
 							<c:if test="${not empty dcatjob.adByName}">
 							
-								<a><h5>${dcatjob.compName} wants (${dcatjob.noPositions}) ${dcatjob.jobTitle}(s)</h5></a>
+								<a><h4>${dcatjob.compName} wants (${dcatjob.noPositions}) ${dcatjob.jobTitle}(s)</h4></a>
 								<p>
 								<h5>${dcatjob.description}</h5>
 								
@@ -1434,9 +1435,8 @@
 					</div>
 					<div class="modal-body">
 						<!--modal form-->
-						<form action="/home/inviteUser" method="post">
-							<input type="hidden" name="${_csrf.parameterName}"
-								value="${_csrf.token}" /> <input type="hidden" name="uid"
+						<form action="/inviteUser" method="post" id="inviteFrm">
+							 <input type="hidden" name="uid"
 								value="${user.id}" /> <input type="hidden" name="uemail"
 								value="${user.email}" />
 
