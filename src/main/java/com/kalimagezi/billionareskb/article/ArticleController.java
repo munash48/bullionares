@@ -93,7 +93,10 @@ public class ArticleController {
 			
 	    articleService.addArticle(article);
 	    try {
-			jsonObject.put("message", "Article " +article.getId() +" Created  successfully. Waiting aprooval");
+			jsonObject.put("message", "Article " +article.getId() +" Added  successfully. ");
+			jsonObject.put("noArticle", counter.getNoArticles());
+			jsonObject.put("noTVotes", counter.getTotal());
+			jsonObject.put("status", "success");
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -121,6 +124,7 @@ public class ArticleController {
 		
 		try {
 			jsonObject.put("message", "Article Is Empty indescription");
+			jsonObject.put("status", "failed");
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

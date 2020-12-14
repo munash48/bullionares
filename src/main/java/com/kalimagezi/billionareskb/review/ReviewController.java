@@ -62,12 +62,14 @@ public class ReviewController {
 			review.setAid(aid);
 			review.setUid(uid);
 			Counter counter = counterService.getUCounter(uid);
-			counter.setNoVotes(counter.getNoVotes() + 1);
+			
+			counter.setNoOpinions(counter.getNoOpinions()+1);			
+			Counter counter2 = counterService.getUCounter(auid);
+			counter2.setNoOpinions(counter2.getNoOpinions()+1);
+			
 			counter.setTotal(counter.getNoArticles()+counter.getNoConnections()+counter.getNoInvites()+counter.getNoOpinions()-
 		       		 counter.getNoReports()+counter.getNoVotes());
-			Counter counter2 = counterService.getUCounter(auid);
-			counter2.setNoVotes(counter2.getNoVotes() + 1);
-
+			
 			Advert advert = advertService.getAdvert(aid).orElseThrow(null);
 			advert.setNoReviews(advert.getNoReviews() + 1);
 			reviewService.addReview(review);
@@ -81,8 +83,8 @@ public class ReviewController {
 				jsonObject.put("newReview",  "Reviews ("+advert.getNoReviews()+")");
 				jsonObject.put("id", advert.getId());
 				jsonObject.put("review", review.getDescription());
-				jsonObject.put("Tpoints", counter.getTotal());
-				jsonObject.put("OpPoints", counter.getNoOpinions());
+				jsonObject.put("noTVotes", counter.getTotal());
+				jsonObject.put("noOpinion", counter.getNoOpinions());
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

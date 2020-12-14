@@ -76,8 +76,10 @@ public class PositiveController {
 					jsonObject.put("message", "You have added a positive review" + advert.getId());
 					jsonObject.put("status", "success");
 					jsonObject.put("newPositive",  "Positives ("+advert.getNoPositives()+")");
+					if(uid==aduid) {
 					jsonObject.put("noVotes", counter.getNoVotes());
 					jsonObject.put("noTVotes", counter.getTotal());
+					}
 
 				} catch (JSONException e) {
 					// TODO Auto-generated catch block

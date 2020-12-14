@@ -113,6 +113,7 @@ public class UserService {
 		jsonObject.put("noVotes", counter.getNoVotes());
 		jsonObject.put("noTVotes", counter.getTotal());
 		jsonObject.put("about", user.getAboutme());
+		jsonObject.put("status", "success");
 		
 		
 		return jsonObject.toString();

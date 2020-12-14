@@ -163,7 +163,7 @@ public class UserController {
 		
 		     User user= userService.getUser(user1.getId()).orElseThrow(null);
 		     
-		     if (user.getAboutme()==null && user.getBirthDate()==null) {
+		     if (user.getAboutme().isEmpty() && user.getBirthDate()==null) {
 		
 			Counter counter= counterService.getUCounter(user1.getId());
 			counter.setNoVotes(counter.getNoVotes()+2);

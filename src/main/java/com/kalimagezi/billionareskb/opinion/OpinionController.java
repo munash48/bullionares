@@ -44,7 +44,7 @@ public class OpinionController {
 			if (uid == opinion.getUid()) {
 				
 				try {
-					jsonObject.put("message", "You already made an opinion");
+					jsonObject.put("message", "You already made an opinion on this article.");
 					jsonObject.put("status", "failed");
 				} catch (JSONException e) {
 					// TODO Auto-generated catch block
@@ -82,8 +82,8 @@ public class OpinionController {
 			jsonObject.put("newOpinion",  "Opinions ("+article.getNoOpinions()+")");
 			jsonObject.put("id", article.getId());
 			jsonObject.put("opinion", opinion.getDescription());
-			jsonObject.put("Tpoints", counter.getTotal());
-			jsonObject.put("OpPoints", counter.getNoOpinions());
+			jsonObject.put("noTVotes", counter.getTotal());
+			jsonObject.put("noOpinion", counter.getNoOpinions());
 			
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block

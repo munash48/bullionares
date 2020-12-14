@@ -65,8 +65,8 @@
 
 		<footer class="footer p-3">
 			<div class="text-center hidden-xs">
-				<b>Version</b> 2.4.18 <strong>Copyright &copy; 2020 <a
-					href="http://kalimagezi.com/">Kalimagezi ltd</a>.
+				<b>Version</b> 2.4.18 <strong>Copyright &copy; 2020 <a 
+					href="http://kalimagezi.com/" target="_blank">Kalimagezi ltd</a>.
 				</strong> All rights reserved.
 			</div>
 		</footer>

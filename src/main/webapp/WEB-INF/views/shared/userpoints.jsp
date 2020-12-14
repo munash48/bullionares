@@ -7,7 +7,7 @@
 
             <div class="info-box-content">
               <span class="info-box-text text-center">ARTICLES</span>
-              <span class="info-box-number text-center">${counter.noArticles}<small></span>
+              <span class="info-box-number text-center noArticle">${counter.noArticles}<small></span>
             </div>
             <!-- /.info-box-content -->
           </div>

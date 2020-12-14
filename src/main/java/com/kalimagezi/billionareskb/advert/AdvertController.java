@@ -47,12 +47,8 @@ public static String uploadDirectory=System.getProperty("user.dir")+"/src/main/w
 			@RequestParam("noDays") int noDays
 
 			) {
-
-		Counter counter= counterService.getUCounter(uid);
-		counter.setNoVotes(counter.getNoVotes()+2);
-		counter.setTotal(counter.getNoArticles()+counter.getNoConnections()+counter.getNoInvites()+counter.getNoOpinions()-
-	       		 counter.getNoReports()+counter.getNoVotes());
-			counterService.addCounter(counter);
+		JSONObject jsonObject = new JSONObject();
+		if(!title.isEmpty()||!transactionId.isEmpty()) {
 		Advert advert = new Advert();
 	    
 		advert.setTitle(title);
@@ -67,7 +63,7 @@ public static String uploadDirectory=System.getProperty("user.dir")+"/src/main/w
 		advert.setTransactionId(transactionId);
 		advert.setUid(uid);
 		advert.setNoDays(noDays);
-		JSONObject jsonObject = new JSONObject();
+		
 		
 		try {
 			long tday = new Date().getTime(); 
@@ -85,12 +81,25 @@ public static String uploadDirectory=System.getProperty("user.dir")+"/src/main/w
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			System.out.println("Error uploading image");
+			
 		}
 			
 	    advertService.addAdvert(advert);
 
 		return jsonObject.toString();
+		}else {
+			try {
+				jsonObject.put("message",  "advert title and Transaction cant be empty also check your image extention!!");
+				jsonObject.put("status", "failed");
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			
+			return jsonObject.toString();
+			
+		}
 		
 	}
 	@RequestMapping(value="/admin/enableadd", method = RequestMethod.GET)
@@ -104,7 +113,12 @@ public static String uploadDirectory=System.getProperty("user.dir")+"/src/main/w
 		
 		advert.setEnabled(true);
 		
+		Counter counter= counterService.getUCounter(advert.getUid());
+		counter.setNoConnections(counter.getNoConnections()+10);
+		counter.setTotal(counter.getNoArticles()+counter.getNoConnections()+counter.getNoInvites()+counter.getNoOpinions()-
+	       		 counter.getNoReports()+counter.getNoVotes());
 		
+			counterService.addCounter(counter);
 		
 		
 		advertService.addAdvert(advert);

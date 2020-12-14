@@ -45,7 +45,7 @@ public class NegativeController {
 		negative.setAid(adid);
 		negative.setUid(uid);
 		Counter counter =counterService.getUCounter(aduid);
-		counter.setNoVotes(counter.getNoReports()+1);
+		counter.setNoReports(counter.getNoReports()+1);
 		counter.setTotal(counter.getNoArticles()+counter.getNoConnections()+counter.getNoInvites()+counter.getNoOpinions()-
 	       		 counter.getNoReports()+counter.getNoVotes());
 		
@@ -77,8 +77,10 @@ public class NegativeController {
 					jsonObject.put("message", "You have added a negative review " + advert.getId());
 					jsonObject.put("status", "success");
 					jsonObject.put("newNegative",  "Negatives ("+advert.getNoNegatives()+")");
+					if(uid==aduid) {
 					jsonObject.put("noReports", counter.getNoReports());
 					jsonObject.put("noTVotes", counter.getTotal());
+					}
 				} catch (JSONException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

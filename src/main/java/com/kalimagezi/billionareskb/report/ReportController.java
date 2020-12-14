@@ -76,8 +76,10 @@ public class ReportController {
 					jsonObject.put("message", "You have crossed Article No" + article.getId());
 					jsonObject.put("status", "success");
 					jsonObject.put("newCrosses",  "Crosses ("+article.getNoReports()+")");
+					if(uid==duid) {
 					jsonObject.put("noReports", counter.getNoReports());
 					jsonObject.put("noTVotes", counter.getTotal());
+					}
 				} catch (JSONException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

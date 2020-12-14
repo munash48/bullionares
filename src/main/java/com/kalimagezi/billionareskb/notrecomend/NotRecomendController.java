@@ -45,7 +45,7 @@ public class NotRecomendController {
 		notRecomend.setUid(uid);
 
 		Counter counter = counterService.getUCounter(jauid);
-		counter.setNoVotes(counter.getNoReports()+1);
+		counter.setNoReports(counter.getNoReports()+1);
 		counter.setTotal(counter.getNoArticles()+counter.getNoConnections()+counter.getNoInvites()+counter.getNoOpinions()-
 	       		 counter.getNoReports()+counter.getNoVotes());
 
@@ -77,8 +77,10 @@ public class NotRecomendController {
 			jsonObject.put("message", "You have added a negative review " + jobadd.getId());
 			jsonObject.put("status", "success");
 			jsonObject.put("newNotRecomend",  "Not Recomend ("+jobadd.getNotRecomended()+")");
+			if(uid==jauid) {
 			jsonObject.put("noReports", counter.getNoReports());
 			jsonObject.put("noTVotes", counter.getTotal());
+			}
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -212,9 +212,7 @@ $(function() {
 	} );
 	$('#advertEditFrm')
 	.submit( function( e ) {
-		var frm = $("#advertEditFrm");
-		
-		
+		var frm = $("#advertEditFrm");		
 		$.ajax( {
 			url:frm.attr("action"),
 			type:frm.attr("method"),
@@ -241,7 +239,11 @@ $(function() {
 			},
 			error:function(response){
 				
-				alert("ALERT! Fill all fields");
+				toastr.error("Fill all field","Advert Add Failed", {
+					closeButton: true,
+					progressBar: true,
+					positionClass:"toast-top-center"
+				});
 				
 			}
 		} );
@@ -268,7 +270,9 @@ $(function() {
 					progressBar: true,
 					positionClass:"toast-top-center"
 		   	 });
-				getPage("/profile");
+				
+				$(".Tpoints").html(data.noTVotes);
+				$(".noAdds").html(data.noAddds);
 				$('.modal').modal('hide');
 				}else{
 				toastr.warning(data.message,"Job Update Failed", {
@@ -308,6 +312,8 @@ $(function() {
 					progressBar: true,
 					positionClass:"toast-top-center"
 		   	 });
+				$(".Tpoints").html(data.noTVotes);
+				$(".noArticle").html(data.noArticle);
 				}else{
 				toastr.warning(data.message,"Article Failed", {
 					closeButton: true,
@@ -348,6 +354,8 @@ $(function() {
 					positionClass:"toast-top-center"
 		   	 });
 				$(".noOpinions"+data.id).html(data.newOpinion);
+				$(".Tpoints").html(data.noTVotes);
+				$(".OpPoints").html(data.noOpinion);
 				$(".realtimeOpinion").show();
 				$(".thisopinion").html(data.opinion);
 				document.getElementById("OpinionFrm").reset();
@@ -391,6 +399,8 @@ $(function() {
 				$(".noReview"+data.id).html(data.newReview);
 				$(".realtimeReview").show();
 				$(".thisreview").html(data.review);
+				$(".Tpoints").html(data.noTVotes);
+				$(".OpPoints").html(data.noOpinion);
 				document.getElementById("addReviewFrm").reset();
 				}else{
 				toastr.warning(data.message,"Review Failed", {
@@ -432,8 +442,8 @@ $(function() {
 				$(".noAnalysis"+data.id).html(data.newAnaysis);
 				$(".realtimeAnalysis").show();
 				$(".thisanalysis").html(data.analysis);
-				$(".Tpoints").html(data.Tpoints);
-				$(".OpPoints").html(data.OpPoints);
+				$(".Tpoints").html(data.noTvotes);
+				$(".OpPoints").html(data.noOpinion);
 				
 				document.getElementById("addAnalyisFrm").reset();
 				}else{

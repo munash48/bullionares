@@ -76,8 +76,10 @@ public class RecomendController {
 			jsonObject.put("message", "You have made a recommdation" + jobadd.getId());
 			jsonObject.put("status", "success");
 			jsonObject.put("newRecommend",  "Positives ("+jobadd.getRecomended()+")");
+			if(uid==jauid) {
 			jsonObject.put("noVotes", counter.getNoVotes());
 			jsonObject.put("noTVotes", counter.getTotal());
+			}
 			
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block

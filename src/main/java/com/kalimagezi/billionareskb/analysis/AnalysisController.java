@@ -72,14 +72,16 @@ public class AnalysisController {
 			analysis.setUid(uid);			
 			Counter counter = counterService.getUCounter(uid);
 			counter.setNoOpinions(counter.getNoOpinions()+1);
-			counter.setTotal(counter.getNoArticles()+counter.getNoConnections()+counter.getNoInvites()+counter.getNoOpinions()-
-		       		 counter.getNoReports()+counter.getNoVotes());
+			
 
 			Event event = eventService.getEvent(eid).orElseThrow(null);
 			event.setNoAnalyis(event.getNoAnalyis()+1);
 			
 			Counter eCounter=counterService.getUCounter(event.getUid());
-			eCounter.setNoOpinions(counter.getNoOpinions()+1);
+			eCounter.setNoOpinions(eCounter.getNoOpinions()+1);
+			
+			counter.setTotal(counter.getNoArticles()+counter.getNoConnections()+counter.getNoInvites()+counter.getNoOpinions()-
+		       		 counter.getNoReports()+counter.getNoVotes());
 			
 			analysisService.addAnalysis(analysis);
 			counterService.addCounter(eCounter);
@@ -91,8 +93,8 @@ public class AnalysisController {
 				jsonObject.put("newAnaysis",  "Analysis ("+event.getNoAnalyis()+")");
 				jsonObject.put("id", event.getId());
 				jsonObject.put("analysis", event.getDescription());
-				jsonObject.put("Tpoints", counter.getTotal());
-				jsonObject.put("OpPoints", counter.getNoOpinions());
+				jsonObject.put("noTvotes", counter.getTotal());
+				jsonObject.put("noOpinion", counter.getNoOpinions());
 				
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
