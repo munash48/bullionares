@@ -105,45 +105,7 @@ public class HomeController {
 	}
 
 	@RequestMapping(value = "/home", method = RequestMethod.GET)
-	public ModelAndView home(@RequestParam(name = "imgupload", required = false) String imgupload,
-			@RequestParam(name = "userupdate", required = false) String userupdate,
-			@RequestParam(name = "addressupdate", required = false) String addressupdate,
-			@RequestParam(name = "companyupdate", required = false) String companyupdate,
-			@RequestParam(name = "careerupdate", required = false) String careerupdate,
-			@RequestParam(name = "educationupdate", required = false) String educationupdate,
-			@RequestParam(name = "skillupdate", required = false) String skillupdate,
-			@RequestParam(name = "updateAboutme", required = false) String updateAboutme,
-			@RequestParam(name = "eventupdate", required = false) String eventupdate,
-			@RequestParam(name = "articleCreated", required = false) String articleCreated,
-			@RequestParam(name = "opinionCreated", required = false) String opinionCreated,
-			@RequestParam(name = "voteAdded", required = false) String voteAdded,
-			@RequestParam(name = "voteFailed", required = false) String voteFailed,
-			@RequestParam(name = "reportFailed", required = false) String reportFailed,
-			@RequestParam(name = "reportAdded", required = false) String reportAdded,
-			@RequestParam(name = "advertAdded", required = false) String advertAdded,
-			@RequestParam(name = "articleEmpty", required = false) String articleEmpty,
-			@RequestParam(name = "opinionNotCreated", required = false) String opinionNotCreated,
-			@RequestParam(name = "ReviewCreated", required = false) String ReviewCreated,
-			@RequestParam(name = "ReviewNotCreated", required = false) String ReviewNotCreated,
-			@RequestParam(name = "positiveFailed", required = false) String positiveFailed,
-			@RequestParam(name = "negativeFailed", required = false) String negativeFailed,
-			@RequestParam(name = "negativeAdded", required = false) String negativeAdded,
-			@RequestParam(name = "positiveAdded", required = false) String positiveAdded,
-			@RequestParam(name = "reviewFailed", required = false) String reviewFailed,
-			@RequestParam(name = "goingFailed", required = false) String goingFailed,
-			@RequestParam(name = "goingAdded", required = false) String goingAdded,
-			@RequestParam(name = "notGoingFailed", required = false) String notGoingFailed,
-			@RequestParam(name = "notGoingAdded", required = false) String notGoingAdded,
-			@RequestParam(name = "jobaddAdded", required = false) String jobaddAdded,
-			@RequestParam(name = "userinvited", required = false) String userinvited,
-			@RequestParam(name = "inviteFailed", required = false) String inviteFailed,
-			@RequestParam(name = "userExists", required = false) String userExists,
-			@RequestParam(name = "recomendFailed", required = false) String recomendFailed,
-			@RequestParam(name = "recomendAdded", required = false) String recomendAdded,
-			@RequestParam(name = "notRecomendFailed", required = false) String notRecomendFailed,
-			@RequestParam(name = "notRecomendAdded", required = false) String notRecomendAdded
-
-	) {
+	public ModelAndView home() {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		User user = userService.findByEmail(authentication.getName());
 		Category category = categoryService.getCategory(user.getCatid()).orElseThrow(null);
@@ -180,180 +142,9 @@ public class HomeController {
 
 			mv.addObject("ModeNotUpdated", true);
 		}
-
-		if (imgupload == null && userupdate == null && addressupdate == null && companyupdate == null
-				&& careerupdate == null
-
-				&& educationupdate == null && skillupdate == null && updateAboutme == null && eventupdate == null
-				&& opinionCreated == null && voteAdded == null && voteFailed == null && reportFailed == null
-				&& reportAdded == null && articleCreated == null && advertAdded == null && articleEmpty == null
-				&& opinionNotCreated == null && ReviewCreated == null && ReviewNotCreated == null
-				&& positiveFailed == null && negativeFailed == null && negativeAdded == null && positiveAdded == null
-				&& reviewFailed == null && goingFailed == null && goingAdded == null && notGoingFailed == null
-				&& notGoingAdded == null && jobaddAdded == null && userinvited == null && inviteFailed == null
-				&& userExists == null && recomendAdded == null && recomendFailed == null && notRecomendAdded == null
-				&& notRecomendFailed == null) {
-			mv.addObject("ModeJustLogged", true);
-		}
 		mv.setViewName("index2");
-		if (imgupload != null) {
 
-			mv.addObject("imgupload", "<b>Your profile image has been updated </b>");
-			mv.addObject("ModeImgUpload", true);
-
-		}
-		if (userupdate != null) {
-
-			mv.addObject("imgupload", "<b>Your Bio Data has been updated</b>");
-			mv.addObject("ModeImgUpload", true);
-
-		}
-		if (addressupdate != null) {
-
-			mv.addObject("imgupload", "<b>Your Address has been updated</b>");
-			mv.addObject("ModeImgUpload", true);
-
-		}
-		if (companyupdate != null) {
-
-			mv.addObject("imgupload", "<b>Your Company Attachement has been updated</b>");
-			mv.addObject("ModeImgUpload", true);
-
-		}
-
-
-
-		if (userinvited != null) {
-
-			mv.addObject("imgupload", "<b>your invitation to billionres has been sent</b>");
-			mv.addObject("ModeImgUpload", true);
-
-		}
-		if (ReviewCreated != null) {
-
-			mv.addObject("imgupload", "<b>Your Advert Review has been added</b>");
-			mv.addObject("ModeImgUpload", true);
-
-		}
-		if (jobaddAdded != null) {
-
-			mv.addObject("imgupload", "<b>Your Job Advert has been created</b>");
-			mv.addObject("ModeImgUpload", true);
-
-		}
-		if (voteFailed != null) {
-			mv.addObject("votefail", "<b>You already voted on  that article </b>");
-			mv.addObject("ModeJustFailedVote", true);
-
-		}
-		if (userExists != null) {
-			mv.addObject("votefail", "<b>The user you are trying to invite already exists </b>");
-			mv.addObject("ModeJustFailedVote", true);
-
-		}
-		if (goingFailed != null) {
-			mv.addObject("votefail", "<b>You already decided on that event </b>");
-			mv.addObject("ModeJustFailedVote", true);
-
-		}
-		if (notGoingFailed != null) {
-			mv.addObject("votefail", "<b>You already not Going to that event </b>");
-			mv.addObject("ModeJustFailedVote", true);
-
-		}
-		if (recomendFailed != null) {
-			mv.addObject("votefail", "<b>You already sent your recomendation</b>");
-			mv.addObject("ModeJustFailedVote", true);
-
-		}
-		if (notRecomendFailed != null) {
-			mv.addObject("votefail", "<b>You already sent your NOT recomendation</b>");
-			mv.addObject("ModeJustFailedVote", true);
-
-		}
-		if (reviewFailed != null) {
-			mv.addObject("votefail", "<b>You already reviewed the advert!!! </b>");
-			mv.addObject("ModeJustFailedVote", true);
-
-		}
-		if (negativeFailed != null) {
-			mv.addObject("votefail", "<b>You already Reviewed that advert </b>");
-			mv.addObject("ModeJustFailedVote", true);
-
-		}
-		if (positiveFailed != null) {
-			mv.addObject("votefail", "<b>You already reviewed  that advert </b>");
-			mv.addObject("ModeJustFailedVote", true);
-
-		}
-		if (ReviewNotCreated != null) {
-			mv.addObject("votefail", "<b>You Advert Review Cant be Empty!! </b>");
-			mv.addObject("ModeJustFailedVote", true);
-
-		}
-		if (opinionNotCreated != null) {
-			mv.addObject("votefail", "<b>Opinion can not be empty </b>");
-			mv.addObject("ModeJustFailedVote", true);
-
-		}
-		if (reportFailed != null) {
-			mv.addObject("votefail", "<b>You already crossed the same article </b>");
-			mv.addObject("ModeJustFailedVote", true);
-
-		}
-		if (inviteFailed != null) {
-			mv.addObject("votefail", "<b>the invitation failed, check email, could already be invited</b>");
-			mv.addObject("ModeJustFailedVote", true);
-
-		}
-		if (voteAdded != null) {
-
-			mv.addObject("imgupload", "<b>Your Vote has been Counted</b>");
-			mv.addObject("ModeImgUpload", true);
-
-		}
-		if (negativeAdded != null) {
-
-			mv.addObject("imgupload", "<b>Your negative Review has been added</b>");
-			mv.addObject("ModeImgUpload", true);
-
-		}
-		if (goingAdded != null) {
-
-			mv.addObject("imgupload", "<b>Your are going to the event</b>");
-			mv.addObject("ModeImgUpload", true);
-
-		}
-		if (notRecomendAdded != null) {
-
-			mv.addObject("imgupload", "<b>Your are NOT Recomending this advert</b>");
-			mv.addObject("ModeImgUpload", true);
-
-		}
-		if (positiveAdded != null) {
-
-			mv.addObject("imgupload", "<b>Your positive Review has been added</b>");
-			mv.addObject("ModeImgUpload", true);
-
-		}
-		if (reportAdded != null) {
-
-			mv.addObject("imgupload", "<b>Your Cross has been Counted</b>");
-			mv.addObject("ModeImgUpload", true);
-
-		}
-		if (advertAdded != null) {
-
-			mv.addObject("imgupload", "<b>Your paid advert has been created. Awaiting activation</b>");
-			mv.addObject("ModeImgUpload", true);
-
-		}
-		if (articleEmpty != null) {
-
-			mv.addObject("votefail", "<b>Article cant be empty !!</b>");
-			mv.addObject("ModeJustFailedVote", true);
-
-		}
+		
 
 		return mv;
 
@@ -361,7 +152,10 @@ public class HomeController {
 
 	@RequestMapping(value = "/admin", method = RequestMethod.GET)
 	public ModelAndView admin(@RequestParam(name = "advertDisabled", required = false) String advertDisabled,
-			@RequestParam(name = "advertEnabled", required = false) String advertEnabled) {
+			@RequestParam(name = "advertEnabled", required = false) String advertEnabled ,
+	@RequestParam(name = "resetCounter", required = false) String resetCounter) 
+	
+	{
 
 		List<Advert> disAdds = advertService.getAllDisabledAdverts();
 		List<Advert> enabAdds = advertService.getAllEnabledAdverts();
@@ -382,6 +176,13 @@ public class HomeController {
 			mv.addObject("message", "<b>The advert was successfully Disabled</b>");
 			mv.addObject("advertDisabled", true);
 
+		}
+		if (resetCounter != null) {
+			
+			mv.addObject("message", "<b>All counters have been reset</b>");
+			mv.addObject("advertDisabled", true);
+
+			
 		}
 		mv.setViewName("index");
 		return mv;
@@ -960,8 +761,7 @@ public class HomeController {
 		List<Jobadd> catJobadds = jobaddService.getCatJobadd(user.getCatid());
 		
 		List<DisplayJobAdd> dcatJobadds = new ArrayList<DisplayJobAdd>();
-		List<DisplayWrittenReco> dRecommends = new ArrayList<DisplayWrittenReco>();
-
+		
 		for (Jobadd catjobadd : catJobadds) {
 			DisplayJobAdd dcatJobadd = new DisplayJobAdd();
 			if(catjobadd.getJobTitle()!=null) {
@@ -984,8 +784,9 @@ public class HomeController {
 				
 
 			List<Recommendations> recommends = recommendationsServices.getRecommendationssByJaid(catjobadd.getId());
-			
+			List<DisplayWrittenReco> dRecommends = new ArrayList<DisplayWrittenReco>();
 			for (Recommendations recommend : recommends) {
+				
 				User user3 = userService.getUser(recommend.getUid()).orElseThrow(null);
 
 				DisplayWrittenReco drecomend = new DisplayWrittenReco();
@@ -1009,7 +810,7 @@ public class HomeController {
 			}
 			
 		}
-		
+
 
 		return dcatJobadds;
 

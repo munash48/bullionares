@@ -77,9 +77,10 @@ public class GoingController {
 					jsonObject.put("message", "Your Going decision is counted.");
 					jsonObject.put("status", "success");
 					jsonObject.put("newGoing",  "Going ("+event.getGoing()+")");
+					if(uid==euid) {
 					jsonObject.put("noVotes", counter.getNoVotes());
 					jsonObject.put("noTVotes", counter.getTotal());
-					
+					}
 				} catch (JSONException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

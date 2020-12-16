@@ -827,12 +827,22 @@
 										Right Now</span>
 								</div>
 								
-								<img class="direct-chat-img"
+								<c:if test="${user.imageLink!=''}">
+									<img class="direct-chat-img"
 										src="/uploads/${user.id}/profile/${user.imageLink}"
 										alt="message user image">
+
+								</c:if>
+								<c:if test="${user.imageLink==''}">
+									<img class="direct-chat-img" src="/dist/img/profile.jpg"
+										alt="message user image">
+
+								</c:if>
 											
 											<div class="direct-chat-text thisreview"></div>
 											</div>
+											
+											
 
 												
 													<c:forEach items="${displayadd.reviews}" var="dreview">
@@ -1029,15 +1039,23 @@
 									<span class="direct-chat-timestamp pull-right">
 										Right Now</span>
 								</div>
-								<img class="direct-chat-img"
+								<c:if test="${user.imageLink!=''}">
+									<img class="direct-chat-img"
 										src="/uploads/${user.id}/profile/${user.imageLink}"
 										alt="message user image">
+
+								</c:if>
+								<c:if test="${user.imageLink==''}">
+									<img class="direct-chat-img" src="/dist/img/profile.jpg"
+										alt="message user image">
+
+								</c:if>
 								
 								<div class="direct-chat-text thisanalysis"></div>
 								</div>
 
 												
-													<c:forEach items="${dcatEvent.danalysiss}" var="danalysis">
+					<c:forEach items="${dcatEvent.danalysiss}" var="danalysis">
 
 							<!-- the comments comme hear -->
 							<div class="direct-chat-msg">
@@ -1219,7 +1237,7 @@
 						<button type="button" class="close" data-dismiss="modal">
 							<span>&times;</span>
 						</button>
-						<h4 class="modal-title">Review Jobs Adverts Dialog box</h4>
+						<h4 class="modal-title">Recommend Jobs Adverts Dialog box</h4>
 
 					</div>
 
@@ -1274,14 +1292,10 @@
 									<li>
 									
 									<a href="javascript:void(0);" onclick="countNotRecommed('${user.id}','${dcatjob.jaid}','${dcatjob.jauid}')">
-						
-						
-											<i class="fa fa-times fa-2x margin-r-5"></i> Un-Recommend 
+                                     <i class="fa fa-times fa-2x margin-r-5"></i> Un-Recommend 
 					
-
 									</a>
-										
-
+							
 									</li>
 
 									<li>
@@ -1329,15 +1343,23 @@
 									<span class="direct-chat-timestamp pull-right">
 										Right Now</span>
 								</div>
-								<img class="direct-chat-img"
+								<c:if test="${user.imageLink!=''}">
+									<img class="direct-chat-img"
 										src="/uploads/${user.id}/profile/${user.imageLink}"
 										alt="message user image">
+
+								</c:if>
+								<c:if test="${user.imageLink==''}">
+									<img class="direct-chat-img" src="/dist/img/profile.jpg"
+										alt="message user image">
+
+								</c:if>
 								
 								<div class="direct-chat-text thisRecomm"></div>
 								</div>
 
 												
-													<c:forEach items="${dcatjob.dwRecos}" var="drecommeds">
+						<c:forEach items="${dcatjob.dwRecos}" var="drecommeds">
 
 							<!-- the comments comme hear -->
 							<div class="direct-chat-msg">
@@ -1367,9 +1389,6 @@
 							
 
 						</c:forEach>
-						
-											
-
 										<c:if test="${count4<=0}">
 												<div class="box-footer">
 													<form action="/addRecommend" method="post" id="addRecommendFrm">

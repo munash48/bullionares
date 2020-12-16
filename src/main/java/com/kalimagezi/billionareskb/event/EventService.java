@@ -78,7 +78,7 @@ public class EventService {
 
 	public List<Event> getCatEvents(int catid) {
 		// TODO Auto-generated method stub
-		return eventRepository.findTop10AllByCid(catid);
+		return eventRepository.findTop10AllByCidOrderByCreateDateDesc(catid);
 	}
 
 }

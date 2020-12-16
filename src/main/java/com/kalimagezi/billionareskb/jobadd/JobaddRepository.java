@@ -8,4 +8,6 @@ public interface JobaddRepository extends CrudRepository<Jobadd, Integer> {
 
 	List<Jobadd> findTop10ByCid(int catid);
 
+	List<Jobadd> findTop10ByCidOrderByAddDateDesc(int catid);
+
 }

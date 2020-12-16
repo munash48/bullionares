@@ -46,7 +46,7 @@ public class JobaddService {
 
 	public List<Jobadd> getCatJobadd(int catid) {
 		// TODO Auto-generated method stub
-		return jobaddRepository.findTop10ByCid(catid);
+		return jobaddRepository.findTop10ByCidOrderByAddDateDesc(catid);
 	}
 
 }

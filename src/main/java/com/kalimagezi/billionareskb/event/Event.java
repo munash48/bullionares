@@ -1,6 +1,7 @@
 package com.kalimagezi.billionareskb.event;
 
 import java.time.LocalDate;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -26,6 +27,8 @@ public class Event {
 	private int noAnalyis;
 	@Column(name="not_going")
 	private int notGoing;
+	@Column(name="create_date")
+	private Date createDate= new Date();
 	private boolean enabled=true;
 	
 	
@@ -34,8 +37,9 @@ public class Event {
 		// TODO Auto-generated constructor stub
 	}
 	
+
 	public Event(int id, int uid, int cid, String ename, String description, String imageLink, LocalDate eventDate,
-			int going, int noAnalyis, int notGoing, boolean enabled) {
+			int going, int noAnalyis, int notGoing, Date createDate, boolean enabled) {
 		super();
 		this.id = id;
 		this.uid = uid;
@@ -47,14 +51,16 @@ public class Event {
 		this.going = going;
 		this.noAnalyis = noAnalyis;
 		this.notGoing = notGoing;
+		this.createDate = createDate;
 		this.enabled = enabled;
 	}
-	
+
+
 	@Override
 	public String toString() {
 		return "Event [id=" + id + ", uid=" + uid + ", cid=" + cid + ", ename=" + ename + ", description=" + description
 				+ ", imageLink=" + imageLink + ", eventDate=" + eventDate + ", going=" + going + ", noAnalyis="
-				+ noAnalyis + ", notGoing=" + notGoing + ", enabled=" + enabled + "]";
+				+ noAnalyis + ", notGoing=" + notGoing + ", createDate=" + createDate + ", enabled=" + enabled + "]";
 	}
 
 	public int getId() {
@@ -119,6 +125,17 @@ public class Event {
 	public void setEventDate(LocalDate date2) {
 		this.eventDate = date2;
 	}
+	
+	public Date getCreateDate() {
+		return createDate;
+	}
+
+
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
+	}
+
+
 	public boolean isEnabled() {
 		return enabled;
 	}

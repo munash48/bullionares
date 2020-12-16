@@ -26,6 +26,7 @@ public class DisplayAdd {
 	public DisplayAdd(int id, int uid, int itemAmount, String title, String description, String imageLink, int noDays,
 			int noClicks, int noReviews, int noPositives, int noNegatives, String website, List<DisplayReview> reviews) {
 		super();
+		
 		this.id = id;
 		this.uid = uid;
 		this.itemAmount = itemAmount;

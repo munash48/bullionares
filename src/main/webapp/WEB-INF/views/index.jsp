@@ -502,7 +502,7 @@
         <li class="header">LABELS</li>
         <li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>Important</span></a></li>
         <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> <span>Warning</span></a></li>
-        <li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Information</span></a></li>
+        <li><a href="/admin/resetCounter"><i class="fa fa-circle-o text-red"></i> <span>Reset Counters</span></a></li>
       </ul>
     </section>
     <!-- /.sidebar -->
@@ -515,6 +515,7 @@
       <h1>
         Dashboard
         <small>Control panel</small>
+  
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -592,7 +593,7 @@
       <div class="row">
         <!-- Left col -->
         <section class="col-lg-7 connectedSortable">
-        <c:if test="${advertDisabled==true||advertEnabled==true}">
+        <c:if test="${advertEnabled==true}">
         <div class="row">
         <div class="col-xs-12">
 				<div class="alert alert-success alert-dismissible">
@@ -605,6 +606,21 @@
 			</div>
 			</div>
 			</c:if>
+        <c:if test="${advertDisabled==true}">
+        <div class="row">
+        <div class="col-xs-12">
+				<div class="alert alert-warning alert-dismissible">
+
+					<button type="button" class="close" data-dismiss="alert">&times;</button>
+					${message}
+
+				</div>
+
+			</div>
+			</div>
+			</c:if>
+			
+			
         <%@include file="./shared/adverts.jsp"%>
 
         

@@ -17,7 +17,7 @@ import com.kalimagezi.billionareskb.article.Article;
 import com.kalimagezi.billionareskb.article.ArticleService;
 import com.kalimagezi.billionareskb.counter.Counter;
 import com.kalimagezi.billionareskb.counter.CounterService;
-import com.kalimagezi.billionareskb.recomendations.Recommendations;
+
 @Controller
 public class OpinionController {
 

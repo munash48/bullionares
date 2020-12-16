@@ -1,6 +1,7 @@
 package com.kalimagezi.billionareskb.advert;
 
 import java.time.LocalDate;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -37,6 +38,8 @@ public class Advert {
 	private int rating;
 	@Column(name = "date_from")
 	private LocalDate dateFrom;
+	private Date createDate= new Date();
+	
 	private String website;
 	@Column(name = "transaction_id")
 	private String transactionId;
@@ -47,9 +50,11 @@ public class Advert {
 		// TODO Auto-generated constructor stub
 	}
 
+
+
 	public Advert(int id, int uid, int cid, int advertAmount, int itemAmount, String title, String description,
 			String imageLink, int noDays, int noClicks, int noReviews, int noPositives, int noNegatives, int rating,
-			LocalDate dateFrom, String website, String transactionId, boolean enabled) {
+			LocalDate dateFrom, Date createDate, String website, String transactionId, boolean enabled) {
 		super();
 		this.id = id;
 		this.uid = uid;
@@ -66,10 +71,13 @@ public class Advert {
 		this.noNegatives = noNegatives;
 		this.rating = rating;
 		this.dateFrom = dateFrom;
+		this.createDate = createDate;
 		this.website = website;
 		this.transactionId = transactionId;
 		this.enabled = enabled;
 	}
+
+
 
 	@Override
 	public String toString() {
@@ -77,7 +85,8 @@ public class Advert {
 				+ itemAmount + ", title=" + title + ", description=" + description + ", imageLink=" + imageLink
 				+ ", noDays=" + noDays + ", noClicks=" + noClicks + ", noReviews=" + noReviews + ", noPositives="
 				+ noPositives + ", noNegatives=" + noNegatives + ", rating=" + rating + ", dateFrom=" + dateFrom
-				+ ", website=" + website + ", transactionId=" + transactionId + ", enabled=" + enabled + "]";
+				+ ", createDate=" + createDate + ", website=" + website + ", transactionId=" + transactionId
+				+ ", enabled=" + enabled + "]";
 	}
 
 	public int getId() {
@@ -210,6 +219,14 @@ public class Advert {
 
 	public String getTransactionId() {
 		return transactionId;
+	}
+
+	public Date getCreateDate() {
+		return createDate;
+	}
+
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
 	}
 
 	public void setTransactionId(String transactionId) {

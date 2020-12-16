@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.kalimagezi.billionareskb.analysis.Analysis;
 import com.kalimagezi.billionareskb.counter.Counter;
 import com.kalimagezi.billionareskb.counter.CounterService;
 import com.kalimagezi.billionareskb.jobadd.Jobadd;
@@ -82,8 +81,8 @@ public class RecommController {
 			jsonObject.put("newRecommendations",  "Written ("+jobadd.getNoRecomends()+")");
 			jsonObject.put("id", jobadd.getId());
 			jsonObject.put("recommendation", recommendations.getDescription());
-			jsonObject.put("Tpoints", counter.getTotal());
-			jsonObject.put("OpPoints", counter.getNoOpinions());
+			jsonObject.put("noTVotes", counter.getTotal());
+			jsonObject.put("noOpinion", counter.getNoOpinions());
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

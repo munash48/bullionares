@@ -86,7 +86,7 @@ public class InviteController {
 		        Map<String, Object> model = new HashMap<>();
 		        model.put("name", iemail);
 		        model.put("location", "Uganda");
-		        model.put("message", user.getFirstName()  +" Thinks you have what it takes to be the next Billionare. <br> Follow the link below to join");
+		        model.put("message", user.getFirstName()  +" Thinks you have what it takes to be the next Billionare. <br> Follow the link http//localhost:8080/ to join <br> or <a href='http//localhost:8080/'>click here </a>");
 		        model.put("signature", "https://kalimagezi.com");
 		       
 
@@ -111,9 +111,6 @@ public class InviteController {
 			counterService.addCounter(counter);
 			
 			
-
-
-
 		return inviteService.addInvite(invite);
 		
 	}

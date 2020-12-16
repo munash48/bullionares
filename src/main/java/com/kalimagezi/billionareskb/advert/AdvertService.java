@@ -47,7 +47,7 @@ public class AdvertService {
 
 	public List<Advert> getAllEnabledAdverts() {
 		// TODO Auto-generated method stub
-		return advertRepository.findAllByEnabledTrue();
+		return advertRepository.findAllByEnabledTrueOrderByCreateDateDesc();
 	}
 	public List<Advert> getAllDisabledAdverts() {
 		// TODO Auto-generated method stub

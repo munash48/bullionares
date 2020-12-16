@@ -13,4 +13,6 @@ public interface AdvertRepository extends CrudRepository<Advert, Integer> {
 
 	List<Advert> findAllByEnabledTrue();
 
+	List<Advert> findAllByEnabledTrueOrderByCreateDateDesc();
+
 }

@@ -229,7 +229,7 @@ $(function() {
 				getPage("/profile");
 				$('.modal').modal('hide');
 				}else{
-				toastr.warning(data.message,"Advert Add Failed", {
+				toastr.warning("Check Image type","Advert Add Failed", {
 					closeButton: true,
 					progressBar: true,
 					positionClass:"toast-top-center"
@@ -239,7 +239,7 @@ $(function() {
 			},
 			error:function(response){
 				
-				toastr.error("Fill all field","Advert Add Failed", {
+				toastr.error("Fill all field, Price (dicts only) check image extention","Advert Add Failed", {
 					closeButton: true,
 					progressBar: true,
 					positionClass:"toast-top-center"
@@ -442,7 +442,7 @@ $(function() {
 				$(".noAnalysis"+data.id).html(data.newAnaysis);
 				$(".realtimeAnalysis").show();
 				$(".thisanalysis").html(data.analysis);
-				$(".Tpoints").html(data.noTvotes);
+				$(".Tpoints").html(data.noTVotes);
 				$(".OpPoints").html(data.noOpinion);
 				
 				document.getElementById("addAnalyisFrm").reset();
@@ -487,6 +487,8 @@ $(function() {
 				$(".noRecommendations"+data.id).html(data.newRecommendations);
 				$(".realtimeRecomm").show();
 				$(".thisRecomm").html(data.recommendation);
+				$(".Tpoints").html(data.noTVotes);
+				$(".OpPoints").html(data.noOpinion);
 				document.getElementById("addRecommendFrm").reset();
 				}else{
 				toastr.warning(data.message,"Recommendation Failed", {

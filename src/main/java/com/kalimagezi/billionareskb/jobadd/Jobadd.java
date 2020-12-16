@@ -51,9 +51,6 @@ public class Jobadd {
 		// TODO Auto-generated constructor stub
 	}
 
-
-
-
 	public Jobadd(int id, int cid, int uid, String jobTitle, String compName, String compWeb, String jobCategory,
 			String salary, String description, String imageLink, int noPositions, Date addDate, LocalDate deadline,
 			int recomended, int notRecomended, int noRecomends, boolean enabled) {
@@ -77,16 +74,14 @@ public class Jobadd {
 		this.enabled = enabled;
 	}
 
-
-
-
 	@Override
 	public String toString() {
 		return "Jobadd [id=" + id + ", cid=" + cid + ", uid=" + uid + ", jobTitle=" + jobTitle + ", compName="
 				+ compName + ", compWeb=" + compWeb + ", jobCategory=" + jobCategory + ", salary=" + salary
 				+ ", description=" + description + ", imageLink=" + imageLink + ", noPositions=" + noPositions
 				+ ", addDate=" + addDate + ", deadline=" + deadline + ", recomended=" + recomended + ", notRecomended="
-				+ notRecomended + ", noRecomends=" + noRecomends + ", enabled=" + enabled + "]";
+				+ notRecomended + ", noRecomends=" + noRecomends + ", enabled=" + enabled
+				+ "]";
 	}
 	public int getRecomended() {
 		return recomended;
@@ -125,8 +120,6 @@ public class Jobadd {
 	public int getNotRecomended() {
 		return notRecomended;
 	}
-
-
 
 	public int getNoPositions() {
 		return noPositions;

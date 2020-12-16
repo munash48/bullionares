@@ -73,8 +73,10 @@ public class NotGoingController {
 			jsonObject.put("message", "Your Not-Going decision is counted.");
 			jsonObject.put("status", "success");
 			jsonObject.put("newNotGoing",  "Not Going ("+event.getNotGoing()+")");
+			if(uid==euid) {
 			jsonObject.put("noReports", counter.getNoReports());
 			jsonObject.put("noTVotes", counter.getTotal());
+			}
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

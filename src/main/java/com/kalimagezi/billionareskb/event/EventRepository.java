@@ -10,4 +10,6 @@ public interface EventRepository extends CrudRepository<Event, Integer> {
 
 	List<Event> findTop10AllByCid(int catid);
 
+	List<Event> findTop10AllByCidOrderByCreateDateDesc(int catid);
+
 }
