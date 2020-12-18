@@ -78,7 +78,7 @@
 			<p>I am a ${career.jobTitle} at ${company.name} specializing in
 				${career.specialization}. ${career.description}</p>
 			<P>We deal in ${company.type}My company is located at
-				${company.website} and ${company.address}</P>
+				<a href="${company.website}" target="_blank" >${company.website} </a>and ${company.address}</P>
 
 
 
@@ -87,7 +87,7 @@
 			<u><b>Education</b></u> <br>
 			<p>My highest level of education is a ${peducation.level} as at
 				${education.completionDate}. I have a ${education.award} from
-				${education.institution} found on ${education.website}.</p>
+				${education.institution} found on <a href="${education.website}" target="_blank" >${education.website} </a>.</p>
 
 
 

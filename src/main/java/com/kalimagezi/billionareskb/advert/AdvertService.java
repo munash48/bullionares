@@ -45,6 +45,10 @@ public class AdvertService {
 
 	}
 
+	public List<Advert> getAllEnabledAdverts(int catid) {
+		// TODO Auto-generated method stub
+		return advertRepository.findAllByEnabledTrueAndCidOrderByCreateDateDesc(catid);
+	}
 	public List<Advert> getAllEnabledAdverts() {
 		// TODO Auto-generated method stub
 		return advertRepository.findAllByEnabledTrueOrderByCreateDateDesc();
@@ -52,6 +56,12 @@ public class AdvertService {
 	public List<Advert> getAllDisabledAdverts() {
 		// TODO Auto-generated method stub
 		return advertRepository.findAllByEnabledFalse();
+	}
+
+	public List<Advert> getAddsByCat(int catid) {
+		// TODO Auto-generated method stub
+		advertRepository.findAllByCid(catid);
+		return null;
 	}
 	
 	

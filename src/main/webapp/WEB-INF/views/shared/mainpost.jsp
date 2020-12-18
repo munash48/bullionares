@@ -44,8 +44,9 @@
 				<label for="text" class="col-sm-2 control-label">Youtube
 					link</label>
 				<div class="col-sm-10">
-					<input type="text" class="form-control" name="videoLink"
-						id="description" placeholder="Video Link" /> <span
+					<input type="text" class="form-control" name="videoLink" pattern="https://www.youtube.com/watch+\?+v=.+"
+               title="Copy like this https://www.youtube.com/watch?v=yfnsfhfn" size="90"
+						id="description" placeholder="Video Link eg https://www.youtube.com/watch?v=M5kVoH3746k" /> <span
 						class="glyphicon glyphicon-facetime-video form-control-feedback"></span>
 				</div>
 			</div>

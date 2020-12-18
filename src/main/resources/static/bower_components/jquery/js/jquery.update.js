@@ -12,7 +12,7 @@ $(function() {
 			
 		});
 		
-		var nurl="/?error=reg";
+		var nurl="/?success=reg";
 		
 		saveUpdatedData(frm, data,nurl);
 		

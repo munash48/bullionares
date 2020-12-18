@@ -548,8 +548,12 @@ public class HomeController {
 	@ModelAttribute("displayadds")
 	public List<DisplayAdd> getDisplayadd() {
 		List<DisplayAdd> displayadds = new ArrayList<DisplayAdd>();
-
-		List<Advert> adverts = advertService.getAllEnabledAdverts();
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		User user = userService.findByEmail(authentication.getName());
+		Category category = categoryService.getCategory(user.getCatid()).orElseThrow(null);
+		
+		List<Advert> catadverts = advertService.getAddsByCat(category.getCatid());
+		List<Advert> adverts = advertService.getAllEnabledAdverts(category.getCatid());
 
 		for (Advert advert : adverts) {
 			DisplayAdd displayAdd = new DisplayAdd();

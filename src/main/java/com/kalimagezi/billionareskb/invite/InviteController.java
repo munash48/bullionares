@@ -43,7 +43,7 @@ public class InviteController {
 
 	
 	@RequestMapping(value="/inviteUser", method = RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody String updadeUser ( @RequestParam("uid") Integer uid, 
+	public @ResponseBody String inviteUser ( @RequestParam("uid") Integer uid, 
 			@RequestParam("uemail") String uemail,
 			@RequestParam("iemail") String iemail
 			) {
@@ -60,7 +60,8 @@ public class InviteController {
 			invite.setUid(uid);
 			invite.setMessage(user.getFirstName() +" " +user.getOtherNames() +" has invited you to join Billonares" );
 			
-			List<Invite> invites = inviteService.getAllInvites();		
+			List<Invite> invites = inviteService.getAllInvites();
+			
 			
 			for(Invite myinvite: invites) {
 				

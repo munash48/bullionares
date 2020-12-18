@@ -235,8 +235,8 @@
 							</div>
 							<div class="form-group has-feedback">
 								<sf:input type="text" class="form-control" path="website"
-									id="website" placeholder="Company Website eg. www.kalimagezi.com" 
- 									value="${company.website}" /> <span 
+									id="website" placeholder="Company Website eg. https://.kalimagezi.com" pattern="https?://www.+[a-z0-9.-]+\.[a-z]{2,}$" 
+               title="Include http://www.websitename.domain" size="90" value="${company.website}" /> <span 
 									class="glyphicon glyphicon-cloud form-control-feedback"></span>
 							</div>
 							<div class="form-group has-feedback">
@@ -392,8 +392,8 @@
 							</div>
 							<div class="form-group has-feedback">
 								<sf:input type="text" class="form-control" path="website"
-									id="website" placeholder="Career Website eg. www.w3schools.com" maxlength="30"
-									value="${career.website}" /> <span
+									id="website" placeholder="Career Website eg. www.w3schools.com" pattern="https?://www.+[a-z0-9.-]+\.[a-z]{2,}$" 
+               title="Include http://www.websitename.domain" size="90" value="${career.website}" /> <span
 									class="glyphicon glyphicon-cloud form-control-feedback"></span>
 							</div>
 							<div class="form-group has-feedback">
@@ -454,7 +454,7 @@
 									class="glyphicon glyphicon-book form-control-feedback"></span>
 							</div>
 							<div class="form-group has-feedback">
-								<sf:input type="text" class="form-control" path="award" id="award" maxlength="40"
+								<sf:input type="text" class="form-control" path="award" id="award" maxlength="90"
 									placeholder="Award e.g BSc.Envirometal Management" value="${education.award}" /> <span
 									class="glyphicon glyphicon-education form-control-feedback"></span>
 							</div>
@@ -466,8 +466,8 @@
 							</div>
 							<div class="form-group has-feedback">
 								<sf:input type="text" class="form-control" path="website"
-									id="website" placeholder="Institutional Website eg www.kyu.ac.ug" maxlength="30"
-									value="${education.website}" /> <span
+									id="website" placeholder="Institutional Website eg www.kyu.ac.ug" pattern="https?://www.+[a-z0-9.-]+\.[a-z]{2,}$" 
+               title="Include http://www.websitename.domain" size="90" value="${education.website}" /> <span
 									class="glyphicon glyphicon-cloud form-control-feedback"></span>
 							</div>
 
@@ -687,7 +687,8 @@
 							</div>
 							<div class="form-group has-feedback">
 								<input type="text" class="form-control" name="website"
-									id="website" placeholder="Product Website" /> <span
+									id="website" placeholder="Product Website" pattern="https?://.+[a-z0-9.-]+\.[a-z]{2,}$" 
+               title="Include http://.websitename.domain" size="90"/> <span
 									class="glyphicon glyphicon-align-justify form-control-feedback"></span>
 							</div>
 							<div class="form-group has-feedback">
@@ -747,7 +748,8 @@
 								<h4>
 									<span class="label label-warning pull-right">$${displayadd.itemAmount}</span>
 								</h4>
-								<a>${displayadd.website} </a>
+								
+								<a href="${displayadd.website}" target="_blank" >${displayadd.website} </a>
 
 
 								<div class="product-img">
@@ -1177,7 +1179,8 @@
 							</div>
 							<div class="form-group has-feedback">
 								<input type="text" class="form-control" name="compWeb"
-									id="compWeb" placeholder="Company Website" /> <span
+									id="compWeb" placeholder="Company Website" pattern="https?://.+[a-z0-9.-]+\.[a-z]{2,}$" 
+               title="Include http://.websitename.domain" size="90" /> <span
 									class="glyphicon glyphicon-align-justify form-control-feedback"></span>
 							</div>
 							<div class="form-group has-feedback">

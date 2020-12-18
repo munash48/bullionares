@@ -51,6 +51,7 @@
 							<span class="label label-warning pull-right">UGX ${eadvert.itemAmount}</span>
 						</a> <span class="product-description">${eadvert.description}</span>
 						<a>${eadvert.website} </a>
+						<a href="${eadvert.website}" target="_blank" >${eadvert.website} </a>
 						
 					</div>
 				</li>

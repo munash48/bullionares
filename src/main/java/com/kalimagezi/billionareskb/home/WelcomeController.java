@@ -192,6 +192,7 @@ public class WelcomeController {
 					} else {
 						model.addAttribute("logout", "<b>PASSWORD RESET LINK SENT TO " + email
 								+ "<br> Go to your mail to access reset link</b>");
+						return "redirect:/?withinreset= " + email;
 					}
 
 					return "shared/reset";
@@ -244,10 +245,10 @@ public class WelcomeController {
 
 	}
 
-	@RequestMapping(value = "/reset", method = RequestMethod.POST)
-	public String resetPassword(@RequestParam("resetcode") String resetcode, @RequestParam("password") String password,
+	@RequestMapping(value = "/reset", method = RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody String resetPassword(@RequestParam("resetcode") String resetcode, @RequestParam("password") String password,
 			@RequestParam("confirm") String confirm) throws JSONException {
-
+		JSONObject jsonObject = new JSONObject();
 		if (resetcode != null) {
 
 			User user = null;
@@ -264,17 +265,18 @@ public class WelcomeController {
 					user.setPassword(password);
 
 					user.setResetcode(null);
-					userService.updateUser(user);
+					return userService.updateUser(user);
 
-					return "redirect:/?reset=success";
 				} else {
-					return "redirect:/?reset=mismatch";
+					jsonObject.put("message", "The two passwords are not the same");
+					jsonObject.put("status", "failed");
+					return jsonObject.toString();
 				}
 
 			}
 
 		}
-		return "redirect:/?reset=failed";
+		return "shared/reset";
 
 	}
 

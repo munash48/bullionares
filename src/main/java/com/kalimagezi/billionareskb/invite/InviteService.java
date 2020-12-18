@@ -64,4 +64,10 @@ public class InviteService {
 
 	}
 
+	public Invite getInvite(String email) {
+		// TODO Auto-generated method stub
+		
+		return inviteRepository.findByEmail(email);
+	}
+
 }

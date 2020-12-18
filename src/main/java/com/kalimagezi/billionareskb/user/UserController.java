@@ -39,6 +39,7 @@ import com.kalimagezi.billionareskb.event.EventService;
 import com.kalimagezi.billionareskb.going.Going;
 import com.kalimagezi.billionareskb.going.GoingService;
 import com.kalimagezi.billionareskb.invite.Invite;
+import com.kalimagezi.billionareskb.invite.InviteService;
 import com.kalimagezi.billionareskb.jobadd.Jobadd;
 import com.kalimagezi.billionareskb.jobadd.JobaddService;
 import com.kalimagezi.billionareskb.notification.Notification;
@@ -77,6 +78,8 @@ public class UserController {
 	private GoingService goingService;
 	@Autowired
 	private NotificationService notificationService;
+	@Autowired
+	private InviteService inviteService;
 
 	/*
 	 * public void initBider (WebDataBinder binder) { SimpleDateFormat dateFormat =
@@ -91,6 +94,15 @@ public class UserController {
 		
 		// add new user
 		try {
+			Invite invite= inviteService.getInvite(mUser.getEmail());
+			if(invite.getEmail()!=null) {
+				Counter counter = counterService.getUCounter(invite.getUid());
+				counter.setNoInvites(counter.getNoInvites()+10);
+				counterService.addCounter(counter);
+			}
+			
+			
+			
 			return userService.addUser(mUser); 
 			//might throw exception
 			

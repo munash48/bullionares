@@ -15,4 +15,8 @@ public interface AdvertRepository extends CrudRepository<Advert, Integer> {
 
 	List<Advert> findAllByEnabledTrueOrderByCreateDateDesc();
 
+	void findAllByCid(int catid);
+
+	List<Advert> findAllByEnabledTrueAndCidOrderByCreateDateDesc(int catid);
+
 }

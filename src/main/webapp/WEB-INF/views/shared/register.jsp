@@ -22,7 +22,7 @@
 
     <sf:form action="/register" modelAttribute="user" method="POST" id="submitRegForm">
       <div class="form-group has-feedback">
-        <sf:input type="text" class="form-control" path="firstName" id ="firstName" placeholder="First Name"/>
+        <sf:input type="text" class="form-control" path="firstName" id ="firstName" placeholder="First Name" size="30" required="true"/>
         <span class="glyphicon glyphicon-user form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
@@ -49,7 +49,7 @@
         <span class="glyphicon glyphicon-phone form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
-        <sf:input type="email" class="form-control" path="email" id ="email" placeholder="Email"/>
+        <sf:input type="email" class="form-control" path="email" id ="email" placeholder="Email" required="true" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Email should be in the format munash@mail.co"/>
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
       </div>
      

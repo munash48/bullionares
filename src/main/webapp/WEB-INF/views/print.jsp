@@ -111,7 +111,7 @@
 		<div class="text-muted well well-sm no-shadow">
 		<u><b>Career</b></u> <br>
 		<p>I am a ${career.jobTitle} at ${company.name} specializing in ${career.specialization}. ${career.description}</p>
-		<P>We deal in ${company.type}My company is located at ${company.website} and ${company.address}</P>
+		<P>We deal in ${company.type}My company is located at <a href="${company.website}" target="_blank" >${company.website} </a> and ${company.address}</P>
 		
 		
 		

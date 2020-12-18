@@ -4,4 +4,6 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface InviteRepository extends CrudRepository<Invite, Integer> {
 
+	Invite findByEmail(String email);
+
 }
