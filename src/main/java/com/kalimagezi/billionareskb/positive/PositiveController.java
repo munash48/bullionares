@@ -90,6 +90,30 @@ public class PositiveController {
 		
 			
 	}
+	@RequestMapping(value = "/countClick", method = RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody String countClicks(@RequestParam("eaid") Integer eaid
+			
+			) {
+		JSONObject jsonObject = new JSONObject();		
+		Advert advert = advertService.getAdvert(eaid).orElseThrow(null);
+		advert.setNoClicks(advert.getNoClicks()+1);		
+
+		
+		advertService.addAdvert(advert);					
+		
+		try {
+			jsonObject.put("message", "click on URL to visit advertiser");
+			jsonObject.put("status", "success");
+				
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return jsonObject.toString();
+		
+		
+	}
 		
 		
 

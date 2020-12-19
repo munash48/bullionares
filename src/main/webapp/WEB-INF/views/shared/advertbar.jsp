@@ -1,4 +1,5 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div class="col-md-4">
 	<!-- Info Boxes Style 2 -->
 	<!-- /.info-box -->
@@ -47,10 +48,10 @@
 
 					</div>
 					<div class="product-info">
-						<a href="javascript:void(0)" class="product-title">${eadvert.title}
+						<a href="javascript:void(0)" class="product-title" onclick="countClick('${eadvert.id}')">${eadvert.title}
 							<span class="label label-warning pull-right">UGX ${eadvert.itemAmount}</span>
 						</a> <span class="product-description">${eadvert.description}</span>
-						<a>${eadvert.website} </a>
+					
 						<a href="${eadvert.website}" target="_blank" >${eadvert.website} </a>
 						
 					</div>

@@ -112,6 +112,7 @@ public static String uploadDirectory=System.getProperty("user.dir")+"/src/main/w
 		Advert advert = advertService.getAdvert(aid).orElseThrow(null);
 		
 		advert.setEnabled(true);
+		advert.setIsNew("");
 		
 		Counter counter= counterService.getUCounter(advert.getUid());
 		counter.setNoConnections(counter.getNoConnections()+10);

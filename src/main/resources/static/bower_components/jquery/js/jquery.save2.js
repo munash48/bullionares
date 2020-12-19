@@ -227,6 +227,7 @@ $(function() {
 					positionClass:"toast-top-center"
 		   	 });
 				getPage("/profile");
+				document.getElementById("advertEditFrm").reset();
 				$('.modal').modal('hide');
 				}else{
 				toastr.warning("Check Image type","Advert Add Failed", {

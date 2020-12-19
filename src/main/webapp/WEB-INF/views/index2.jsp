@@ -650,29 +650,28 @@
 						<!--modal form-->
 						<form enctype="multipart/form-data" action="/addAdvert"
 							method="post" id ="advertEditFrm">
-							<input type="hidden" name="${_csrf.parameterName}"
-								value="${_csrf.token}" /> <input type="hidden" name="uid"
+							 <input type="hidden" name="uid"
 								value="${user.id}" /> <input type="hidden" name="cid"
 								value="${user.catid}" />
 							<div class="form-group has-feedback">
 								<input type="text" class="form-control" name="title" id="title"
-									placeholder="Advert Title" /> <span
+									placeholder="Advert Title" required /> <span
 									class="glyphicon glyphicon-info-sign form-control-feedback"></span>
 							</div>
 							<div class="form-group has-feedback">
 								<input type="text" class="form-control" name="description"
-									id="description" placeholder="Description" /> <span
+									id="description" placeholder="Description" required /> <span
 									class="glyphicon glyphicon-align-justify form-control-feedback"></span>
 							</div>
 							<div class="form-group has-feedback">
 							<label class="control-label">Start running on:</label>
 								<input type="date" class="form-control" name="advertDate"
-									id="advertDate" /> <span
+									id="advertDate" required /> <span
 									class="glyphicon glyphicon-calendar form-control-feedback"></span>
 							</div>
 							<div class="form-group has-feedback">
 								<input type="text" class="form-control" name="noDays"
-									id="noDays" placeholder="No of Days" /> <span
+									id="noDays" placeholder="No of Days" required /> <span
 									class="glyphicon glyphicon-align-justify form-control-feedback"></span>
 							</div>
 							<div class="form-group has-feedback">
@@ -682,18 +681,18 @@
 							</div>
 							<div class="form-group has-feedback">
 								<input type="text" class="form-control" name="itemAmount"
-									id="itemAmount" placeholder="Price of Item / Service" /> <span
+									id="itemAmount" placeholder="Price of Item / Service" required/> <span
 									class="glyphicon glyphicon-align-justify form-control-feedback"></span>
 							</div>
 							<div class="form-group has-feedback">
 								<input type="text" class="form-control" name="website"
-									id="website" placeholder="Product Website" pattern="https?://.+[a-z0-9.-]+\.[a-z]{2,}$" 
-               title="Include http://.websitename.domain" size="90"/> <span
+									id="website" placeholder="Product Website eg https://www.websitename.domain" pattern="https?://www.+[a-z0-9.-]+\.[a-z]{2,}$" 
+               title="Include https://www.websitename.domain" size="90"/> <span
 									class="glyphicon glyphicon-align-justify form-control-feedback"></span>
 							</div>
 							<div class="form-group has-feedback">
 								<input type="text" class="form-control" name="transactionId"
-									id="transactionId" placeholder="Mobile Money Transaction Id and/or Phone number" />
+									id="transactionId" placeholder="Mobile Money Transaction Id and/or Phone number" required/>
 								<span
 									class="glyphicon glyphicon-align-justify form-control-feedback"></span>
 							</div>
@@ -847,7 +846,7 @@
 											
 
 												
-													<c:forEach items="${displayadd.reviews}" var="dreview">
+													<c:forEach items="${displayadd.dreviews}" var="dreview">
 
 							<!-- the comments comme hear -->
 							<div class="direct-chat-msg pad">

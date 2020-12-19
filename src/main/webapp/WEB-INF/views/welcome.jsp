@@ -166,13 +166,13 @@
 
 		<form action="/reset" method="post" id="submitPassRest">
 			<div class="form-group has-feedback">
-				<input name="password" type="password" class="form-control" placeholder="Enter new password" required pattern = "(?=.*\d)(?=.*[a-z])(?=.*?[0-9])(?=.*?[~`!@#$%\^&*()\-_=+[\]{};:\x27.,\x22\\|/?><]).{6,}" title="Must contain at least 1 no., 1 upper and 1 lowercase letter,1 special character at least 6">
-				<span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+				<input name="password" type="password" class="form-control" placeholder="Enter new password" required pattern = "(?=.*\d)(?=.*[a-z])(?=.*?[0-9])(?=.*?[~`!@#$%\^&*()\-_=+[\]{};:\x27.,\x22\\|/?><]).{6,}" title="Must contain at least 1 no., 1 upper, 1 lowercase letter and 1 special character at least 6">
+				<span class="glyphicon glyphicon-lock form-control-feedback"></span>
 				
 			</div>
 			<div class="form-group has-feedback">
-				<input name="confirm" type="password" class="form-control" placeholder="Confirm new password" required  pattern = "(?=.*\d)(?=.*[a-z])(?=.*?[0-9])(?=.*?[~`!@#$%\^&*()\-_=+[\]{};:\x27.,\x22\\|/?><]).{6,}" title="Must contain at least 1 no., 1 upper and 1 lowercase letter,1 special character at least 6" >
-				<span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+				<input name="confirm" type="password" class="form-control" placeholder="Confirm new password" required  pattern = "(?=.*\d)(?=.*[a-z])(?=.*?[0-9])(?=.*?[~`!@#$%\^&*()\-_=+[\]{};:\x27.,\x22\\|/?><]).{6,}" title="Must contain at least 1 no., 1 upper, 1 lowercase letter and 1 special character at least 6" >
+				<span class="glyphicon glyphicon-lock form-control-feedback"></span>
 				<sec:csrfInput /> 
 			</div>
 			<input  type="hidden" name="resetcode" class="form-control" value="${resetcode}">

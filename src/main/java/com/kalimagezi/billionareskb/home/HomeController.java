@@ -156,15 +156,35 @@ public class HomeController {
 	@RequestParam(name = "resetCounter", required = false) String resetCounter) 
 	
 	{
-
+        int noNewAdds=0;
+        int noEnabledAdds=0;
+        int noAllUsers=0;
 		List<Advert> disAdds = advertService.getAllDisabledAdverts();
 		List<Advert> enabAdds = advertService.getAllEnabledAdverts();
+		for(Advert eadds:enabAdds) {
+			noEnabledAdds++;
+		}
+		for(Advert disAdd:disAdds) {
+			
+			if(disAdd.getIsNew().equals("new")) {
+				noNewAdds++;
+			}
+		}
+		List<User> users=userService.getAllUsers();
+		for(User user:users) {
+			noAllUsers++;
+		}
+		
+		
 
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("greeting", "Welcome admin");
 		mv.addObject("ModeLogged", true);
 		mv.addObject("disAdds", disAdds);
 		mv.addObject("enabAdds", enabAdds);
+		mv.addObject("noEnabledAdds", noEnabledAdds);
+		mv.addObject("noNewAdds", noNewAdds);
+		mv.addObject("noAllUsers", noAllUsers);
 		if (advertEnabled != null) {
 
 			mv.addObject("message", "<b>The advert was successfully Enabled</b>");
@@ -552,10 +572,10 @@ public class HomeController {
 		User user = userService.findByEmail(authentication.getName());
 		Category category = categoryService.getCategory(user.getCatid()).orElseThrow(null);
 		
-		List<Advert> catadverts = advertService.getAddsByCat(category.getCatid());
-		List<Advert> adverts = advertService.getAllEnabledAdverts(category.getCatid());
+		List<Advert> catadverts = advertService.getAllEnabledAdvertsByCat(category.getCatid());
+		
 
-		for (Advert advert : adverts) {
+		for (Advert advert : catadverts) {
 			DisplayAdd displayAdd = new DisplayAdd();
 			displayAdd.setId(advert.getId());
 			displayAdd.setUid(advert.getUid());
@@ -569,6 +589,7 @@ public class HomeController {
 			displayAdd.setNoNegatives(advert.getNoNegatives());
 			displayAdd.setNoDays(advert.getNoDays());
 			displayAdd.setWebsite(advert.getWebsite());
+			displayAdd.setIsNew(advert.getIsNew());
 
 			List<DisplayReview> dreviews = new ArrayList<DisplayReview>();
 
@@ -588,7 +609,7 @@ public class HomeController {
 
 			}
 
-			displayAdd.setReviews(dreviews);
+			displayAdd.setDreviews(dreviews);
 
 			displayadds.add(displayAdd);
 		}

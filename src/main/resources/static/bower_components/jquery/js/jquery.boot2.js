@@ -291,6 +291,31 @@
 	 });
 	 
  }
+ function countClick(eaid){	
+		 
+	 $.ajax({
+		 type: "GET",
+		 url: "/countClick?eaid="+eaid,
+		 success: function(data){
+			 if(data.status=="success"){
+				 toastr.success(data.message,"Thank you Rating", {
+					 closeButton: true,
+					 progressBar: true,
+					 positionClass:"toast-top-center"
+				 });
+				
+			 }else{
+				 toastr.warning(data.message,"Failed", {
+					 closeButton: true,
+					 progressBar: true,
+					 positionClass:"toast-top-center"
+				 });
+			 }
+		 }
+	 
+	 });
+	 
+ }
  
  
  

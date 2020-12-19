@@ -1,11 +1,13 @@
 
           <!-- TO DO List -->
+
+          
+          
           <div class="box box-primary">
             <div class="box-header">
               <i class="ion ion-clipboard"></i>
 
-              <h3 class="box-title">Enable paid up Adverts</h3>
-
+              <h3 class="box-title">Disabled  Adverts</h3>
               <div class="box-tools pull-right">
                 <ul class="pagination pagination-sm inline">
                   <li><a href="#">&laquo;</a></li>
@@ -15,40 +17,41 @@
                   <li><a href="#">&raquo;</a></li>
                 </ul>
               </div>
-            </div>
-            <!-- /.box-header -->
-            <div class="box-body">
-              <!-- See dist/js/pages/dashboard.js to activate the todoList plugin -->
-              <ul class="todo-list">
-              <c:forEach items="${disAdds}" var="disadd">
-                <li>
-                  <!-- drag handle -->
-                  <span class="handle">
-                        <i class="fa fa-ellipsis-v"></i>
-                        <i class="fa fa-ellipsis-v"></i>
-                      </span>
-                  <!-- checkbox -->
-                  <input type="checkbox" value="">
-                  <!-- todo text -->
-                  <span class="text">${disadd.title}</span>
-                  <span class="text">Add cost(${disadd.advertAmount})</span>
-                  <span class="text">No Days(${disadd.noDays})</span>
-                  <span class="text">${disadd.itemAmount}</span>
-                  <span class="text">${disadd.transactionId}</span>
-                  <!-- Emphasis label -->
-                  <small class="label label-danger"><i class="fa fa-clock-o"></i>${disadd.dateFrom} </small>
-                  <!-- General tools such as edit or delete-->
-                  <div class="tools">
-                   <a href="/admin/enableadd?aid=${disadd.id}"> <i class="fa fa-edit">Enable</i></a>
-                   
-                  </div>
-                </li>
-                </c:forEach>
-                
-               
+              </div>
+        <div class="box-body">      
+     <table class="table">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">Category</th>
+      <th scope="col">Item</th>
+      <th scope="col">Item cost</th>
+      <th scope="col">Advert cost</th>
+      <th scope="col">Transaction ID</th>
+      <th scope="col">Start Date</th>
+      <th scope="col">No Days</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+  <c:forEach items="${disAdds}" var="disadd">
+    <tr>
     
-              </ul>
-            </div>
+      <th scope="row">${disadd.cid}</th>
+      <td>${disadd.title}</td>
+      <td>${disadd.itemAmount}</td>
+      <td>${disadd.advertAmount}</td>
+      <td>${disadd.transactionId}</td>
+      <td><small class="label label-danger"><i class="fa fa-clock-o"></i>${disadd.dateFrom}</small></td>
+      <td>${disadd.noDays}</td>
+      <td><a href="/admin/enableadd?aid=${disadd.id}"> <i class="fa fa-edit">Enable<small class="label label-danger">${disadd.isNew}</small></i></a></td>
+    </tr>
+    </c:forEach>
+
+  </tbody>
+</table>
+</div>
+
+
             <!-- /.box-body -->
             <div class="box-footer clearfix no-border">
               <button type="button" class="btn btn-default pull-right"><i class="fa fa-plus"></i> Add item</button>
@@ -73,35 +76,36 @@
             <!-- /.box-header -->
             <div class="box-body">
               <!-- See dist/js/pages/dashboard.js to activate the todoList plugin -->
-              <ul class="todo-list">
-              <c:forEach items="${enabAdds}" var="enabadd">
-                <li>
-                  <!-- drag handle -->
-                  <span class="handle">
-                        <i class="fa fa-ellipsis-v"></i>
-                        <i class="fa fa-ellipsis-v"></i>
-                      </span>
-                  <!-- checkbox -->
-                  <input type="checkbox" value="">
-                  <!-- todo text -->
-                  <span class="text">${enabadd.title}</span>
-                  <span class="text">Add cost(${enabadd.advertAmount})</span>
-                  <span class="text">No Days(${enabadd.noDays})</span>
-                  <span class="text">${enabadd.itemAmount}</span>
-                  <span class="text">${enabadd.transactionId}</span>
-                  <!-- Emphasis label -->
-                  <small class="label label-danger"><i class="fa fa-clock-o"></i>${enabadd.dateFrom} </small>
-                  <!-- General tools such as edit or delete-->
-                  <div class="tools">
-                   
-                    <a href="/admin/disableadd?aid=${enabadd.id}"><i class="fa fa-trash-o">Disable</i></a>
-                  </div>
-                </li>
-                </c:forEach>
-                
-               
+              <table class="table">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">Category</th>
+      <th scope="col">Item</th>
+      <th scope="col">Item cost</th>
+      <th scope="col">Advert cost</th>
+      <th scope="col">Transaction ID</th>
+      <th scope="col">Start Date</th>
+      <th scope="col">No Days</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+  <c:forEach items="${enabAdds}" var="enabadd">
+    <tr>
     
-              </ul>
+      <th scope="row">${enabadd.cid}</th>
+      <td>${enabadd.title}</td>
+      <td>${enabadd.itemAmount}</td>
+      <td>${enabadd.advertAmount}</td>
+      <td>${enabadd.transactionId}</td>
+      <td><small class="label label-danger"><i class="fa fa-clock-o"></i>${enabadd.dateFrom}</small></td>
+      <td>${enabadd.noDays}</td>
+      <td><a href="/admin/disableadd?aid=${enabadd.id}"><i class="fa fa-trash-o">Disable</i></a></td>
+    </tr>
+    </c:forEach>
+
+  </tbody>
+</table>            
             </div>
             <!-- /.box-body -->
             <div class="box-footer clearfix no-border">
