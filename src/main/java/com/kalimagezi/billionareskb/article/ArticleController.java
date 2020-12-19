@@ -67,6 +67,12 @@ public class ArticleController {
 	  
 	        String videoLink2=arrOfStr[1];
 	        article.setVideoLink(videoLink2);
+	        try {
+	        	jsonObject.put("thisVideo", "<iframe width='90%' height='315' src='https://www.youtube.com/embed/"+article.getVideoLink()+"?&autoplay=0'frameborder='0' allowfullscreen></iframe>");
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		 }
 			
 		 if(!imageFile.isEmpty()) {
@@ -78,6 +84,12 @@ public class ArticleController {
 			System.out.println(pname);
 			if (imageFile!=null) {
 			article.setImageLink(pname);
+			try {
+				jsonObject.put("thisImage", "<img class='img-responsive' src='/uploads/"+article.getUid()+"/articles/"+article.getImageLink()+"' alt='Photo'>");
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			String ppath=uploadDirectory+"/"+uid+"/articles/";
 			userService.saveImage(imageFile,ppath,pname);
 			}
@@ -96,6 +108,8 @@ public class ArticleController {
 			jsonObject.put("message", "Article " +article.getId() +" Added  successfully. ");
 			jsonObject.put("noArticle", counter.getNoArticles());
 			jsonObject.put("noTVotes", counter.getTotal());
+			jsonObject.put("thisArticle", article.getDescription());
+						
 			jsonObject.put("status", "success");
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block

@@ -315,6 +315,12 @@ $(function() {
 		   	 });
 				$(".Tpoints").html(data.noTVotes);
 				$(".noArticle").html(data.noArticle);
+				$(".realtimeArticle").show();
+				$(".thisArt").html(data.thisArticle);
+				$(".thisVideo").html(data.thisVideo);
+				$(".thisImage").html(data.thisImage);
+				document.getElementById("articleFrm").reset();
+				
 				}else{
 				toastr.warning(data.message,"Article Failed", {
 					closeButton: true,
