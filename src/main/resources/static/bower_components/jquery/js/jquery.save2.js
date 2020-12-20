@@ -138,7 +138,13 @@ $(function() {
 		    	 if(data.newEventImg!=null){
 		    	 $(".newEventImg").html(data.newEventImg);
 		    	 }
+		    	 
 		    	 $('.modal').modal('hide');
+		    	 $(".realtimeEvent").show();
+		    	 $(".newsideEName").html(data.newsideEName);
+		    	 $(".newsideEDesc").html(data.newsideEDesc);
+		    	 $(".newsideEGoing").html(data.newsideEGoing);
+		    	 $(".newProgresBar").html(data.newProgresBar);
 	    	  }else{
 		    	 toastr.warning(data.message,"Failed", {
 		    		 closeButton: true,
@@ -188,7 +194,7 @@ $(function() {
 				$(".newImage").html(data.img);
 				$(".newpImage").show();
 				$(".newpImage").html(data.pimg);
-				
+				document.getElementById("imageEditFrm").reset();
 				$('.modal').modal('hide');
 				}else{
 				toastr.warning(data.message,"Image Upload Failed", {
@@ -274,7 +280,14 @@ $(function() {
 				
 				$(".Tpoints").html(data.noTVotes);
 				$(".noAdds").html(data.noAddds);
+				document.getElementById("jobAddFrm").reset();
 				$('.modal').modal('hide');
+				$(".realtimeJAdd").show();
+		    	 $(".newsideJATitle").html(data.newsideJATitle);
+		    	 $(".newsideJACatSal").html(data.newsideJACatSal);
+		    	 $(".newsideJAReccom").html(data.newsideJAReccom);
+		    	 $(".newProgresJABar").html(data.newProgresJABar);
+				
 				}else{
 				toastr.warning(data.message,"Job Update Failed", {
 					closeButton: true,

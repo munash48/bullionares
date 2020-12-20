@@ -101,6 +101,11 @@ public class JobaddController {
 					jsonObject.put("status", "success");
 					jsonObject.put("noAddds", counter.getNoConnections());
 					jsonObject.put("noTVotes", counter.getTotal());
+					String newProgresJABar ="<div class='progress-bar' style='width: "+1 +"%'></div>";
+					jsonObject.put("newsideJATitle", jobadd.getJobTitle());
+					jsonObject.put("newsideJACatSal", jobadd.getJobCategory()+ " "+jobadd.getSalary()+ " ugx");
+					jsonObject.put("newsideEGoing", "1  recommended");
+					jsonObject.put("newProgresJABar", newProgresJABar);
 					
 				} catch (JSONException e) {
 					// TODO Auto-generated catch block

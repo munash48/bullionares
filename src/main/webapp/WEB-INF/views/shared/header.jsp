@@ -104,7 +104,7 @@
 						</a>
 							<ul class="dropdown-menu">
 								<li class="header">You have ${notification.events} new
-									event(s)</li>
+									event(s)/update(s)</li>
 								<li>
 									<!-- inner menu: contains the actual data -->
 									<ul class="menu">

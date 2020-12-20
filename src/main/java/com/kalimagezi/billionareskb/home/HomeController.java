@@ -120,6 +120,7 @@ public class HomeController {
 		Education education = educationService.getUEducation(user.getId());
 		SkillTalent skillTalent = skillTalentService.getUSkillTalent(user.getId());
 		Event event = eventService.getUEvent(user.getId());
+		
 		Counter counter = counterService.getUCounter(user.getId());
 		counter.setTotal(counter.getNoArticles()+counter.getNoConnections()+counter.getNoInvites()+counter.getNoOpinions()-
 	       		 counter.getNoReports()+counter.getNoVotes());
@@ -156,9 +157,13 @@ public class HomeController {
 	@RequestParam(name = "resetCounter", required = false) String resetCounter) 
 	
 	{
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		User user = userService.findByEmail(authentication.getName());
         int noNewAdds=0;
         int noEnabledAdds=0;
         int noAllUsers=0;
+        int totalCash=0;
+        Notification notification = notificationService.getNotificationByUid(user.getId());
 		List<Advert> disAdds = advertService.getAllDisabledAdverts();
 		List<Advert> enabAdds = advertService.getAllEnabledAdverts();
 		for(Advert eadds:enabAdds) {
@@ -170,10 +175,19 @@ public class HomeController {
 				noNewAdds++;
 			}
 		}
+		notification.setMessage(noNewAdds);
 		List<User> users=userService.getAllUsers();
-		for(User user:users) {
+		for(User user1:users) {
 			noAllUsers++;
 		}
+		List<Advert> allAdverts = advertService.getAllAdverts();
+		for(Advert add: allAdverts) {
+			
+			if(add.getIsNew().equals("")) {
+				totalCash+=add.getAdvertAmount();
+			}
+		}
+		
 		
 		
 
@@ -185,6 +199,8 @@ public class HomeController {
 		mv.addObject("noEnabledAdds", noEnabledAdds);
 		mv.addObject("noNewAdds", noNewAdds);
 		mv.addObject("noAllUsers", noAllUsers);
+		mv.addObject("totalCash", totalCash);
+		mv.addObject(notification);
 		if (advertEnabled != null) {
 
 			mv.addObject("message", "<b>The advert was successfully Enabled</b>");
@@ -626,6 +642,10 @@ public class HomeController {
 		return topCounter;
 
 	}
+
+		
+		
+
 
 	@ModelAttribute("topCatCounter")
 	private Counter getTopCatCounter() {

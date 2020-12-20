@@ -4,18 +4,20 @@ public class DisplayCounter {
 	private int snumber;
 	private String fullName;
 	private int percentage;
+	private int total;
 	private String color;
 	private String category;
 	public DisplayCounter() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
-	public DisplayCounter(int snumber, String fullName, int percentage, String color, String category) {
+	
+	public DisplayCounter(int snumber, String fullName, int percentage, int total, String color, String category) {
 		super();
 		this.snumber = snumber;
 		this.fullName = fullName;
 		this.percentage = percentage;
+		this.total = total;
 		this.color = color;
 		this.category = category;
 	}
@@ -23,7 +25,7 @@ public class DisplayCounter {
 	@Override
 	public String toString() {
 		return "DisplayCounter [snumber=" + snumber + ", fullName=" + fullName + ", percentage=" + percentage
-				+ ", color=" + color + ", category=" + category + "]";
+				+ ", total=" + total + ", color=" + color + ", category=" + category + "]";
 	}
 	public int getSnumber() {
 		return snumber;
@@ -56,6 +58,14 @@ public class DisplayCounter {
 
 	public void setCategory(String category) {
 		this.category = category;
+	}
+
+	public int getTotal() {
+		return total;
+	}
+
+	public void setTotal(int total) {
+		this.total = total;
 	}
 	
 	

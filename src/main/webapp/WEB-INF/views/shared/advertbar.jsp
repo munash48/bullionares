@@ -84,6 +84,30 @@
 		<!-- /.box-header -->
 		<div class="box-body">
 			<div class="row">
+			<div class="info-box bg-green info-box-left realtimeEvent" style="display: none">
+					<span class="info-box-icon"><i
+						class="ion ion-ios-heart-outline"></i></span>
+
+					<div class="info-box-content">
+						<span class="info-box-text newsideEName">${catEvent.ename} (new)</span> 
+						<span class="progress-description newsideEDesc"> ${catEvent.description}
+						</span>
+							<span class="info-box-number newsideEGoing">
+							<fmt:formatNumber 
+														value="${(catEvent.going/noCUsers)*100}" maxFractionDigits="1"/>
+							
+							 % going</span>
+
+						<div class="progress newProgresBar">
+							<div class="progress-bar" style="width: ${(catEvent.going/noCUsers)*100}%"></div>
+						</div>
+						
+					</div>
+					
+					<!-- /.info-box-content -->
+				</div>
+			
+			
 				<c:forEach items="${dcatEvents}" var="catEvent">
 			   <c:if test="${not empty catEvent.ename}">
 				<div class="info-box bg-green info-box-left">
@@ -145,6 +169,25 @@
 		
 		
 			<div class="row">
+			<div class="info-box bg-yellow info-box-left realtimeJAdd" style="display: none">
+					<span class="info-box-icon"><i
+						class="ion ion-ios-pricetag-outline"></i></span>
+
+					<div class="info-box-content">
+						<span class="info-box-text newsideJATitle">${catJobadd.jobTitle}</span> <span
+							class="info-box-number newsideJACatSal">${catJobadd.jobCategory}  ${catJobadd.salary} ugx</span>
+
+						<div class="progress newProgresJABar">
+							<div class="progress-bar" style="width: ${(catJobadd.noRecom/noCUsers)*100}%"></div>
+						</div>
+						<span class="progress-description newsideJAReccom"> (
+						<fmt:formatNumber 
+														value="${(catJobadd.noRecom/noCUsers)*100}" maxFractionDigits="1"/>
+						 % recommended)
+						</span>
+					</div>
+					<!-- /.info-box-content -->
+				</div>
 			<c:forEach items="${dcatJobadds}" var="catJobadd">
 			 <c:if test="${not empty catJobadd.jobTitle}">
 			

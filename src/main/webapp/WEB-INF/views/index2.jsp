@@ -523,7 +523,7 @@
 							<div class="form-group has-feedback">
 								<input type="text" class="form-control" name="description"
 									id="description" placeholder="Description"
-									value="${event.description}" /> <span
+									value="${event.description}" maxlength="60"/> <span
 									class="glyphicon glyphicon-align-justify form-control-feedback"></span>
 							</div>
 							<div class="form-group has-feedback">
@@ -643,7 +643,7 @@
 							<span>&times;</span>
 						</button>
 						<h4 class="modal-title">Create Advert Dialog Box</h4>
-						<h5 class="modal-title">Pay to +256-773-284953</h5>
+						<h5 class="modal-title">Pay to +256-773-284953 @ 1000 UGX per DAY </h5>
 
 					</div>
 					<div class="modal-body">
@@ -1162,7 +1162,7 @@
 								value="${user.id}" /> <input type="hidden" name="catid"
 								value="${user.catid}" /> 
 							<div class="form-group has-feedback">
-								<input type="text" class="form-control" name="title" id="title"
+								<input type="text" class="form-control" name="title" id="title" 
 									placeholder="Job Title" /> <span
 									class="glyphicon glyphicon-info-sign form-control-feedback"></span>
 							</div>
@@ -1184,7 +1184,7 @@
 							</div>
 							<div class="form-group has-feedback">
 								<input type="text" class="form-control" name="description"
-									id="description" placeholder="Description" /> <span
+									id="description" placeholder="Description" maxlength="60"/> <span
 									class="glyphicon glyphicon-align-justify form-control-feedback"></span>
 							</div>
 

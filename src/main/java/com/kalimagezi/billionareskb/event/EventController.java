@@ -64,6 +64,10 @@ public class EventController {
 		event.setDescription(description);
 		event.setCid(user.getCatid());
 		event.setGoing(1);
+		event.setNotGoing(0);
+		event.setNoAnalyis(0);
+		event.setCreateDate(new Date());
+
 		
 		List<User> catUsers=userService.getAllByCatid(user.getCatid());
 		for(User cuser: catUsers) {

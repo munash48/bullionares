@@ -21,6 +21,10 @@
 		 getPage("/chart");
 		 $(".chartNotice").hide();
 	 });
+	 $("#chart1").click(function(){
+		 getPage("/chart");
+		 $(".chartNotice").hide();
+	 });
 	 $("#editProfile").click(function(){
 		 getPage("/editProfile");
 	 });

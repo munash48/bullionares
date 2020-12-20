@@ -37,9 +37,11 @@
     <tr>
     
       <th scope="row">${disadd.cid}</th>
-      <td>${disadd.title}</td>
+      <td data-toggle="tooltip"
+						data-placement="top" title="website ${disadd.website}">${disadd.title} </td>
       <td>${disadd.itemAmount}</td>
-      <td>${disadd.advertAmount}</td>
+      <td data-toggle="tooltip"
+						data-placement="top" title="no of clicks ${disadd.noClicks}">${disadd.advertAmount}</td>
       <td>${disadd.transactionId}</td>
       <td><small class="label label-danger"><i class="fa fa-clock-o"></i>${disadd.dateFrom}</small></td>
       <td>${disadd.noDays}</td>
@@ -94,9 +96,11 @@
     <tr>
     
       <th scope="row">${enabadd.cid}</th>
-      <td>${enabadd.title}</td>
+      <td data-toggle="tooltip"
+						data-placement="top" title="website ${enabadd.website}">${enabadd.title}</td>
       <td>${enabadd.itemAmount}</td>
-      <td>${enabadd.advertAmount}</td>
+      <td data-toggle="tooltip"
+						data-placement="top" title="no of clicks ${enabadd.noClicks}">${enabadd.advertAmount}</td>
       <td>${enabadd.transactionId}</td>
       <td><small class="label label-danger"><i class="fa fa-clock-o"></i>${enabadd.dateFrom}</small></td>
       <td>${enabadd.noDays}</td>
