@@ -1,5 +1,6 @@
 $(function() {
 	$("#submitRegForm").submit(function(e) {
+		alert("by ajax save");
 		e.preventDefault();
 		var frm = $("#submitRegForm");
 		var data = {};

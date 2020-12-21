@@ -677,7 +677,7 @@ public class HomeController {
 		int totals = 0;
 		int percentage = 0;
 		String[] colors = { "progress-bar-success", "progress-bar-info", "progress-bar-warning", "progress-bar-danger",
-				"progress-bar-success", "progress-bar-info", "progress-bar-warning", "progress-bar-danger",
+				"progress-bar-success progress-bar-striped", "progress-bar-info progress-bar-striped", "progress-bar-warning progress-bar-striped", "progress-bar-danger progress-bar-striped",
 				"progress-bar-success", "progress-bar-info" };
 		for (Counter counter : top10CatCounters) {
 			totals += counter.getTotal();
@@ -691,7 +691,7 @@ public class HomeController {
 
 			dcounter.setFullName(nuser.getFirstName() + " " + nuser.getOtherNames());
 			percentage = (counter.getTotal() * 100) / totals;
-
+			dcounter.setTotal(counter.getTotal());
 			dcounter.setPercentage(percentage);
 			dcounter.setColor(colors[i - 1]);
 
@@ -729,7 +729,7 @@ public class HomeController {
 			dcounter.setCategory(category.getCatName());
 			dcounter.setPercentage(percentage);
 			dcounter.setColor(colors[i - 1]);
-
+            dcounter.setTotal(counter.getTotal());
 			dcounters.add(dcounter);
 			}
 

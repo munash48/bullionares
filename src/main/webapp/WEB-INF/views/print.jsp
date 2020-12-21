@@ -134,6 +134,26 @@
 		
 			
 		</div>
+		<div class="text-muted well well-sm no-shadow">
+			<u><b>My Up-comming Event</b></u> <br>
+			<p class="text-muted newEvent">
+				Don't miss my <i>${event.ename},</i> ${event.description} .
+				Scheduled for ${event.eventDate}
+			</p>
+			<span class="newEventImg">
+			<c:if test="${event.imageLink==''|| event.imageLink==null}">
+				<img class="img-responsive pad" src="/dist/img/photo2.jpg"
+					alt="No Event Photo">
+			</c:if>
+			<c:if test="${event.imageLink!=''&& event.imageLink!=null}">
+				<img class="img-responsive pad"
+					src="/uploads/${user.id}/events/${event.imageLink}"
+					alt="Event Photo">
+			</c:if>
+			</span>
+
+
+		</div>
 
 		<!-- Table row -->
 		
