@@ -87,7 +87,7 @@ public class InviteController {
 		        Map<String, Object> model = new HashMap<>();
 		        model.put("name", iemail);
 		        model.put("location", "Uganda");
-		        model.put("message", user.getFirstName()  +" Thinks you have what it takes to be the next Billionare. <br> Follow the link https://kalmanare.herokuapp.com/ to join <br> or <a href='https://kalmanare.herokuapp.com/'>click here </a>");
+		        model.put("message", user.getFirstName()  +" Thinks you have what it takes to be the next Billionare. <br> Follow the link https://kalimanares.herokuapp.com/ to join <br> or <a href='https://kalimanares.herokuapp.com/'>click here </a>");
 		        model.put("signature", "https://kalimagezi.com");
 		       
 
