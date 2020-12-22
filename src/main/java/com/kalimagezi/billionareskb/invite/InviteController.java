@@ -87,7 +87,7 @@ public class InviteController {
 		        Map<String, Object> model = new HashMap<>();
 		        model.put("name", iemail);
 		        model.put("location", "Uganda");
-		        model.put("message", user.getFirstName()  +" Thinks you have what it takes to be the next Billionare. <br> Follow the link http//localhost:8080/ to join <br> or <a href='http//localhost:8080/'>click here </a>");
+		        model.put("message", user.getFirstName()  +" Thinks you have what it takes to be the next Billionare. <br> Follow the link https://kalmanare.herokuapp.com/ to join <br> or <a href='https://kalmanare.herokuapp.com/'>click here </a>");
 		        model.put("signature", "https://kalimagezi.com");
 		       
 
@@ -104,12 +104,12 @@ public class InviteController {
 					e.printStackTrace();
 				}
 			
-			counter.setNoInvites(counter.getNoInvites()+1);
-			counter.setTotal(counter.getNoArticles()+counter.getNoConnections()+counter.getNoInvites()+counter.getNoOpinions()+
-		    counter.getNoReports()+counter.getNoVotes());
-			
-			
-			counterService.addCounter(counter);
+//			counter.setNoInvites(counter.getNoInvites()+1);
+//			counter.setTotal(counter.getNoArticles()+counter.getNoConnections()+counter.getNoInvites()+counter.getNoOpinions()+
+//		    counter.getNoReports()+counter.getNoVotes());
+//			
+//			
+//			counterService.addCounter(counter);
 			
 			
 		return inviteService.addInvite(invite);

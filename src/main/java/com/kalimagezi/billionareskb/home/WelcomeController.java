@@ -160,7 +160,7 @@ public class WelcomeController {
 					user.setResetcode(Hex);
 					userService.updateUser(user);
 					String url = new String();
-					url = "http//localhost:8080/?resetcode=" + Hex;
+					url = "https://kalmanare.herokuapp.com/?resetcode=" + Hex;
 					Mail mail = new Mail();
 					mail.setFrom("no-reply@kalimagezi.com");
 					mail.setTo(email);
