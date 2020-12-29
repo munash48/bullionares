@@ -98,9 +98,15 @@ public class HomeController {
 
 	@RequestMapping("/default")
 	public String defaultAfterLogin(HttpServletRequest request) {
+		
 		if (request.isUserInRole("ROLE_ADMIN")) {
 			return "redirect:/admin";
 		}
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		User user = userService.findByEmail(authentication.getName());
+		Counter counter =counterService.getUCounter(user.getId());
+		counter.setNoVotes(counter.getNoVotes()+1);
+		
 		return "redirect:/home";
 	}
 

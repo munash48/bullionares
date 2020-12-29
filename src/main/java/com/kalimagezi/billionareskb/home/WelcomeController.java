@@ -93,6 +93,7 @@ public class WelcomeController {
 
 			model.addAttribute("logout", "<b>Your password has been successfuly reset </b>");
 			model.addAttribute("ModeReseted", true);
+			
 
 		}
 		if (reset.equals("failed")) {
@@ -127,6 +128,8 @@ public class WelcomeController {
 
 			model.addAttribute("logout", "<b>A password reset link has been sent to " + withinreset + " </b>");
 			model.addAttribute("ModeSessionEx", true);
+			model.addAttribute("Withinfooter", true);
+			
 		}
 
 		model.addAttribute("title", "Login");
