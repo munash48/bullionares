@@ -91,7 +91,7 @@ public class WelcomeController {
 		if (reset != null) {
 		if (reset.equals("success")) {
 
-			model.addAttribute("logout", "<b>Your password has been successfuly reset </b>");
+			model.addAttribute("logout", "<b>Your password has been successfuly Set/reset </b>");
 			model.addAttribute("ModeReseted", true);
 			
 

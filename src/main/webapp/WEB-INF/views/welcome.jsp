@@ -81,7 +81,7 @@
 <%-- </c:if> --%>
 </div>
 <div class="row">
-<c:if test="${Withinfooter!=true}">
+<c:if test="${Withinfooter!=true||ModeReseted!=true}">
 <footer class="footer text-center">
     <div class="row  hidden-xs">
       <b>Version</b> 2.4.18
