@@ -27,7 +27,7 @@
 					<!-- Messages: style can be found in dropdown.less-->
 					<c:if
 						test="${ModeWelcome==true||ModeLogin==true||ModeRegister==true||ModeResetLink==true||ModeResetCode==true||ModeResetLink==true||ModeReset==true}">
-						<li><a href="javascript:void(0);" id="rules">Guide</a></li>
+						<li><a href="javascript:void(0);" id="rules">Guide </a></li>
 						<li><a href="javascript:void(0);" id="regForm">Register</a></li>
 						<li><a href="/">Login</a></li>
 
