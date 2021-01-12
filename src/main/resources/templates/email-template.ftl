@@ -21,7 +21,7 @@
     <table align="center" border="0" cellpadding="0" cellspacing="0" width="600" style="border-collapse: collapse;">
         <tr>
             <td align="center" bgcolor="#78ab46" style="padding: 40px 0 30px 0;">
-                <img src="https://new.kalimagezi.com/wp-content/uploads/2020/05/kalimagezi_default_retina.png" alt="https://kalimagezi.com" style="display: block;" />
+                <img src="https://kalimagezi.com/wp-content/uploads/2020/05/kalimagezi_default_retina.png" alt="https://kalimagezi.com" style="display: block;" />
             </td>
         </tr>
         <tr>
