@@ -91,8 +91,9 @@ public class WelcomeController {
 		if (reset != null) {
 		if (reset.equals("success")) {
 
-			model.addAttribute("logout", "<b>Your password has been successfuly reset </b>");
+			model.addAttribute("logout", "<b>Your password has been successfuly Set/reset </b>");
 			model.addAttribute("ModeReseted", true);
+			
 
 		}
 		if (reset.equals("failed")) {
@@ -127,6 +128,8 @@ public class WelcomeController {
 
 			model.addAttribute("logout", "<b>A password reset link has been sent to " + withinreset + " </b>");
 			model.addAttribute("ModeSessionEx", true);
+			model.addAttribute("Withinfooter", true);
+			
 		}
 
 		model.addAttribute("title", "Login");
@@ -160,7 +163,7 @@ public class WelcomeController {
 					user.setResetcode(Hex);
 					userService.updateUser(user);
 					String url = new String();
-					url = "http//localhost:8080/?resetcode=" + Hex;
+					url = "https://kalimanares.herokuapp.com/?resetcode=" + Hex;
 					Mail mail = new Mail();
 					mail.setFrom("info@kalimagezi.com");
 					mail.setTo(email);

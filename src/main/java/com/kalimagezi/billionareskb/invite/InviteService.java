@@ -29,7 +29,7 @@ public class InviteService {
 		inviteRepository.save(invite);
 		
 		try {
-			jsonObject.put("message", invite.getEmail()+" invited successfully");
+			jsonObject.put("message", invite.getEmail()+" invited successfully 10 pts if they join");
 			jsonObject.put("status", "success");
 			jsonObject.put("noInvite", counter.getNoInvites());
 			jsonObject.put("noTVotes", counter.getTotal());

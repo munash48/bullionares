@@ -98,9 +98,15 @@ public class HomeController {
 
 	@RequestMapping("/default")
 	public String defaultAfterLogin(HttpServletRequest request) {
+		
 		if (request.isUserInRole("ROLE_ADMIN")) {
 			return "redirect:/admin";
 		}
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		User user = userService.findByEmail(authentication.getName());
+		Counter counter =counterService.getUCounter(user.getId());
+		counter.setNoVotes(counter.getNoVotes()+1);
+		
 		return "redirect:/home";
 	}
 
@@ -711,7 +717,7 @@ public class HomeController {
 		int totals = 0;
 		int percentage = 0;
 		String[] colors = { "progress-bar-success", "progress-bar-info", "progress-bar-warning", "progress-bar-danger",
-				"progress-bar-success", "progress-bar-info", "progress-bar-warning", "progress-bar-danger",
+				"progress-bar-success progress-bar-striped", "progress-bar-info progress-bar-striped", "progress-bar-warning progress-bar-striped", "progress-bar-danger progress-bar-striped",
 				"progress-bar-success", "progress-bar-info" };
 		for (Counter counter : top10Counters) {
 			totals += counter.getTotal();

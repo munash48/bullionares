@@ -1,6 +1,6 @@
 $(function() {
 	$("#submitRegForm").submit(function(e) {
-		alert("by ajax save");
+		
 		e.preventDefault();
 		var frm = $("#submitRegForm");
 		var data = {};
@@ -10,7 +10,7 @@ $(function() {
 			delete data["undefined"];
 
 		});
-		var nurl="/reset?email="+data.email;
+		var nurl="/reset?email="+data.email+"&pnew=yes";
 		
 		saveRequestedData(frm, data,nurl);
 
@@ -83,7 +83,7 @@ $(function() {
 			},
 			error:function(response){
 				
-				alert("ALERT! Fill all fields");
+				alert("ALERT! Fill all fields or Reset link is expired");
 				
 			}
 		} );

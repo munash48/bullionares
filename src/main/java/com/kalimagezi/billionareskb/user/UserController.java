@@ -94,12 +94,13 @@ public class UserController {
 		
 		// add new user
 		try {
-//			Invite invite= inviteService.getInvite(mUser.getEmail());
-//			if(invite.getEmail()!=null) {
-//				Counter counter = counterService.getUCounter(invite.getUid());
-//				counter.setNoInvites(counter.getNoInvites()+10);
-//				counterService.addCounter(counter);
-//			}
+			
+			if(inviteService.getInvite(mUser.getEmail())!=null) {
+				Counter counter = counterService.getUCounter(inviteService.getInvite(mUser.getEmail()).getUid());
+				counter.setNoInvites(counter.getNoInvites()+10);
+				counterService.addCounter(counter);
+			
+			}
 			
 			
 			return userService.addUser(mUser); 
