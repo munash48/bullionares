@@ -165,7 +165,7 @@ public class WelcomeController {
 					String url = new String();
 					url = "https://kalimanares.herokuapp.com/?resetcode=" + Hex;
 					Mail mail = new Mail();
-					mail.setFrom("info@kalimagezi.com");
+					mail.setFrom("no-reply@kalimagezi.com");
 					mail.setTo(email);
 					mail.setSubject(" Reset password Link");
 

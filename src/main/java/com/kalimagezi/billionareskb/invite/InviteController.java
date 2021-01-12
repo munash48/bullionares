@@ -80,7 +80,7 @@ public class InviteController {
 				
 			}
 			  Mail mail = new Mail();
-		        mail.setFrom("info@kalimagezi.com");
+		        mail.setFrom("no-reply@kalimagezi.com");
 		        mail.setTo(iemail);
 		        mail.setSubject(user.getFirstName() +" " +user.getOtherNames() +" has invited you to join Billonares");
 

@@ -67,10 +67,10 @@
 
 				<p>-------------------------------------------</p>
 				<h3>Your profile is not complete</h3>
-				<p> Use the <i class="fa fa-pencil" title="click to edit"
-							data-toggle="tooltip" data-placement="right"></i>(button) to edit or update your profile, adverts and job adds</p>
-				<p>Use the <i class="fa fa-eye" title="click to view all adds" data-toggle="tooltip"
-						data-placement="right"></i> (button) to view entries in Adverts, Upcoming events and Job adds</p>		
+				<h4> Use the <i class="fa fa-pencil" title="click to edit"
+							data-toggle="tooltip" data-placement="right"></i>(button) to edit or update your profile, adverts and job adds</h4>
+				<h4>Use the <i class="fa fa-eye" title="click to view all adds" data-toggle="tooltip"
+						data-placement="right"></i> (button) to view entries in Adverts, Upcoming events and Job adds</h4>		
 
 
 				<h3>Complete your profile in order to post</h3>
