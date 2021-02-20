@@ -20,6 +20,7 @@ public class BillionareskbApplication {
 		SpringApplication.run(BillionareskbApplication.class, args);
 		
 		
+		
 	}
 	
 	
