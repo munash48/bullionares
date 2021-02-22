@@ -241,6 +241,8 @@ a:focus {
 @media (max-width: 500px) {
 	.main-header .logo {
 	
+	text-align: left;
+	
 	}
 	.phone-header {
     display: block;

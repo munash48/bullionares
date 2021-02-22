@@ -17,7 +17,7 @@
 		<a href="/home" class="logo"> <!-- mini logo for sidebar mini 50x50 pixels -->
 		
 			<span class="logo-mini"><b>B</b>KB</span> <!-- logo for regular state and mobile devices -->
-			<span class="logo-lg"><b>Bilionares</b>KB</span>
+			<span class="logo-lg"><b>Bilionares</b>KB<span style="opacity:0;">_____</span></span>
 		</a>
 		</span>
 
