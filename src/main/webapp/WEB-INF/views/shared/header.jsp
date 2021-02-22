@@ -4,16 +4,22 @@
 
 	<header class="main-header">
     <a href="/home" class="logo "> <!-- mini logo for sidebar mini 50x50 pixels -->
-		
+    <span class="pc-view">
+		<span class="logo-mini"><b>B</b>KB</span> <!-- logo for regular state and mobile devices -->
+			<span class="logo-lg"><b>Billionares</b>KB</span>
+			</span>
 		</a>
 
 
 		<!-- Header Navbar: style can be found in header.less -->
 		<nav class="navbar navbar-fixed-top">
+		<span class="phone-view">
 		<a href="/home" class="logo"> <!-- mini logo for sidebar mini 50x50 pixels -->
+		
 			<span class="logo-mini"><b>B</b>KB</span> <!-- logo for regular state and mobile devices -->
 			<span class="logo-lg"><b>Bilionares</b>KB</span>
 		</a>
+		</span>
 
 			<!-- Logo -->
 

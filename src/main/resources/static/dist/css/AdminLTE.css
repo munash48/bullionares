@@ -757,10 +757,32 @@ a:focus {
   padding-top: 50px;
   z-index: 1010;
 }
+.phone-view{
+	display:none;
+}
+@media (max-width: 1200px) {
+  
+}
+@media (max-width: 991px) {
+  .control-sidebar {
+    
+  }
+}
 @media (max-width: 767px) {
   .control-sidebar {
     padding-top: 100px;
   }
+  .phone-view{
+	display: block;
+    display: initial;
+}
+}
+@media (max-width: 500px) {
+	.phone-view{
+	display: block;
+    display: initial;
+}
+ 
 }
 .control-sidebar > .tab-content {
   padding: 10px 15px;
