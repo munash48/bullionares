@@ -52,9 +52,19 @@
 <%@include file="./shared/header.jsp" %>
 
 
-<div class="row ">
+<div class="row">
+<div class=".phone-header">
+
+<span><b>Billionares</b>KB</span>
+<ul class="nav nav-pills nav-stacked">
+  ...
+</ul>
+
+</div>
 
 <div class="inner-jsp">
+
+
 
 
 

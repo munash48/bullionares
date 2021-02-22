@@ -232,7 +232,24 @@ a:focus {
 .main-header .navbar-right {
   float: right;
 }
+.phone-header{
+	display: block;
+	height:200px;
+	color:#000;
+}
+
+@media (max-width: 500px) {
+	.main-header .logo {
+	
+	}
+	.phone-header {
+    display: block;
+    display: initial;
+}
+	
+}
 @media (max-width: 991px) {
+	
   .main-header .navbar-custom-menu a,
   .main-header .navbar-right a {
     color: inherit;
@@ -241,7 +258,8 @@ a:focus {
 }
 @media (max-width: 767px) {
   .main-header .navbar-right {
-    float: none;
+/*    float: none; */
+  
   }
   .navbar-collapse .main-header .navbar-right {
     margin: 7.5px -15px;
@@ -257,6 +275,7 @@ a:focus {
   background-image: none;
   padding: 15px 15px;
   font-family: fontAwesome;
+  display: none;
 }
 .main-header .sidebar-toggle:before {
   content: "\f0c9";
@@ -425,8 +444,8 @@ a:focus {
   }
   .main-header .logo,
   .main-header .navbar {
-    width: 100%;
-    float: none;
+/*     width: 100%; */
+/*     float: none; */
   }
   .main-header .navbar {
     margin: 0;
@@ -435,6 +454,7 @@ a:focus {
     float: right;
   }
 }
+
 @media (max-width: 991px) {
   .navbar-collapse.pull-left {
     float: none !important;
