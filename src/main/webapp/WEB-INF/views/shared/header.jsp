@@ -229,13 +229,13 @@
 										${user.firstName} ${user.otherNames} - ${user.profession} <small>Member
 											since ${user.joinDate}</small>
 									</p></li>
-									<li class="phone-view-p"><a class="phone-view-a">Your Category : <b> ${category.catName} </b>
-								Highest points: <b >${topCatCounter.total}</b> <br/>Overall Highest<b>
+									<li class="phone-view-p"><a class="phone-view-a">Category : <b> ${category.catName} </b>
+								Highest : <b >${topCatCounter.total}</b> <br/>Overall Highest<b>
 									${topCounter.total}</a></b></li>
 								<!-- Menu Body -->
 
 								<!-- Menu Footer-->
-								<li class="user-footer">
+								<li class="user-footer pc-view-p">
 								
 									<div class="pull-left">
 										<a href="javascript:void(0);" class="btn btn-default btn-flat" id ="profile">Profile</a>
@@ -247,6 +247,21 @@
 									</div>
 									<div class="pull-right">
 										<a href="/reset?email=${user.email}&within=yes" class="btn btn-default btn-flat">Reset Password</a>
+									</div>
+									
+								</li>
+								<li class="user-footer phone-view">
+								
+									<div class="pull-left">
+										<a href="javascript:void(0);" class="btn btn-sm btn-default btn-flat" id ="profile">Profile</a>
+									</div>
+									
+									<div class="pull-right">
+										<a href="perform-logout" class="btn btn-sm btn-default btn-flat">Sign
+											out</a>
+									</div>
+									<div class="pull-right">
+										<a href="/reset?email=${user.email}&within=yes" class="btn btn-sm btn-default btn-flat">Reset Password</a>
 									</div>
 									
 								</li>

@@ -780,7 +780,7 @@ a:focus {
   .phone-view, .phone-view-p{
 	display: block;
     display: initial;
-    text-align: left !important;
+    
 }
  .pc-view-p{
     display:none !important;
@@ -793,7 +793,7 @@ background-color: #367fa9 !important;
 	.phone-view, .phone-view-p{
 	display: block;
     display: initial;
-    text-align: left !important;
+    
     
 }
 .phone-view-a{
