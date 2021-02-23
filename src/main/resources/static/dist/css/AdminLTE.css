@@ -762,6 +762,9 @@ a:focus {
 .phone-view{
 	display:none;
 }
+.phone-view-p{
+	display:none;
+}
 @media (max-width: 1200px) {
   
 }
@@ -774,16 +777,29 @@ a:focus {
   .control-sidebar {
     padding-top: 100px;
   }
-  .phone-view{
+  .phone-view, .phone-view-p{
 	display: block;
     display: initial;
+}
+ .pc-view-p{
+    display:none !important;
+    }
+    .phone-view-a{
+background-color: #367fa9 !important;
 }
 }
 @media (max-width: 500px) {
-	.phone-view{
+	.phone-view, .phone-view-p{
 	display: block;
     display: initial;
+    
 }
+.phone-view-a{
+background-color: #367fa9 !important;
+}
+.pc-view-p{
+    display:none !important;
+    }
  
 }
 .control-sidebar > .tab-content {

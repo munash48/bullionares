@@ -6,7 +6,7 @@
     <a href="/home" class="logo "> <!-- mini logo for sidebar mini 50x50 pixels -->
     <span class="pc-view">
 		<span class="logo-mini"><b>B</b>KB</span> <!-- logo for regular state and mobile devices -->
-			<span class="logo-lg"><b>Billionares</b>KB</span>
+			<span class="logo-lg"><b>Billionaires</b>KB</span>
 			</span>
 		</a>
 
@@ -17,7 +17,7 @@
 		<a href="/home" class="logo"> <!-- mini logo for sidebar mini 50x50 pixels -->
 		
 			<span class="logo-mini"><b>B</b>KB</span> <!-- logo for regular state and mobile devices -->
-			<span class="logo-lg"><b>Bilionares</b>KB<span style="opacity:0;">_____</span></span>
+			<span class="logo-lg"><b>Billionaires</b>KB<span style="opacity:0;">_____</span></span>
 		</a>
 		</span>
 
@@ -49,12 +49,10 @@
 					<c:if
 						test="${ModeLogged==true||modeMessage==true||modeProfile==true||modeEvents==true||modeChart==true||modeJobs==true}">
 						
-						<li><a>Your Category : <b> ${category.catName} </b>
+						<li class="pc-view-p"><a>Your Category : <b> ${category.catName} </b>
 								Highest points: <b >${topCatCounter.total}</b> Overall Highest<b>
 									${topCounter.total}</a></b></li>
-						<li class="dropdown tasks-menu"><a href="/home" id="mainpost"> <i
-								class="fa fa-home"></i> Home
-						</a></li>
+						
 						<li class="dropdown tasks-menu"><a href="javascript:void(0);" id ="chart"> <i
 								class="fa fa-bar-chart"></i> <c:if
 									test="${notification.chart>0}">
@@ -231,6 +229,9 @@
 										${user.firstName} ${user.otherNames} - ${user.profession} <small>Member
 											since ${user.joinDate}</small>
 									</p></li>
+									<li class="phone-view-p"><a class="phone-view-a">Your Category : <b> ${category.catName} </b>
+								Highest points: <b >${topCatCounter.total}</b> <br/>Overall Highest<b>
+									${topCounter.total}</a></b></li>
 								<!-- Menu Body -->
 
 								<!-- Menu Footer-->
