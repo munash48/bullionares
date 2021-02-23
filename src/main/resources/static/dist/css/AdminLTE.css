@@ -787,6 +787,7 @@ a:focus {
     }
     .phone-view-a{
 background-color: #367fa9 !important;
+width:100%;
 }
 }
 @media (max-width: 500px) {

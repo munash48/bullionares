@@ -229,8 +229,8 @@
 										${user.firstName} ${user.otherNames} - ${user.profession} <small>Member
 											since ${user.joinDate}</small>
 									</p></li>
-									<li class="phone-view-p"><a class="phone-view-a">Category : <b> ${category.catName} </b>
-								Highest : <b >${topCatCounter.total}</b> <br/>Overall Highest<b>
+									<li class="phone-view-p"><a class="phone-view-a">Your Category : <b> ${category.catName} </b>
+								Highest Points: <b >${topCatCounter.total}</b> <br/>Overall Highest: <b>
 									${topCounter.total}</a></b></li>
 								<!-- Menu Body -->
 
