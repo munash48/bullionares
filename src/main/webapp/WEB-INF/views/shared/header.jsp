@@ -17,7 +17,7 @@
 		<a href="/home" class="logo"> <!-- mini logo for sidebar mini 50x50 pixels -->
 		
 			<span class="logo-mini"><b>B</b>KB</span> <!-- logo for regular state and mobile devices -->
-			<span class="logo-lg"><b>B</b>KB<span style="opacity:0;">___________</span></span>
+			<span class="logo-lg"><b>B</b>KB<span style="opacity:0;">______________</span></span>
 		</a>
 		</span>
 
