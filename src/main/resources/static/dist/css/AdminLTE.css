@@ -96,6 +96,11 @@ body {
     min-height: calc(100vh - 151px);
   }
 }
+@media (max-width: 767px) {
+  .invitePhone {
+    padding-top: 20px;
+  }
+}
 .main-footer {
   background: #fff;
   padding: 15px;
