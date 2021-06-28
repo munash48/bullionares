@@ -32,18 +32,20 @@
 				<button type="button" data-toggle="modal" data-target="#imageEdit"
 					class="imgbtn">Edit</button>
 			</div>
-			<div class="row">
-				<div class="col-md-8 text-right">
+			<div class="row ">
+				<div class="col-md-8 ">
 					<h3 class="profile-username text-right">${user.firstName}
-						${user.otherNames}</h3>
+						${user.otherNames}
+				</h3>
 				</div>
 
-				<div class="col-md-4 text-left">
+				<div class="col-md-4 ">
 					<button type="button" data-toggle="modal"
 						data-target="#profileEdit" class="btn probtn">
 						<i class="fa fa-pencil" title="click to edit"
 							data-toggle="tooltip" data-placement="right"></i>
 					</button>
+				
 				</div>
 			</div>
 
