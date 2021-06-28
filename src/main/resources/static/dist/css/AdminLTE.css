@@ -95,12 +95,15 @@ body {
   .content-wrapper {
     min-height: calc(100vh - 151px);
   }
-}
-@media (max-width: 767px) {
-  .invitePhone {
+   .invitePhone {
     padding-top: 20px;
   }
+  .namemobile {
+    text-align: center;
+  }
+  
 }
+
 .main-footer {
   background: #fff;
   padding: 15px;

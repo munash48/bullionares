@@ -32,7 +32,7 @@
 				<button type="button" data-toggle="modal" data-target="#imageEdit"
 					class="imgbtn">Edit</button>
 			</div>
-			<div class="row ">
+			<div class="row namemobile">
 				<div class="col-md-8 ">
 					<h3 class="profile-username text-right">${user.firstName}
 						${user.otherNames}
