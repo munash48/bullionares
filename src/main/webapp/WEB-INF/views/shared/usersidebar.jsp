@@ -34,7 +34,7 @@
 			</div>
 			<div class="row namemobile">
 				<div class="col-md-8 ">
-					<h3 class="profile-username text-right">${user.firstName}
+					<h3 class="profile-username">${user.firstName}
 						${user.otherNames}
 				</h3>
 				</div>
