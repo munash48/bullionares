@@ -40,7 +40,7 @@
               <h3 class="box-title">Top 10 Performers over all</h3>
             </div>
             <!-- /.box-header -->
-            <div class="box-body no-padding">
+            <div class="box-body">
             
               <table class="table table-striped">
                 <tr>
