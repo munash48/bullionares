@@ -36,11 +36,11 @@
 				<div class="col-md-8 ">
 					<h3 class="profile-username">${user.firstName}
 						${user.otherNames}
-				</h3> <button type="button" data-toggle="modal"
+				<button type="button" data-toggle="modal"
 						data-target="#profileEdit" class="btn probtn">
 						<i class="fa fa-pencil" title="click to edit profile"
 							data-toggle="tooltip" data-placement="right"></i>
-					</button>
+					</button></h3> 
 				</div>
 
 				
