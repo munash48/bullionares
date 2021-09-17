@@ -101,12 +101,11 @@ body {
   .namemobile {
     text-align: center;
   }
-  .aboutmobile {
+  .aboutmobile,.mobilepoints {
     display: none;
   }
-  .mobilepoints{
-    display: none;
-  }
+  
+  
 }
 
 .main-footer {
@@ -1863,6 +1862,7 @@ background-color: #367fa9 !important;
   font-size: 18px;
   margin: 0;
   line-height: 1;
+  padding:10;
 }
 .box-header > .fa,
 .box-header > .glyphicon,
