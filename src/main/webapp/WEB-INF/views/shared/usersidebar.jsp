@@ -33,7 +33,7 @@
 					class="imgbtn">Edit</button>
 			</div>
 			<div class="row namemobile">
-				<div class="col-md-8 ">
+				<div class="row">
 					<h3 class="profile-username">${user.firstName}
 						${user.otherNames}
 				<button type="button" data-toggle="modal"
