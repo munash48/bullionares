@@ -14,7 +14,7 @@
                   <th style="width: 200px">User</th>
                   <th>Progress</th>
                   <th style="width: 40px">%</th>
-                  <th style="width: 40px">Pts</th>
+                  <th class="mobilepoints"style="width: 40px">Pts</th>
                 </tr>
                 <c:forEach items="${top10CatCounters}" var="catcounter">
                 <tr>
@@ -27,7 +27,7 @@
                     </div>
                   </td>
                   <td><span class="badge ${catcounter.color}">${catcounter.percentage}%</span></td>
-                  <td><span class="badge ${catcounter.color}">${catcounter.total}</span></td>
+                  <td class="mobilepoints"><span class="badge ${catcounter.color}">${catcounter.total}</span></td>
                 </tr>
                 </c:forEach>
 
@@ -49,7 +49,7 @@
                   <th style="width: 100px">Category</th>
                   <th>Progress</th>
                   <th style="width: 40px">%</th>
-                  <th style="width: 40px">Pts</th>
+                  <th class="mobilepoints" style="width: 40px">Pts</th>
                 </tr>
                 <c:forEach items="${top10Counters}" var="catcounter">
            <tr>
@@ -63,7 +63,7 @@
                     </div>
                   </td>
                   <td><span class="badge ${catcounter.color}">${catcounter.percentage}%</span></td>
-                  <td><span class="badge ${catcounter.color}">${catcounter.total}</span></td>
+                  <td class="mobilepoints" ><span class="badge ${catcounter.color}">${catcounter.total}</span></td>
                 </tr>
                 
                 </c:forEach>

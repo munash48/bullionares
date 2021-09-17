@@ -104,6 +104,9 @@ body {
   .aboutmobile {
     display: none;
   }
+  .mobilepoints{
+    display: none;
+  }
 }
 
 .main-footer {
