@@ -16,7 +16,7 @@
 					<img class="profile-user-img img-responsive img-rounded"
 						src="/uploads/${user.id}/profile/${user.imageLink}"
 						alt="User profile picture." data-toggle="tooltip"
-						data-placement="top" title="click edit to update">
+						data-placement="top" title="click edit to update profile pic">
 
 				</c:if>
 				<c:if test="${user.imageLink==''}">
@@ -36,17 +36,14 @@
 				<div class="col-md-8 ">
 					<h3 class="profile-username">${user.firstName}
 						${user.otherNames}
-				</h3>
-				</div>
-
-				<div class="col-md-4 ">
-					<button type="button" data-toggle="modal"
+				</h3> <button type="button" data-toggle="modal"
 						data-target="#profileEdit" class="btn probtn">
-						<i class="fa fa-pencil" title="click to edit"
+						<i class="fa fa-pencil" title="click to edit profile"
 							data-toggle="tooltip" data-placement="right"></i>
 					</button>
-				
 				</div>
+
+				
 			</div>
 
 			<p class="text-muted text-center">${user.profession}</p>
@@ -89,7 +86,7 @@
 	<!-- /.box -->
 
 	<!-- About Me Box -->
-	<div class="box box-warning">
+	<div class="box box-warning aboutmobile">
 		<div class="box-header with-border">
 			<h3 class="box-title">About Me</h3>
 		</div>
