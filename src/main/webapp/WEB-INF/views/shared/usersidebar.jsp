@@ -48,7 +48,7 @@
 
 			<p class="text-muted text-center">${user.profession}</p>
 
-			<ul class="list-group list-group-unbordered">
+			<ul class="list-group list-group-unbordered hidden-xs">
 				<li class="list-group-item"><b>TOTAL POINTS</b> <a
 					class="pull-right Tpoints"> ${counter.total}</a></li>
 
