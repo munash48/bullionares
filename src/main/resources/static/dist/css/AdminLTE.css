@@ -101,9 +101,9 @@ body {
   .namemobile {
     text-align: center;
   }
-  .aboutmobile,.mobilepoints {
-    display: none;
-  }
+/*   .aboutmobile,.mobilepoints { */
+/*     display: none; */
+/*   } */
   
   
 }
