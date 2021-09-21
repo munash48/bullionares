@@ -86,7 +86,7 @@
 	<!-- /.box -->
 
 	<!-- About Me Box -->
-	<div class="box box-warning aboutmobile hidden-sm">
+	<div class="box box-warning aboutmobile hidden-xs">
 		<div class="box-header with-border">
 			<h3 class="box-title">About Me</h3>
 		</div>
