@@ -236,16 +236,13 @@
 
 								<!-- Menu Footer-->
 								<li class="user-footer pc-view-p">
-								
-									<div class="">
-										<a href="javascript:void(0);" class="btn btn-default btn-flat" id ="profile">Profile</a>
-									</div>
+
 									
-									<div class="p">
+									<div class="float">
 										<a href="perform-logout" class="btn btn-default btn-flat">Sign
 											out</a>
 									</div>
-									<div class="">
+									<div class="float">
 										<a href="/reset?email=${user.email}&within=yes" class="btn btn-default btn-flat">Reset Password</a>
 									</div>
 									
