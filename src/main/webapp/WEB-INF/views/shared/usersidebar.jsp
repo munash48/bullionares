@@ -186,7 +186,7 @@
 			</div>
 		</div>
 		<!-- /.box-header -->
-		<div class="box-body no-padding">
+		<div class="box-body no-padding hidden-xs">
 			<ul class="users-list clearfix">
 			
 				<c:forEach items="${cUsers}" var="cUser">

@@ -1,6 +1,6 @@
 
     
-    <div class="row">
+    <div class="row hidden-xs">
         <div class="col-md-2 col-sm-6 col-xs-12">
           <div class="info-box">
             <span class="info-box-icon bg-aqua"><i class="ion ion-ios-book-outline"></i></span>
