@@ -170,7 +170,7 @@
 		</div>
 		<!-- /.box-body -->
 	</div>
-	<div class="box box-warning">
+	<div class="box box-warning hidden-xs">
 		<div class="box-header with-border">
 			<h3 class="box-title">Other Category Members</h3>
 
@@ -186,7 +186,7 @@
 			</div>
 		</div>
 		<!-- /.box-header -->
-		<div class="box-body no-padding hidden-xs">
+		<div class="box-body no-padding">
 			<ul class="users-list clearfix">
 			
 				<c:forEach items="${cUsers}" var="cUser">
