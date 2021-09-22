@@ -49,7 +49,7 @@
 			</div>
 
 			</div>
-			<div class="row hidden-xs">
+			<div class="row hidden-xs p-5">
 			
 
 			<ul class="list-group list-group-unbordered ">

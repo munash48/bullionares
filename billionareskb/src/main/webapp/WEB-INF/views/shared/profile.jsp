@@ -46,6 +46,12 @@
 			<!-- /.col -->
 			<div class="col-sm-4 invoice-col">
 				<u>Bio data</u>
+				<h3> <button type="button" data-toggle="modal"
+						data-target="#profileEdit" class="btn probtn">
+						<i class="fa fa-pencil" title="click to edit profile"
+							data-toggle="tooltip" data-placement="right"></i>
+					</button> 
+					</h3>
 	
 				<address>
 
