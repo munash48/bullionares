@@ -68,6 +68,7 @@
 					</button> <a class="pull-right newJob">${career.jobTitle},<br>
 						${career.specialization}</a></li>
 			</ul>
+			<div class=" col-xs-12 col-md-12">
 			<div class="col-xs-6 col-md-6 margin-b-5 invitePhone">
 				<button type="button" data-toggle="modal" data-target="#inviteUser"
 						class="btn btn-primary btn-block">
@@ -79,6 +80,7 @@
 			<div class="col-xs-6 col-md-6 pt-2 invitePhone">
 				<a href="javascript:void(0);" class="btn btn-primary btn-block" id ="fullprofile"><b>Full
 						Profile</b></a>
+			</div>
 			</div>
 		</div>
 		<!-- /.box-body -->
