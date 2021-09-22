@@ -5,6 +5,7 @@
 	<!-- Profile Image -->
 	<div class="box box-warning">
 		<div class="box-body box-profile row">
+		<div class="row"> 
 			<div class="imgcontainer newImage col-xs-6 col-md-6 col-lg-12" style="display:none" >
 			
 			
@@ -32,7 +33,7 @@
 				<button type="button" data-toggle="modal" data-target="#imageEdit"
 					class="imgbtn">Edit</button>
 			</div>
-			<div class="row namemobile col-xs-6 col-md-6 col-lg-12">
+			<div class="namemobile col-xs-6 col-md-6 col-lg-12">
 				<div class="row">
 					<h3 class="profile-username">${user.firstName}
 						${user.otherNames}</h3>
@@ -46,7 +47,7 @@
 				<p class="text-muted text-center">${user.profession}</p>
 			</div>
 
-			
+			</div>
 
 			<ul class="list-group list-group-unbordered hidden-xs">
 				<li class="list-group-item"><b>TOTAL POINTS</b> <a
