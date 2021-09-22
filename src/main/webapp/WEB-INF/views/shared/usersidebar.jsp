@@ -51,9 +51,10 @@
 
 			</div>
 			
-			<div class="row hidden-xs p-5">
+			<div class="row hidden-xs">
+			<div class="row">
 			<div class="col-xs-1 col-md-1 col-lg-1">
-			</div>>
+			</div>
 			<div class="col-xs-5 col-md-5 col-lg-5"> 
 			
 			<b>TOTAL POINTS</b>
@@ -65,32 +66,53 @@
 			</div>
 			<div class="col-xs-1 col-md-1 col-lg-1">
 			</div>
+			
 			</div>
 			
+			<div class="row">
+			<div class="col-xs-1 col-md-1 col-lg-1">
+			</div>
+			<div class="col-xs-5 col-md-5 col-lg-5"> 
 			
-			<div class="row hidden-xs p-5">
-
-			<ul class="list-group list-group-unbordered ">
-				<li class="list-group-item"><b>TOTAL POINTS</b> <a
-					class="pull-right Tpoints"> ${counter.total}</a></li>
-
-				<li class="list-group-item"><b>COMPANY</b>
-
-					<button type="button" data-toggle="modal"
+			<b>COMPANY</b> <button type="button" data-toggle="modal"
 						data-target="#companyEdit" class="btn probtn">
 						<i class="fa fa-pencil" title="click to edit"
 							data-toggle="tooltip" data-placement="right"></i>
-					</button> <a class="pull-right newComp">${company.name}</a></li>
-				<li class="list-group-item"><b>JOB TITLE</b>
-
-					<button type="button" data-toggle="modal" data-target="#careerEdit"
+					</button>
+			</div>
+			<div class="col-xs-5 col-md-5 col-lg-5"> 
+			<a class="newComp">${company.name}</a>
+		
+			</div>
+			<div class="col-xs-1 col-md-1 col-lg-1">
+			</div>
+			
+			</div>
+			<div class="row">
+			<div class="col-xs-1 col-md-1 col-lg-1">
+			</div>
+			<div class="col-xs-5 col-md-5 col-lg-5"> 
+			
+			<b>JOB TITLE</b> <button type="button" data-toggle="modal" data-target="#careerEdit"
 						class="btn probtn">
 						<i class="fa fa-pencil" title="click to edit"
 							data-toggle="tooltip" data-placement="right"></i>
-					</button> <a class="pull-right newJob">${career.jobTitle},<br>
-						${career.specialization}</a></li>
-			</ul>
+					</button>
 			</div>
+			<div class="col-xs-5 col-md-5 col-lg-5"> 
+			<a class=" newJob">${career.jobTitle},<br>
+						${career.specialization}</a>
+		
+			</div>
+			<div class="col-xs-1 col-md-1 col-lg-1">
+			</div>
+			
+			</div>
+			
+			</div>
+			
+			
+			
 			<div class=" col-xs-12 col-md-12">
 			<div class="col-xs-6 col-md-6 margin-b-5 invitePhone">
 				<button type="button" data-toggle="modal" data-target="#inviteUser"
