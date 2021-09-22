@@ -35,12 +35,12 @@
 			<div class="row namemobile col-xs-6 col-md-6 col-lg-12">
 				<div class="row">
 					<h3 class="profile-username">${user.firstName}
-						${user.otherNames}
+						${user.otherNames}</h3>
 				<button type="button" data-toggle="modal"
 						data-target="#profileEdit" class="btn probtn">
 						<i class="fa fa-pencil" title="click to edit profile"
 							data-toggle="tooltip" data-placement="right"></i>
-					</button></h3> 
+					</button> 
 				</div>
 
 				<p class="text-muted text-center">${user.profession}</p>
