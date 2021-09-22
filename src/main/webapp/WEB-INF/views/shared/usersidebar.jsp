@@ -4,7 +4,7 @@
 
 	<!-- Profile Image -->
 	<div class="box box-warning">
-		<div class="box-body box-profile">
+		<div class="box-body box-profile row">
 			<div class="imgcontainer newImage col-xs-6 col-md-6 col-lg-12" style="display:none" >
 			
 			
@@ -43,7 +43,7 @@
 					</button></h3> 
 				</div>
 
-				<br/><p class="text-muted text-center">${user.profession}</p>
+				<p class="text-muted text-center">${user.profession}</p>
 			</div>
 
 			
@@ -68,7 +68,7 @@
 					</button> <a class="pull-right newJob">${career.jobTitle},<br>
 						${career.specialization}</a></li>
 			</ul>
-			<div class=" col-xs-12 col-md-12 col-lg-12">
+			<div class=" col-xs-12 col-md-12">
 			<div class="col-xs-6 col-md-6 margin-b-5 invitePhone">
 				<button type="button" data-toggle="modal" data-target="#inviteUser"
 						class="btn btn-primary btn-block">
