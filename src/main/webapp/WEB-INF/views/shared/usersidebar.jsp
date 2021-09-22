@@ -48,8 +48,10 @@
 			</div>
 
 			</div>
+			<div class="row hidden-xs">
+			
 
-			<ul class="list-group list-group-unbordered hidden-xs">
+			<ul class="list-group list-group-unbordered ">
 				<li class="list-group-item"><b>TOTAL POINTS</b> <a
 					class="pull-right Tpoints"> ${counter.total}</a></li>
 
@@ -69,6 +71,7 @@
 					</button> <a class="pull-right newJob">${career.jobTitle},<br>
 						${career.specialization}</a></li>
 			</ul>
+			</div>
 			<div class=" col-xs-12 col-md-12">
 			<div class="col-xs-6 col-md-6 margin-b-5 invitePhone">
 				<button type="button" data-toggle="modal" data-target="#inviteUser"
