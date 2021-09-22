@@ -52,14 +52,18 @@
 			</div>
 			
 			<div class="row hidden-xs p-5">
-			<div class="col-xs-6 col-md-6 col-lg-6 p-5"> 
+			<div class="col-xs-1 col-md-1 col-lg-1">
+			</div>>
+			<div class="col-xs-5 col-md-5 col-lg-5"> 
 			
 			<b>TOTAL POINTS</b>
 			</div>
-			<div class="col-xs-6 col-md-6 col-lg-6 p-5"> 
+			<div class="col-xs-5 col-md-5 col-lg-5"> 
 			<a
-					class="pull-right Tpoints"> ${counter.total}</a>
+					class="Tpoints"> ${counter.total}</a>
 		
+			</div>
+			<div class="col-xs-1 col-md-1 col-lg-1">
 			</div>
 			</div>
 			
