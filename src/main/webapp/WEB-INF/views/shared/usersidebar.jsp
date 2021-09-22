@@ -46,11 +46,25 @@
 				</div>
 
 				<p class="text-muted text-center">${user.profession}</p>
-			</div>
+			</div >
+			
 
 			</div>
-			<div class="row hidden-xs p-5">
 			
+			<div class="row hidden-xs p-5">
+			<div class="col-xs-6 col-md-6 col-lg-6"> 
+			
+			<b>TOTAL POINTS</b>
+			</div>
+			<div class="col-xs-6 col-md-6 col-lg-6"> 
+			<a
+					class="pull-right Tpoints"> ${counter.total}</a>
+			<b>TOTAL POINTS</b>
+			</div>
+			</div>
+			
+			
+			<div class="row hidden-xs p-5">
 
 			<ul class="list-group list-group-unbordered ">
 				<li class="list-group-item"><b>TOTAL POINTS</b> <a
