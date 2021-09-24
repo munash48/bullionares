@@ -33,7 +33,7 @@
 				<button type="button" data-toggle="modal" data-target="#imageEdit"
 					class="imgbtn">Edit</button>
 			</div>
-			<div class="namemobile col-xs-6 col-md-6 col-lg-12 m-15">
+			<div class="namemobile col-xs-6 col-md-6 col-lg-12">
 				<div class="row">
 					<h3 class="profile-username">${user.firstName}
 						${user.otherNames}
