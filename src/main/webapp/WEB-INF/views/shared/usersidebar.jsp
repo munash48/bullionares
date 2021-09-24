@@ -36,7 +36,7 @@
 			<div class="namemobile col-xs-6 col-md-6 col-lg-12">
 				<div class="row">
 					<h3 class="profile-username">${user.firstName}
-						${user.otherNames}
+						${user.otherNames} <br class="hidden-lg hidden-md"/>
 				<button type="button" data-toggle="modal"
 						data-target="#profileEdit" class="btn probtn">
 						<i class="fa fa-pencil" title="click to edit profile"
