@@ -238,8 +238,6 @@
 
 								<!-- Menu Footer-->
 								<div class=" row user-footer pc-view-p">
-
-									
 									<div class="pull-right">
 										<a href="perform-logout" class="btn btn-default btn-flat">Sign
 											out</a>
@@ -249,7 +247,7 @@
 									</div>
 									
 								</div>
-								<div class="user-footer phone-view">
+								<div class="row user-footer phone-view">
 															
 									<div class="pull-right">
 										<a href="perform-logout" class="btn btn-sm btn-default btn-flat">Sign
