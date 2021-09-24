@@ -229,7 +229,9 @@
 										${user.firstName} ${user.otherNames} - ${user.profession} <small>Member
 											since ${user.joinDate}</small>
 									</p></li>
+									
 									<li class="phone-view-p"><a class="phone-view-a">Your Category : <b> ${category.catName} </b><br/>
+									Your points <b>${counter.total}</b><br/>
 								Highest Points: <b >${topCatCounter.total}</b> <br/>Overall Highest: <b>
 									${topCounter.total}</a></b></li>
 								<!-- Menu Body -->
@@ -238,16 +240,16 @@
 								<div class=" row user-footer pc-view-p">
 
 									
-									<div class="float">
+									<div class="pull-right">
 										<a href="perform-logout" class="btn btn-default btn-flat">Sign
 											out</a>
 									</div>
-									<div class="float">
+									<div class="pull-left">
 										<a href="/reset?email=${user.email}&within=yes" class="btn btn-default btn-flat">Reset Password</a>
 									</div>
 									
 								</div>
-								<li class="user-footer phone-view">
+								<div class="user-footer phone-view">
 															
 									<div class="pull-right">
 										<a href="perform-logout" class="btn btn-sm btn-default btn-flat">Sign
@@ -257,7 +259,7 @@
 										<a href="/reset?email=${user.email}&within=yes" class="btn btn-sm btn-default btn-flat">Reset Password</a>
 									</div>
 									
-								</li>
+								</div>
 							</ul></li>
 						<!-- Control Sidebar Toggle Button -->
 						<li><a href="#" data-toggle="control-sidebar"><i
