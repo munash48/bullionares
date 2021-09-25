@@ -209,6 +209,10 @@ a:focus {
   max-height: 100px;
   z-index: 1030;
 }
+.charttitle{
+	text-align: center;
+	
+}
 .main-header .navbar {
   -webkit-transition: margin-left 0.3s ease-in-out;
   -o-transition: margin-left 0.3s ease-in-out;

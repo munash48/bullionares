@@ -1,7 +1,7 @@
 <div class="col-md-8">
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Top 10 Performers in Category ${category.catName}</h3>
+              <h3 class="charttitle box-title">Top 10 Performers in Category ${category.catName}</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body no-padding">
@@ -33,7 +33,7 @@
           </div>
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Top 10 Performers over all</h3>
+              <h3 class="charttitle box-title">Top 10 Performers over all</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body no-padding">
