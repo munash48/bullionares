@@ -213,6 +213,9 @@ a:focus {
 	text-align: center !important;
 	
 }
+.inner-jsp{
+	padding-left:20px !important; 
+}
 .main-header .navbar {
   -webkit-transition: margin-left 0.3s ease-in-out;
   -o-transition: margin-left 0.3s ease-in-out;
