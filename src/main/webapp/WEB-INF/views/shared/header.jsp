@@ -232,7 +232,7 @@
 									
 									<li class="phone-view-p"><a class="phone-view-a">Your Category : <b> ${category.catName} </b><br/>
 									Your points <b>${counter.total}</b><br/>
-								Highest Points(${category.catName}): <b >${topCatCounter.total}</b> <br/>
+								Highest Points: <b>${topCatCounter.total}</b> <br/>
 								
 								<hr/>
 								Overall Highest: <b>
