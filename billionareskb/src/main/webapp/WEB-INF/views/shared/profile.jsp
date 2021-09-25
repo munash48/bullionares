@@ -45,8 +45,8 @@
 			</div>
 			<!-- /.col -->
 			<div class="col-sm-4 invoice-col">
-				<u>Bio data</u>
-				<h3> <button type="button" data-toggle="modal"
+				<h3><u>Bio data</u>
+				 <button type="button" data-toggle="modal"
 						data-target="#profileEdit" class="btn probtn">
 						<i class="fa fa-pencil" title="click to edit profile"
 							data-toggle="tooltip" data-placement="right"></i>
@@ -80,7 +80,11 @@
 
 		</div>
 		<div class="text-muted well well-sm no-shadow">
-			<u><b>Career</b></u> <br>
+			<u><b>Career</b></u><button type="button" data-toggle="modal"
+						data-target="#companyEdit" class="btn probtn">
+						<i class="fa fa-pencil" title="click to edit"
+							data-toggle="tooltip" data-placement="right"></i>
+					</button> <br>
 			<p>I am a ${career.jobTitle} at ${company.name} specializing in
 				${career.specialization}. ${career.description}</p>
 			<P>We deal in ${company.type}My company is located at

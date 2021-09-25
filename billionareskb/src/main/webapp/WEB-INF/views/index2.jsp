@@ -45,10 +45,10 @@
 	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
 <body class="hold-transition skin-blue register-page">
-<div class="row inner-header">
-	
-	<%@include file="./shared/header.jsp"%>
-</div>
+	<div class="row inner-header">
+
+		<%@include file="./shared/header.jsp"%>
+	</div>
 
 	<div class="row">
 
@@ -61,8 +61,8 @@
 
 		<footer class="footer p-3">
 			<div class="text-center hidden-xs">
-				<b>Version</b> 2.4.18 <strong>Copyright &copy; 2020 <a
-					href="http://kalimagezi.com/">Kalimagezi ltd</a>.
+				<b>Version</b> 2.4.18 <strong>Copyright &copy; 2021 <a
+					href="http://kalimagezi.com/" target="_blank">Kalimagezi ltd</a>.
 				</strong> All rights reserved.
 			</div>
 		</footer>
@@ -929,91 +929,93 @@
 						<div class="box box-success">
 
 							<c:forEach items="${catEvents}" var="catEvent">
-							<c:if test="${not empty catEvent.ename}">
-								<a><h5>${catEvent.ename}</h5></a>
-								<p>
-								<h5>${catEvent.description}</h5>
-								</p>
-								<h4>
-									<a href="/profile?wuid=${catEvent.uid}"> <span class="label label-success pull-left"> By ${catEvent.byname}</span></a>
-									<span class="label label-success pull-right">${catEvent.eventDate}</span>
-								</h4>
+								<c:if test="${not empty catEvent.ename}">
+									<a><h5>${catEvent.ename}</h5></a>
+									<p>
+									<h5>${catEvent.description}</h5>
+									</p>
+									<h4>
+										<a href="/profile?wuid=${catEvent.uid}"> <span
+											class="label label-success pull-left"> By
+												${catEvent.byname}</span></a> <span
+											class="label label-success pull-right">${catEvent.eventDate}</span>
+									</h4>
 
 
-								<div class="product-img">
-									<c:if test="${catEvent.imageLink!=''}">
-
-
-
-										<a
-											href="/uploads/${catEvent.uid}/events/${catEvent.imageLink}"><img
-											class="img-responsive"
-											src="/uploads/${catEvent.uid}/events/${catEvent.imageLink}"
-											alt="user image"> </a>
-
-									</c:if>
-									<c:if test="${catEvent.imageLink==''}">
-										<img class="img-responsive" src="dist/img/default-50x50.gif"
-											alt="Product Image">
-
-									</c:if>
-
-								</div>
-
-								<ul class="list-inline">
-									<li>
-										<form action="/home/addNotGoing" method="post">
-											<input type="hidden" name="${_csrf.parameterName}"
-												value="${_csrf.token}" /> <input type="hidden" name="uid"
-												value="${user.id}" /> <input type="hidden" name="eid"
-												value="${catEvent.id}" />
+									<div class="product-img">
+										<c:if test="${catEvent.imageLink!=''}">
 
 
 
-											<button type="submit" class="btn btn-trans">
-												<i class="fa fa-times fa-2x margin-r-5"></i> Not Going
-											</button>
+											<a
+												href="/uploads/${catEvent.uid}/events/${catEvent.imageLink}"><img
+												class="img-responsive"
+												src="/uploads/${catEvent.uid}/events/${catEvent.imageLink}"
+												alt="user image"> </a>
 
-										</form>
+										</c:if>
+										<c:if test="${catEvent.imageLink==''}">
+											<img class="img-responsive" src="dist/img/default-50x50.gif"
+												alt="Product Image">
 
+										</c:if>
 
+									</div>
 
-									</li>
-
-									<li>
-										<form class="form-horizontal" action="/home/addGoing"
-											method="post">
-											<input type="hidden" name="${_csrf.parameterName}"
-												value="${_csrf.token}" /> <input type="hidden" name="uid"
-												value="${user.id}" /> <input type="hidden" name="eid"
-												value="${catEvent.id}" />
-
-
-
-											<button type="submit" class="btn btn-trans">
-
-
-												<i class="fa fa-check fa-2x margin-r-5"></i> Going
-
-											</button>
+									<ul class="list-inline">
+										<li>
+											<form action="/home/addNotGoing" method="post">
+												<input type="hidden" name="${_csrf.parameterName}"
+													value="${_csrf.token}" /> <input type="hidden" name="uid"
+													value="${user.id}" /> <input type="hidden" name="eid"
+													value="${catEvent.id}" />
 
 
-										</form>
 
-									</li>
-									<li class="pull-right"><a href="#"
-										class="link-black text-sm"> <i
-											class="fa fa-check fa-2x margin-r-5"></i>Not Going
-											(${catEvent.notGoing})
-									</a></li>
+												<button type="submit" class="btn btn-trans">
+													<i class="fa fa-times fa-2x margin-r-5"></i> Not Going
+												</button>
 
-									<li class="pull-right"><a href="#"
-										class="link-black text-sm"><i
-											class="fa fa-times fa-2x margin-r-5"></i>Going
-											(${catEvent.going})</a></li>
+											</form>
 
 
-								</ul>
+
+										</li>
+
+										<li>
+											<form class="form-horizontal" action="/home/addGoing"
+												method="post">
+												<input type="hidden" name="${_csrf.parameterName}"
+													value="${_csrf.token}" /> <input type="hidden" name="uid"
+													value="${user.id}" /> <input type="hidden" name="eid"
+													value="${catEvent.id}" />
+
+
+
+												<button type="submit" class="btn btn-trans">
+
+
+													<i class="fa fa-check fa-2x margin-r-5"></i> Going
+
+												</button>
+
+
+											</form>
+
+										</li>
+										<li class="pull-right"><a href="#"
+											class="link-black text-sm"> <i
+												class="fa fa-check fa-2x margin-r-5"></i>Not Going
+												(${catEvent.notGoing})
+										</a></li>
+
+										<li class="pull-right"><a href="#"
+											class="link-black text-sm"><i
+												class="fa fa-times fa-2x margin-r-5"></i>Going
+												(${catEvent.going})</a></li>
+
+
+									</ul>
 								</c:if>
 
 
@@ -1080,9 +1082,8 @@
 							</div>
 
 							<div class="form-group has-feedback">
-							<label for="deadline">Deadline</label>
-								<input type="date" class="form-control" name="deadline"
-									id="advertDate" /> <span
+								<label for="deadline">Deadline</label> <input type="date"
+									class="form-control" name="deadline" id="advertDate" /> <span
 									class="glyphicon glyphicon-calendar form-control-feedback"></span>
 							</div>
 							<div class="form-group has-feedback">
@@ -1127,91 +1128,93 @@
 						<div class="box box-success">
 
 							<c:forEach items="${catJobadds}" var="catJobadd">
-							<c:if test="${not empty catJobadd.jobTitle}">
-								<a><h5>(${catJobadd.noPositions}) ${catJobadd.jobTitle} (s)</h5></a>
-								<p>
-								<h5>${catJobadd.description}</h5>
-								</p>
-								<h4>
-									<span class="label label-success pull-left">${catJobadd.salary}</span>
-									<span class="label label-danger pull-right">${catJobadd.deadline}</span>
-								</h4>
+								<c:if test="${not empty catJobadd.jobTitle}">
+									<a><h5>(${catJobadd.noPositions})
+											${catJobadd.jobTitle} (s)</h5></a>
+									<p>
+									<h5>${catJobadd.description}</h5>
+									</p>
+									<h4>
+										<span class="label label-success pull-left">${catJobadd.salary}</span>
+										<span class="label label-danger pull-right">${catJobadd.deadline}</span>
+									</h4>
 
 
-								<div class="product-img">
-									<c:if test="${catJobadd.imageLink!=''}">
-
-
-
-										<a target="_blank"
-											href="/uploads/${catJobadd.uid}/jobadds/${catJobadd.imageLink}"><img
-											class="img-responsive"
-											src="/uploads/${catJobadd.uid}/jobadds/${catJobadd.imageLink}"
-											alt="user image"> </a>
-
-									</c:if>
-									<c:if test="${catJobadd.imageLink==''|| catJobadd.imageLink==null}">
-										<img class="img-responsive" src="dist/img/default-50x50.gif"
-											alt="Product Image">
-
-									</c:if>
-
-								</div>
-
-								<ul class="list-inline">
-									<li>
-										<form action="/home/addNotRecomend" method="post">
-											<input type="hidden" name="${_csrf.parameterName}"
-												value="${_csrf.token}" /> <input type="hidden" name="uid"
-												value="${user.id}" /> <input type="hidden" name="jaid"
-												value="${catJobadd.id}" />
+									<div class="product-img">
+										<c:if test="${catJobadd.imageLink!=''}">
 
 
 
-											<button type="submit" class="btn btn-trans">
-												<i class="fa fa-times fa-2x margin-r-5"></i> Not Recomended
-											</button>
+											<a target="_blank"
+												href="/uploads/${catJobadd.uid}/jobadds/${catJobadd.imageLink}"><img
+												class="img-responsive"
+												src="/uploads/${catJobadd.uid}/jobadds/${catJobadd.imageLink}"
+												alt="user image"> </a>
 
-										</form>
+										</c:if>
+										<c:if
+											test="${catJobadd.imageLink==''|| catJobadd.imageLink==null}">
+											<img class="img-responsive" src="dist/img/default-50x50.gif"
+												alt="Product Image">
 
+										</c:if>
 
+									</div>
 
-									</li>
-
-									<li>
-										<form class="form-horizontal" action="/home/addRecomend"
-											method="post">
-											<input type="hidden" name="${_csrf.parameterName}"
-												value="${_csrf.token}" /> <input type="hidden" name="uid"
-												value="${user.id}" /> <input type="hidden" name="jaid"
-												value="${catJobadd.id}" />
-
-
-
-											<button type="submit" class="btn btn-trans">
-
-
-												<i class="fa fa-check fa-2x margin-r-5"></i> Recomended
-
-											</button>
+									<ul class="list-inline">
+										<li>
+											<form action="/home/addNotRecomend" method="post">
+												<input type="hidden" name="${_csrf.parameterName}"
+													value="${_csrf.token}" /> <input type="hidden" name="uid"
+													value="${user.id}" /> <input type="hidden" name="jaid"
+													value="${catJobadd.id}" />
 
 
-										</form>
 
-									</li>
-									<li class="pull-right"><a href="#"
-										class="link-black text-sm"> <i
-											class="fa fa-check fa-2x margin-r-5"></i>Recomended
-											(${catJobadd.recomended})
-									</a></li>
+												<button type="submit" class="btn btn-trans">
+													<i class="fa fa-times fa-2x margin-r-5"></i> Not Recomended
+												</button>
 
-									<li class="pull-right"><a href="#"
-										class="link-black text-sm"><i
-											class="fa fa-times fa-2x margin-r-5"></i>Not Recomemded
-											(${catJobadd.notRecomended})</a></li>
+											</form>
 
 
-								</ul>
+
+										</li>
+
+										<li>
+											<form class="form-horizontal" action="/home/addRecomend"
+												method="post">
+												<input type="hidden" name="${_csrf.parameterName}"
+													value="${_csrf.token}" /> <input type="hidden" name="uid"
+													value="${user.id}" /> <input type="hidden" name="jaid"
+													value="${catJobadd.id}" />
+
+
+
+												<button type="submit" class="btn btn-trans">
+
+
+													<i class="fa fa-check fa-2x margin-r-5"></i> Recomended
+
+												</button>
+
+
+											</form>
+
+										</li>
+										<li class="pull-right"><a href="#"
+											class="link-black text-sm"> <i
+												class="fa fa-check fa-2x margin-r-5"></i>Recomended
+												(${catJobadd.recomended})
+										</a></li>
+
+										<li class="pull-right"><a href="#"
+											class="link-black text-sm"><i
+												class="fa fa-times fa-2x margin-r-5"></i>Not Recomemded
+												(${catJobadd.notRecomended})</a></li>
+
+
+									</ul>
 								</c:if>
 
 
@@ -1250,8 +1253,8 @@
 								value="${user.email}" />
 
 							<div class="form-group has-feedback">
-								<input type="email" class="form-control" name="iemail" id="iemail"
-									placeholder="Enter Email of Invitie"  /> <span
+								<input type="email" class="form-control" name="iemail"
+									id="iemail" placeholder="Enter Email of Invitie" /> <span
 									class="glyphicon glyphicon-envelope form-control-feedback"></span>
 							</div>
 
