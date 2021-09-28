@@ -45,11 +45,14 @@
 			<p class="text-muted text-center">${user.profession}</p>
 
 			<ul class="list-group list-group-unbordered">
-				<li class="list-group-item"><b>TOTAL POINTS</b> <button type="button" data-toggle="modal"
-						data-target="#companyEdit" class="btn probtn">
+				<li class="list-group-item"><b>TOTAL POINTS</b> 
+				
+				<button type="button" data-toggle="modal"
+						data-target="#companyEdit2" class="btn probtn">
 						<i class="fa fa-pencil" title="click to edit"
 							data-toggle="tooltip" data-placement="right"></i>
-					</button><a
+					</button> 
+					<a
 					class="pull-right"> ${counter.total}</a></li>
 
 				<li class="list-group-item"><b>COMPANY</b>
@@ -58,7 +61,9 @@
 						data-target="#companyEdit" class="btn probtn">
 						<i class="fa fa-pencil" title="click to edit"
 							data-toggle="tooltip" data-placement="right"></i>
-					</button> <a class="pull-right">${company.name}</a></li>
+					</button> 
+					
+					<a class="pull-right">${company.name}</a></li>
 				<li class="list-group-item"><b>JOB TITLE</b>
 
 					<button type="button" data-toggle="modal" data-target="#careerEdit"
