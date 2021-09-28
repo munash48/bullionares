@@ -45,7 +45,11 @@
 			<p class="text-muted text-center">${user.profession}</p>
 
 			<ul class="list-group list-group-unbordered">
-				<li class="list-group-item"><b>TOTAL POINTS</b> <a
+				<li class="list-group-item"><b>TOTAL POINTS</b> <button type="button" data-toggle="modal"
+						data-target="#companyEdit" class="btn probtn">
+						<i class="fa fa-pencil" title="click to edit"
+							data-toggle="tooltip" data-placement="right"></i>
+					</button><a
 					class="pull-right"> ${counter.total}</a></li>
 
 				<li class="list-group-item"><b>COMPANY</b>
