@@ -5,7 +5,7 @@
 		<!-- PRODUCT LIST -->
 	<div class="box box-primary">
 		<div class="box-header with-border">
-			<h3 class="box-title">Advertisement</h3>
+			<h3 class="box-title">Advertisements</h3>
 			<button type="button" data-toggle="modal"
 						data-target="#addAdvert" class="btn btn-trans probtn">
 						<i class="fa fa-pencil" title="click to add your advert" data-toggle="tooltip"
@@ -118,7 +118,7 @@
 	<!-- /.box -->
 	<div class="box box-default">
 		<div class="box-header with-border">
-			<h3 class="box-title">Job Advertisement</h3>
+			<h3 class="box-title">Job Advertisements</h3>
 			<button type="button" data-toggle="modal"
 						data-target="#addJob" class="btn btn-trans probtn">
 						<i class="fa fa-pencil" title="click to add job advert" data-toggle="tooltip"
